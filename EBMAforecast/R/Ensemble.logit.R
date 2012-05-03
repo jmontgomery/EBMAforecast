@@ -1,3 +1,40 @@
+#What is needed:
+ setClass(Class = "",
+ representation = representation(values),
+          validity=function(){# A function to look at opbject and make sure it makes sense},
+prototype=prototype() # defaults
+)
+# can alternatively use the "setValidity(), #representation(), and #prototype() commands
+
+
+
+setGeneric()
+#> setGeneric (
+#+ name= "countMissing",
+#+ def=function(object){standardGeneric("countMissing")}
+#+ )
+#[1] "countMissing"
+#This add countMissing to the list of the methods that R knows. We can now deﬁne
+#more speciﬁcally countMissing for the object trajectories:
+
+setMethod() # This is how we make a new function for the class we are working on
+# will also want to set the method for the "initialize" function to fine tune how an object is created.  But will need to use the validObject() command within it
+
+# Will need a
+          # 1) user friendly constructor
+          # 2) accessors ... both get and set functions. (see section 7)
+          
+# Section 9 explains inheritance and section 10 explains internal modifications and easy handling of the environment
+
+          
+# some utilities
+slotNames()
+getSlots()
+getClass()
+showMethods()
+existsMethod()
+
+
 Ensemble.logit <-
 function(y, pp.raw, exp=3, tol=.001, max.iter=10000, model.names=NULL){
 
@@ -21,7 +58,7 @@ my.em <- function(y, PP.matrix, W, PP.W, z.numerator)
      PP.W[y==0] <- PP.W.zero[y==0]
      LL <-sum(log(PP.W))
 
-     ### Output: Log-liklihood, Funny PP.W, and Model Wights
+     ### Output: Log-liklihood, Funny PP.W, and Model Weights
      out <- list(LL=LL, PP.W=PP.W, W=round(W, 5))
      return(out)
 }
