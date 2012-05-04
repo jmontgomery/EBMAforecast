@@ -1,14 +1,18 @@
-#What is needed:
  setClass(Class = "",
  representation = representation(values),
-          validity=function(){# A function to look at opbject and make sure it makes sense},
+          validity=function(){# A function to look at gopbject and make sure it makes sense},
 prototype=prototype() # defaults
 )
 # can alternatively use the "setValidity(), #representation(), and #prototype() commands
 
 
 
+library(ensembleBMA)
+          
 setGeneric()
+
+
+          
 #> setGeneric (
 #+ name= "countMissing",
 #+ def=function(object){standardGeneric("countMissing")}
@@ -20,13 +24,11 @@ setGeneric()
 setMethod() # This is how we make a new function for the class we are working on
 # will also want to set the method for the "initialize" function to fine tune how an object is created.  But will need to use the validObject() command within it
 
-# Will need a
+# Will need a:
           # 1) user friendly constructor
           # 2) accessors ... both get and set functions. (see section 7)
           
 # Section 9 explains inheritance and section 10 explains internal modifications and easy handling of the environment
-
-          
 # some utilities
 slotNames()
 getSlots()
