@@ -1,0 +1,2 @@
+exportClasses(ForecastData)
+exportMethods(makeForecastData)
