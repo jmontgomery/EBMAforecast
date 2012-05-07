@@ -1,7 +1,5 @@
-
-
-# An S4 class that stores forecasting data
-# '
+#' An S4 class that stores forecasting data
+#'
 #' @export
 setClass(Class="ForecastData",
          representation = representation(
@@ -21,7 +19,7 @@ setClass(Class="ForecastData",
              {stop("The number of predictions and outcomes do not match in the calibration set")}
          }
          )
-# TODO: improve validity checks
+
 
 
 #' Build a ensemble forecasting data object
@@ -37,16 +35,20 @@ setClass(Class="ForecastData",
 #' @param .outcomeTest A dichotomous vector of length, where 1 indicates the observation is in the test sample
 #' @param .modelNames A dichotomous vector of length, where 1 indicates the observation is in the test sample
 #' @param ... Additional arguments not implemented
-#' @return A data object of the class 'ForecastData' with the following slots: \n
-#' \item{slot1}{Description of slot 1} /n
+#'
+#' @return A data object of the class 'ForecastData' with the following slots: 
+#' \item{slot1}{Description of slot 1} 
 #' \item{slot2}{Description of slot 2}
+#'
 #' @author Michael D. Ward and Jacob M. Montgomery
+#'
 #' @references Montgomery, Hollenbach, and Ward (2012). etc.
+#'
 #' @seealso ensembleBMA, other functions
 #' @export
 setGeneric(name="makeForecastData",
-           def=function(.predALL=NULL,
-            .outcomesALL=NULL,
+           def=function(.predAll=NULL,
+            .outcomeAll=NULL,
             .inOut=NULL,
             .predCalibration=NULL,
             .predTest=NULL,
@@ -64,8 +66,8 @@ setGeneric(name="makeForecastData",
 #' @export
 setMethod(f="makeForecastData",
           definition=function(
-            .predALL=NULL,
-            .outcomesALL=NULL,
+            .predAll=NULL,
+            .outcomeAll=NULL,
             .inOut=NULL,
             .predCalibration=NULL,
             .predTest=NULL,
@@ -79,7 +81,8 @@ setMethod(f="makeForecastData",
             .predTest <- as.data.frame(.predAll[.inOut==1,])
             .outcomeCalibration <- as.data.frame(.outcomeAll[.inOut==0,])
             .outcomeTest <- as.data.frame(.outcomeAll[.inOut==1,])
-            return(new("forecastData", predCalibration=.predCalibration, predTest=.predTest,
+            .modelNames <- character()
+            return(new("ForecastData", predCalibration=.predCalibration, predTest=.predTest,
                        outcomeCalibration=.outcomeCalibration, outcomeTest=.outcomeTest, modelNames=.modelNames))
           }
           )
@@ -87,7 +90,11 @@ setMethod(f="makeForecastData",
 #      2) improve documentation
 #      3) Develop some test vignettes to try and break this doing possible errors/misunderstandings
 #      4) Need another version of this to deal with data as created for the ensembleBMA package
+#      5) Should build an example.
+#      6) Haven't done the model names yet.  Should default to something reasonable.
 
 
-
-#TODO: Make a print, show, and plot functions for these objects. May also want to make something that calculates stats (i.e., brier) for the base model
+#TODO: Make a print(), show(), and plot() functions for these objects. May also want to make a function something that calculates stats (i.e., brier) for the base model
+#TODO: improve validity checks for the class formation
+#TODO: need get and set functions for basically every slot.
+#TODO: What is going on with the aliasing?

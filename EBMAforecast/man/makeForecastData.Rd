@@ -31,8 +31,8 @@
 }
 \value{
   A data object of the class 'ForecastData' with the
-  following slots: \n \item{slot1}{Description of slot 1}
-  /n \item{slot2}{Description of slot 2}
+  following slots: \item{slot1}{Description of slot 1}
+  \item{slot2}{Description of slot 2}
 }
 \description{
   The description goes here
