@@ -1,7 +1,7 @@
 \name{Ensemble}
 \alias{Ensemble}
-\title{An S4 class that stores an ensemble BMA model}
+\title{An S4 class that stores a calibrated ensemble BMA model}
 \description{
-  An S4 class that stores an ensemble BMA model
+  An S4 class that stores a calibrated ensemble BMA model
 }
 

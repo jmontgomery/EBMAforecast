@@ -21,6 +21,56 @@ setClass(Class="ForecastData",
          )
 
 
+##
+#' @export
+setMethod("initialize", "ForecastData", function(.Object, ...) {
+  value = callNextMethod()
+  validObject(value)
+  return(value)
+})
+
+
+
+##
+#' An S4 Class that stores forecasting data to be used in a logit model
+#'
+#' @export
+setClass(Class="ForecastDataLogit",
+         contains="ForecastData")
+
+##
+#' An S4 Class that stores forecasting data to be used in a normal modeel
+#'
+#' @export
+setClass(Class="ForecastDataNormal",
+         contains="ForecastData")
+
+
+##
+setAs(from="ForecastData", to="ForecastDataLogit",
+      def=function(from){
+        new("ForecastDataLogit",
+            predCalibration=from@predCalibration,
+            predTest=from@predTest,
+            outcomeCalibration=from@outcomeCalibration,
+            outcomeTest=from@outcomeTest,
+            modelNames=from@modelNames)
+      }
+      )
+
+##
+setAs(from="ForecastData", to="ForecastDataNormal",
+      def=function(from){
+        new("ForecastDataNormal",
+            predCalibration=from@predCalibration,
+            predTest=from@predTest,
+            outcomeCalibration=from@outcomeCalibration,
+            outcomeTest=from@outcomeTest,
+            modelNames=from@modelNames)
+      }
+      )
+
+
 
 #' Build a ensemble forecasting data object
 #'
@@ -94,7 +144,7 @@ setMethod(f="makeForecastData",
 #      6) Haven't done the model names yet.  Should default to something reasonable.
 
 
-#TODO: Make a print(), show(), and plot() functions for these objects. May also want to make a function something that calculates stats (i.e., brier) for the base model
-#TODO: improve validity checks for the class formation
+#TODO: Make a print(), show(), and plot() functions for these objects. May also want to make a function something that calculates stats (i.e., brier) for the base model.  
+#TODO: improve validity checks for the class formation for both mathematical and substantive checks.
 #TODO: need get and set functions for basically every slot.
 #TODO: What is going on with the aliasing?

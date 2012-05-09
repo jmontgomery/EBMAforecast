@@ -3,7 +3,6 @@ Type: Package
 Title: Ensemble BMA Forecasting
 Version: 0.3
 Date: 2012-05-06
-=======
 Author: Michael D. Ward and Jacob M. Montgomery
 Maintainer: Jacob Montgomery <jmm61@duke.edu>
 Description: Ensemble BMA for logistic regression
@@ -14,5 +13,5 @@ Depends:
 LazyLoad: yes
 Collate:
     'forecastData.R'
-    'calibrateEnsemle.R'
-
+    'calibrateEnsemble.R'
+    'fitEnsemble.R'

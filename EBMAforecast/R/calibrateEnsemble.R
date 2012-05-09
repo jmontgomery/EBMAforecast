@@ -23,7 +23,7 @@ setGeneric(name="calibrateEnsemble",
              exp=1,
              tol=.001,
              maxIter=10000,
-             model="normal",
+             model="logit",
              method="EM",
              ...)
            {standardGeneric("calibrateEnsemble")}
@@ -32,6 +32,30 @@ setGeneric(name="calibrateEnsemble",
 #' Logistic method
 #' @rdname calibrateEnsemble-methods
 #' @aliases calibrateEnsemble calibrateEnsemble-logit
+setMethod(f="calibrateEnsemble",
+          definition=function(
+            .forecastData,
+            exp=1,
+            tol=.001,
+            maxIter=10000,
+            model="logit",
+            method="EM",
+            ...)
+          {
+            switch(model,
+                   logit ={.forecastData <- as(.forecastData, "ForecastDataLogit")},
+                   logistic ={.forecastData <- as(.forecastData, "ForecastDataLogit")},
+                   normal={.forecastData <- as(.forecastData, "ForecastDataNormal")}
+                   )
+            eval(fitEnsemble(.forecastData,
+                             exp=exp,
+                             tol=.001,
+                             method="EM",
+                             ...), parent.frame())
+          }
+          )
+
+
 
 
 #' An S4 class that stores a calibrated ensemble BMA model
@@ -48,7 +72,7 @@ setClass(Class="Ensemble",
            .forecastData=new("ForecastData"),
            exp=numeric(),
            tol=numeric(),
-           maxIter=integer()
+           maxIter=integer(),
            model=character()),
          validity=function(object){
            if(object@maxIter%%1!=0){stop("The number of iterations must be a positive integer")}
