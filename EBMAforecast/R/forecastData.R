@@ -104,8 +104,8 @@ setGeneric(name="makeForecastData",
             .predTest=NULL,
             .outcomeCalibration=NULL,
             .outcomeTest=NULL,
-            .modelNames=NULL
-             , ...)
+            .modelNames=character(),
+             ...)
            {standardGeneric("makeForecastData")}
            )
 
@@ -123,15 +123,15 @@ setMethod(f="makeForecastData",
             .predTest=NULL,
             .outcomeCalibration=NULL,
             .outcomeTest=NULL,
-            .modelNames=NULL)
+            .modelNames=character())
           {
             .predCalibration <- as.data.frame(.predCalibration); .predTest <- as.data.frame(.predTest)
             .outcomeCalibration <- as.data.frame(.outcomeCalibration);   .outcomeTest <- as.data.frame(.outcomeTest)
-            .predCalibration <- as.data.frame(.predAll[.inOut==0,])
-            .predTest <- as.data.frame(.predAll[.inOut==1,])
-            .outcomeCalibration <- as.data.frame(.outcomeAll[.inOut==0,])
-            .outcomeTest <- as.data.frame(.outcomeAll[.inOut==1,])
-            .modelNames <- character()
+            if(!is.null(.predAll)){.predCalibration <- as.data.frame(.predAll[.inOut==0,])
+                                   .predTest <- as.data.frame(.predAll[.inOut==1,])}
+            if(!is.null(.outcomeAll)){.outcomeCalibration <- as.data.frame(.outcomeAll[.inOut==0,])
+                                      .outcomeTest <- as.data.frame(.outcomeAll[.inOut==1,])}
+            .modelNames <- .modelNames
             return(new("ForecastData", predCalibration=.predCalibration, predTest=.predTest,
                        outcomeCalibration=.outcomeCalibration, outcomeTest=.outcomeTest, modelNames=.modelNames))
           }

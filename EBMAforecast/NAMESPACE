@@ -1,4 +1,5 @@
 exportClasses(Ensemble)
+exportClasses(FDatFitLogit)
 exportClasses(ForecastData)
 exportClasses(ForecastDataLogit)
 exportClasses(ForecastDataNormal)
