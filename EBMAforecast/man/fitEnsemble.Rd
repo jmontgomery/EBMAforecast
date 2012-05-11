@@ -17,7 +17,7 @@
   \item{...}{Not implemented}
 }
 \value{
-  A data object of the class 'Ensemble'
+  A data object of the class 'FDatFitLogit'
 }
 \description{
   The description goes here `

@@ -1,4 +1,4 @@
-##5
+##
 #' Function for actually fitting an EBMA model based on the calibration dataset
 #'
 #' The description goes here
@@ -10,7 +10,7 @@
 #' @param method The estimation method used.  Currently only implements "EM"
 #' @param ... Not implemented
 #'
-#' @return A data object of the class 'Ensemble' 
+#' @return A data object of the class 'FDatFitLogit' 
 #'
 #' @author Michael D. Ward and Jacob M. Montgomery
 #'
@@ -60,7 +60,7 @@ setMethod(f="fitEnsemble",
               }
 
             pp.raw <- .forecastData@predCalibration
-            y <- as.vector(unlist(.forecastData@outcomeCalibration))
+            y <- .forecastData@outcomeCalibration
             modelNames <- .forecastData@modelNames
             
             num.models <- ncol(pp.raw)
@@ -117,13 +117,20 @@ setMethod(f="fitEnsemble",
             if (iter==maxIter){print("WARNING: Maximum iterations reached")}
             final.pp <- PP.matrix%*%W
 
-            cal <- as.data.frame(cbind(.forecastData@predCalibration, final.pp))
-            
+            ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
+            cal <- cbind(.forecastData@predCalibration, final.pp)
+
+            ##If the test period data is included, calculate the EBMA forecast for the test period and merge onto predTest
+            if(length(.forecastData@predTest)>0){
+                bma.pred <- as.vector(PP.matrix%*%W)
+                test <- cbind(.forecastData@predTest, bma.pred)
+            }
+            else {test <- .forecastData@predTest}
 
             new("FDatFitLogit",
                 predCalibration=cal,
                 outcomeCalibration=y,
-                predTest=.forecastData@predTest,
+                predTest=test,
                 outcomeTest=.forecastData@outcomeTest,
                 modelNames=modelNames,
                 modelWeights=W,
@@ -135,12 +142,6 @@ setMethod(f="fitEnsemble",
                 method=method,
                 call=match.call()
                 )
-                                        #list(W=W, log.lik=em.old, pred.prob=as.vector(final.pp), model.params=t(model.params), exp=exp,
-                        #modelNames=modelNames
-#                        #modelPreds=pp.raw,
-#                        dv=y, n=num.obs)
-                               #     )
-
           }
           )
 

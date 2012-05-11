@@ -76,3 +76,6 @@ function(obj, newdata, y.out) {
   invisible(out)
 }
 
+
+
+

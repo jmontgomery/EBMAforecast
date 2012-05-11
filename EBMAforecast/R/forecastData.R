@@ -3,20 +3,22 @@
 #' @export
 setClass(Class="ForecastData",
          representation = representation(
-           predCalibration="data.frame",
-           predTest="data.frame",
-           outcomeCalibration="data.frame",
-           outcomeTest="data.frame",
+           predCalibration="matrix",
+           predTest="matrix",
+           outcomeCalibration="matrix",
+           outcomeTest="matrix",
            modelNames="character"),
          prototype=prototype(
-           predCalibration=data.frame(),
-           predTest=data.frame(),
-           outcomeCalibration=data.frame(),
-           outcomeTest=data.frame(),
+           predCalibration=matrix(NA, nrow=0, ncol=0),
+           predTest=matrix(NA, nrow=0, ncol=0), 
+           outcomeCalibration=matrix(NA, nrow=0, ncol=0),
+           outcomeTest=matrix(NA, nrow=0, ncol=0),
            modelNames=character()),
          validity=function(object){
            if(nrow(object@predCalibration)!=nrow(object@outcomeCalibration))
              {stop("The number of predictions and outcomes do not match in the calibration set")}
+           if(ncol(object@outcomeTest)>1 || ncol(object@outcomeCalibration)>1)
+             {stop("The outcomes should be organized as a matrix with only one column")}
          }
          )
 
@@ -98,13 +100,13 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' @export
 setGeneric(name="makeForecastData",
            def=function(.predAll=NULL,
-            .outcomeAll=NULL,
-            .inOut=NULL,
-            .predCalibration=NULL,
-            .predTest=NULL,
-            .outcomeCalibration=NULL,
-            .outcomeTest=NULL,
-            .modelNames=character(),
+             .outcomeAll=NULL,
+             .inOut=NULL,
+            .predCalibration=matrix(NA, nrow=0, ncol=0),
+             .predTest=matrix(NA, nrow=0, ncol=0),
+             .outcomeCalibration=matrix(NA, nrow=0, ncol=0),
+            .outcomeTest=matrix(NA, nrow=0, ncol=0),
+             .modelNames=character(),
              ...)
            {standardGeneric("makeForecastData")}
            )
@@ -116,21 +118,21 @@ setGeneric(name="makeForecastData",
 #' @export
 setMethod(f="makeForecastData",
           definition=function(
-            .predAll=NULL,
-            .outcomeAll=NULL,
-            .inOut=NULL,
-            .predCalibration=NULL,
-            .predTest=NULL,
-            .outcomeCalibration=NULL,
-            .outcomeTest=NULL,
-            .modelNames=character())
+            .predAll,
+            .outcomeAll,
+            .inOut,
+            .predCalibration,
+            .predTest,
+            .outcomeCalibration,
+            .outcomeTest,
+            .modelNames)
           {
-            .predCalibration <- as.data.frame(.predCalibration); .predTest <- as.data.frame(.predTest)
-            .outcomeCalibration <- as.data.frame(.outcomeCalibration);   .outcomeTest <- as.data.frame(.outcomeTest)
-            if(!is.null(.predAll)){.predCalibration <- as.data.frame(.predAll[.inOut==0,])
-                                   .predTest <- as.data.frame(.predAll[.inOut==1,])}
-            if(!is.null(.outcomeAll)){.outcomeCalibration <- as.data.frame(.outcomeAll[.inOut==0,])
-                                      .outcomeTest <- as.data.frame(.outcomeAll[.inOut==1,])}
+            .predCalibration <- as.matrix(.predCalibration); .predTest <- as.matrix(.predTest)
+            .outcomeCalibration <- as.matrix(.outcomeCalibration);   .outcomeTest <- as.matrix(.outcomeTest)
+            if(!is.null(.predAll)){.predCalibration <- as.matrix(.predAll[.inOut==0,])
+                                   .predTest <- as.matrix(.predAll[.inOut==1,])}
+            if(!is.null(.outcomeAll)){.outcomeCalibration <- as.matrix(.outcomeAll[.inOut==0])
+                                      .outcomeTest <- as.matrix(.outcomeAll[.inOut==1])}
             .modelNames <- .modelNames
             return(new("ForecastData", predCalibration=.predCalibration, predTest=.predTest,
                        outcomeCalibration=.outcomeCalibration, outcomeTest=.outcomeTest, modelNames=.modelNames))
