@@ -107,6 +107,7 @@ setMethod(f="compareModels",
             }
             
           out@fitStatistics <- outMat
+            rownames(outMat) <- colnames(preds)
           return(outMat)
         }
 )

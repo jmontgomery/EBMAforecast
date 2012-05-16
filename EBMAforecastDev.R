@@ -20,7 +20,8 @@ ind <- c(rep(0,60), rep(1,40))
 
 
 
-jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind)
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,
+                          .modelNames=as.character(c(1:10)))
 jacob
 
 
@@ -30,26 +31,12 @@ jacob <- makeForecastData(.predCalibration=new.dat1, .outcomeCalibration=new.dat
 jacob
 
 jacob2 <- calibrateEnsemble(jacob, model="logit", exp=2)
-jacob2
+jacob2@modelWeights
 jacob2@predTest-jacob2@predCalibration
 new("FDatFitLogit")
 
 
 new("CompareModels")
 
-compareModels(jacob2)
+compareModels(jacob2, .threshold=.9)
 
-matrix(NA, nrow=20, ncol=10)[,1]
-
-my.fun <- function(x){somers2(x, y)[1]}
-y <- new.dat2
-preds <- new.dat1
-aaply(new.dat1, 2,.fun=my.fun, .expand=TRUE)
-  
-
-x <- matrix(1:6, ncol=2)
-y <- matrix(1, nrow=3)
-x
-y
-
-colSums(x-1)

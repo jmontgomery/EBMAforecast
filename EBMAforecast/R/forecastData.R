@@ -133,11 +133,24 @@ setMethod(f="makeForecastData",
                                    .predTest <- as.matrix(.predAll[.inOut==1,])}
             if(!is.null(.outcomeAll)){.outcomeCalibration <- as.matrix(.outcomeAll[.inOut==0])
                                       .outcomeTest <- as.matrix(.outcomeAll[.inOut==1])}
-            .modelNames <- .modelNames
+            if(length(.modelNames)<ncol(.predCalibration)){
+              .modelNames <- paste("Model", 1:ncol(.predCalibration))
+            }
+            colnames(.predCalibration) <- .modelNames; rownames(.predCalibration) <- 1:nrow(.predCalibration)
+            if (length(.predTest)>0){
+              colnames(.predTest) <- .modelNames
+              rownames(.predTest) <- 1:nrow(.predTest)
+            }
+            colnames(.outcomeCalibration) <- "Outcome"; rownames(.outcomeCalibration) <- 1:nrow(.outcomeCalibration)
+            if(length(.outcomeTest)>0){colnames(.outcomeTest) <- "Outcome"; rownames(.outcomeTest) <- 1:nrow(.outcomeTest)}
+            
             return(new("ForecastData", predCalibration=.predCalibration, predTest=.predTest,
                        outcomeCalibration=.outcomeCalibration, outcomeTest=.outcomeTest, modelNames=.modelNames))
+
           }
           )
+
+
 #TODO: 1) put in more checks/warnings
 #      2) improve documentation
 #      3) Develop some test vignettes to try and break this doing possible errors/misunderstandings
@@ -150,3 +163,4 @@ setMethod(f="makeForecastData",
 #TODO: improve validity checks for the class formation for both mathematical and substantive checks.
 #TODO: need get and set functions for basically every slot.
 #TODO: What is going on with the aliasing?
+#TODO: make sure the setModelNames() function also replaces appropriate column names.That should also be one of the valid tests.

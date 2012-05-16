@@ -71,6 +71,7 @@ setMethod(f="fitEnsemble",
             PP.matrix <- matrix(NA, nrow=num.obs, ncol=num.models)
             log.lik <- rep(NA, num.models)
             model.params <- matrix(NA, nrow=2, ncol=num.models)
+            colnames(model.params)=modelNames
             rownames(model.params) <- c("Constant", "Predictor")
   
   
@@ -87,6 +88,7 @@ setMethod(f="fitEnsemble",
             }
 
             W <- rep(1/k, k) #Start values for vector of Probability Weights
+
             ## Initiate a couple more useful matrices
             PP.W <- rep(NA, num.obs)
             z.numerator <- matrix(NA, nrow=num.obs, ncol=num.models)
@@ -117,15 +119,21 @@ setMethod(f="fitEnsemble",
             if (iter==maxIter){print("WARNING: Maximum iterations reached")}
             final.pp <- PP.matrix%*%W
 
+            
             ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
-            cal <- cbind(.forecastData@predCalibration, final.pp)
+            cal <- cbind(final.pp, .forecastData@predCalibration)
+            colnames(cal) <- c("EBMA", modelNames)
 
             ##If the test period data is included, calculate the EBMA forecast for the test period and merge onto predTest
             if(length(.forecastData@predTest)>0){
                 bma.pred <- as.vector(PP.matrix%*%W)
-                test <- cbind(.forecastData@predTest, bma.pred)
+                test <- cbind(bma.pred, .forecastData@predTest)
+                colnames(test) <- c("EBMA", modelNames)
             }
             else {test <- .forecastData@predTest}
+
+            ##
+            names(W) <- modelNames
 
             new("FDatFitLogit",
                 predCalibration=cal,
