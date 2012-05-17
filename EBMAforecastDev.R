@@ -8,9 +8,17 @@ library(separationplot)
 
 
 current.code <- as.package("EBMAforecast")
-load_all(current.code)
+load_all(current.code, reset=TRUE)
 document(current.code)
-jacob <- new(Class="ForecastData", modelNames="blah")
+plot(jacob2)
+demo(EBMAforecast)
+data(Insample)
+data(package="EBMAforecast")
+
+
+fjacob <- new(Class="ForecastData", modelNames="blah")
+
+
 
 as(jacob, "ForecastDataLogit")
 
@@ -39,4 +47,7 @@ new("FDatFitLogit")
 new("CompareModels")
 
 compareModels(jacob2, .threshold=.9)
-
+jj <- (summary(jacob2))
+print(jj)
+jj
+plot(jacob2)

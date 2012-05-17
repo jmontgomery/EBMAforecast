@@ -18,3 +18,4 @@ Collate:
     'fitEnsemble.R'
     'fDatFitLogit.R'
     'compareModels.R'
+    'summary.R'
