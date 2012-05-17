@@ -1,0 +1,494 @@
+icews$dum_iraq_afg<-ifelse(icews$country=="IRAQ" | icews$country=="AFGHANISTAN")
+icews$dum_iraq_afg<-ifelse(icews$country=="IRAQ" | icews$country=="AFGHANISTAN",1,0)
+#
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+MSPE(pred1,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+MSPE(pred1,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+plot(pred1,test$ins_high_both)
+MSPE(pred1,test$ins_high_both)
+#
+MSPE<-function(predictions,true){#
+	squared<-(predictions-true)^2#
+	error1<-sum(squared)/length(predictions)#
+	error<-sqrt(error1)#
+	return(error)#
+}
+MSPE(pred1,test$ins_high_both)
+model2<-zeroinfl(ins_high_both~1,data=training)
+MSPE(pred2,test$ins_high_both)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| POLITY.l1+polity2+ ins_high_both.l1,data=training,)#
+summary(model1)
+plot(pred1,test$ins_high_both)
+MSPE(pred1,test$ins_high_both)
+MSPE(pred2,test$ins_high_both)
+head(icews)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both+ eth_rel_low | POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+MSPE(pred1,test$ins_high_both)
+install(copula)
+library(copula)
+#
+hi<-normalCopula(.9, dim = 3, dispstr = "ex")#
+help<-(rcopula(hi, 10000))#
+#scatterplot3d(help)#
+#
+source("/Users/florianhollenbach/Dropbox/wicews/quantile/myImageP_copula.R")
+hi<-normalCopula(-.9, dim = 2, dispstr = "ex")
+help<-(rcopula(hi, 10^6))
+P<-table(ceiling(help[,1]*10),ceiling(help[,2]*10))
+myImagePlotP(P,title="")
+plot(help[,1],help[,2])
+myImagePlotP(P,title="")
+plot(pred1,test$ins_high_both)
+ceiling(help[,1]*10)
+ceiling(help[,2]*10)
+myImagePlotP(P,title="")
+predictions<-ifelse(pred1==0,0,1)
+#
+predictions<-ifelse(pred1==0,0,1)#
+true<-ifelse(test$ins_high_both==0,0,1)
+P<-table(predictions, true)
+P
+predictions<-ifelse(pred1<1,0,1)
+true<-ifelse(test$ins_high_both<1,0,1)
+P<-table(predictions, true)
+P
+myImagePlotP(P,title="Fuer Nils")
+predictions<-ifelse(pred1<1,0,NA)#
+predictions<-ifelse(pred1>=1 | pred1<15,1,predictions)#
+predictions<-ifelse(pred1>=15 ,2,predictions)#
+#
+#
+true<-ifelse(test$ins_high_both<1,0,NA)#
+#
+true <-ifelse(test$ins_high_both>=1 | test$ins_high_both<15,1, true)#
+true <-ifelse(test$ins_high_both>=15 ,2, true)
+P<-table(predictions, true)
+myImagePlotP(P,title="Fuer Nils")
+P
+predictions
+predictions<-ifelse(pred1<1,0,NA)#
+predictions<-ifelse(pred1>=1 & pred1<15,1,predictions)#
+predictions<-ifelse(pred1>=15 ,2,predictions)#
+#
+#
+true<-ifelse(test$ins_high_both<1,0,NA)#
+#
+true <-ifelse(test$ins_high_both>=1 & test$ins_high_both<15,1, true)#
+true <-ifelse(test$ins_high_both>=15 ,2, true)
+P<-table(predictions, true)#
+myImagePlotP(P,title="Fuer Nils")
+P1<-table(true,true)
+myImagePlotP(P1,title="Fuer Nils")
+source("/Users/florianhollenbach/Dropbox/wicews/quantile/myImageP_copula.R")
+#
+P<-table(predictions, true)#
+myImagePlotP(P,title="Fuer Nils")
+source("/Users/florianhollenbach/Dropbox/wicews/quantile/myImageP_copula.R")
+P<-table(predictions, true)#
+myImagePlotP(P,title="Fuer Nils")
+myImagePlotP(P1,title="Fuer Nils")
+P1<-table(true,true)
+myImagePlotP(P1,title="Fuer Nils")
+#
+P1<-table(true,true)#
+myImagePlotP(P1,title="Fuer Nils")
+#
+true<-ifelse(test$ins_high_both<1,0,NA)#
+#
+true <-ifelse(test$ins_high_both>=1 & test$ins_high_both<15,1, true)#
+true <-ifelse(test$ins_high_both>=15 ,2, true)
+#
+P1<-table(true,true)#
+myImagePlotP(P1,title="Fuer Nils")
+P12<-table(true,true)
+myImagePlotP(P12,title="Fuer Nils")
+source("/Users/florianhollenbach/Dropbox/wicews/quantile/myImageP_copula.R")
+#
+P12<-table(true,true)#
+myImagePlotP(P12,title="Fuer Nils")
+head(icews)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + exclpop.l1 +excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both+ eth_rel_low | POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)#
+pred2<-predict(model2,test)
+MSPE<-function(predictions,true){
+	squared<-(predictions-true)^2
+	error1<-sum(squared)/length(predictions)
+	error<-sqrt(error1)
+	return(error)
+}
+plot(pred1,test$ins_high_both)
+MSPE(pred1,test$ins_high_both)#
+MSPE(pred2,test$ins_high_both)
+true
+#
+true<-ifelse(test$ins_high_both<1,0,NA)#
+true <-ifelse(test$ins_high_both>=1 & test$ins_high_both<15,1, true)#
+true <-ifelse(test$ins_high_both>=15 ,2, true)
+#
+predictions<-ifelse(pred1<1,0,NA)#
+predictions<-ifelse(pred1>=1 & pred1<15,1,predictions)#
+predictions<-ifelse(pred1>=15 ,2,predictions)
+P<-table(predictions, true)
+myImagePlotP(P,title="Fuer Nils")
+P12<-table(true,true)
+myImagePlotP(P12,title="Fuer Nils")
+myImagePlotP(P12,title="")
+library(wicews)
+data(icews)
+library(pscl)#
+library(wicews)#
+data(icews)#
+summary(icews)#
+icews<-subset(icews,month.counter>1 & year<2012)#
+icews$ins_rate<-icews$ins_high_both/icews$SP.POP.TOTL#
+#
+icews$polity2.l1<-(icews$POLITY.l1)^2#
+icews$dum_iraq_afg<-ifelse(icews$country=="IRAQ" | icews$country=="AFGHANISTAN",1,0)
+#
+unique(test$cow)#
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+#
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + exclpop.l1 +excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both+ eth_rel_low | POLITY.l1+polity2.l1+ ins_high_both.l1,data=training,)#
+summary(model1)
+help(wicews)
+summary(training)
+icewest.lmer(insurgency~ ins_low_both + excl_groups_count + ProxElection+ NY.GDP.PCAP.CD.l1, teststart="Jan2010")
+help(icews)
+icewsest.lmer(insurgency~ ins_low_both + excl_groups_count + ProxElection+ NY.GDP.PCAP.CD.l1, teststart="Jan2010")
+help(icewsest.lmer)
+icewsest.lmer(insurgency~ ins_low_both + excl_groups_count + ProxElection+ NY.GDP.PCAP.CD.l1, teststart="Jan2010",data=icews)
+icewsest.lmer(insurgency~ ins_low_both + excl_groups_count + ProxElection+ NY.GDP.PCAP.CD.l1 + (1|country), teststart="Jan2010",data=icews)
+#
+share_true=c(17.5,8,5,15,NA,1,NA,5, .03,40,15,5,15,1,1,10,0.5,10,1,3,30,1,15,15,10,10,7,3,20,2,32,7,2.5,6)#
+share_want=c(15,5,5,8,20,3,10,10,0.05,25,12,0,10,5,5,NA,2,10,5,3,10,3,8,8,5,10,5,5,20,10,20,2,5,NA)#
+#q3 1- yes (good inv), 2- depends, 3- no#
+q3=c(2,2,2, 1,1,1,1,2,2,1,2,3,1,1,1,2,1,1,1,1,3,1,1,1,2,1,1,1,1,1,1,1,2,2)#
+#q4 answers 1-promote dem, 0- a, 2- b, ,3-c, 4-d (nat sec) #
+#5 - econ devel, 6 -reward friendly govs 9- all or more than 2#
+q4=c(1,4,3, 4,4,0,4,4,4,3,4,0,0,5,4,6,4,2,2,4,2,0,2,4,4,2,2,2,9,4,4,3,0,9)
+blub=data.frame(share_true, share_want,q3,q4)
+plot(density(blub$share_true))
+plot(density(blub$share_true,na.rm=TRUE))
+plot(share_true,share_want,data=blub)
+15+6/15
+(15+6)/15
+1.9*15
+(1.9*15)-21
+country<-(rep(5,1))
+country
+country<-c(rep(1,5),rep(2,7),rep(3,3),rep(4,12),rep(5,9),rep(6,1),rep(7,4),rep(8,1),rep(9,1),rep(10,11),rep(11,1),rep(12,9),rep(13,6)rep(14,749),rep(15,7))#
+regime<-c(rep(1,5),rep(0,7),rep(1,3),rep(1,12),rep(1,9),rep(1,1),rep(1,4),rep(1,1),rep(1,1),rep(0,11),rep(1,1),rep(0,9),rep(1,6)rep(1,749),rep(1,7))#
+bailout<-c(rep(1814,5),rep(309,7),rep(537,3),rep(2860,12),rep(14964,9),rep(460,1),rep(678,4),rep(1897,1),rep(819,1),rep(2230,11),rep(632,1),rep(686,9),rep(23035,6)rep(684,749),rep(1130,7))
+country<-c(rep(1,5),rep(2,7),rep(3,3),rep(4,12),rep(5,9),rep(6,1),rep(7,4),rep(8,1),rep(9,1),rep(10,11),rep(11,1),rep(12,9),rep(13,6)rep(14,749),rep(15,7))
+country<-c(rep(1,5),rep(2,7),rep(3,3),rep(4,12),rep(5,9),rep(6,1),rep(7,4),rep(8,1),rep(9,1),rep(10,11),rep(11,1),rep(12,9),rep(13,6),rep(14,749),rep(15,7))
+regime<-c(rep(1,5),rep(0,7),rep(1,3),rep(1,12),rep(1,9),rep(1,1),rep(1,4),rep(1,1),rep(1,1),rep(0,11),rep(1,1),rep(0,9),rep(1,6),rep(1,749),rep(1,7))
+bailout<-c(rep(1814,5),rep(309,7),rep(537,3),rep(2860,12),rep(14964,9),rep(460,1),rep(678,4),rep(1897,1),rep(819,1),rep(2230,11),rep(632,1),rep(686,9),rep(23035,6),rep(684,749),rep(1130,7))
+us<-ifelse(country==14,1,0)
+model1<-lm(bailout~regime + us)
+)
+summary(model1)
+model1<-lm(bailout~regime )
+summary(model1)
+library(wicews)
+help(wicews)
+demo(crisisdomestic, ask=FALSE)
+demo(insurgency, ask=FALSE)
+data(icews)
+head(icews)
+model.insurgency<-icewsest.lmer(insurgency ~ POLITY + NY.GDP.PCAP.KD + excl_groups_count + ProxElection.l1
+		+(1 |country),teststart="Jan10", header="Hierarchical Model of Insurgency")
+summary(model.insurgency)
+summary(model.insurgency$model)
+ranef(model.insurgency$model)
+ranef(model.insurgency)
+drilldown(model.insurgency, TOGO,2010,1,data=icews)
+drilldown(model.insurgency, "TOGO",2010,1,data=icews)
+viewranef(model.insurgency)
+whatif(model.insurgency, "TOGO",2010,1, NY.GDP.PCAP.KD,1,data=icews)
+whatif(model.insurgency, "TOGO",2010,1, "NY.GDP.PCAP.KD",1,data=icews)
+mapslice(model.insurgency, 2010, 1, type="actuals", file=NULL, map=icewsmap, data=icews)
+data(icewsmap)
+mapslice(model.insurgency, 2010, 1, type="actuals", file=NULL, map=icewsmap, data=icews)
+mapslice(model.insurgency, 2010, 1, type="predictions", file=NULL, map=icewsmap, data=icews)
+mapslice(model.insurgency, 2010, 1, type="actual", file=NULL, map=icewsmap, data=icews)
+mapslice(model.insurgency, 2010, 1, type="actuals", file=NULL, map=icewsmap, data=icews)
+help(wicews)
+model.insurgency1<-icewsest(insurgency ~ POLITY + NY.GDP.PCAP.KD + excl_groups_count + ProxElection.l1,teststart="Jan10", header="Hierarchical Model of Insurgency")
+summary(model.insurgency1$model
+summary(model.insurgency1)
+summary(model.insurgency1$model)
+drilldown(model.insurgency1, "TOGO",2010,1,data=icews)
+whatif(model.insurgency1, "TOGO",2010,1, "NY.GDP.PCAP.KD",1,data=icews)
+mapslice(model.insurgency1, 2010, 1, type="actuals", file=NULL, map=icewsmap, data=icews)
+#test icews#
+#
+library(wicews)#
+head(icews)#
+data(icewsmap)
+demo()
+demo(hierarchical.estimation)
+predict.table.hierarch
+predict.table.hierarchy
+demo(split.estimation)
+predict.table.split
+demo()
+demo(zinf.estimation)
+predict.table.zinfl
+library(Zelig)
+help(Zelig)
+libary(Amelia)
+library(Amelia)
+install.package("Amilia")
+install.packages("Amilia")
+library(sp)
+blub<-readShapePoly("/Qgis/Satellite/ethnicity/geoepr-eth_v.2.0 (1)/GeoEPR-ETH_2.0.shp")
+library(rgdal)
+blub<-readShapePoly("/Qgis/Satellite/ethnicity/geoepr-eth_v.2.0 (1)/GeoEPR-ETH_2.0.shp")
+library(maptools)
+blub<-readShapePoly("/Qgis/Satellite/ethnicity/geoepr-eth_v.2.0 (1)/GeoEPR-ETH_2.0.shp")
+blub<-readShapePoly("/Users/florianhollenbach/Dropbox/DATA/GeoEprData.shp")
+blub<-readShapePoly("/Users/florianhollenbach/Dropbox/DATA/GeoEprData.shp",repair=TRUE)
+blub<-readShapePoly("/Qgis/Satellite/ethnicity/geoepr-eth_v.2.0 (1)/GeoEPR-ETH_2.0.shp")
+x<-c(134, 146, 104, 119, 124, 161, 107, 83, 113, 129, 97, 123)
+y=c(70, 118, 101, 85, 107, 132, 94)
+mean(x)-mean(y)
+length(x)
+length(y)
+(11*var(x)+6*var(y)/17)*((1/7)+(1/12))
+sqr((11*var(x)+6*var(y)/17)*((1/7)+(1/12)))
+sqrt((11*var(x)+6*var(y)/17)*((1/7)+(1/12)))
+var(x)
+((140-(0.41*500))^2)/(0.41*500)+ ((165-(0.41*500))^2)/(0.41*500) + > ((205-(0.19*500))^2)/(0.19*500)
+((140-(0.41*500))^2)/(0.41*500)+ ((165-(0.41*500))^2)/(0.41*500) + ((205-(0.19*500))^2)/(0.19*500)
+155.7831
+((140-(0.305*500))^2)/(0.305*500)+ ((165-(0.305*500))^2)/(0.305*500) + ((205-(0.39*500))^2)/(0.39*500)
+pchsq(1,2.05)
+pchisq(1,2.05)
+dchisq(1,2.05)
+help(dchisq)
+dchisq(2.05,1)
+rchisq(2.05,1)
+qchisq(2.05,1)
+pchisq(2.05,1)
+1-pchisq(2.05,1)
+print
+print()
+args(print)
+x<-matrix(1:16,nrow=4,ncol=4)
+print(x)
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+library(plyr)#
+library(ensembleBMA)#
+library(separationplot)#
+#
+#
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+jacob <- new(Class="ForecastData", modelNames="blah")#
+#
+as(jacob, "ForecastDataLogit")#
+#
+fake.data1 <- matrix(rnorm(100), nrow=100, ncol=10)#
+fake.data2 <- fake.data1#
+ind <- c(rep(0,60), rep(1,40))#
+#
+#
+#
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,#
+                          .modelNames=as.character(c(1:10)))
+print(jacob)
+jacob@predCalibration
+print(jacob@predCalibration)
+return(jacob@predCalibration)
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+library(plyr)#
+library(ensembleBMA)#
+library(separationplot)#
+#
+#
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+jacob <- new(Class="ForecastData", modelNames="blah")#
+#
+as(jacob, "ForecastDataLogit")#
+#
+fake.data1 <- matrix(rnorm(100), nrow=100, ncol=10)#
+fake.data2 <- fake.data1#
+ind <- c(rep(0,60), rep(1,40))#
+#
+#
+#
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,#
+                          .modelNames=as.character(c(1:10)))
+jacob
+print(jacob)
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+library(plyr)#
+library(ensembleBMA)#
+library(separationplot)#
+#
+#
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+jacob <- new(Class="ForecastData", modelNames="blah")#
+#
+as(jacob, "ForecastDataLogit")#
+#
+fake.data1 <- matrix(rnorm(100), nrow=100, ncol=10)#
+fake.data2 <- fake.data1#
+ind <- c(rep(0,60), rep(1,40))#
+#
+#
+#
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,#
+                          .modelNames=as.character(c(1:10)))
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+library(plyr)#
+library(ensembleBMA)#
+library(separationplot)#
+#
+#
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+jacob <- new(Class="ForecastData", modelNames="blah")#
+#
+as(jacob, "ForecastDataLogit")#
+#
+fake.data1 <- matrix(rnorm(100), nrow=100, ncol=10)#
+fake.data2 <- fake.data1#
+ind <- c(rep(0,60), rep(1,40))#
+#
+#
+#
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,#
+                          .modelNames=as.character(c(1:10)))
+jacob
+paste(jacob@predCalibration)
+show(jacob@predCalibration)
+print.matrix(jacob@predCalibration)
+print (jacob@predTest)
+help(print)
+?print
+??print
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+library(plyr)#
+library(ensembleBMA)#
+library(separationplot)#
+#
+#
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+jacob <- new(Class="ForecastData", modelNames="blah")#
+#
+as(jacob, "ForecastDataLogit")#
+#
+fake.data1 <- matrix(rnorm(100), nrow=100, ncol=10)#
+fake.data2 <- fake.data1#
+ind <- c(rep(0,60), rep(1,40))#
+#
+#
+#
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,#
+                          .modelNames=as.character(c(1:10)))#
+jacob
+print(jacob)
+show(jacob)
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+library(plyr)#
+library(ensembleBMA)#
+library(separationplot)#
+#
+#
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+jacob <- new(Class="ForecastData", modelNames="blah")#
+#
+as(jacob, "ForecastDataLogit")#
+#
+fake.data1 <- matrix(rnorm(100), nrow=100, ncol=10)#
+fake.data2 <- fake.data1#
+ind <- c(rep(0,60), rep(1,40))#
+#
+#
+#
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,#
+                          .modelNames=as.character(c(1:10)))#
+jacob
+print(jacob)
+paste(jacob@predCalibration)[,1:nrow]
+nrow=10
+paste(jacob@predCalibration)[,1:nrow]
+paste(jacob@predCalibration[,1:nrow])
+paste(jacob@predCalibration[1:nrow,])
+nrow
+paste(jacob@predCalibration)
+paste(jacob@predCalibration[1:10])
+paste(jacob@predCalibration[1:10,1])
+paste(jacob@predCalibration[1:10,2])
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+library(plyr)#
+library(ensembleBMA)#
+library(separationplot)#
+#
+#
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+jacob <- new(Class="ForecastData", modelNames="blah")#
+#
+as(jacob, "ForecastDataLogit")#
+#
+fake.data1 <- matrix(rnorm(100), nrow=100, ncol=10)#
+fake.data2 <- fake.data1#
+ind <- c(rep(0,60), rep(1,40))#
+#
+#
+#
+jacob <- makeForecastData(.outcomeAll=fake.data1[,1], .predAll=as.data.frame(fake.data2), .inOut=ind,#
+                          .modelNames=as.character(c(1:10)))#
+jacob
+print(jacob)
+show(jacob)

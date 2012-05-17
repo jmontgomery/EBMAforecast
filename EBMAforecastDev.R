@@ -6,7 +6,7 @@ library(ensembleBMA)
 library(separationplot)
 
 
-
+setwd("/Users/florianhollenbach/Documents/GITHUB/EBMAforecast/")
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
@@ -29,6 +29,11 @@ new.dat1 <- matrix(runif(1000), nrow=100, ncol=10)
 new.dat2 <- matrix(rbinom(100, 1, .5), ncol=1)
 jacob <- makeForecastData(.predCalibration=new.dat1, .outcomeCalibration=new.dat2, .predTest=new.dat1, .modelNames="blahBlah")
 jacob
+
+
+getPredCalibration(jacob)
+getOutcomeCalibration(jacob)
+setOutcomeCalibration(jacob)<-as.matrix(c(rep(1,40),rep(0,60))) #works but why matrix?
 
 jacob2 <- calibrateEnsemble(jacob, model="logit", exp=2)
 jacob2@modelWeights

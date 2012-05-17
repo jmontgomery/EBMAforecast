@@ -164,3 +164,127 @@ setMethod(f="makeForecastData",
 #TODO: need get and set functions for basically every slot.
 #TODO: What is going on with the aliasing?
 #TODO: make sure the setModelNames() function also replaces appropriate column names.That should also be one of the valid tests.
+
+
+### FMH 05/13/2012
+setGeneric("print",function(object="ForecastData",...) standardGeneric("print"))
+setGeneric("show",function(object="ForecastData",...) standardGeneric("show"))
+
+
+
+
+
+setMethod(f="show",signature="ForecastData",
+    definition=function(object="ForecastData",...){
+    	cat("*** Class ForecastData, method Show *** (limited to the first ten values of each vector)\n")
+    	nrow=min(10,nrow(object@predCalibration))
+    	cat("Prediction Calibration = \n"); return(object@predCalibration[1:nrow,ncol(object@predCalibration)]);
+    	cat("* Prediction Test =\n"); return(object@predTest[1:nrow,ncol(object@predTest)]);
+		cat("* Outcome Calibration = \n"); return(object@outcomeCalibration[1:nrow,ncol(object@outcomeCalibration)]);
+		cat("* Outcome Test = \n"); return(object@outcomeTest[1:nrow,ncol(object@outcomeTest)]);
+		cat("* Model Names = \n"); return(object@modelNames);
+		cat("*** End Show (Forecast Data) *** \n")
+	}
+)
+
+setMethod(f="print",signature="ForecastData",
+    definition=function(object="ForecastData",...){
+		cat("*** Class ForecastData, method Print *** \n")
+		cat("* Prediction Calibration = \n"); return(object@predCalibration)
+		cat("* Prediction Test = \n");return(object@predTest)
+		cat("* Outcome Calibration = \n");return(object@outcomeCalibration)
+		cat("* Outcome Test = \n");return(object@outcomeTest)
+		cat("* Model Names = \n ");return(object@modelNames)
+		cat("*** End Print (Forecast Data) *** \n")
+	}
+)
+
+setGeneric("getPredCalibration",function(object="ForecastData") standardGeneric("getPredCalibration"))
+setMethod("getPredCalibration","ForecastData",
+	function(object="ForecastData"){
+		return(object@predCalibration)
+		}
+)
+
+setGeneric("getPredTest",function(object="ForecastData") standardGeneric("getPredTest"))
+setMethod("getPredTest","ForecastData",
+	function(object){
+		return(object@predTest)
+		}
+)
+
+setGeneric("getOutcomeCalibration",function(object="ForecastData") standardGeneric("getOutcomeCalibration"))
+setMethod("getOutcomeCalibration","ForecastData",
+	function(object="ForecastData"){
+		return(object@outcomeCalibration)
+		}
+)
+setGeneric("getOutcomeTest",function(object="ForecastData") standardGeneric("getOutcomeTest"))
+setMethod("getOutcomeTest","ForecastData",
+	function(object="ForecastData"){
+		return(object@outcomeTest)
+		}
+)
+setGeneric("getModelNames",function(object="ForecastData") standardGeneric("getModelNames"))
+setMethod("getModelNames","ForecastData",
+	function(object="ForecastData"){
+		return(object@modelNames)
+		}
+)
+
+
+setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
+setReplaceMethod(
+	f="setPredCalibration",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@predCalibration = value
+		return(object)
+	}
+)
+
+
+setGeneric("setPredTest<-",function(object,value){standardGeneric("setPredTest<-")})
+setReplaceMethod(
+	f="setPredTest",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@predTest<- value
+		return(object)
+	}
+)
+
+
+
+setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
+setReplaceMethod(
+	f="setOutcomeCalibration",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@outcomeCalibration <- value
+		return(object)
+	}
+)
+
+setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
+setReplaceMethod(
+	f="setOutcomeTest",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@outcomeTest<-value
+		return(object)
+	}
+)
+
+setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
+setReplaceMethod(
+	f="setModelNames",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@setmodelNames <-value
+		return(object)
+	}
+)
+
+
+
