@@ -59,16 +59,25 @@ setMethod(f="fitEnsemble",
                 return(out)
               }
 
+            ## See whether test period is also being calculated
+            testPeriod <- length(.forecastData@predTest)>0
+
             pp.raw <- .forecastData@predCalibration
             y <- .forecastData@outcomeCalibration
+            if(testPeriod){
+              pp.raw.test <- .forecastData@predTest
+              }
             modelNames <- .forecastData@modelNames
-            
-            num.models <- ncol(pp.raw)
-            num.obs <- length(y)
 
+
+            ## Calculate useful constants
+            num.models <- ncol(pp.raw)
+            num.obs <- nrow(pp.raw)
+            if(testPeriod) num.obs.test <- nrow(pp.raw.test)
 
             ## Initiate a couple of useful matrices
             PP.matrix <- matrix(NA, nrow=num.obs, ncol=num.models)
+            if(testPeriod){PP.test.matrix <- matrix(NA, nrow=num.obs.test, ncol=num.models)}
             log.lik <- rep(NA, num.models)
             model.params <- matrix(NA, nrow=2, ncol=num.models)
             colnames(model.params)=modelNames
@@ -85,6 +94,14 @@ setMethod(f="fitEnsemble",
               log.lik[k] <- this.model$deviance/(-2)
               model.params[,k] <- this.model$coefficients
               PP.matrix[,k] <- fitted(this.model)
+              if(testPeriod){
+                adj.pred <- qlogis(pp.raw.test[,k])
+                negative <- adj.pred<0
+                adj.pred <- ((1+abs(adj.pred))^(1/exp))-1
+                adj.pred[negative] <- adj.pred[negative]*(-1)
+                PP.test.matrix[,k] <- predict(this.model, newdata=as.data.frame(pp.raw.test), type="response")
+                
+              }
             }
 
             W <- rep(1/k, k) #Start values for vector of Probability Weights
@@ -125,8 +142,8 @@ setMethod(f="fitEnsemble",
             colnames(cal) <- c("EBMA", modelNames)
 
             ##If the test period data is included, calculate the EBMA forecast for the test period and merge onto predTest
-            if(length(.forecastData@predTest)>0){
-                bma.pred <- as.vector(PP.matrix%*%W)
+            if(testPeriod){
+                bma.pred <- as.vector(PP.test.matrix%*%W)
                 test <- cbind(bma.pred, .forecastData@predTest)
                 colnames(test) <- c("EBMA", modelNames)
             }

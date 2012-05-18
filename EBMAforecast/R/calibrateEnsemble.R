@@ -58,26 +58,5 @@ setMethod(f="calibrateEnsemble",
 
 
 
-#' An S4 class that stores a calibrated ensemble BMA model
-#'
-#' @export
-setClass(Class="Ensemble",
-         representation = representation(
-           .forecastData="ForecastData",
-           exp="numeric",
-           tol="numeric",
-           maxIter="numeric",
-           model="character"),
-         prototype=prototype(
-           .forecastData=new("ForecastData"),
-           exp=numeric(),
-           tol=numeric(),
-           maxIter=integer(),
-           model=character()),
-         validity=function(object){
-           if(object@maxIter%%1!=0){stop("The number of iterations must be a positive integer")}
-           if(object@maxIter<1){stop("The number of iterations must be a positive integer")}
-         }
-         )  
            
 

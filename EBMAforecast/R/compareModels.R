@@ -101,9 +101,9 @@ setMethod(f="compareModels",
             }
             if("pre" %in% .fitStatistics) {
               my.fun <- function(x){
-                num.right <- sum((x>.threshold)*y + (x<.threshold)*(1-y))
-                baseline.right <- sum(baseModel==y)
-                (baseline.right - (num.obs-num.right))/baseline.right
+                num.wrong <- num.obs-sum((x>.threshold)*y + (x<.threshold)*(1-y))
+                baseline.wrong <- num.obs-sum(baseModel==y)
+                (baseline.wrong - num.wrong)/baseline.wrong
               }
               outMat[,"pre"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }

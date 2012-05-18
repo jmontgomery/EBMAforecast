@@ -1,25 +1,18 @@
+data(calibrationSample)
+data(testSample)
 
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+                                      .outcomeCalibration=calibrationSample[,"Insurgency"],
+                                      .predTest=testSample[,c("LMER", "SAE", "GLM")],
+                                      .outcomeTest=testSample[,"Insurgency"],
+                                      .modelNames=c("LMER", "SAE", "GLM"))
 
-data(Insample)
-data(Outsample)
+this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
 
-in.data <- cbind(Insample[,"Polisci"], Insample[,"Glm.Econ"], Insample[,"Lmer3"], Insample[,"Glm.simple"],
-                 Insample[,"Lmer.all"], Insample[,"SAE"])
-colnames(in.data)<-c("Polisci", "GLM.Econ", "Lmer3", "Glm.simple", "Lmer.all", "SAE")
+summary(this.ensemble, period="calibration")
+plot(this.ensemble, period="calibration")
+summary(this.ensemble, period="test", showCoefs=FALSE)
+plot(this.ensemble, period="test")
 
-out.data <- cbind(Outsample[,"Polisci"], Outsample[,"Glm.Econ"], Outsample[,"Lmer3"], Outsample[,"Glm.simple"],
-                 Outsample[,"Lmer.all"], Outsample[,"SAE"])
-
-y.in <- Insample$Insurgency
-y.out <- Outsample$Insurgency
-
-
-#makeForecastData
-#calibrateEnsemble
-#summary(results, calibration)
-#plot(results, calibration)
-
-#summary(results, test)
-#plot(results, test)
 
 

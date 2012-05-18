@@ -1,16 +1,16 @@
-#' Insample data
+#' Calibration sample data
 #'
 #' In-sample data for international conflict example
 #'
-#' @name Insample
+#' @name calibrationSample
 #' @docType data
 NULL
 
-#' Outsample data
+#' Test sample data
 #'
 #' Test-sample data for international conflict example
 #'
-#' @name Outsample
+#' @name testSample
 #' @docType data
 NULL
 

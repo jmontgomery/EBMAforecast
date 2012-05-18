@@ -1,5 +1,4 @@
 exportClasses(CompareModels)
-exportClasses(Ensemble)
 exportClasses(FDatFitLogit)
 exportClasses(ForecastData)
 exportClasses(ForecastDataLogit)

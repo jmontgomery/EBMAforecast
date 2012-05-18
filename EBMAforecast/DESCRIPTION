@@ -10,7 +10,7 @@ License: GPL (>= 2)
 Depends:
     separationplot,
     ensembleBMA,
-    Hmisc
+    plyr
 LazyLoad: yes
 Collate:
     'forecastData.R'
