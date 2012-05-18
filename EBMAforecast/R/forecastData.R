@@ -167,37 +167,41 @@ setMethod(f="makeForecastData",
 
 
 ### FMH 05/13/2012
-setGeneric("print",function(object="ForecastData",...) standardGeneric("print"))
-setGeneric("show",function(object="ForecastData",...) standardGeneric("show"))
+#callGeneric("print",function(object="ForecastData",...) standardGeneric("print"))
+#setGeneric("show",function(object="ForecastData",...) standardGeneric("show"))
 
 
 
+setMethod(
+		f="print",
+		signature="ForecastData",
+		definition=function(x, digits=3, ...){
+			cat("*** Class ForecastData, method Print *** \n");
+			cat("* Prediction Calibration = \n"); print(x@predCalibration, na.print="", digits=digits);
+			cat("* Prediction Test = \n"); print(x@predTest, na.print="", digits=digits);
+				cat("* Outcome Calibration = \n");print(x@outcomeCalibration, na.print="", digits=digits);
+				cat("* Outcome Test = \n");print(x@outcomeTest, na.print="", digits=digits);
+				cat("* Model Names = \n ");print(x@modelNames, na.print="");
+			}
+			)
 
 
-setMethod(f="show",signature="ForecastData",
-    definition=function(object="ForecastData",...){
-    	cat("*** Class ForecastData, method Show *** (limited to the first ten values of each vector)\n")
-    	nrow=min(10,nrow(object@predCalibration))
-    	cat("Prediction Calibration = \n"); return(object@predCalibration[1:nrow,ncol(object@predCalibration)]);
-    	cat("* Prediction Test =\n"); return(object@predTest[1:nrow,ncol(object@predTest)]);
-		cat("* Outcome Calibration = \n"); return(object@outcomeCalibration[1:nrow,ncol(object@outcomeCalibration)]);
-		cat("* Outcome Test = \n"); return(object@outcomeTest[1:nrow,ncol(object@outcomeTest)]);
-		cat("* Model Names = \n"); return(object@modelNames);
-		cat("*** End Show (Forecast Data) *** \n")
-	}
+setMethod(
+		f="show",
+		signature="ForecastData",
+		definition=function(object){
+			cat("*** Class ForecastData, method Show *** (limited to the first ten values of each vector)\n");
+		    	nrow=min(10,nrow(object@predCalibration))
+			cat("Prediction Calibration = \n"); print(object@predCalibration[1:nrow,1:ncol(object@predCalibration)], na.print="", digits=2);
+			cat("* Prediction Test =\n"); print(object@predTest[1:nrow,1:ncol(object@predTest)], na.print="", digits=2);
+ 			cat("* Outcome Calibration = \n"); print(object@outcomeCalibration[1:nrow,1:ncol(object@outcomeCalibration)],na.print="", digits=2);
+ 			cat("* Outcome Test = \n");print(object@outcomeTest[1:nrow,1:ncol(object@outcomeTest)], na.print="", digits=2);
+				cat("* Model Names = \n "); print(object@modelNames,na.print="");
+				cat("*** End Show (Forecast Data) *** \n")
+
+			}
 )
 
-setMethod(f="print",signature="ForecastData",
-    definition=function(object="ForecastData",...){
-		cat("*** Class ForecastData, method Print *** \n")
-		cat("* Prediction Calibration = \n"); return(object@predCalibration)
-		cat("* Prediction Test = \n");return(object@predTest)
-		cat("* Outcome Calibration = \n");return(object@outcomeCalibration)
-		cat("* Outcome Test = \n");return(object@outcomeTest)
-		cat("* Model Names = \n ");return(object@modelNames)
-		cat("*** End Print (Forecast Data) *** \n")
-	}
-)
 
 setGeneric("getPredCalibration",function(object="ForecastData") standardGeneric("getPredCalibration"))
 setMethod("getPredCalibration","ForecastData",
