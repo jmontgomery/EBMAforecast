@@ -39,6 +39,9 @@ setClass(Class="CompareModels",
 #' @references Montgomery, Hollenbach, and Ward (2012). etc.
 #'
 #' @seealso ensembleBMA, other functions
+#'@importFrom Hmisc somers2
+#'@importMethodsFrom Hmisc somers2
+#'@import Hmisc
 #' @export
 setGeneric(name="compareModels",
            def=function(.forecastData,
@@ -50,9 +53,8 @@ setGeneric(name="compareModels",
            {standardGeneric("compareModels")}
            )
 
-#'@importFrom Hmisc somers2
-#'@importMethodsFrom Hmisc somers2
-#'@import Hmisc
+
+
 
 ##
 #' Method for logit

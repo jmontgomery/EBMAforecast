@@ -24,7 +24,7 @@ setGeneric(name="fitEnsemble",
            )
 
 
-#' Method for logit
+
 #' @rdname fitEnsemble-methods
 #' @aliases fitEnsemble
 #' @export

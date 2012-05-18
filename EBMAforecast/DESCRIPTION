@@ -15,7 +15,8 @@ LazyLoad: yes
 Collate:
     'forecastData.R'
     'calibrateEnsemble.R'
-    'fitEnsemble.R'
     'fDatFitLogit.R'
+    'fitEnsemble.R'
     'compareModels.R'
+    'document-data.R'
     'summary.R'

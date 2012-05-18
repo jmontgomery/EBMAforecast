@@ -1,15 +1,7 @@
-# Ensemble.ICEWS demo file
 
-
-##### New code here
 
 data(Insample)
 data(Outsample)
-
-
-################################################
-# This is the analysis *WITHOUT* the ICEWS model
-################################################
 
 in.data <- cbind(Insample[,"Polisci"], Insample[,"Glm.Econ"], Insample[,"Lmer3"], Insample[,"Glm.simple"],
                  Insample[,"Lmer.all"], Insample[,"SAE"])
@@ -21,21 +13,13 @@ out.data <- cbind(Outsample[,"Polisci"], Outsample[,"Glm.Econ"], Outsample[,"Lme
 y.in <- Insample$Insurgency
 y.out <- Outsample$Insurgency
 
-# Fit the BMA Model
-#BMA.fit <- Ensemble.logit(y=y.in, pp.raw=in.data, tol=.001, exp=4)
 
-# These are the within-sample model statistics/estimates for the parameters shown in the paper
-#print.Ensemble.logit(BMA.fit)
+#makeForecastData
+#calibrateEnsemble
+#summary(results, calibration)
+#plot(results, calibration)
 
-# Within-sample plots
-#plot.Ensemble.logit(BMA.fit)
+#summary(results, test)
+#plot(results, test)
 
-# Make out-of-sample predictions
-#BMA.pred <- predict.Ensemble.logit(obj=BMA.fit, newdata=out.data, y.out=y.out)
-
-# These are the out-of-sample model statistics (Model parameters are passed from the fit)
-#print.Ensemble.logit(BMA.pred)
-
-# Out-of sample plots
-#plot.Ensemble.logit(BMA.pred)
 

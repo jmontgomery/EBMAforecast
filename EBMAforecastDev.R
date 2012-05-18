@@ -10,13 +10,16 @@ library(separationplot)
 current.code <- as.package("EBMAforecast")
 load_all(current.code, reset=TRUE)
 document(current.code)
-plot(jacob2)
+install(current.code)
+
+library(EBMAforecast)
 demo(EBMAforecast)
-data(Insample)
-data(package="EBMAforecast")
 
 
-fjacob <- new(Class="ForecastData", modelNames="blah")
+
+
+
+jacob <- new(Class="ForecastData", modelNames="blah")
 
 
 
