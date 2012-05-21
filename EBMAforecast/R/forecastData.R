@@ -242,7 +242,7 @@ setReplaceMethod(
 	f="setPredCalibration",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@predCalibration = value
+		object@predCalibration = as.matrix(value)
 		return(object)
 	}
 )
@@ -253,7 +253,7 @@ setReplaceMethod(
 	f="setPredTest",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@predTest<- value
+		object@predTest<- as.matrix(value)
 		return(object)
 	}
 )
@@ -265,7 +265,7 @@ setReplaceMethod(
 	f="setOutcomeCalibration",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@outcomeCalibration <- value
+		object@outcomeCalibration <- as.matrix(value)
 		return(object)
 	}
 )
@@ -275,7 +275,7 @@ setReplaceMethod(
 	f="setOutcomeTest",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@outcomeTest<-value
+		object@outcomeTest<-as.matrix(value)
 		return(object)
 	}
 )
