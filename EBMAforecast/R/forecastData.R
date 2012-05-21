@@ -164,3 +164,131 @@ setMethod(f="makeForecastData",
 #TODO: need get and set functions for basically every slot.
 #TODO: What is going on with the aliasing?
 #TODO: make sure the setModelNames() function also replaces appropriate column names.That should also be one of the valid tests.
+
+
+### FMH 05/13/2012
+#callGeneric("print",function(object="ForecastData",...) standardGeneric("print"))
+#setGeneric("show",function(object="ForecastData",...) standardGeneric("show"))
+
+
+
+setMethod(
+		f="print",
+		signature="ForecastData",
+		definition=function(x, digits=3, ...){
+			cat("*** Class ForecastData, method Print *** \n");
+			cat("* Prediction Calibration = \n"); print(x@predCalibration, na.print="", digits=digits);
+			cat("* Prediction Test = \n"); print(x@predTest, na.print="", digits=digits);
+				cat("* Outcome Calibration = \n");print(x@outcomeCalibration, na.print="", digits=digits);
+				cat("* Outcome Test = \n");print(x@outcomeTest, na.print="", digits=digits);
+				cat("* Model Names = \n ");print(x@modelNames, na.print="");
+			}
+			)
+
+
+setMethod(
+		f="show",
+		signature="ForecastData",
+		definition=function(object){
+			cat("*** Class ForecastData, method Show *** (limited to the first ten values of each vector)\n");
+		    	nrow=min(10,nrow(object@predCalibration))
+			cat("Prediction Calibration = \n"); print(object@predCalibration[1:nrow,1:ncol(object@predCalibration)], na.print="", digits=2);
+			cat("* Prediction Test =\n"); print(object@predTest[1:nrow,1:ncol(object@predTest)], na.print="", digits=2);
+ 			cat("* Outcome Calibration = \n"); print(object@outcomeCalibration[1:nrow,1:ncol(object@outcomeCalibration)],na.print="", digits=2);
+ 			cat("* Outcome Test = \n");print(object@outcomeTest[1:nrow,1:ncol(object@outcomeTest)], na.print="", digits=2);
+				cat("* Model Names = \n "); print(object@modelNames,na.print="");
+				cat("*** End Show (Forecast Data) *** \n")
+
+			}
+)
+
+
+setGeneric("getPredCalibration",function(object="ForecastData") standardGeneric("getPredCalibration"))
+setMethod("getPredCalibration","ForecastData",
+	function(object="ForecastData"){
+		return(object@predCalibration)
+		}
+)
+
+setGeneric("getPredTest",function(object="ForecastData") standardGeneric("getPredTest"))
+setMethod("getPredTest","ForecastData",
+	function(object){
+		return(object@predTest)
+		}
+)
+
+setGeneric("getOutcomeCalibration",function(object="ForecastData") standardGeneric("getOutcomeCalibration"))
+setMethod("getOutcomeCalibration","ForecastData",
+	function(object="ForecastData"){
+		return(object@outcomeCalibration)
+		}
+)
+setGeneric("getOutcomeTest",function(object="ForecastData") standardGeneric("getOutcomeTest"))
+setMethod("getOutcomeTest","ForecastData",
+	function(object="ForecastData"){
+		return(object@outcomeTest)
+		}
+)
+setGeneric("getModelNames",function(object="ForecastData") standardGeneric("getModelNames"))
+setMethod("getModelNames","ForecastData",
+	function(object="ForecastData"){
+		return(object@modelNames)
+		}
+)
+
+
+setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
+setReplaceMethod(
+	f="setPredCalibration",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@predCalibration = as.matrix(value)
+		return(object)
+	}
+)
+
+
+setGeneric("setPredTest<-",function(object,value){standardGeneric("setPredTest<-")})
+setReplaceMethod(
+	f="setPredTest",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@predTest<- as.matrix(value)
+		return(object)
+	}
+)
+
+
+
+setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
+setReplaceMethod(
+	f="setOutcomeCalibration",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@outcomeCalibration <- as.matrix(value)
+		return(object)
+	}
+)
+
+setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
+setReplaceMethod(
+	f="setOutcomeTest",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@outcomeTest<-as.matrix(value)
+		return(object)
+	}
+)
+
+setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
+setReplaceMethod(
+	f="setModelNames",
+	signature="ForecastData",
+	definition=function(object,value){
+		object@setmodelNames <-value
+		return(object)
+	}
+)
+
+
+
