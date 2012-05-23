@@ -7,4 +7,9 @@
 
   Method for logit
 }
+\seealso{
+  ensembleBMA, other functions
+
+  ensembleBMA, other functions
+}
 

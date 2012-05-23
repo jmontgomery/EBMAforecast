@@ -3,45 +3,68 @@
 \title{Build a ensemble forecasting data object}
 \arguments{
   \item{.predAll}{An n by p matrix of data.frame containing
-  predictions for both the calibration and test
-  observations}
+  predictions, for both the calibration and test
+  observations.}
 
-  \item{.outcomeAll}{description}
+  \item{.outcomeAll}{A vector of length n, containing the
+  true values of the dependent variable, for both the
+  calibration and test observations.}
 
-  \item{.inOut}{A dichotomous vector of length, where 1
-  indicates the observation is in the test sample}
+  \item{.inOut}{A dichotomous vector of length n, where 1
+  indicates that the observation is in the test sample and
+  0 that it is in the calibration sample.}
 
-  \item{.predCalibration}{A dichotomous vector of length,
-  where 1 indicates the observation is in the test sample}
+  \item{.predCalibration}{A matrix with the number of rows
+  being the number of observations in the calibration
+  period and a column with calibration period predictions
+  for each model.}
 
-  \item{.predTest}{A dichotomous vector of length, where 1
-  indicates the observation is in the test sample}
+  \item{.predTest}{A matrix with the number of rows being
+  the number of observations in the test period and a
+  column with test period predictions for each model.}
 
-  \item{.outcomeCalibration}{A dichotomous vector of
-  length, where 1 indicates the observation is in the test
-  sample}
+  \item{.outcomeCalibration}{A vector with the true values
+  of the dependent variable for each observation in the
+  calibration period.}
 
-  \item{.outcomeTest}{A dichotomous vector of length, where
-  1 indicates the observation is in the test sample}
+  \item{.outcomeTest}{A vector with the true values of the
+  dependent variable for each observation in the test
+  period.}
 
-  \item{.modelNames}{A dichotomous vector of length, where
-  1 indicates the observation is in the test sample}
+  \item{.modelNames}{A vector of length p with the names of
+  the component models.}
 
   \item{...}{Additional arguments not implemented}
 }
 \value{
   A data object of the class 'ForecastData' with the
-  following slots: \item{slot1}{Description of slot 1}
-  \item{slot2}{Description of slot 2}
+  following slots: \item{Prediction Calibration}{A matrix
+  containing the predictions of all component models for
+  all observations in the calibration period.}
+  \item{Prediction Test}{A matrix containing the
+  predictions of all component models for all observations
+  in the test period.} \item{Outcome Calibration}{A vector
+  containing the true values of the dependent variable for
+  all observations in the calibration period.}
+  \item{Prediction Test}{A vector containing the true
+  values of the dependent variable for all observations in
+  the test period.} \item{Model Names}{A vector containing
+  the names of all component models.}
 }
 \description{
-  The description goes here
+  This function uses the user provided component model
+  forecasts and dependent variable observations to create
+  an object of class \code{ForecastData}, which can then be
+  used to calibrate and fit the Ensemble.
 }
 \author{
   Michael D. Ward and Jacob M. Montgomery
 }
 \references{
-  Montgomery, Hollenbach, and Ward (2012). etc.
+  Montgomery, Jacob M., Florian M. Hollenbach and Michael
+  D. Ward. (2012). Improving Predictions Using Ensemble
+  Bayesian Model Averaging. \emph{Political Analysis}.
+  Forthcoming.
 }
 \seealso{
   ensembleBMA, other functions

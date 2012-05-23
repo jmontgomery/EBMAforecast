@@ -5,6 +5,7 @@
   \item{object}{An object of class "SummaryForecastData"}
 }
 \description{
-  Description goes here
+  This function prints the summary statistics made by the
+  \code{Summary} function.
 }
 

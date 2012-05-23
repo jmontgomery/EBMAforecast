@@ -12,15 +12,15 @@ setClass(Class="SummaryForecastData",
          )
 
 ##
-#' Function for summarizing an ensemble that has already been fit
+#' Summary Function
 #'
-#' Description goes here
+#' This function summarizes the Ensemble models that have been fit previously by the user
 #'
 #' @param object An object of class "FDatFitLogit"
-#' @param period "calibration" or "test"
-#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" 
-#' @param threshold The threshold used to calculate when a "positive" prediction is made by the model
-#' @param baseModel Vector containing predictions used to calculate proportional reduction of error ("pre")
+#' @param period THe period for which the summary should be provided, either "calibration" or "test".
+#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre". 
+#' @param threshold The threshold used to calculate when a "positive" prediction is made by the model.
+#' @param baseModel Vector containing predictions used to calculate proportional reduction of error ("pre").
 #' @param showCoefs A logical indicating whether model ceofficients from the ensemble should be shown.
 #' @param ... Not implemented
 #' @method summary FDatFitLogit
@@ -55,7 +55,7 @@ setMethod(
 ##
 #' Function for printing a summary of a ForecastData
 #'
-#' Description goes here
+#' This function prints the summary statistics made by the \code{Summary} function. 
 #'
 #' @param object An object of class "SummaryForecastData"
 #' @method print SummaryForecastData          
@@ -72,7 +72,7 @@ setMethod(
 ##
 #' Function for showing a ForecastData
 #'
-#' Description goes here
+#' This function shows the summary statistics for the previously fitted Ensemble model but is limited to three digits.
 #'
 #' @param object An object of class "SummaryForecastData"
 #' @method show SummaryForecastData          

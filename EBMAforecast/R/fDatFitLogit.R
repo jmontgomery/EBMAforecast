@@ -37,11 +37,17 @@ setClass(Class="FDatFitLogit",
 ##
 #' Plotting function for logistic ensemble models that have already been fit
 #'
-#' Description goes here
+#' This function creates separation plots for each of the fitted models, including the EBMA model. Observations are ordered from left to right with increasing predicted probabilities, which is depicted by the black line. Actual occurrences are displayed by red vertical lines. Plots can be dislayed for the test or calibration period.
 #'
-#' @param x An object of class "FDatFitLogit"
-#' @param y I don't know
+#' @param x An object of class "FDatFitLogit".
+#' @param y I don't know.
+#'
 #' @method plot FDatFitLogit
+#' @return Returns a separation plot for each of the models.
+#'
+#' @author Michael D. Ward and Jacob M. Montgomery 
+#'
+#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #' @export
 setMethod(
           f="plot",

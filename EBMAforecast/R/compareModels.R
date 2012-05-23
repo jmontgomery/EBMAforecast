@@ -21,22 +21,22 @@ setClass(Class="CompareModels",
          )
 
 ##
-#' Function for comparing multiple models based on performance
+#' Function for comparing multiple models based on predictive performance
 #'
-#' The description goes here
-#'`
-#' @param .forecastData An object of class 'ForecastData' 
-#' @param period Can take value of "calibration" or "test" and indicates period for which statistics should be calculated
-#' @param comparisons A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" 
-#' @param threshold The threshold used to calculate when a "positive" prediction is made by the model
-#' @param baseModel Vector containing predictions used to calculate proportional reduction of error ("pre") 
+#' This function produces a table with statistics to compare the predictive performance of the different models in included as well as for the EBMA model. 
+#'
+#' @param .forecastData An object of class 'ForecastData'. 
+#' @param period Can take value of "calibration" or "test" and indicates period for which statistics should be calculated.
+#' @param comparisons A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre". 
+#' @param threshold The threshold used to calculate when a "positive" prediction is made by the model.
+#' @param baseModel Vector containing predictions used to calculate proportional reduction of error ("pre").
 #' @param ... Not implemented
 #'
 #' @return A data object of the class 'CompareModels' 
 #'
-#' @author Michael D. Ward and Jacob M. Montgomery
+#' @author Michael D. Ward and Jacob M. Montgomery 
 #'
-#' @references Montgomery, Hollenbach, and Ward (2012). etc.
+#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'
 #' @seealso ensembleBMA, other functions
 #'@importFrom Hmisc somers2
@@ -60,6 +60,8 @@ setGeneric(name="compareModels",
 #' Method for logit
 #' @rdname fitEnsemble-methods
 #' @aliases fitEnsemble
+#'
+#' @seealso ensembleBMA, other functions
 #' @export
 setMethod(f="compareModels",
           signature(.forecastData="ForecastData"),

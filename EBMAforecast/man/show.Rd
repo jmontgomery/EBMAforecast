@@ -5,6 +5,8 @@
   \item{object}{An object of class "SummaryForecastData"}
 }
 \description{
-  Description goes here
+  This function shows the summary statistics for the
+  previously fitted Ensemble model but is limited to three
+  digits.
 }
 

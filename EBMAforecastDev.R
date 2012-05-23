@@ -2,7 +2,7 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 
-
+setwd("~/Documents/GITHUB/EBMAforecast/")
 
 # Only need to run this portion once
 current.code <- as.package("EBMAforecast")
@@ -14,3 +14,4 @@ install(current.code)
 library(EBMAforecast)
 demo(EBMAforecast)
 
+help(EBMAforecast)
