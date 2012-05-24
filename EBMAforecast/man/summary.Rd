@@ -26,4 +26,11 @@
   This function summarizes the Ensemble models that have
   been fit previously by the user
 }
+\examples{
+R summary(this.ensemble, period="calibration") summary(this.ensemble, period="test",showCoefs=FALSE)
+}
+\author{
+  Michael D. Ward <\link{michael.d.ward@duke.edu}> and
+  Jacob M. Montgomery <\link{jacob.montgomery@wustl.edu}>
+}
 

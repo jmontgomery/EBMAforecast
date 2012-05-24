@@ -1,6 +1,5 @@
 ##
-#' An S4 class for a summary of an ensemble BMA model
-#'
+
 #' @export
 setClass(Class="SummaryForecastData",
          representation=representation(
@@ -24,6 +23,10 @@ setClass(Class="SummaryForecastData",
 #' @param showCoefs A logical indicating whether model ceofficients from the ensemble should be shown.
 #' @param ... Not implemented
 #' @method summary FDatFitLogit
+#' 
+#' @author  Michael D. Ward <\link{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\link{jacob.montgomery@@wustl.edu}>
+#'
+#' @examples R summary(this.ensemble, period="calibration") summary(this.ensemble, period="test",showCoefs=FALSE)
 #' @export
 setMethod(
           f="summary",

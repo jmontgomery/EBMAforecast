@@ -13,10 +13,16 @@
 #'
 #' @return Returns a data of class 'Ensemble'
 #'
-#' @author Michael D. Ward and Jacob M. Montgomery 
+#' @author Michael D. Ward <\link{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\link{jacob.montgomery@@wustl.edu}>
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'
+#' @references Raftery, A. E., T. Gneiting, F. Balabdaoui and M. Polakowski. (2005). Using Bayesian Model Averaging to calibrate forecast ensembles. \emph{Monthly Weather Review}. \bold{133}:1155--1174.
+#' @references Sloughter, J. M., A. E. Raftery, T. Gneiting and C. Fraley. (2007). Probabilistic quantitative precipitation forecasting using Bayesian model averaging. \emph{Monthly Weather Review}. \bold{135}:3209--3220.
+#' @references Fraley, C., A. E. Raftery, T. Gneiting. (2010). Calibrating Multi-Model Forecast Ensembles with Exchangeable and Missing Members using Bayesian Model Averaging. \emph{Monthly Weather Review}. \bold{138}:190--202.
+#' @references Sloughter, J. M., T. Gneiting and A. E. Raftery. (2010). Probabilistic wind speed forecasting using ensembles and Bayesian model averaging. \emph{Journal of the American Statistical Association}. \bold{105}:25--35.
+#'
+#' @examples R this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
 #'
 #' @keywords calibrate EBMA 
 #'
@@ -32,9 +38,7 @@ setGeneric(name="calibrateEnsemble",
            {standardGeneric("calibrateEnsemble")}
            )
 
-#' Logistic method
-#' @rdname calibrateEnsemble-methods
-#' @aliases calibrateEnsemble calibrateEnsemble-logit
+#' @export
 setMethod(f="calibrateEnsemble",
           definition=function(
             .forecastData,

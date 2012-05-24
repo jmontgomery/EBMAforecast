@@ -57,8 +57,12 @@
   an object of class \code{ForecastData}, which can then be
   used to calibrate and fit the Ensemble.
 }
+\examples{
+R data(calibrationSample)   data(testSample) this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")], .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+}
 \author{
-  Michael D. Ward and Jacob M. Montgomery
+  Michael D. Ward <\link{michael.d.ward@duke.edu}> and
+  Jacob M. Montgomery <\link{jacob.montgomery@wustl.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael

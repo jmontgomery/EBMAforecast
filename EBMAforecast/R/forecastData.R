@@ -1,5 +1,4 @@
-#' An S4 class that stores forecasting data
-#'
+
 #' @export
 setClass(Class="ForecastData",
          representation = representation(
@@ -33,16 +32,12 @@ setMethod("initialize", "ForecastData", function(.Object, ...) {
 
 
 
-##
-#' An S4 Class that stores forecasting data to be used in a logit model
-#'
+
 #' @export
 setClass(Class="ForecastDataLogit",
          contains="ForecastData")
 
-##
-#' An S4 Class that stores forecasting data to be used in a normal modeel
-#'
+
 #' @export
 setClass(Class="ForecastDataNormal",
          contains="ForecastData")
@@ -95,10 +90,12 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' \item{Prediction Test}{A vector containing the true values of the dependent variable for all observations in the test period.}
 #' \item{Model Names}{A vector containing the names of all component models.}
 #'
-#' @author Michael D. Ward and Jacob M. Montgomery 
+#' @author  Michael D. Ward <\link{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\link{jacob.montgomery@@wustl.edu}>
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'
+#' @examples R data(calibrationSample)   data(testSample) this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")], .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+#' 
 #' @seealso ensembleBMA, other functions
 #' @export
 setGeneric(name="makeForecastData",
@@ -115,9 +112,7 @@ setGeneric(name="makeForecastData",
            )
 
 
-#' Default (direct entry) method
-#' @rdname makeForecastData-methods
-#' @aliases makeForecastData,standard-method
+
 #' @export
 setMethod(f="makeForecastData",
           definition=function(

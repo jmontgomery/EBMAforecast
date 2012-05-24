@@ -11,5 +11,11 @@
   in 29 Asian countries. The test sample ranges ranges from
   January 2010 to December 2010.
 }
+\references{
+  Montgomery, Jacob M., Florian M. Hollenbach and Michael
+  D. Ward. (2012). Improving Predictions Using Ensemble
+  Bayesian Model Averaging. \emph{Political Analysis}.
+  Forthcoming.
+}
 \keyword{datasets}
 

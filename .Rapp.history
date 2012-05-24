@@ -1,3 +1,57 @@
+MSPE(pred2,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+head(icews)
+library(wices)
+library(wicews)
+library(pscl)
+icews<-subset(icews,month.counter>1 & year<2012)
+summary(icews)
+data(icews)
+icews<-subset(icews,month.counter>1 & year<2012)
+summary(icews)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1,data=training,)
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1,data=training,)
+summary(model1)
+icews$polity2<-(icews$POLITY.l1)^2
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2,data=training,)
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2,data=training,)
+summary(model1)
+model2<-zeroinfl(ins_high_both~1,data=training)
+pred1<-predict(model1,test)#
+pred2<-predict(model2,test)
+MSPE<-function(predictions,true){#
+	squared<-(predictions-true)^2#
+	error<-sum(squared)/length(predictions)#
+	return(error)#
+}
+MSPE(pred1,test$ins_high_both)#
+MSPE(pred2,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+head(icews)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+MSPE<-function(predictions,true){#
+	squared<-(predictions-true)^2#
+	error<-sum(squared)/length(predictions)#
+	return(error)#
+}
+MSPE(pred1,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+icews$polity2.l1<-(icews$POLITY.l1)^2
+head(icews)
+unieque(icews$country)
+unique(icews$country)
+icews$dum_iraq_afg<-ifelse(icews$country=="IRAQ" | icews$country=="AFGHANISTAN")
+icews$dum_iraq_afg<-ifelse(icews$country=="IRAQ" | icews$country=="AFGHANISTAN",1,0)
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
 pred1<-predict(model1,test)
 MSPE(pred1,test$ins_high_both)
 plot(pred1,test$ins_high_both)
@@ -267,180 +321,15 @@ options(repos=c(CRAN="http://cran.wustl.edu"))#
 date()#
 install.packages(new.packages())#
 update.packages(ask=FALSE)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)
-install(current.code)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)
-install(current.code)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)
-install(current.code)
-library(EBMAforecast)
-demo(EBMAforecast)
-help(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)
-help(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)
-help(EBMAforecast)
-library(EBMAforecast)
-help(EBMAforecast)
-demo(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)
-library(EBMAforecast)#
-demo(EBMAforecast)
-help(EMBAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)
-library(EBMAforecast)#
-demo(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)#
-#
-# Once it's installed, you can look at the demo#
-library(EBMAforecast)#
-demo(EBMAforecast)#
-#
-help(EMBAforecast)
-help(EMBAforecast)
-help(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)#
-#
-# Once it's installed, you can look at the demo#
-library(EBMAforecast)#
-demo(EBMAforecast)#
-#
-help(EMBAforecast)
-help(EMBAforecast)
-help(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)#
-#
-# Once it's installed, you can look at the demo#
-library(EBMAforecast)#
-demo(EBMAforecast)
-help(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)#
-#
-# Once it's installed, you can look at the demo#
-library(EBMAforecast)
-help(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)#
-#
-# Once it's installed, you can look at the demo#
-library(EBMAforecast)
-help(EBMAforecast)
+ntrial = 500#
+nsample = 100#
+rho = 0.9#
+mu = 1.0#
+get.sample = function() {#
+	return(arima.sim(list(ar=rho), nsample) + mu)#
+}#
+Z = get.sample()
+plot(Z, lwd=2, col='red')
 library(devtools)#
 library(roxygen2)#
 library(testthat)#
@@ -458,14 +347,6 @@ library(EBMAforecast)#
 demo(EBMAforecast)#
 #
 help(EBMAforecast)
-help(EBMAforecast)
-data
-demo(EBMAforecast)
-print(this.ForecastData)
-348/27
-27*12
-28*12
-29*12
 library(devtools)#
 library(roxygen2)#
 library(testthat)#
@@ -479,6 +360,7 @@ document(current.code)#
 install(current.code)#
 #
 # Once it's installed, you can look at the demo#
-library(EBMAforecast)
-demo(EBMAforecast)
+library(EBMAforecast)#
+demo(EBMAforecast)#
+#
 help(EBMAforecast)
