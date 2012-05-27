@@ -1,4 +1,4 @@
-
+	
 #' @export
 setClass(Class="ForecastData",
          representation = representation(
@@ -15,10 +15,22 @@ setClass(Class="ForecastData",
            modelNames=character()),
          validity=function(object){
            if(nrow(object@predCalibration)!=nrow(object@outcomeCalibration))
-             {stop("The number of predictions and outcomes do not match in the calibration set")}
+             {stop("The number of predictions and outcomes do not match in the calibration set.")}
+           if(nrow(object@predTest)!=nrow(object@outcomeTest))
+             {stop("The number of predictions and outcomes do not match in the test set.")}  
            if(ncol(object@outcomeTest)>1 || ncol(object@outcomeCalibration)>1)
-             {stop("The outcomes should be organized as a matrix with only one column")}
-         }
+             {stop("The outcomes should be organized as a matrix with only one column.")}
+            if(ncol(object@predTest)!=ncol(object@predCalibration))
+             {stop("The number of prediction models in the calibration and test set are different.")}    
+           if(sum(is.na(object@predCalibration[,])) > 0)
+           	 {stop("There NAs in the prediction calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
+           if(sum(is.na(object@predTest[,])) > 0)
+           	 {stop("There NAs in the prediction test set, unfortunately the package does not work with NAs yet. Soon to come.")}
+		   if(sum(is.na(object@outcomeCalibration[,])) > 0)
+           	 {stop("There NAs in the outcome calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
+           if(sum(is.na(object@outcomeTest[,])) > 0)
+           	 {stop("There NAs in the outcome test set, unfortunately the package does not work with NAs yet. Soon to come.")}
+           }  
          )
 
 
@@ -35,7 +47,22 @@ setMethod("initialize", "ForecastData", function(.Object, ...) {
 
 #' @export
 setClass(Class="ForecastDataLogit",
-         contains="ForecastData")
+         contains="ForecastData",
+         validity=function(object){
+         	for(i in 1:nrow(object@outcomeCalibration)){
+         	if(object@outcomeCalibration[i,]!=1 & object@outcomeCalibration[i,]!=0)
+         	{stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome calibration set).")}	
+         	}
+         	for(i in 1:nrow(object@outcomeTest)){
+         	if(object@outcomeTest[i,]!=1 & object@outcomeTest[i,]!=0)
+         	{stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome test set).")}	
+         	}
+         	if(min(object@predCalibration)<0 || max(object@predCalibration)>1)
+         	{stop("The predictions for the binary model should be between 0 or 1 (Not true for prediction calibration set).")}	
+         	if(min(object@predTest)<0 || max(object@predTest)>1)
+         	{stop("The predictions for the binary model should be between 0 or 1 (Not true for prediction test set).")}	
+         	}
+)
 
 
 #' @export
@@ -52,8 +79,8 @@ setAs(from="ForecastData", to="ForecastDataLogit",
             outcomeCalibration=from@outcomeCalibration,
             outcomeTest=from@outcomeTest,
             modelNames=from@modelNames)
-      }
-      )
+}
+)
 
 ##
 setAs(from="ForecastData", to="ForecastDataNormal",
@@ -168,7 +195,7 @@ setMethod(f="makeForecastData",
 
 
 
-
+#' @export
 setMethod(
 		f="print",
 		signature="ForecastData",
@@ -182,7 +209,7 @@ setMethod(
 			}
 			)
 
-
+#' @export
 setMethod(
 		f="show",
 		signature="ForecastData",
@@ -199,90 +226,116 @@ setMethod(
 			}
 )
 
-
+#' @export
 setGeneric("getPredCalibration",function(object="ForecastData") standardGeneric("getPredCalibration"))
+#' @export
 setMethod("getPredCalibration","ForecastData",
 	function(object="ForecastData"){
 		return(object@predCalibration)
 		}
 )
 
+#' @export
 setGeneric("getPredTest",function(object="ForecastData") standardGeneric("getPredTest"))
+#' @export
 setMethod("getPredTest","ForecastData",
 	function(object){
 		return(object@predTest)
 		}
 )
-
+#' @export
 setGeneric("getOutcomeCalibration",function(object="ForecastData") standardGeneric("getOutcomeCalibration"))
+#' @export
 setMethod("getOutcomeCalibration","ForecastData",
 	function(object="ForecastData"){
 		return(object@outcomeCalibration)
 		}
 )
+
+#' @export
 setGeneric("getOutcomeTest",function(object="ForecastData") standardGeneric("getOutcomeTest"))
+#' @export
 setMethod("getOutcomeTest","ForecastData",
 	function(object="ForecastData"){
 		return(object@outcomeTest)
 		}
 )
+
+#' @export
 setGeneric("getModelNames",function(object="ForecastData") standardGeneric("getModelNames"))
+#' @export
 setMethod("getModelNames","ForecastData",
 	function(object="ForecastData"){
 		return(object@modelNames)
 		}
 )
 
-
+#' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
+
+#' @export
 setReplaceMethod(
 	f="setPredCalibration",
 	signature="ForecastData",
 	definition=function(object,value){
 		object@predCalibration = as.matrix(value)
+		validObject(object)
 		return(object)
 	}
 )
 
 
+#' @export
 setGeneric("setPredTest<-",function(object,value){standardGeneric("setPredTest<-")})
+#' @export
 setReplaceMethod(
 	f="setPredTest",
 	signature="ForecastData",
 	definition=function(object,value){
 		object@predTest<- as.matrix(value)
+		validObject(object)
 		return(object)
 	}
 )
 
 
-
+#' @export
 setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
+#' @export
 setReplaceMethod(
 	f="setOutcomeCalibration",
 	signature="ForecastData",
 	definition=function(object,value){
 		object@outcomeCalibration <- as.matrix(value)
+		validObject(object)
 		return(object)
 	}
 )
 
+#' @export
 setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
+#' @export
 setReplaceMethod(
 	f="setOutcomeTest",
 	signature="ForecastData",
 	definition=function(object,value){
 		object@outcomeTest<-as.matrix(value)
+		validObject(object)
 		return(object)
 	}
 )
 
+#' @export
 setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
+#' @export
 setReplaceMethod(
 	f="setModelNames",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@setmodelNames <-value
+		object@modelNames <-value
+		colnames(object@predCalibration)<-value
+		colnames(object@predTest)<-value
+		validObject(object)
 		return(object)
 	}
 )

@@ -4,7 +4,9 @@
 \arguments{
   \item{x}{An object of class "FDatFitLogit".}
 
-  \item{y}{I don't know.}
+  \item{period}{Can take value of "calibration" or "test"
+  and indicates the period for which the plots should be
+  produced.}
 }
 \value{
   Returns a separation plot for each of the models.
@@ -34,26 +36,5 @@ R plot(this.ensemble, period="calibration") plot(this.ensemble, period="test")
   Separation Plot: A New Visual Method For Evaluating the
   Fit of Binary Data. \emph{American Journal of Political
   Science}.\bold{55}: 991--1002.
-
-  Raftery, A. E., T. Gneiting, F. Balabdaoui and M.
-  Polakowski. (2005). Using Bayesian Model Averaging to
-  calibrate forecast ensembles. \emph{Monthly Weather
-  Review}. \bold{133}:1155--1174.
-
-  Sloughter, J. M., A. E. Raftery, T. Gneiting and C.
-  Fraley. (2007). Probabilistic quantitative precipitation
-  forecasting using Bayesian model averaging. \emph{Monthly
-  Weather Review}. \bold{135}:3209--3220.
-
-  Fraley, C., A. E. Raftery, T. Gneiting. (2010).
-  Calibrating Multi-Model Forecast Ensembles with
-  Exchangeable and Missing Members using Bayesian Model
-  Averaging. \emph{Monthly Weather Review}.
-  \bold{138}:190--202.
-
-  Sloughter, J. M., T. Gneiting and A. E. Raftery. (2010).
-  Probabilistic wind speed forecasting using ensembles and
-  Bayesian model averaging. \emph{Journal of the American
-  Statistical Association}. \bold{105}:25--35.
 }
 

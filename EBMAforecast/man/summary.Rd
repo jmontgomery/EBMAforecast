@@ -4,7 +4,7 @@
 \arguments{
   \item{object}{An object of class "FDatFitLogit"}
 
-  \item{period}{THe period for which the summary should be
+  \item{period}{The period for which the summary should be
   provided, either "calibration" or "test".}
 
   \item{fitStatistics}{A vector naming statistics that

@@ -22,7 +22,7 @@ setClass(Class="CompareModels",
 ##
 #' Function for comparing multiple models based on predictive performance
 #'
-#' This function produces statistics to compare the predictive performance of the different models in included as well as for the EBMA model. 
+#' This function produces statistics to compare the predictive performance of the different models in included as well as for the EBMA model for either the calibration or the test period.
 #'
 #' @param .forecastData An object of class 'ForecastData'. 
 #' @param .period Can take value of "calibration" or "test" and indicates period for which statistics should be calculated.
@@ -37,10 +37,6 @@ setClass(Class="CompareModels",
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'
-#' @references Raftery, A. E., T. Gneiting, F. Balabdaoui and M. Polakowski. (2005). Using Bayesian Model Averaging to calibrate forecast ensembles. \emph{Monthly Weather Review}. \bold{133}:1155--1174.
-#' @references Sloughter, J. M., A. E. Raftery, T. Gneiting and C. Fraley. (2007). Probabilistic quantitative precipitation forecasting using Bayesian model averaging. \emph{Monthly Weather Review}. \bold{135}:3209--3220.
-#' @references Fraley, C., A. E. Raftery, T. Gneiting. (2010). Calibrating Multi-Model Forecast Ensembles with Exchangeable and Missing Members using Bayesian Model Averaging. \emph{Monthly Weather Review}. \bold{138}:190--202.
-#' @references Sloughter, J. M., T. Gneiting and A. E. Raftery. (2010). Probabilistic wind speed forecasting using ensembles and Bayesian model averaging. \emph{Journal of the American Statistical Association}. \bold{105}:25--35.
 #' 
 #' @examples R compareModels(this.ensemble,"test") compareModels(this.ensemble,"calibration")
 

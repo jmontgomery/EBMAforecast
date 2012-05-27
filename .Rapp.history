@@ -1,6 +1,3 @@
-MSPE(pred2,test$ins_high_both)
-plot(pred1,test$ins_high_both)
-head(icews)
 library(wices)
 library(wicews)
 library(pscl)
@@ -330,6 +327,9 @@ get.sample = function() {#
 }#
 Z = get.sample()
 plot(Z, lwd=2, col='red')
+library(countrycodes)
+library(countrycode)
+help(countrycode)
 library(devtools)#
 library(roxygen2)#
 library(testthat)#
@@ -344,23 +344,5 @@ install(current.code)#
 #
 # Once it's installed, you can look at the demo#
 library(EBMAforecast)#
-demo(EBMAforecast)#
-#
-help(EBMAforecast)
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
-document(current.code)#
-install(current.code)#
-#
-# Once it's installed, you can look at the demo#
-library(EBMAforecast)#
-demo(EBMAforecast)#
-#
+demo(EBMAforecast)
 help(EBMAforecast)
