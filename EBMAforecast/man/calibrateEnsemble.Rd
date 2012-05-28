@@ -76,6 +76,6 @@ R this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.000
   Bayesian model averaging. \emph{Journal of the American
   Statistical Association}. \bold{105}:25--35.
 }
-\keyword{calibrate}
 \keyword{EBMA}
+\keyword{calibrate}
 
