@@ -13,7 +13,7 @@
   predictions, and create useful data visualizations
 }
 \examples{
-R demo(EBMAforecast)
+demo(EBMAforecast)
 }
 \author{
   Michael D. Ward <\link{michael.d.ward@duke.edu}> and

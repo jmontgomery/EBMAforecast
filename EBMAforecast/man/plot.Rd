@@ -20,7 +20,19 @@
   Plots can be dislayed for the test or calibration period.
 }
 \examples{
-R plot(this.ensemble, period="calibration") plot(this.ensemble, period="test")
+data(calibrationSample)
+
+data(testSample)
+
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
+.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+
+this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
+
+plot(this.ensemble, period="calibration")
+
+plot(this.ensemble, period="test")
 }
 \author{
   Michael D. Ward <\link{michael.d.ward@duke.edu}> and
@@ -36,5 +48,8 @@ R plot(this.ensemble, period="calibration") plot(this.ensemble, period="test")
   Separation Plot: A New Visual Method For Evaluating the
   Fit of Binary Data. \emph{American Journal of Political
   Science}.\bold{55}: 991--1002.
+}
+\seealso{
+  \code{separationplot}
 }
 

@@ -48,7 +48,22 @@ setClass(Class="FDatFitLogit",
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #' @references Greenhill, B., M.D. Ward, A. Sacks. (2011). The Separation Plot: A New Visual Method For Evaluating the Fit of Binary Data. \emph{American Journal of Political Science}.\bold{55}: 991--1002.
 #'
-#' @examples R plot(this.ensemble, period="calibration") plot(this.ensemble, period="test")
+#' @seealso \code{separationplot}
+#'
+#' @examples data(calibrationSample)
+#'
+#' data(testSample) 
+#' 
+#' this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+#' .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
+#' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+#' 
+#' this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
+#' 
+#' plot(this.ensemble, period="calibration") 
+#' 
+#' plot(this.ensemble, period="test")
+#'
 #'
 #' @export
 setMethod(

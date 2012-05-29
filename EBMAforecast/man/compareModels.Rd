@@ -27,10 +27,27 @@
   This function produces statistics to compare the
   predictive performance of the different models in
   included as well as for the EBMA model for either the
-  calibration or the test period.
+  calibration or the test period. It currently calculates
+  the area under the ROC (\code{auc}), the \code{brier}
+  score, the percent of observations predicted correctly
+  (\code{percCorrect}), as well as the proportional
+  reduction in error compared to some baseline model
+  (\code{pre}).
 }
 \examples{
-R compareModels(this.ensemble,"test") compareModels(this.ensemble,"calibration")
+data(calibrationSample)
+
+data(testSample)
+
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
+.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+
+this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
+
+compareModels(this.ensemble,"calibration")
+
+compareModels(this.ensemble,"test")
 }
 \author{
   Michael D. Ward <\link{michael.d.ward@duke.edu}> and

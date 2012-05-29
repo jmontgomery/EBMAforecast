@@ -1,4 +1,3 @@
-library(wices)
 library(wicews)
 library(pscl)
 icews<-subset(icews,month.counter>1 & year<2012)
@@ -343,6 +342,6 @@ document(current.code)#
 install(current.code)#
 #
 # Once it's installed, you can look at the demo#
-library(EBMAforecast)#
-demo(EBMAforecast)
+library(EBMAforecast)
 help(EBMAforecast)
+example(summary)
