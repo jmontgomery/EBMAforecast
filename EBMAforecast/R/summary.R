@@ -13,7 +13,7 @@ setClass(Class="SummaryForecastData",
 ##
 #' Summary Function
 #'
-#' This function summarizes the Ensemble models that have been fit previously by the user
+#' This function summarizes the Ensemble models that have been fit previously by the user.
 #'
 #' @param object An object of class "FDatFitLogit"
 #' @param period The period for which the summary should be provided, either "calibration" or "test".

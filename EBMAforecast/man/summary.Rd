@@ -24,7 +24,7 @@
 }
 \description{
   This function summarizes the Ensemble models that have
-  been fit previously by the user
+  been fit previously by the user.
 }
 \examples{
 data(calibrationSample)

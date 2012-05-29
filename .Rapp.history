@@ -1,9 +1,3 @@
-library(wicews)
-library(pscl)
-icews<-subset(icews,month.counter>1 & year<2012)
-summary(icews)
-data(icews)
-icews<-subset(icews,month.counter>1 & year<2012)
 summary(icews)
 model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1,data=training,)
 training<-subset(icews, icews$month.counter<109)#
@@ -329,6 +323,70 @@ plot(Z, lwd=2, col='red')
 library(countrycodes)
 library(countrycode)
 help(countrycode)
+rm(list=ls(all=TRUE))#
+library(raster)#
+library(maptools)#
+library(rgdal)#
+library(lattice)#
+library(fields)#
+library(gplots)#
+library(spdep)#
+library(lme4)#
+library(epicalc)#
+library(geoRglm)#
+library(xtable)#
+library(ggplot2)#
+library(apsrtable)#
+library(effects)#
+library(gridExtra)#
+library(sp)#
+setwd("/Qgis/Satellite/R_code/Post_apsa_clean")#
+#
+setwd("~/Dropbox/Satellite Paper/R_code-Data")#
+rm(list=ls(all=TRUE))#
+load("Satellite_elect_data_SL_new.RData")#
+Satellite_elect_data_SL_new$lights_2<-ifelse(Satellite_elect_data_SL_new$lights<(-10),NA,Satellite_elect_data_SL_new$lights )#
+Satellite_elect_data_SL_new$lights_norm<-Satellite_elect_data_SL_new$lights_2/Satellite_elect_data_SL_new$population_2000_col #
+Satellite_elect_data_SL_new$pres_eth0=ifelse(Satellite_elect_data_SL_new$pres_eth==0,1,0)#
+Satellite_elect_data_SL_new$pres_eth1=ifelse(Satellite_elect_data_SL_new$pres_eth==1,1,0)#
+Satellite_elect_data_SL_new$pres_eth2=ifelse(Satellite_elect_data_SL_new$pres_eth==2,1,0)#
+#
+Satellite_elect_data_SL_new$log_pop_2005=log(Satellite_elect_data_SL_new$population_2005_col)#
+sat_nb<-poly2nb(Satellite_elect_data_SL_new)#
+#
+summary(Satellite_elect_data_SL_new)#
+#
+load("Satellite_data_all_cases_new.RData")#
+Satellite_data_all_cases_new$lights_2<-ifelse(Satellite_data_all_cases_new$lights<(-10),NA,Satellite_data_all_cases_new$lights )#
+Satellite_data_all_cases_new$lights_norm<-Satellite_data_all_cases_new$lights_2/Satellite_data_all_cases_new$population_2000_col #
+Satellite_data_all_cases_new$pres_eth0=ifelse(Satellite_data_all_cases_new$pres_eth==0,1,0)#
+Satellite_data_all_cases_new$pres_eth1=ifelse(Satellite_data_all_cases_new$pres_eth==1,1,0)#
+Satellite_data_all_cases_new$pres_eth2=ifelse(Satellite_data_all_cases_new$pres_eth==2,1,0)#
+sat_nb_all<-poly2nb(Satellite_data_all_cases_new)#
+summary(Satellite_data_all_cases_new)
+scaled_data=scale(Satellite_elect_data_SL_new@data[, c("lights_2", "voteshare", "swing","log_pop_2000", "crops", "events","battles","civilians","riots")])#
+summary(scaled_data)#
+add=Satellite_elect_data_SL_new@data[, c("pres_eth1", "pres_eth2", "natural_res", "Bdi_dum", "Ken_dum","Lib_dum","SLE_dum","uga_dum","capital_dum")]#
+scaled_data=data.frame(scaled_data,add)#
+summary(scaled_data)
+scaled_data=scale(Satellite_elect_data_SL_new@data[, c("lights_2", "voteshare", "swing","log_pop_2000", "crops", "events","battles","civilians","riots")],center=TRUE,scale=TRUE)
+summary(scaled_data)
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+#
+setwd("~/Documents/GITHUB/EBMAforecast/")#
+#
+# Only need to run this portion once#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+install(current.code)#
+#
+# Once it's installed, you can look at the demo#
+library(EBMAforecast)
+E
+help(EBMAforecast)
 library(devtools)#
 library(roxygen2)#
 library(testthat)#
@@ -344,4 +402,3 @@ install(current.code)#
 # Once it's installed, you can look at the demo#
 library(EBMAforecast)
 help(EBMAforecast)
-example(summary)
