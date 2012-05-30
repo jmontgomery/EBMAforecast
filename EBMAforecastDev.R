@@ -24,11 +24,11 @@ log<-as(this.ForecastData,"ForecastDataLogit")
 
 nrow(this.ForecastData@outcomeCalibration)
 
-setPredCalibration(this.ForecastData)<-matrix(.5,ncol=3,nrow=696) ### yes, warning
+setPredCalibration(this.ForecastData)<-matrix(1.5,ncol=3,nrow=696) ### yes, warning
 setPredTest(this.ForecastData)<-matrix(0.5,ncol=3,nrow=348) ###works!
 setOutcomeCalibration(this.ForecastData)<-c(rep(0,600),rep(1,50),rep(1,16),rep(0,30)) #warning works### yes, warning 696
 setOutcomeTest(this.ForecastData)<-c(rep(0,23),rep(1,25),rep(0,300)) ### works!!!!!
-setModelNames(this.ForecastData)<-c("mokey","sl","oko") ## warning, that not character
+setModelNames(this.ForecastData)<-c(1,1,1) ## warning, that not character
 
 setModelNames(this.ForecastData)<-c("monkey","flo","jacob") ## need warning, too many
 

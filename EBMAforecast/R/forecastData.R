@@ -23,13 +23,13 @@ setClass(Class="ForecastData",
             if(ncol(object@predTest)!=ncol(object@predCalibration))
              {stop("The number of prediction models in the calibration and test set are different.")}    
            if(sum(is.na(object@predCalibration[,])) > 0)
-           	 {stop("There NAs in the prediction calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
+           	 {stop("There are NAs in the prediction calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
            if(sum(is.na(object@predTest[,])) > 0)
-           	 {stop("There NAs in the prediction test set, unfortunately the package does not work with NAs yet. Soon to come.")}
+           	 {stop("There are NAs in the prediction test set, unfortunately the package does not work with NAs yet. Soon to come.")}
 		   if(sum(is.na(object@outcomeCalibration[,])) > 0)
-           	 {stop("There NAs in the outcome calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
+           	 {stop("There are NAs in the outcome calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
            if(sum(is.na(object@outcomeTest[,])) > 0)
-           	 {stop("There NAs in the outcome test set, unfortunately the package does not work with NAs yet. Soon to come.")}
+           	 {stop("There are NAs in the outcome test set, unfortunately the package does not work with NAs yet. Soon to come.")}
            }  
          )
 
