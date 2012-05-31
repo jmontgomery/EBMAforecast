@@ -1,10 +1,3 @@
-model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| POLITY.l1+polity2+ ins_high_both.l1,data=training,)#
-summary(model1)
-plot(pred1,test$ins_high_both)
-MSPE(pred1,test$ins_high_both)
-MSPE(pred2,test$ins_high_both)
-head(icews)
-model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both+ eth_rel_low | POLITY.l1+polity2+ ins_high_both.l1,data=training,)
 MSPE(pred1,test$ins_high_both)
 install(copula)
 library(copula)
@@ -366,7 +359,6 @@ setModelNames(this.ForecastData)<-c("mokey","sl",1) ## warning, that not charact
 setModelNames(this.ForecastData)<-c(1,1,1) ## warning, that not character
 character(c(1,1,1))
 as.character(c(1,1,1))
-as.character(c(1,1,1))
 expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=3,nrow=696), throws_error())
 expect_that(setPredCalibration(this.ForecastData)<-matrix(NA,ncol=3,nrow=696), throws_error())
 expect_that(setOutcomeCalibration(this.ForecastData)<-c(rep(1,696)), throws_error())
@@ -375,7 +367,6 @@ expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=3,nrow=348), throws_er
 expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_error())
 setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348)
 expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,348), throws_error())
-expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,348)), throws_error())
 expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,348)), throws_error())
 expect_that(setOutcomeTest(this.ForecastData)<-c(rep(NA,348)), throws_error())
 expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=4,nrow=348), throws_error())
@@ -390,3 +381,21 @@ for(i in 1:4){#
 		expect_that(test_mat1[i,j], equals(check_against1[i,j]))#
 			}#
 }
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+#
+setwd("~/Documents/GITHUB/EBMAforecast/")#
+#setwd("~/GITHUB/EBMAforecast/")#
+#
+# Only need to run this portion once#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)
+test_file("test_start.R")
+test_file("test_start.R")
+test_file("test_start.R")
+test_file("test_start.R")
+test_file("test_start.R")
+test_file("test_start.R")
+test_file("test_start.R")
