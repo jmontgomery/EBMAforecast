@@ -1,19 +1,3 @@
-library(devtools)
-library(roxygen2)
-library(testthat)
-
-setwd("~/Documents/GITHUB/EBMAforecast/")
-
-# Only need to run this portion once
-current.code <- as.package("EBMAforecast")
-load_all(current.code)
-document(current.code)
-install(current.code)
-
-library(EBMAforecast)
-demo(EBMAforecast)
-
-help(EBMAforecast)
 
 ##test 1 for error predcalibration not between 0 and 1
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))

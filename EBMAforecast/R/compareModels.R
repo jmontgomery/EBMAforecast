@@ -53,9 +53,6 @@ setClass(Class="CompareModels",
 #' compareModels(this.ensemble,"test") 
 
 #' @seealso ensembleBMA, other functions
-#'@importFrom Hmisc somers2
-#'@importMethodsFrom Hmisc somers2
-#'@import Hmisc
 #' @export
 setGeneric(name="compareModels",
            def=function(.forecastData,

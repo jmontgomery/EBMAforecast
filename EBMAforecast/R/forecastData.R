@@ -181,24 +181,6 @@ setMethod(f="makeForecastData",
           )
 
 
-#TODO: 1) put in more checks/warnings
-#      2) improve documentation
-#      3) Develop some test vignettes to try and break this doing possible errors/misunderstandings
-#      4) Need another version of this to deal with data as created for the ensembleBMA package
-#      5) Should build an example.
-#      6) Haven't done the model names yet.  Should default to something reasonable.
-
-
-#TODO: Make a print(), show(), and plot() functions for these objects. May also want to make a function something that calculates stats (i.e., brier) for the base model.  
-#TODO: improve validity checks for the class formation for both mathematical and substantive checks.
-#TODO: need get and set functions for basically every slot.
-#TODO: What is going on with the aliasing?
-#TODO: make sure the setModelNames() function also replaces appropriate column names.That should also be one of the valid tests.
-
-
-
-
-
 
 #' @export
 setMethod(
@@ -278,7 +260,6 @@ setMethod("getModelNames","ForecastData",
 #' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
 
-#' @export
 setReplaceMethod(
 	f="setPredCalibration",
 	signature="ForecastData",
@@ -292,7 +273,7 @@ setReplaceMethod(
 
 #' @export
 setGeneric("setPredTest<-",function(object,value){standardGeneric("setPredTest<-")})
-#' @export
+
 setReplaceMethod(
 	f="setPredTest",
 	signature="ForecastData",
@@ -306,7 +287,7 @@ setReplaceMethod(
 
 #' @export
 setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
-#' @export
+
 setReplaceMethod(
 	f="setOutcomeCalibration",
 	signature="ForecastData",
@@ -319,7 +300,7 @@ setReplaceMethod(
 
 #' @export
 setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
-#' @export
+
 setReplaceMethod(
 	f="setOutcomeTest",
 	signature="ForecastData",
@@ -332,7 +313,7 @@ setReplaceMethod(
 
 #' @export
 setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
-#' @export
+
 setReplaceMethod(
 	f="setModelNames",
 	signature="ForecastData",
