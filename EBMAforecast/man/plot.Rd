@@ -9,7 +9,7 @@
   produced.}
 }
 \value{
-  Returns a separation plot for each of the models.
+  NULL
 }
 \description{
   This function creates separation plots for each of the
@@ -35,8 +35,8 @@ plot(this.ensemble, period="calibration")
 plot(this.ensemble, period="test")
 }
 \author{
-  Michael D. Ward <\link{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\link{jacob.montgomery@wustl.edu}>
+  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
+  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael

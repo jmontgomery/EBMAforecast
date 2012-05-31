@@ -11,9 +11,23 @@
 #' @param method The estimation method used.  Currently only implements "EM"
 #' @param ... Not implemented
 #'
-#' @return Returns a data of class 'FDatFitLogit'
+#' @return Returns a data of class 'FDatFitLogit', a subclass of 'ForecastData', with the following slots
+#' \item{predCalibration}{A matrix containing the predictions of all component models and the EBMA model for all observations in the calibration period.} 
+#' \item{predTest}{A matrix containing the predictions of all component models and the EBMA model for all observations in the test period.}
+#' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
+#' \item{outcomeTest}{An optional vector containing the true values of the dependent variable for all observations in the test period.}
+#' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
+#' \item{modelWeights}{A vector containing the model weights assigned to each moel}
+#' \item{modelParams}{The parameters for the individual logit models that transform the component models}
+#' \item{logLik}{The final log-likelihood for the calibrated EBMA model}
+#' \item{exp}{The exponential shrinkage term}
+#' \item{tol}{Tolerance for improvements in the log-likelihood before the EM algorithm will stop optimization.}
+#' \item{maxIter}{The maximum number of iterations the EM algorithm will run before stopping automatically}
+#' \item{method}{The estimation method used. }
+#' \item{call}{The actual call used to create the object}
 #'
-#' @author Michael D. Ward <\link{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\link{jacob.montgomery@@wustl.edu}>
+#'
+#' @author Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'

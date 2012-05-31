@@ -105,19 +105,18 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' @param .inOut A dichotomous vector of length n, where 1 indicates that the observation is in the test sample and 0 that it is in the calibration sample.
 #' @param .predCalibration A matrix with the number of rows being the number of observations in the calibration period and a column with calibration period predictions for each model.
 #' @param .predTest A matrix with the number of rows being the number of observations in the test period and a column with test period predictions for each model.
-#' @param .outcomeCalibration A vector with the true values of the dependent variable for each observation in the calibration period.
+#' @param .outcomeCalibration A vector with the true values of the dependent variable for each observation in the calibration period.  
 #' @param .outcomeTest A vector with the true values of the dependent variable for each observation in the test period.
-#' @param .modelNames A vector of length p with the names of the component models.
+#' @param .modelNames A vector of length p with the names of the component models.  
 #' @param ... Additional arguments not implemented
 #'
 #' @return A data object of the class 'ForecastData' with the following slots: 
-#' \item{Prediction Calibration}{A matrix containing the predictions of all component models for all observations in the calibration period.} 
-#' \item{Prediction Test}{A matrix containing the predictions of all component models for all observations in the test period.}
-#' \item{Outcome Calibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
-#' \item{Prediction Test}{A vector containing the true values of the dependent variable for all observations in the test period.}
-#' \item{Model Names}{A vector containing the names of all component models.}
-#'
-#' @author  Michael D. Ward <\link{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\link{jacob.montgomery@@wustl.edu}>
+#' \item{predCalibration}{A matrix containing the predictions of all component models for all observations in the calibration period.} 
+#' \item{predTest}{A matrix containing the predictions of all component models for all observations in the test period.}
+#' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
+#' \item{outcomeTest}{A vector containing the true values of the dependent variable for all observations in the test period.}
+#' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
+#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'

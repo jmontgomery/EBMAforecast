@@ -21,7 +21,15 @@
   \item{...}{Not implemented}
 }
 \value{
-  A data object of the class 'CompareModels'
+  A data object of the class 'CompareModels' with the
+  following slots: \item{fitStatistics}{The output of the
+  fit statistics for each model} \item{period}{The period,
+  "calibration" or "test", for which the statistics were
+  calculated} \item{threshold}{The threshold used to
+  calculate when a "positive" prediction is made by the
+  model.} \item{baseModel}{Vector containing predictions
+  used to calculate proportional reduction of error
+  ("pre").}
 }
 \description{
   This function produces statistics to compare the
@@ -50,8 +58,8 @@ compareModels(this.ensemble,"calibration")
 compareModels(this.ensemble,"test")
 }
 \author{
-  Michael D. Ward <\link{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\link{jacob.montgomery@wustl.edu}>
+  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
+  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael

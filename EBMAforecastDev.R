@@ -27,7 +27,7 @@ demo(EBMAforecast)
 
 
 
-
+# take a look at the help files
 help(EBMAforecast)
 help(makeForecastData)
 help(calibrateEnsemble)

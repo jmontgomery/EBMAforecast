@@ -22,6 +22,20 @@
 
   \item{...}{Not implemented}
 }
+\value{
+  A data object of the class 'SummaryForecastData' with the
+  following slots: \item{summaryData}{Under the default,
+  the function produces a matrix containing one row for
+  each model plus one row for the EBMA forecast.  The first
+  column is always the model weights assigned to the
+  component models.  The second and third columns are for
+  the model parameters for the transformation of the
+  component models.  The remaining columns are the
+  requested fit statistics for all models, as calculated by
+  the \code{copareModels} function.  If
+  \code{showCoefs=TRUE}, then those columns will be
+  excluded. }
+}
 \description{
   This function summarizes the Ensemble models that have
   been fit previously by the user.
@@ -42,7 +56,7 @@ summary(this.ensemble, period="calibration")
 summary(this.ensemble, period="test",showCoefs=FALSE)
 }
 \author{
-  Michael D. Ward <\link{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\link{jacob.montgomery@wustl.edu}>
+  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
+  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
 

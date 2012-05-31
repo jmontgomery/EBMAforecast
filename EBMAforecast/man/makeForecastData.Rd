@@ -38,18 +38,19 @@
 }
 \value{
   A data object of the class 'ForecastData' with the
-  following slots: \item{Prediction Calibration}{A matrix
+  following slots: \item{predCalibration}{A matrix
   containing the predictions of all component models for
   all observations in the calibration period.}
-  \item{Prediction Test}{A matrix containing the
-  predictions of all component models for all observations
-  in the test period.} \item{Outcome Calibration}{A vector
-  containing the true values of the dependent variable for
-  all observations in the calibration period.}
-  \item{Prediction Test}{A vector containing the true
-  values of the dependent variable for all observations in
-  the test period.} \item{Model Names}{A vector containing
-  the names of all component models.}
+  \item{predTest}{A matrix containing the predictions of
+  all component models for all observations in the test
+  period.} \item{outcomeCalibration}{A vector containing
+  the true values of the dependent variable for all
+  observations in the calibration period.}
+  \item{outcomeTest}{A vector containing the true values of
+  the dependent variable for all observations in the test
+  period.} \item{modelNames}{A character vector containing
+  the names of all component models.  If no model names are
+  specified, names will be assigned automatically.}
 }
 \description{
   This function uses the user provided component model
@@ -66,8 +67,8 @@ this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LME
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 }
 \author{
-  Michael D. Ward <\link{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\link{jacob.montgomery@wustl.edu}>
+  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
+  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael

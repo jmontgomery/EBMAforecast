@@ -1,10 +1,10 @@
+
+
 #' @export
 setGeneric(name="fitEnsemble",
            def=function(.forecastData, exp=1, tol=.001,maxIter=10000, method="EM", ...)
            {standardGeneric("fitEnsemble")}
            )
-
-
 
 
 #' @export
@@ -149,6 +149,7 @@ setMethod(f="fitEnsemble",
                 )
           }
           )
+
 
 
 

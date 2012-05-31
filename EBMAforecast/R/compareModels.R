@@ -31,9 +31,13 @@ setClass(Class="CompareModels",
 #' @param .baseModel Vector containing predictions used to calculate proportional reduction of error ("pre").
 #' @param ... Not implemented
 #'
-#' @return A data object of the class 'CompareModels' 
+#' @return A data object of the class 'CompareModels' with the following slots:
+#' \item{fitStatistics}{The output of the fit statistics for each model}
+#' \item{period}{The period, "calibration" or "test", for which the statistics were calculated}
+#' \item{threshold}{The threshold used to calculate when a "positive" prediction is made by the model.}
+#' \item{baseModel}{Vector containing predictions used to calculate proportional reduction of error ("pre").}
 #'
-#' @author  Michael D. Ward <\link{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\link{jacob.montgomery@@wustl.edu}>
+#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'
@@ -121,5 +125,4 @@ setMethod(f="compareModels",
         }
 )
 # TODO: Need to make it so that some fit statistics are "ruled out" for some kinds of outcomes.
-# TODO: Need to fix how it calls somers2.  I don't think what I am doing is right.  I should be able to do that with the NAMESPACE file.
 # TODO: Need to make the compareModels() function throw an error when asked to evaluate over period where the data is not sufficient.

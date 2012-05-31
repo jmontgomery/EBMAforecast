@@ -10,14 +10,17 @@
   generate ensemble forecasts. It includes functions to fit
   an ensemble Bayesian model averaging (EBMA) model using
   in-sample predictions, generate ensemble out-of-sample
-  predictions, and create useful data visualizations
+  predictions, and create useful data visualizations.
+  Currently, the package can only handle dichotomous
+  outcomes, although additional models will be added to the
+  package in the coming months.
 }
 \examples{
 demo(EBMAforecast)
 }
 \author{
-  Michael D. Ward <\link{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\link{jacob.montgomery@wustl.edu}>
+  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
+  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
