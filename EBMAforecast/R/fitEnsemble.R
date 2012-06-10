@@ -79,7 +79,7 @@ setMethod(f="fitEnsemble",
                 negative <- adj.pred<0
                 adj.pred <- ((1+abs(adj.pred))^(1/exp))-1
                 adj.pred[negative] <- adj.pred[negative]*(-1)
-                PP.test.matrix[,k] <- predict(this.model, newdata=as.data.frame(pp.raw.test), type="response")
+                PP.test.matrix[,k] <- predict(this.model, newdata=as.data.frame(adj.pred), type="response")
                 
               }
             }

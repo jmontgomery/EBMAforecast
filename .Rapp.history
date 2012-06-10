@@ -1,3 +1,77 @@
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1,data=training,)
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1,data=training,)
+summary(model1)
+icews$polity2<-(icews$POLITY.l1)^2
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2,data=training,)
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2,data=training,)
+summary(model1)
+model2<-zeroinfl(ins_high_both~1,data=training)
+pred1<-predict(model1,test)#
+pred2<-predict(model2,test)
+MSPE<-function(predictions,true){#
+	squared<-(predictions-true)^2#
+	error<-sum(squared)/length(predictions)#
+	return(error)#
+}
+MSPE(pred1,test$ins_high_both)#
+MSPE(pred2,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+head(icews)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+MSPE<-function(predictions,true){#
+	squared<-(predictions-true)^2#
+	error<-sum(squared)/length(predictions)#
+	return(error)#
+}
+MSPE(pred1,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+icews$polity2.l1<-(icews$POLITY.l1)^2
+head(icews)
+unieque(icews$country)
+unique(icews$country)
+icews$dum_iraq_afg<-ifelse(icews$country=="IRAQ" | icews$country=="AFGHANISTAN")
+icews$dum_iraq_afg<-ifelse(icews$country=="IRAQ" | icews$country=="AFGHANISTAN",1,0)
+training<-subset(icews, icews$month.counter<109)#
+test<-subset(icews,icews$month.counter>108)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+MSPE(pred1,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+MSPE(pred1,test$ins_high_both)
+plot(pred1,test$ins_high_both)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| NY.GDP.PCAP.KD.l1+ POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| POLITY.l1+polity2+ ins_high_both.l1,data=training,)
+summary(model1)
+pred1<-predict(model1,test)
+plot(pred1,test$ins_high_both)
+MSPE(pred1,test$ins_high_both)
+MSPE<-function(predictions,true){#
+	squared<-(predictions-true)^2#
+	error1<-sum(squared)/length(predictions)#
+	error<-sqrt(error1)#
+	return(error)#
+}
+MSPE(pred1,test$ins_high_both)
+model2<-zeroinfl(ins_high_both~1,data=training)
+MSPE(pred2,test$ins_high_both)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both| POLITY.l1+polity2+ ins_high_both.l1,data=training,)#
+summary(model1)
+plot(pred1,test$ins_high_both)
+MSPE(pred1,test$ins_high_both)
+MSPE(pred2,test$ins_high_both)
+head(icews)
+model1<-zeroinfl(ins_high_both  ~ ProxElection.l1 + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL) + dum_iraq_afg + ins_low_both+ reb_low_both+ eth_rel_low | POLITY.l1+polity2+ ins_high_both.l1,data=training,)
 MSPE(pred1,test$ins_high_both)
 install(copula)
 library(copula)
@@ -248,154 +322,18 @@ plot(Z, lwd=2, col='red')
 library(countrycodes)
 library(countrycode)
 help(countrycode)
+Sys.info
+Sys.info()
 library(devtools)#
 library(roxygen2)#
 library(testthat)#
 #
+#setwd("~/Documents/GITHUB/EBMAforecast/")#
+setwd("~/GITHUB/EBMAforecast/")
 setwd("~/Documents/GITHUB/EBMAforecast/")
-library(EBMAforecast)
-help(EBMAforecast)
-demo(EBMAforecast)
-test 1 for  predcalibration between 0 and 1#
-setPredCalibration(this.ForecastData)<-matrix(1.001,ncol=3,nrow=696) #
-expect_that(calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3), throws_error())#
-#
-setPredCalibration(this.ForecastData)<-matrix(-0.001,ncol=3,nrow=696) #
-expect_that(calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3), throws_error())
-test 1 for  predcalibration between 0 and 1#
-this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))#
-#
-setPredCalibration(this.ForecastData)<-matrix(1.001,ncol=3,nrow=696) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())#
-##
-setPredCalibration(this.ForecastData)<-matrix(-0.001,ncol=3,nrow=696) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
-setPredTest(this.ForecastData)<-matrix(1.001,ncol=3,nrow=696) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())#
-##
-setPredTest(this.ForecastData)<-matrix(-0.001,ncol=3,nrow=696) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-setPredTest(this.ForecastData)<-matrix(1.001,ncol=3,nrow=348) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())#
-##
-setPredTest(this.ForecastData)<-matrix(-0.001,ncol=3,nrow=348) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-setOutcomeCalibrationTest(this.ForecastData)<-c(rep(1,600),rep(1.5,96))
-setOutcomeCalibration(this.ForecastData)<-c(rep(1,600),rep(1.5,96))
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-setOutcomeCalibration(this.ForecastData)<-c(rep(1,600),rep(0.5,96)) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-setOutcomeCalibration(this.ForecastData)<-c(rep(1,600),rep(-0.00015,96))
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-as(this.ForecastData,"ForecastDataLogit")
-this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
-reset forecastdata#
-this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))#
-setOutcomeCalibration(this.ForecastData)<-c(rep(1,300),rep(1.5,48)) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())#
-##
-setOutcomeCalibration(this.ForecastData)<-c(rep(1,300),rep(0.5,48)) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())#
-##
-setOutcomeCalibration(this.ForecastData)<-c(rep(1,300),rep(-0.00015,48)) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))#
-setOutcomeTest(this.ForecastData)<-c(rep(1,300),rep(1.5,48)) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())#
-##
-setOutcomeTest(this.ForecastData)<-c(rep(1,300),rep(0.5,48)) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())#
-##
-setOutcomeTest(this.ForecastData)<-c(rep(1,300),rep(-0.00015,48)) #
-expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
-expect_that(setPredCalibration(this.ForecastData)<-c(rep(1,240)), throws_error())#
-expect_that(setPredTest(this.ForecastData)<-c(rep(1,240)), throws_error())#
-expect_that(setOutcomeCalibration(this.ForecastData)<-c(rep(1,240)), throws_error())#
-expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,240)), throws_error())
-setPredCalibration(this.ForecastData)<-c(rep(1,240))
-696*3
-expect_that(setPredCalibration(this.ForecastData)<-c(rep(1,2088)), throws_error())
-setPredCalibration(this.ForecastData)<-c(rep(1,2088))
-as.matrix(rep(1,2088))
-expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=4,nrow=696), throws_error())
-setPredCalibration(this.ForecastData)<-matrix(1,ncol=4,nrow=696)
-test 6 for error if columns in predCalibration and predTest differ#
-expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=4,nrow=696), throws_error())#
-expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=2,nrow=696), throws_error())#
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=4,nrow=696), throws_error())#
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=696), throws_error())
-expect_that(setPredCalibration(this.ForecastData)<-c(rep(1,940)), throws_error()) ### too long#
-expect_that(setPredTest(this.ForecastData)<-c(rep(1,940)), throws_error()) ### too long#
-expect_that(setOutcomeCalibration(this.ForecastData)<-c(rep(1,940)), throws_error())### too long#
-expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,900)), throws_error())### too long
-test 6 for error if columns in predCalibration and predTest differ#
-expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=4,nrow=696), throws_error())#
-expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=2,nrow=696), throws_error())#
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=4,nrow=696), throws_error())#
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=696), throws_error())
-this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))#
-#
-check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)#
-test_mat<-round(as.matrix(compareModels(check, .period="calibration")),3)#
-check_against<-matrix(c(0.035,0.084, 0.068,0.077,0.960,0.971,0.922,0.656,0.971,0.871,0.901,0.918,0.649,-0.579,-0.211,0.000),ncol=4,nrow=4)#
-for(i in 1:4){#
-	for(j in 1:4){#
-		expect_that(test_mat[i,j], equals(check_against[i,j]))#
-			}#
-}
-check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
-test_mat<-round(as.matrix(compareModels(check, .period="calibration")),3)
-compareModels(check, .period="calibration")
-test_mat<-round(as.matrix(compareModels(check1, .period="calibration")),3)
-check_against<-matrix(c(0.035,0.084, 0.068,0.077,0.960,0.971,0.922,0.656,0.971,0.871,0.901,0.918,0.649,-0.579,-0.211,0.000),ncol=4,nrow=4)#
-for(i in 1:4){#
-	for(j in 1:4){#
-		expect_that(test_mat[i,j], equals(check_against[i,j]))#
-			}#
-}
-setModelNames(this.ForecastData)<-c("mokey","sl","oko") ## warning, that not character
-setModelNames(this.ForecastData)<-c("mokey","sl",1) ## warning, that not character
-setModelNames(this.ForecastData)<-c(1,1,1) ## warning, that not character
-character(c(1,1,1))
-as.character(c(1,1,1))
-expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=3,nrow=696), throws_error())
-expect_that(setPredCalibration(this.ForecastData)<-matrix(NA,ncol=3,nrow=696), throws_error())
-expect_that(setOutcomeCalibration(this.ForecastData)<-c(rep(1,696)), throws_error())
-expect_that(setOutcomeCalibration(this.ForecastData)<-c(rep(NA,696)), throws_error())
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=3,nrow=348), throws_error())
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_error())
-setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348)
-expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,348), throws_error())
-expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,348)), throws_error())
-expect_that(setOutcomeTest(this.ForecastData)<-c(rep(NA,348)), throws_error())
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=4,nrow=348), throws_error())
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_error())
-test_mat1<-round(as.matrix(compareModels(check, .period="test")),3)
-test_mat1<-round(as.matrix(compareModels(check1, .period="test")),3)
-test_mat1
-test_mat1<-round(as.matrix(compareModels(check1, .period="test")),3)#
-check_against1<-matrix(c(0.039,0.080, 0.059,0.088,0.973,0.970,0.960,0.721,0.943,0.911,0.920,0.899,0.429,0.114,0.200,0.000),ncol=4,nrow=4)#
-for(i in 1:4){#
-	for(j in 1:4){#
-		expect_that(test_mat1[i,j], equals(check_against1[i,j]))#
-			}#
-}
-library(devtools)#
-library(roxygen2)#
-library(testthat)#
-#
-setwd("~/Documents/GITHUB/EBMAforecast/")#
-#setwd("~/GITHUB/EBMAforecast/")#
-#
-# Only need to run this portion once#
-current.code <- as.package("EBMAforecast")#
-load_all(current.code)#
+current.code <- as.package("EBMAforecast")
+load_all(current.code)
 document(current.code)
-test_file("test_start.R")
-test_file("test_start.R")
-test_file("test_start.R")
-test_file("test_start.R")
-test_file("test_start.R")
-test_file("test_start.R")
-test_file("test_start.R")
+install(current.code)
+library(EBMAforecast)
+demo(EBMAforecast)
