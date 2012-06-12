@@ -133,7 +133,7 @@ expect_that(setOutcomeCalibration(this.ForecastData)<-c(rep(NA,696)), throws_err
 })
 
 test_that("error if NA's are fed into ForecastData (predTest)",{
-expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=3,nrow=348), throws_error())
+expect_that(setPredTest(this.ForecastData)<-matrix(NA,ncol=3,nrow=348), throws_error())
 })
 
 test_that("error if NA's are fed into ForecastData (outcomeTest)",{

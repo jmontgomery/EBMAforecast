@@ -36,3 +36,7 @@ help(summary, package="EBMAforecast")
 help(plot, package="EBMAforecast")
 help(calibrationSample)
 help(testSample)
+
+
+# once we are all ready, we submit to cran
+#release(current.code, check=FALSE)
