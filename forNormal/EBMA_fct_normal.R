@@ -89,42 +89,40 @@ setMethod(f="fitEnsemble",
 ### start her to test function
             .forecastData=this.ForecastData
             exp=3
-            tol=1.490116e-08
+            tol=1.490116e-08  # this is the tolerance that is default in the raftery package if it's not specified, i.e. we need to run it with this to get the results in the paper 
             maxIter=1000
-            ZERO<-1e-4
+            ZERO<-1e-4 # as in their code
            my.em <- function(y, PP.matrix, W, PP.W, z.numerator)
               {
                 ## Step 1: Calculate the Z's
+                # g is the function as in the paper, this copied from their code
                 g<-as.matrix(data.frame(lapply(1:num.models, function(i,y,mu,sd){dnorm(y,mean=mu[,i],sd=sd)},y=y,mu=PP.matrix,sd=sqrt(sigma2))))
-
+				# g multiplied with the weights, as in the paper	
 				z.numerator<-sweep(g,MARGIN=2,FUN="*",STATS=W)	
 	
+                #bottom of fraction in paper (also as in their code)
                 z.denom <- apply(z.numerator, 1, sum)
                 
+                #this calculates the actual Z (from their code)
         		Z <- sweep(z.numerator, MARGIN = 1, FUN = "/", STATS = z.denom)
                 #Z <- apply(z.numerator, 2, function(x){x/z.denom})
 				Z[Z < ZERO] <- 0
+                
+                
                 ## Step 2: Calculat the W's
                 ## this is how raftery et al do it
                 other<- apply(Z, 2, sum, na.rm = TRUE)
-        		W <- other/sum(other) #colMeans(Z) #
-                
+        		W <- other/sum(other) # I would just do colMeans(Z) but then results are minimally different
                 W[W<ZERO]<-0
                 ## Step 3: Calculate sigma squared
-                sigma2<-sum(Z * RSQ)/sum(Z)
-                #sigma2<-apply(Z * RSQ, 2, sum, na.rm = TRUE)/z.denom
-				#sigma2<-sum(colMeans(error))/num.obs
+                sigma2<-sum(Z * RSQ)/sum(Z) # again as done in their code
+				#sigma2<-sum(colMeans(error))/num.obs #my first try, might be the same
+				### if specified all this is taken from their EM algorith, which is from line 143-177 in the file raftery_edit in the direct. 
 				
                 ## Step 3: Calculate the log-likelihood
                 PP.W <- z.denom
                 LL <-sum(log(PP.W))
-                
-               #LL==loglik
-               #Z==z
-               #W==weights
-               #sqrt(sigma2)==sd
-               #PP.matrix==MEAN
-                
+
                 ## Output: Log-liklihood, PP.W, and Model Weights
                 out <- list(LL=LL, PP.W=PP.W, W=W,sigma2=sigma2)
                 return(out)
@@ -157,17 +155,17 @@ setMethod(f="fitEnsemble",
             rownames(model.params) <- c("Constant", "Predictor")
   
   
-            ## Fit all of the basic ols models , if no bias correction, constrain to a_k0=0, a_k1=1 as in PA paper 
+            ## Fit all of the basic ols models but we are not doing this, instead constrain to a_k0=0, a_k1=1 as in PA paper 
             for(k in 1:num.models){
               adj.pred<-pp.raw[,k]
               ### adjument done here for logit
               this.model <- lm(y~adj.pred)
               #log.lik[k] <- logLik(this.model)
               #this.model$coefficients<-c(0,1)
-              model.params[,k] <- c(0,1) #this.model$coefficients
+              model.params[,k] <- c(0,1) 
               PP.matrix[,k] <- pp.raw[,k]
-              PP.resid[,k]<-(y-PP.matrix[,k])
-              RSQ[,k]<-(y-PP.matrix[,k])^2
+              PP.resid[,k]<-(y-PP.matrix[,k]) #as in their code line 134
+              RSQ[,k]<-(y-PP.matrix[,k])^2 
               if(testPeriod){
                 adj.pred <- pp.raw.test[,k]
                 ## adjustment done here for logit
@@ -182,7 +180,7 @@ setMethod(f="fitEnsemble",
             z.numerator <- matrix(NA, nrow=num.obs, ncol=num.models)
             
             ## Go through first iteration of EM
-            sigma2<-var(y)
+            sigma2<-var(y) # use sd of dependent var as starting value for the draw from normal dist.
             
             #this.out <- my.em(y=y, PP.matrix=PP.matrix, W=W, PP.W=PP.W, z.numerator=z.numerator)
             #W <- this.out$W
@@ -201,7 +199,7 @@ setMethod(f="fitEnsemble",
               W <- this.out$W
               PP.W <- this.out$PP.W
               sigma2<-this.out$sigma2
-              done <- abs(em.old-this.out$LL)/(1+abs(this.out$LL))<tol 
+              done <- abs(em.old-this.out$LL)/(1+abs(this.out$LL))<tol ## changed this to as it is in their code, line 179
               em.old <- this.out$LL
               iter <- iter+1
             }
