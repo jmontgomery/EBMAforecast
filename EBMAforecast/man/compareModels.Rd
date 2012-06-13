@@ -1,5 +1,6 @@
 \name{compareModels}
 \alias{compareModels}
+\alias{compareModels,ForecastData-method}
 \title{Function for comparing multiple models based on predictive performance}
 \arguments{
   \item{.forecastData}{An object of class 'ForecastData'.}

@@ -1,5 +1,19 @@
 \name{makeForecastData}
+\alias{getModelNames,ForecastData-method}
+\alias{getOutcomeCalibration,ForecastData-method}
+\alias{getOutcomeTest,ForecastData-method}
+\alias{getPredCalibration,ForecastData-method}
+\alias{getPredTest,ForecastData-method}
+\alias{initialize,ForecastData-method}
 \alias{makeForecastData}
+\alias{makeForecastData,ANY-method}
+\alias{print,ForecastData-method}
+\alias{setModelNames<-,ForecastData-method}
+\alias{setOutcomeCalibration<-,ForecastData-method}
+\alias{setOutcomeTest<-,ForecastData-method}
+\alias{setPredCalibration<-,ForecastData-method}
+\alias{setPredTest<-,ForecastData-method}
+\alias{show,ForecastData-method}
 \title{Build a ensemble forecasting data object}
 \arguments{
   \item{.predAll}{An n by p matrix of data.frame containing

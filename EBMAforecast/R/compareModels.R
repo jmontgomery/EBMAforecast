@@ -57,6 +57,7 @@ setClass(Class="CompareModels",
 #' compareModels(this.ensemble,"test") 
 
 #' @seealso ensembleBMA, other functions
+#' @aliases compareModels,ForecastData-method
 #' @export
 setGeneric(name="compareModels",
            def=function(.forecastData,

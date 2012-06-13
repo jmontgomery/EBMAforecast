@@ -1,5 +1,8 @@
 \name{calibrateEnsemble}
 \alias{calibrateEnsemble}
+\alias{calibrateEnsemble,ForecastData-method}
+\alias{fitEnsemble,ForecastDataLogit-method}
+\alias{fitEnsemble,ForecastDataNormal-method}
 \title{Calibrate an ensemble Bayesian Model Averaging model}
 \arguments{
   \item{.forecastData}{An object of class 'ForecastData'

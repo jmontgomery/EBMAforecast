@@ -128,6 +128,7 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 #' 
 #' @seealso ensembleBMA, other functions
+#' @aliases getModelNames,ForecastData-method getOutcomeCalibration,ForecastData-method getOutcomeTest,ForecastData-method getPredCalibration,ForecastData-method getPredTest,ForecastData-method initialize,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method
 #' @export
 setGeneric(name="makeForecastData",
            def=function(.predAll=NULL,
@@ -178,7 +179,6 @@ setMethod(f="makeForecastData",
 
           }
           )
-
 
 
 #' @export
