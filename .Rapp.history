@@ -1,4 +1,3 @@
-model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1,data=training,)
 training<-subset(icews, icews$month.counter<109)#
 test<-subset(icews,icews$month.counter>108)
 model1<-zeroinfl(ins_high_both  ~ ProxElection + excl_groups_count.l1 + RadioStations.l1 + W.centdist.std.ins_high_both.l1 + log(SP.POP.TOTL)| NY.GDP.PCAP.KD.l1+ POLITY.l1,data=training,)
@@ -337,3 +336,17 @@ document(current.code)
 install(current.code)
 library(EBMAforecast)
 demo(EBMAforecast)
+library(devtools)#
+library(roxygen2)#
+library(testthat)#
+#
+setwd("~/Documents/GITHUB/EBMAforecast/")#
+#setwd("~/GITHUB/EBMAforecast/")#
+#
+# Only need to run this portion once#
+current.code <- as.package("EBMAforecast")#
+load_all(current.code)#
+document(current.code)#
+#
+# run all tests to make sure everything is working as expected#
+test_file("test_start.R")
