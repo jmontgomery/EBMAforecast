@@ -5,6 +5,7 @@ library(testthat)
 #setwd("~/Documents/GITHUB/EBMAforecast/")
 setwd("~/GITHUB/EBMAforecast/")
 
+
 # Only need to run this portion once
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
@@ -37,6 +38,7 @@ help(plot, package="EBMAforecast")
 help(calibrationSample)
 help(testSample)
 
+# Note: use promptClass(), promptMethods() to write skelletons for tspecific items
 
 # once we are all ready, we submit to cran
-#release(current.code, check=FALSE)
+release(current.code, check=FALSE)

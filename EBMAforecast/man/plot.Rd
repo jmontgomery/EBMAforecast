@@ -1,5 +1,6 @@
 \name{plot}
 \alias{plot}
+\alias{plot,FDatFitLogit-method}
 \title{Plotting function for logistic ensemble models that have already been fit}
 \arguments{
   \item{x}{An object of class "FDatFitLogit".}

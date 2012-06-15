@@ -6,7 +6,7 @@ setGeneric(name="fitEnsemble",
            {standardGeneric("fitEnsemble")}
            )
 
-
+#' @rdname calibrateEnsemble
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataLogit"),

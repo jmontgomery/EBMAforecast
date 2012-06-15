@@ -1,4 +1,5 @@
 \name{compareModels}
+\alias{CompareModels-class}
 \alias{compareModels}
 \alias{compareModels,ForecastData-method}
 \title{Function for comparing multiple models based on predictive performance}

@@ -1,5 +1,9 @@
 \name{summary}
+\alias{SummaryForecastData-class}
+\alias{print,SummaryForecastData-method}
+\alias{show,SummaryForecastData-method}
 \alias{summary}
+\alias{summary,FDatFitLogit-method}
 \title{Summary Function}
 \arguments{
   \item{object}{An object of class "FDatFitLogit"}

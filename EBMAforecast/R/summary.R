@@ -42,6 +42,7 @@ setClass(Class="SummaryForecastData",
 #' summary(this.ensemble, period="calibration") 
 #'
 #' summary(this.ensemble, period="test",showCoefs=FALSE)
+#' @aliases summary,FDatFitLogit-method print,SummaryForecastData-method show,SummaryForecastData-method SummaryForecastData-class
 #' @export
 setMethod(
           f="summary",

@@ -1,6 +1,11 @@
-\name{calibrateEnsemble}
+\name{fitEnsemble}
+\alias{FDatFitLogit-class}
+\alias{ForecastData-class}
+\alias{ForecastDataLogit-class}
+\alias{ForecastDataNormal-class}
 \alias{calibrateEnsemble}
 \alias{calibrateEnsemble,ForecastData-method}
+\alias{fitEnsemble}
 \alias{fitEnsemble,ForecastDataLogit-method}
 \alias{fitEnsemble,ForecastDataNormal-method}
 \title{Calibrate an ensemble Bayesian Model Averaging model}

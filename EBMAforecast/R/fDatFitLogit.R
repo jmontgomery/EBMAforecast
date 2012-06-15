@@ -64,7 +64,7 @@ setClass(Class="FDatFitLogit",
 #' 
 #' plot(this.ensemble, period="test")
 #'
-#'
+#' @aliases plot,FDatFitLogit-method
 #' @export
 setMethod(
           f="plot",

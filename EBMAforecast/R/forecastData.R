@@ -128,7 +128,8 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 #' 
 #' @seealso ensembleBMA, other functions
-#' @aliases getModelNames,ForecastData-method getOutcomeCalibration,ForecastData-method getOutcomeTest,ForecastData-method getPredCalibration,ForecastData-method getPredTest,ForecastData-method initialize,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method
+#' @aliases getModelNames,ForecastData-method getOutcomeCalibration,ForecastData-method getOutcomeTest,ForecastData-method getPredCalibration,ForecastData-method getPredTest,ForecastData-method initialize,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method ForeCastData-class
+#' @rdname makeForecastData
 #' @export
 setGeneric(name="makeForecastData",
            def=function(.predAll=NULL,
@@ -212,6 +213,7 @@ setMethod(
 			}
 )
 
+#' @rdname makeForecastData
 #' @export
 setGeneric("getPredCalibration",function(object="ForecastData") standardGeneric("getPredCalibration"))
 #' @export
@@ -221,6 +223,7 @@ setMethod("getPredCalibration","ForecastData",
 		}
 )
 
+#' @rdname makeForecastData
 #' @export
 setGeneric("getPredTest",function(object="ForecastData") standardGeneric("getPredTest"))
 #' @export
@@ -229,6 +232,8 @@ setMethod("getPredTest","ForecastData",
 		return(object@predTest)
 		}
 )
+
+#' @rdname makeForecastData
 #' @export
 setGeneric("getOutcomeCalibration",function(object="ForecastData") standardGeneric("getOutcomeCalibration"))
 #' @export
@@ -238,6 +243,7 @@ setMethod("getOutcomeCalibration","ForecastData",
 		}
 )
 
+#' @rdname makeForecastData
 #' @export
 setGeneric("getOutcomeTest",function(object="ForecastData") standardGeneric("getOutcomeTest"))
 #' @export
@@ -247,6 +253,7 @@ setMethod("getOutcomeTest","ForecastData",
 		}
 )
 
+#' @rdname makeForecastData
 #' @export
 setGeneric("getModelNames",function(object="ForecastData") standardGeneric("getModelNames"))
 #' @export
@@ -256,6 +263,7 @@ setMethod("getModelNames","ForecastData",
 		}
 )
 
+#' @rdname makeForecastData
 #' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
 
@@ -269,7 +277,7 @@ setReplaceMethod(
 	}
 )
 
-
+#' @rdname makeForecastData
 #' @export
 setGeneric("setPredTest<-",function(object,value){standardGeneric("setPredTest<-")})
 
@@ -283,7 +291,7 @@ setReplaceMethod(
 	}
 )
 
-
+#' @rdname makeForecastData
 #' @export
 setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
 
@@ -297,6 +305,7 @@ setReplaceMethod(
 	}
 )
 
+#' @rdname makeForecastData
 #' @export
 setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
 
@@ -310,6 +319,7 @@ setReplaceMethod(
 	}
 )
 
+#' @rdname makeForecastData
 #' @export
 setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
 
