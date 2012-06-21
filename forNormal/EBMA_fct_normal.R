@@ -6,6 +6,7 @@ setwd("~/Dropbox/Duke/Rcode/EBMA_normal_start/MHWarchive4PA/")
 library(foreign)
 library(nls2)
 library(EBMAforecast)
+library(plyr)
 
 hibbspreds <- read.csv("Prediction_hibbs.csv") # Hibbs predictive intervals generated in Stata.  See *.do file.
 master.data<-read.csv("presdata.csv") # read in data
@@ -95,25 +96,31 @@ setMethod(f="fitEnsemble",
            my.em <- function(y, PP.matrix, W, PP.W, z.numerator)
               {
                 ## Step 1: Calculate the Z's
-                # g is the function as in the paper, this copied from their code
-                g<-as.matrix(data.frame(lapply(1:num.models, function(i,y,mu,sd){dnorm(y,mean=mu[,i],sd=sd)},y=y,mu=PP.matrix,sd=sqrt(sigma2))))
-				# g multiplied with the weights, as in the paper	
-				z.numerator<-sweep(g,MARGIN=2,FUN="*",STATS=W)	
-	
-                #bottom of fraction in paper (also as in their code)
-                z.denom <- apply(z.numerator, 1, sum)
+                ## g is the function as in the paper.  It must be calculated in each iteration because sigma2 is updated
+                g<- t(aaply(.data=1:n.models,.margins=1,
+                            .fun=function(i,y, mu, sd){
+                              dnorm(y,mean=mu[,i], sd=sd)
+                            },
+                            y=act.outcomes,mu=raw.predictions, sd=sqrt(sigma2)))
+
+                ## g multiplied with the weights, as in the paper	
+                z.numerator<- aaply(.data=g, .margins=1, .fun=function(x){x*W})
+               
+                #bottom of fraction in paper
+                z.denom <- aaply(z.numerator, 1, sum)
                 
-                #this calculates the actual Z (from their code)
-        		Z <- sweep(z.numerator, MARGIN = 1, FUN = "/", STATS = z.denom)
-                #Z <- apply(z.numerator, 2, function(x){x/z.denom})
-				Z[Z < ZERO] <- 0
+                #this calculates the actual Z 
+                Z <- t(aaply(z.numerator, 2, function(x){x/z.denom}))
+                Z[Z < ZERO] <- 0
                 
                 
                 ## Step 2: Calculat the W's
                 ## this is how raftery et al do it
-                other<- apply(Z, 2, sum, na.rm = TRUE)
-        		W <- other/sum(other) # I would just do colMeans(Z) but then results are minimally different
+                .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
+                W <- .unnormalizedW/sum(.unnormalizedW) # This code is here to ensure that W adds perfectly to 1
                 W[W<ZERO]<-0
+
+                
                 ## Step 3: Calculate sigma squared
                 sigma2<-sum(Z * RSQ)/sum(Z) # again as done in their code
 				#sigma2<-sum(colMeans(error))/num.obs #my first try, might be the same
