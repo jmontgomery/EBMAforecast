@@ -83,7 +83,8 @@ setMethod(f="calibrateEnsemble",
                    )
             eval(fitEnsemble(.forecastData,
                              exp=exp,
-                             tol=.001,
+                             tol=tol,
+                             maxIter=maxIter,
                              method="EM",
                              ...), parent.frame())
           }

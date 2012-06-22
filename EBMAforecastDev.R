@@ -11,6 +11,27 @@ current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
 
+this.ForecastData@predCalibration[2,1] <- NA
+this.ForecastData@predCalibration[8,4] <- NA
+this.ForecastData@predCalibration
+jacob <- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
+macjacob@modelWeights
+
+### TODO:
+
+## Tests I want added
+## 1) The funciton should behave differently when we change the tol and maxIter options
+
+## Bugs we found:
+## 1) THe tolerance and maxIter options were not working as documentations suggested.
+
+## Bugs to track down -- I am getting an error in the "show" function for ForecastData for the presidential example.
+
+## Functionality to 
+
+
+###
+
 # run all tests to make sure everything is working as expected
 test_file("test_start.R")
 

@@ -22,8 +22,8 @@ setClass(Class="ForecastData",
              {stop("The outcomes should be organized as a matrix with only one column.")}
             if(ncol(object@predTest)!=ncol(object@predCalibration))
              {stop("The number of prediction models in the calibration and test set are different.")}    
-           if(sum(is.na(object@predCalibration[,])) > 0)
-           	 {stop("There are NAs in the prediction calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
+#           if(sum(is.na(object@predCalibration[,])) > 0)
+#           	 {stop("There are NAs in the prediction calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
            if(sum(is.na(object@predTest[,])) > 0)
            	 {stop("There are NAs in the prediction test set, unfortunately the package does not work with NAs yet. Soon to come.")}
 		   if(sum(is.na(object@outcomeCalibration[,])) > 0)
