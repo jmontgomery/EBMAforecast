@@ -2,14 +2,14 @@
 #' @export
 setClass(Class="ForecastData",
          representation = representation(
-           predCalibration="matrix",
-           predTest="matrix",
+           predCalibration="array",
+           predTest="array",
            outcomeCalibration="matrix",
            outcomeTest="matrix",
            modelNames="character"),
          prototype=prototype(
-           predCalibration=matrix(NA, nrow=0, ncol=0),
-           predTest=matrix(NA, nrow=0, ncol=0), 
+           predCalibration=array(NA, dim=c(0,0,0)),
+           predTest=array(NA, dim=c(0,0,0)), 
            outcomeCalibration=matrix(NA, nrow=0, ncol=0),
            outcomeTest=matrix(NA, nrow=0, ncol=0),
            modelNames=character()),
@@ -24,8 +24,8 @@ setClass(Class="ForecastData",
              {stop("The number of prediction models in the calibration and test set are different.")}    
 #           if(sum(is.na(object@predCalibration[,])) > 0)
 #           	 {stop("There are NAs in the prediction calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
-           if(sum(is.na(object@predTest[,])) > 0)
-           	 {stop("There are NAs in the prediction test set, unfortunately the package does not work with NAs yet. Soon to come.")}
+#           if(sum(is.na(object@predTest[,,])) > 0)
+ #          	 {stop("There are NAs in the prediction test set, unfortunately the package does not work with NAs yet. Soon to come.")}
 		   if(sum(is.na(object@outcomeCalibration[,])) > 0)
            	 {stop("There are NAs in the outcome calibration set, unfortunately the package does not work with NAs yet. Soon to come.")}
            if(sum(is.na(object@outcomeTest[,])) > 0)
@@ -135,8 +135,8 @@ setGeneric(name="makeForecastData",
            def=function(.predAll=NULL,
              .outcomeAll=NULL,
              .inOut=NULL,
-            .predCalibration=matrix(NA, nrow=0, ncol=0),
-             .predTest=matrix(NA, nrow=0, ncol=0),
+            .predCalibration=array(NA, dim=c(0,0,0)),
+             .predTest=array(NA, dim=c(0,0,0)),
              .outcomeCalibration=matrix(NA, nrow=0, ncol=0),
             .outcomeTest=matrix(NA, nrow=0, ncol=0),
              .modelNames=character(),
@@ -158,7 +158,7 @@ setMethod(f="makeForecastData",
             .outcomeTest,
             .modelNames)
           {
-            .predCalibration <- as.matrix(.predCalibration); .predTest <- as.matrix(.predTest)
+            .predCalibration <- as.array(.predCalibration); .predTest <- as.array(.predTest)
             .outcomeCalibration <- as.matrix(.outcomeCalibration);   .outcomeTest <- as.matrix(.outcomeTest)
             if(!is.null(.predAll)){.predCalibration <- as.matrix(.predAll[.inOut==0,])
                                    .predTest <- as.matrix(.predAll[.inOut==1,])}
@@ -167,6 +167,7 @@ setMethod(f="makeForecastData",
             if(length(.modelNames)<ncol(.predCalibration)){
               .modelNames <- paste("Model", 1:ncol(.predCalibration))
             }
+            print("here")
             colnames(.predCalibration) <- .modelNames; rownames(.predCalibration) <- 1:nrow(.predCalibration)
             if (length(.predTest)>0){
               colnames(.predTest) <- .modelNames

@@ -63,8 +63,13 @@ hibbpreds=hibbspreds
     
     
 this.ForecastData<-makeForecastData(.predCalibration=in.data, .outcomeCalibration=full.observed[1:14],.predTest=out.data,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
-.forecastData=this.ForecastData    
+in.data2 <- array(in.data, dim=c(14,6,2))
+dimnames(in.data2)
+names(in.data2)
+str(in.data2)
 
+
+this.ForecastData<-makeForecastData(.predCalibration=in.data2, .outcomeCalibration=full.observed[1:14],.predTest=out.data,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
 
 
 ####

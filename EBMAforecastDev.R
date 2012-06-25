@@ -15,7 +15,12 @@ this.ForecastData@predCalibration[2,1] <- NA
 this.ForecastData@predCalibration[8,4] <- NA
 this.ForecastData@predCalibration
 jacob <- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
-macjacob@modelWeights
+jacob@modelWeights
+
+
+
+
+jacob2<- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
 
 ### TODO:
 
