@@ -12,7 +12,6 @@ setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataLogit"),
           definition=function(.forecastData, exp, tol, maxIter, method)
           {
-
             
             my.em <- function(y, PP.matrix, W, PP.W, z.numerator)
               {
@@ -213,17 +212,16 @@ setMethod(f="fitEnsemble",
               }
             modelNames <- .forecastData@modelNames
 
-
             ## Calculate useful constants
             num.models <- n.models <- ncol(pp.raw)
             num.obs<-n.obs <- nrow(pp.raw)
-            n.draws <- 1
+            n.draws <- dim(pp.raw)[3]
             if(testPeriod) num.obs.test <- nrow(pp.raw.test)
 
             ## Initiate a couple of useful matrices
             PP.matrix <- PP.resid <- RSQ <- array(NA, dim=c(n.obs, n.models, n.draws))
-#            PP.resid<-matrix(NA, nrow=num.obs, ncol=num.models)
-#            RSQ<-matrix(NA, nrow=n.obs, ncol=n.models)
+            ## PP.resid<-matrix(NA, nrow=num.obs, ncol=num.models)
+            ## RSQ<-matrix(NA, nrow=n.obs, ncol=n.models)
             if(testPeriod){
               PP.test.matrix <- PP.test.resid <- array(NA, dim=c(num.obs.test, n.models, n.draws))
             }
@@ -235,17 +233,17 @@ setMethod(f="fitEnsemble",
   
             ## Fit all of the basic ols models but we are not doing this, instead constrain to a_k0=0, a_k1=1 as in PA paper 
             for(k in 1:n.models){
-              adj.pred <- raw.pred<-pp.raw[,k]
+              adj.pred <- raw.pred<-pp.raw[,k,1]
               ### adjument done here for logit
               this.model <- lm(y~adj.pred)
               #log.lik[k] <- logLik(this.model)
               #this.model$coefficients<-c(0,1)
               model.params[,k] <- c(0,1) 
-              PP.matrix[,k,1] <- pp.raw[,k]
+              PP.matrix[,k,1] <- pp.raw[,k,1]
               PP.resid[,k,1]<-(y-PP.matrix[,k,1]) #as in their code line 134
               RSQ[,k,1]<-(y-PP.matrix[,k,1])^2 
               if(testPeriod){
-                adj.pred <- pp.raw.test[,k]
+                adj.pred <- pp.raw.test[,k,1]
                 ## adjustment done here for logit
                 PP.test.matrix[,k,1] <- adj.pred #predict(this.model, newdata=as.data.fra590*me(adj.pred), type="response")
               }
@@ -272,21 +270,26 @@ setMethod(f="fitEnsemble",
 
             
             ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
-            cal <- cbind(final.pp, .forecastData@predCalibration)
+            print("here")
+            final.pp <- array(final.pp, dim=c(n.obs, 1,n.draws))
+            print(final.pp)
+            print(.forecastData@predCalibration)
+            cal <- abind(final.pp, .forecastData@predCalibration, along=2)
+            print(cal)
+            print(colnames(cal))
             colnames(cal) <- c("EBMA", modelNames)
 
             ##If the test period data is included, calculate the EBMA forecast for the test period and merge onto predTest
-            if(testPeriod){
-              print(PP.test.matrix)
-                bma.pred <- as.vector(PP.test.matrix%*%W)
-               print(bma.pred)
-                test <- cbind(bma.pred, .forecastData@predTest)
-                colnames(test) <- c("EBMA", modelNames)
-            }
-            else{test <- .forecastData@predTest}
+           if(testPeriod){
+             print(PP.test.matrix)
+#               bma.pred <- as.vector(PP.test.matrix%*%W)
+            bma.pred <- array(PP.test.matrix[,,1]%*%W, dim=c(num.obs.test,1,n.draws))
+             print(bma.pred)
+               test <- abind(bma.pred, .forecastData@predTest, along=2)
+               colnames(test) <- c("EBMA", modelNames)
+           }
+          else{test <- .forecastData@predTest}
 
-            ##
-            names(W) <- modelNames
 
             new("FDatFitNormal",
                 predCalibration=cal,

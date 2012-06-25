@@ -64,73 +64,22 @@ hibbpreds=hibbspreds
     
 this.ForecastData<-makeForecastData(.predCalibration=in.data, .outcomeCalibration=full.observed[1:14],.predTest=out.data,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
 in.data2 <- array(in.data, dim=c(14,6,2))
-dimnames(in.data2)
-names(in.data2)
+out.data2 <- array(in.data, dim=c(1,6,2))
+dim(out.data)
+#dimnames(in.data2) <- list(c(1:14), c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"), c(1:2))
 str(in.data2)
 
 
-this.ForecastData<-makeForecastData(.predCalibration=in.data2, .outcomeCalibration=full.observed[1:14],.predTest=out.data,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
+this.ForecastData<-makeForecastData(.predCalibration=in.data2, .outcomeCalibration=full.observed[1:14],.predTest=out.data2,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
 
 
-####
-####
 
-n.models <- 5
-n.obs <- 20
-n.draws <- 1
-#rawPredictions <- matrix(rnorm(n.models*n.obs, mean=50, sd=5), ncol=n.models)
-#rawPredictions[2,4] <- rawPredictions[17,2] <- NA
-rawPredictions <-
-  array(rnorm(n.models*n.obs*n.draws, mean=50, sd=5), dim=c(n.obs, n.models, n.draws))
-rawPredictions[2,4,1] <- rawPrediction)
-s[17,2,2] <- NA
-rawPredictions
-rawPredictions[,4,2] <- NA
-rawPredictions
-y <- matrix(rnorm(n.obs, mean=50, sd=5),ncol=1)
-sigma2 <- var(y)
-W <- rep(1/n.models, n.models)
-
-
-ZERO<-1e-4 
-
-RSQ <-  array(rnorm(n.models*n.obs*n.draws, mean=50, sd=5), dim=c(n.obs, n.models, n.draws))
-  
-aperm(g[1,,], c(1,2,3))
-
-
-       my.em <- function(y, rawPredictions, W, sigma2)
-              {
-                act.outcomes <- y
-                raw.predictions <- rawPredictions
-                
-                ## Step 1: Calculate the Z's
-                g<- t(aaply(.data=1:n.models,.margins=1,
-                            .fun=function(i,y, mu, sd){
-                              dnorm(y,mean=mu[,i], sd=sd)
-                            },
-                            y=act.outcomes,mu=raw.predictions, sd=sqrt(sigma2)))
-                
-                z.numerator<- aaply(.data=g, .margins=1, .fun=function(x){x*W})
-                z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
-                z.denom <- z.denom/aaply(g, 1, .fun=function(x) sum((!is.na(x)*1)*W))
-                Z <- t(aaply(z.numerator, 2, function(x){x/z.denom}))
-                Z[Z < ZERO] <- 0
-                Z[is.na(Z)] <- 0
-                
-                
-                ## Step 2: Calculat the W's
-                .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
-                W <- .unnormalizedW/sum(.unnormalizedW) 
-                W[W<ZERO]<-0
-                
-                ## Step 3: Calculate sigma squared
-                sigma2<-sum(Z * RSQ, na.rm=T)/sum(Z, na.rm=T) 
-                
-                ## Step 4: Calculate the log-likelihood
-                LL <-sum(log(z.denom))
-                
-                out <- list(LL=LL, W=W,sigma2=sigma2)
-                return(out)
-              }
-
+###
+library(abind)
+testArray <- array(c(1,2,3,4,5,6,7,8), dim=c(2,2,2))
+testArray
+testVec <- matrix(c(9,10, rep(NA, 2)), ncol=2, nrow=2)
+testVec <- array(testVec, dim=c(2,1,2))
+dim(testVec)
+testVec
+abind(testArray, testVec, along=2)

@@ -12,7 +12,8 @@ Depends:
     ensembleBMA,
     plyr,
     methods,
-    Hmisc
+    Hmisc,
+    abind
 LazyLoad: yes
 Collate:
     'forecastData.R'

@@ -11,17 +11,14 @@ current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
 
-this.ForecastData@predCalibration[2,1] <- NA
-this.ForecastData@predCalibration[8,4] <- NA
+this.ForecastData@predCalibration[2,1,1] <- NA
+this.ForecastData@predCalibration[8,4,1] <- NA
 this.ForecastData@predCalibration
 jacob <- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
 jacob@modelWeights
 
-
-
-
 jacob2<- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
-
+f2+2
 ### TODO:
 
 ## Tests I want added
