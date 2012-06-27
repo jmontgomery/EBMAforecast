@@ -17,10 +17,13 @@ Depends:
 LazyLoad: yes
 Collate:
     'forecastData.R'
-    'fitEnsemble.R'
     'calibrateEnsemble.R'
     'fDatFitLogit.R'
     'compareModels.R'
     'document-data.R'
     'summary.R'
     'FDatFitNormal.R'
+    'fitEnsemble
+    (Logit).R'
+    'fitEnsemble
+    (Normal).R'

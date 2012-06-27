@@ -27,9 +27,11 @@
 \alias{show,ForecastData-method}
 \title{Build a ensemble forecasting data object}
 \arguments{
-  \item{.predAll}{An n by p matrix of data.frame containing
+  \item{.predAll}{An n by p matrix or data.frame containing
   predictions, for both the calibration and test
-  observations.}
+  observations.  This may also be a n by p by m array
+  containing multiple predictions for each model.  Missing
+  values are allowed.}
 
   \item{.outcomeAll}{A vector of length n, containing the
   true values of the dependent variable, for both the
@@ -63,10 +65,10 @@
 }
 \value{
   A data object of the class 'ForecastData' with the
-  following slots: \item{predCalibration}{A matrix
+  following slots: \item{predCalibration}{An array
   containing the predictions of all component models for
   all observations in the calibration period.}
-  \item{predTest}{A matrix containing the predictions of
+  \item{predTest}{An array containing the predictions of
   all component models for all observations in the test
   period.} \item{outcomeCalibration}{A vector containing
   the true values of the dependent variable for all

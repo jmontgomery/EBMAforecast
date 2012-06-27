@@ -1,4 +1,4 @@
-\name{fitEnsemble}
+\name{calibrateEnsemble}
 \alias{FDatFitLogit-class}
 \alias{ForecastData-class}
 \alias{ForecastDataLogit-class}

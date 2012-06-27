@@ -5,7 +5,7 @@ rm(list=ls(all=TRUE))
 setwd("~/Dropbox/EBMA/ReplicationFiles/ForPADataverse/")
 library(foreign)
 library(nls2)
-library(EBMAforecast)
+#library(EBMAforecast)
 library(plyr)
 
 hibbspreds <- read.csv("Prediction_hibbs.csv") # Hibbs predictive intervals generated in Stata.  See *.do file.
@@ -60,9 +60,13 @@ hibbpreds=hibbspreds
    # Now fit the ebma model
     full.forecasts <- rbind(in.data, out.data) 
     full.observed <- c(master.data$dv[10:(9+tyn)])
-    
-    
+
+.forecastData <- this.ForecastData
+getModelNames(.forecastData    )
 this.ForecastData<-makeForecastData(.predCalibration=in.data, .outcomeCalibration=full.observed[1:14],.predTest=out.data,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
+#this.ForecastData
+.forecastData <- this.ForecastData
+print(this.ForecastData)
 in.data2 <- array(in.data, dim=c(14,6,2))
 out.data2 <- array(in.data, dim=c(1,6,2))
 dim(out.data)
@@ -71,11 +75,11 @@ str(in.data2)
 
 
 this.ForecastData<-makeForecastData(.predCalibration=in.data2, .outcomeCalibration=full.observed[1:14],.predTest=out.data2,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
-
+.forecastData <- this.ForecastData
 
 
 ###
-library(abind)
+loplibrary(abind)
 testArray <- array(c(1,2,3,4,5,6,7,8), dim=c(2,2,2))
 testArray
 testVec <- matrix(c(9,10, rep(NA, 2)), ncol=2, nrow=2)

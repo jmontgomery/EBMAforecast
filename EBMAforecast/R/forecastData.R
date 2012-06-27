@@ -4,28 +4,28 @@ setClass(Class="ForecastData",
          representation = representation(
            predCalibration="array",
            predTest="array",
-           outcomeCalibration="matrix",
-           outcomeTest="matrix",
+           outcomeCalibration="numeric",
+           outcomeTest="numeric",
            modelNames="character"),
          prototype=prototype(
            predCalibration=array(NA, dim=c(0,0,0)),
            predTest=array(NA, dim=c(0,0,0)), 
-           outcomeCalibration=matrix(NA, nrow=0, ncol=0),
-           outcomeTest=matrix(NA, nrow=0, ncol=0),
+           outcomeCalibration=numeric(),
+           outcomeTest=numeric(),
            modelNames=character()),
          validity=function(object){
-           if(nrow(object@predCalibration)!=nrow(object@outcomeCalibration))
+           if(nrow(object@predCalibration)!=length(object@outcomeCalibration))
              {stop("The number of predictions and outcomes do not match in the calibration set.")}
-           if(nrow(object@predTest)!=nrow(object@outcomeTest))
+           if(nrow(object@predTest)!=length(object@outcomeTest))
              {stop("The number of predictions and outcomes do not match in the test set.")}  
-           if(ncol(object@outcomeTest)>1 || ncol(object@outcomeCalibration)>1)
-             {stop("The outcomes should be organized as a matrix with only one column.")}
             if(ncol(object@predTest)!=ncol(object@predCalibration))
              {stop("The number of prediction models in the calibration and test set are different.")}    
-		   if(sum(is.na(object@outcomeCalibration[,])) > 0)
-           	 {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
-           if(sum(is.na(object@outcomeTest[,])) > 0)
-           	 {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
+            if(dim(object@predTest)[3]!=dim(object@predCalibration)[3])
+             {stop("The number of exchangeable draws per model in the calibration and test are different.")}    
+           if(sum(is.na(object@outcomeCalibration)) > 0)
+             {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
+           if(sum(is.na(object@outcomeTest)) > 0)
+             {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
            }  
          )
 
@@ -37,8 +37,6 @@ setMethod("initialize", "ForecastData", function(.Object, ...) {
   validObject(value)
   return(value)
 })
-
-
 
 
 #' @export
@@ -96,7 +94,7 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #'
 #' This function uses the user provided component model forecasts and dependent variable observations to create an object of class \code{ForecastData}, which can then be used to calibrate and fit the Ensemble.
 #'
-#' @param .predAll An n by p matrix of data.frame containing predictions, for both the calibration and test observations.
+#' @param .predAll An n by p matrix or data.frame containing predictions, for both the calibration and test observations.  This may also be a n by p by m array containing multiple predictions for each model.  Missing values are allowed.
 #' @param .outcomeAll A vector of length n, containing the true values of the dependent variable, for both the calibration and test observations.
 #' @param .inOut A dichotomous vector of length n, where 1 indicates that the observation is in the test sample and 0 that it is in the calibration sample.
 #' @param .predCalibration A matrix with the number of rows being the number of observations in the calibration period and a column with calibration period predictions for each model.
@@ -107,8 +105,8 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' @param ... Additional arguments not implemented
 #'
 #' @return A data object of the class 'ForecastData' with the following slots: 
-#' \item{predCalibration}{A matrix containing the predictions of all component models for all observations in the calibration period.} 
-#' \item{predTest}{A matrix containing the predictions of all component models for all observations in the test period.}
+#' \item{predCalibration}{An array containing the predictions of all component models for all observations in the calibration period.} 
+#' \item{predTest}{An array containing the predictions of all component models for all observations in the test period.}
 #' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
 #' \item{outcomeTest}{A vector containing the true values of the dependent variable for all observations in the test period.}
 #' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
@@ -133,8 +131,8 @@ setGeneric(name="makeForecastData",
              .inOut=NULL,
             .predCalibration=array(NA, dim=c(0,0,0)),
              .predTest=array(NA, dim=c(0,0,0)),
-             .outcomeCalibration=matrix(NA, nrow=0, ncol=0),
-            .outcomeTest=matrix(NA, nrow=0, ncol=0),
+             .outcomeCalibration=numeric(),
+            .outcomeTest=numeric(),
              .modelNames=character(),
              ...)
            {standardGeneric("makeForecastData")}
@@ -145,36 +143,31 @@ setGeneric(name="makeForecastData",
 #' @export
 setMethod(f="makeForecastData",
           definition=function(
-            .predAll,
-            .outcomeAll,
-            .inOut,
             .predCalibration,
             .predTest,
             .outcomeCalibration,
             .outcomeTest,
             .modelNames)
           {
-            .predCalibration <- as.array(.predCalibration); .predTest <- as.array(.predTest)
-            .outcomeCalibration <- as.matrix(.outcomeCalibration);   .outcomeTest <- as.matrix(.outcomeTest)
-            if(!is.null(.predAll)){.predCalibration <- as.matrix(.predAll[.inOut==0,])
-                                   .predTest <- as.matrix(.predAll[.inOut==1,])}
-            if(!is.null(.outcomeAll)){.outcomeCalibration <- as.matrix(.outcomeAll[.inOut==0])
-                                      .outcomeTest <- as.matrix(.outcomeAll[.inOut==1])}
+            if(class(.predCalibration)=="data.frame"){.predCalibration <- as.matrix(.predCalibration)}
+            if(class(.predTest)=="data.frame"){.predTest <- as.matrix(.predTest)}
+            if(class(.predCalibration)=="matrix"){.predCalibration <- array(.predCalibration, dim=c(nrow(.predCalibration), ncol(.predCalibration), 1))}
+            if(class(.predTest)=="matrix"){.predTest <- array(.predTest, dim=c(nrow(.predTest), ncol(.predTest), 1))}
             if(length(.modelNames)<ncol(.predCalibration)){
               .modelNames <- paste("Model", 1:ncol(.predCalibration))
             }
-            print("here")
-            colnames(.predCalibration) <- .modelNames; rownames(.predCalibration) <- 1:nrow(.predCalibration)
-            if (length(.predTest)>0){
-              colnames(.predTest) <- .modelNames
-              rownames(.predTest) <- 1:nrow(.predTest)
+            if(length(.predCalibration)>0){
+              colnames(.predCalibration) <- .modelNames; rownames(.predCalibration) <- 1:nrow(.predCalibration)
             }
-            colnames(.outcomeCalibration) <- "Outcome"; rownames(.outcomeCalibration) <- 1:nrow(.outcomeCalibration)
-            if(length(.outcomeTest)>0){colnames(.outcomeTest) <- "Outcome"; rownames(.outcomeTest) <- 1:nrow(.outcomeTest)}
+            if (length(.predTest)>0){
+              colnames(.predTest) <- .modelNames; rownames(.predTest) <- 1:nrow(.predTest)
+            }
+            if(length(.outcomeCalibration>0)) {names(.outcomeCalibration) <- 1:length(.outcomeCalibration)}
+            if(length(.outcomeTest>0))  {names(.outcomeTest) <- 1:length(.outcomeTest)}
             
             return(new("ForecastData", predCalibration=.predCalibration, predTest=.predTest,
                        outcomeCalibration=.outcomeCalibration, outcomeTest=.outcomeTest, modelNames=.modelNames))
-
+            
           }
           )
 
@@ -184,7 +177,6 @@ setMethod(
 		f="print",
 		signature="ForecastData",
 		definition=function(x, digits=3, ...){
-			cat("*** Class ForecastData, method Print *** \n");
 			cat("* Prediction Calibration = \n"); print(x@predCalibration, na.print="", digits=digits);
 			cat("* Prediction Test = \n"); print(x@predTest, na.print="", digits=digits);
 				cat("* Outcome Calibration = \n");print(x@outcomeCalibration, na.print="", digits=digits);
@@ -198,17 +190,25 @@ setMethod(
 		f="show",
 		signature="ForecastData",
 		definition=function(object){
-			cat("*** Class ForecastData, method Show *** (limited to the first ten values of each vector)\n");
-		    	nrow=min(10,nrow(object@predCalibration))
-			cat("Prediction Calibration = \n"); print(object@predCalibration[1:nrow,1:ncol(object@predCalibration)], na.print="", digits=2);
-			cat("* Prediction Test =\n"); print(object@predTest[1:nrow,1:ncol(object@predTest)], na.print="", digits=2);
- 			cat("* Outcome Calibration = \n"); print(object@outcomeCalibration[1:nrow,1:ncol(object@outcomeCalibration)],na.print="", digits=2);
- 			cat("* Outcome Test = \n");print(object@outcomeTest[1:nrow,1:ncol(object@outcomeTest)], na.print="", digits=2);
-				cat("* Model Names = \n "); print(object@modelNames,na.print="");
-				cat("*** End Show (Forecast Data) *** \n")
-
-			}
-)
+                  if (length(object@predCalibration)==0) {
+			cat("* Prediction Calibration = \n"); print(object@predCalibration, na.print="", digits=1);
+			cat("* Prediction Test = \n"); print(object@predTest, na.print="", digits=1);
+				cat("* Outcome Calibration = \n");print(object@outcomeCalibration, na.print="", digits=1);
+				cat("* Outcome Test = \n");print(object@outcomeTest, na.print="", digits=1);
+				cat("* Model Names = \n ");print(object@modelNames, na.print="");
+                  }
+                  else{
+                  nrowCal=min(10,nrow(object@predCalibration))
+                  nrowTest=min(10,nrow(object@predTest))
+                  cat("Prediction Calibration = \n"); print(object@predCalibration[1:nrowCal,1:ncol(object@predCalibration),1], na.print="", digits=2);
+                  cat("* Prediction Test =\n"); print(object@predTest[1:nrowTest,1:ncol(object@predTest),1], na.print="", digits=2);
+                  cat("* Outcome Calibration = \n"); print(object@outcomeCalibration[1:nrowCal],na.print="", digits=2);
+                  cat("* Outcome Test = \n");print(object@outcomeTest[1:nrowTest], na.print="", digits=2);
+                  cat("* Model Names = \n "); print(object@modelNames,na.print="");
+                  cat("*** End Show (Forecast Data) *** \n")
+                }
+                }
+          )
 
 #' @rdname makeForecastData
 #' @export
@@ -268,9 +268,11 @@ setReplaceMethod(
 	f="setPredCalibration",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@predCalibration = as.matrix(value)
-		validObject(object)
-		return(object)
+          if(class(value)=="data.frame"){value <- as.matrix(value)}
+          if(class(value)=="matrix"){value <- array(value, dim=c(nrow(value), ncol(value), 1))}
+          object@predCalibration = value
+          validObject(object)
+          return(object)
 	}
 )
 
@@ -282,7 +284,9 @@ setReplaceMethod(
 	f="setPredTest",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@predTest<- as.matrix(value)
+          if(class(value)=="data.frame"){value <- as.matrix(value)}
+          if(class(value)=="matrix"){value <- array(value, dim=c(nrow(value), ncol(value), 1))}
+          object@predTest<- value
 		validObject(object)
 		return(object)
 	}
@@ -296,7 +300,7 @@ setReplaceMethod(
 	f="setOutcomeCalibration",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@outcomeCalibration <- as.matrix(value)
+		object@outcomeCalibration <- value
 		validObject(object)
 		return(object)
 	}
@@ -310,7 +314,7 @@ setReplaceMethod(
 	f="setOutcomeTest",
 	signature="ForecastData",
 	definition=function(object,value){
-		object@outcomeTest<-as.matrix(value)
+		object@outcomeTest<-value
 		validObject(object)
 		return(object)
 	}
