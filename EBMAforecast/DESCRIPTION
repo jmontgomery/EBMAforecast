@@ -23,7 +23,5 @@ Collate:
     'document-data.R'
     'summary.R'
     'FDatFitNormal.R'
-    'fitEnsemble
-    (Logit).R'
-    'fitEnsemble
-    (Normal).R'
+    'fitEnsembleLogit.R'
+    'fitEnsembleNormal.R'

@@ -10,7 +10,7 @@ setwd("~/GITHUB/EBMAforecast/")
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
-
+jacob <- calibrateEnsemble(.forecastData=this.ForecastData2, model="normal", tol=1.490116e-08, maxIter=1000000)
 
 tester <- new("ForecastData")
 str(tester)
@@ -27,7 +27,8 @@ tester
 this.ForecastData@predCalibration[2,1,1] <- NA
 this.ForecastData@predCalibration[8,4,1] <- NA
 this.ForecastData@predCalibration
-jacob <- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
+
+jacob2 <- calibrateEnsemble(this.ForecastData2, model="normal", tol=1.490116e-08, maxIter=1000000)
 jacob@modelWeights
 
 

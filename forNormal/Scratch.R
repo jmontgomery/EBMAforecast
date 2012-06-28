@@ -61,8 +61,6 @@ hibbpreds=hibbspreds
     full.forecasts <- rbind(in.data, out.data) 
     full.observed <- c(master.data$dv[10:(9+tyn)])
 
-.forecastData <- this.ForecastData
-getModelNames(.forecastData    )
 this.ForecastData<-makeForecastData(.predCalibration=in.data, .outcomeCalibration=full.observed[1:14],.predTest=out.data,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
 #this.ForecastData
 .forecastData <- this.ForecastData
@@ -72,18 +70,18 @@ out.data2 <- array(in.data, dim=c(1,6,2))
 dim(out.data)
 #dimnames(in.data2) <- list(c(1:14), c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"), c(1:2))
 str(in.data2)
+getModelNames(.forecastData    )
 
-
-this.ForecastData<-makeForecastData(.predCalibration=in.data2, .outcomeCalibration=full.observed[1:14],.predTest=out.data2,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
-.forecastData <- this.ForecastData
-
+this.ForecastData2<-makeForecastData(.predCalibration=in.data2, .outcomeCalibration=full.observed[1:14],.predTest=out.data2,.outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
+.forecastData2 <- this.ForecastData
+.forecastData2
 
 ###
-loplibrary(abind)
-testArray <- array(c(1,2,3,4,5,6,7,8), dim=c(2,2,2))
-testArray
-testVec <- matrix(c(9,10, rep(NA, 2)), ncol=2, nrow=2)
-testVec <- array(testVec, dim=c(2,1,2))
-dim(testVec)
-testVec
-abind(testArray, testVec, along=2)
+#library(abind)
+#testArray <- array(c(1,2,3,4,5,6,7,8), dim=c(2,2,2))
+#testArray
+#testVec <- matrix(c(9,10, rep(NA, 2)), ncol=2, nrow=2)
+#testVec <- array(testVec, dim=c(2,1,2))
+#dim(testVec)
+#testVec
+#abind(testArray, testVec, along=2)
