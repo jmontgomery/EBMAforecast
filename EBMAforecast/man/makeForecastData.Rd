@@ -1,31 +1,5 @@
 \name{makeForecastData}
-\alias{ForeCastData-class}
-\alias{ForecastData-method}
-\alias{getModelNames}
-\alias{getOutcomeCalibration}
-\alias{getOutcomeTest}
-\alias{getPredCalibration}
-\alias{getPredTest}
-\alias{initialize,ForecastData-method}
 \alias{makeForecastData}
-\alias{makeForecastData,ANY-method}
-\alias{print,ForecastData-method}
-\alias{setModelNames,ForecastData-method}
-\alias{setModelNames<-}
-\alias{setModelNames<-,ForecastData-method}
-\alias{setOutcomeCalibration,ForecastData-method}
-\alias{setOutcomeCalibration<-}
-\alias{setOutcomeCalibration<-,ForecastData-method}
-\alias{setOutcomeTest,ForecastData-method}
-\alias{setOutcomeTest<-}
-\alias{setOutcomeTest<-,ForecastData-method}
-\alias{setPredCalibration,ForecastData-method}
-\alias{setPredCalibration<-}
-\alias{setPredCalibration<-,ForecastData-method}
-\alias{setPredTest,ForecastData-method}
-\alias{setPredTest<-}
-\alias{setPredTest<-,ForecastData-method}
-\alias{show,ForecastData-method}
 \title{Build a ensemble forecasting data object}
 \arguments{
   \item{.predAll}{An n by p matrix or data.frame containing
@@ -84,7 +58,10 @@
   This function uses the user provided component model
   forecasts and dependent variable observations to create
   an object of class \code{ForecastData}, which can then be
-  used to calibrate and fit the Ensemble.
+  used to calibrate and fit the Ensemble. Individual slots
+  of the \code{ForecastData} object can be accessed and
+  changed using the \code{get} and \code{set} functions
+  respectively.
 }
 \examples{
 data(calibrationSample)
@@ -93,6 +70,21 @@ data(testSample)
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+
+### to acces individual slots in the ForecastData object
+getPredCalibration(this.ForecastData)
+getOutcomeCalibration(this.ForecastData)
+getPredTest(this.ForecastData)
+getOutcomeTest(this.ForecastData)
+getModelNames(this.ForecastData)
+
+### to assign individual slots, use set funtions
+
+setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
+setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
+setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
+setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
+setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

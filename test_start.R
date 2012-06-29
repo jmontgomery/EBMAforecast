@@ -95,6 +95,7 @@ expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_er
 })
 
 ### test 7  check that results for calibration set and test set are the same as in paper after ensemble
+context("Results Check")
 test_that("results are the same as presented in paper (calibration period)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
@@ -108,7 +109,6 @@ for(i in 1:4){
 }
 })
 
-context("Results Check")
 test_that("results are the same as presented in paper (test period)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)	
@@ -122,6 +122,56 @@ for(i in 1:4){
 }
 })
 #
+context("get tests")
+test_that("getPredCalibration gives PredCalibration",{
+	expect_that(getPredCalibration(this.ForecastData),equals(this.ForecastData@predCalibration))
+})
+
+
+test_that("getOutcomeCalibration gives OutcomeCalibration",{
+	expect_that(getOutcomeCalibration(this.ForecastData),equals(this.ForecastData@outcomeCalibration))
+})
+
+test_that("getPredTest gives predTest",{
+	expect_that(getPredTest(this.ForecastData),equals(this.ForecastData@predTest))
+})
+
+test_that("getOutcomeTest gives OutcomeTest",{
+	expect_that(getOutcomeTest(this.ForecastData),equals(this.ForecastData@outcomeTest))
+})
+
+test_that("getModelNames gives ModelNames",{
+	expect_that(getModelNames(this.ForecastData),equals(this.ForecastData@modelNames))
+})
+
+
+context("set tests")
+test_that("setPredCalibration works",{
+	setPredCalibration(this.ForecastData)<-matrix(1,ncol=3,nrow=696) 
+	expect_that(this.ForecastData@predCalibration, equals(array(1,dim=c(696,3,1))))
+})
+
+test_that("setOutcomeCalibration works",{
+	setOutcomeCalibration(this.ForecastData)<-rep(1,696) 
+	expect_that(this.ForecastData@outcomeCalibration, equals(rep(1,696)))
+})
+
+test_that("setPredTest works",{
+	setPredTest(this.ForecastData)<-matrix(1,ncol=3,nrow=348) 
+	expect_that(this.ForecastData@predTest,  equals(array(1,dim=c(348,3,1))))
+})
+
+test_that("setOutcomeTest works",{
+	setOutcomeTest(this.ForecastData)<-rep(1,348) 
+	expect_that(this.ForecastData@outcomeTest, equals(rep(1,348)))
+})
+
+test_that("setModelNames works",{
+	names<-c("Frank","Aaron","David")
+	setModelNames(this.ForecastData)<-names
+	expect_that(this.ForecastData@modelNames, equals(names))
+})
+
 
 context("NA test")
 #### test 8 check that NA's are not taken
@@ -139,4 +189,54 @@ expect_that(setPredTest(this.ForecastData)<-matrix(NA,ncol=3,nrow=348), throws_e
 test_that("error if NA's are fed into ForecastData (outcomeTest)",{
 expect_that(setOutcomeTest(this.ForecastData)<-c(rep(NA,348)), throws_error())
 })
+
+
+
+context("test that makeForecastData takes arrays,matrix,and data.frame objects")
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+test_that("makeForecastData takes DF",{
+calibrationSample.df<-as.data.frame(calibrationSample)
+testSample.df<-as.data.frame(testSample)
+this.ForecastData.df <- makeForecastData(.predCalibration=calibrationSample.df[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample.df[,"Insurgency"],.predTest=testSample.df[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample.df[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+expect_that(this.ForecastData,equals(this.ForecastData.df))
+})
+
+test_that("makeForecastData takes matrix",{
+calibrationSample.m<-as.matrix(calibrationSample)
+testSample.m<-as.matrix(testSample)
+this.ForecastData.m <- makeForecastData(.predCalibration=calibrationSample.m[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample.m[,"Insurgency"],.predTest=testSample.m[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample.m[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+expect_that(this.ForecastData,equals(this.ForecastData.m))
+})
+
+test_that("makeForecastData takes array",{
+calibrationSample.a<-as.array(calibrationSample)
+testSample.a<-as.array(testSample)
+this.ForecastData.a <- makeForecastData(.predCalibration=calibrationSample.a[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample.a[,"Insurgency"],.predTest=testSample.a[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample.a[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+expect_that(this.ForecastData,equals(this.ForecastData.a))
+})
+
+
+
+context("test for functionality of options in logit EBMA")
+test_that("tolerance changes if option is used",{
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.000141, maxIter=25000, exp=3)		
+expect_that(check1@tol,equals(0.000141))	
+})
+
+test_that("maximum iteration changes if option is used",{
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0000000001, maxIter=25, exp=3)		
+expect_that(check1@maxIter,equals(25))
+expect_that(check1@iter,equals(25))	
+})
+
+test_that("exponent changes if option is used",{
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=15)		
+expect_that(check1@exp,equals(15))
+})
+
+
+### same tests for normal function -- context("test for functionality of options in normal EBMA")
 

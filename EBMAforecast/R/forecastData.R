@@ -1,4 +1,45 @@
-	
+#' An ensemble forecasting data object
+#'
+#' Objects of class \code{ForecastData} are used in the \code{calibrateEnsemble} function. Datasets should be converted into an object of class \code{ForecastData} using the \code{makeForecastData} function. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively.
+#'
+#'
+#' A data object of the class 'ForecastData' has the following slots: 
+#' \itemize{
+#' \item \code{predCalibration} An array containing the predictions of all component models for all observations in the calibration period.
+#' \item \code{predTest} An array containing the predictions of all component models for all observations in the test period.
+#' \item \code{outcomeCalibration} A vector containing the true values of the dependent variable for all observations in the calibration period. 
+#' \item \code{outcomeTest} A vector containing the true values of the dependent variable for all observations in the test period.
+#' \item \code{modelNames} A character vector containing the names of all component models. }
+#'
+#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
+#'
+#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
+#'
+#' @examples  data(calibrationSample)
+#' 
+#' data(testSample) 
+#' this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+#' .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
+#' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+#' 
+#' ### to acces individual slots in the ForecastData object
+#' getPredCalibration(this.ForecastData)
+#' getOutcomeCalibration(this.ForecastData)
+#' getPredTest(this.ForecastData)
+#' getOutcomeTest(this.ForecastData)
+#' getModelNames(this.ForecastData)
+#' 
+#' ### to assign individual slots, use set funtions
+#'
+#' setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
+#' setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
+#' setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
+#' setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
+#' setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+#'
+#' @seealso ensembleBMA, other functions
+#' @aliases ForecastData-method initialize,ForecastData-method setPredCalibration,ForecastData-method setOutcomeCalibration,ForecastData-method setPredTest,ForecastData-method setOutcomeTest,ForecastData-method setModelNames,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method ForeCastData-class
+#' @rdname ForecastData	
 #' @export
 setClass(Class="ForecastData",
          representation = representation(
@@ -92,7 +133,7 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 
 #' Build a ensemble forecasting data object
 #'
-#' This function uses the user provided component model forecasts and dependent variable observations to create an object of class \code{ForecastData}, which can then be used to calibrate and fit the Ensemble.
+#' This function uses the user provided component model forecasts and dependent variable observations to create an object of class \code{ForecastData}, which can then be used to calibrate and fit the Ensemble. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively.
 #'
 #' @param .predAll An n by p matrix or data.frame containing predictions, for both the calibration and test observations.  This may also be a n by p by m array containing multiple predictions for each model.  Missing values are allowed.
 #' @param .outcomeAll A vector of length n, containing the true values of the dependent variable, for both the calibration and test observations.
@@ -121,8 +162,22 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 #' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 #' 
+#' ### to acces individual slots in the ForecastData object
+#' getPredCalibration(this.ForecastData)
+#' getOutcomeCalibration(this.ForecastData)
+#' getPredTest(this.ForecastData)
+#' getOutcomeTest(this.ForecastData)
+#' getModelNames(this.ForecastData)
+#' 
+#' ### to assign individual slots, use set funtions
+#'
+#' setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
+#' setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
+#' setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
+#' setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
+#' setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+#'
 #' @seealso ensembleBMA, other functions
-#' @aliases ForecastData-method initialize,ForecastData-method setPredCalibration,ForecastData-method setOutcomeCalibration,ForecastData-method setPredTest,ForecastData-method setOutcomeTest,ForecastData-method setModelNames,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method ForeCastData-class
 #' @rdname makeForecastData
 #' @export
 setGeneric(name="makeForecastData",
@@ -210,7 +265,7 @@ setMethod(
                 }
           )
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("getPredCalibration",function(object="ForecastData") standardGeneric("getPredCalibration"))
 
@@ -220,7 +275,7 @@ setMethod("getPredCalibration","ForecastData",function(object){
 }
 )
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("getPredTest",function(object="ForecastData") standardGeneric("getPredTest"))
 #' @export
@@ -231,7 +286,7 @@ setMethod("getPredTest","ForecastData",
 )
 
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("getOutcomeCalibration",function(object="ForecastData") standardGeneric("getOutcomeCalibration"))
 #' @export
@@ -242,7 +297,7 @@ setMethod("getOutcomeCalibration","ForecastData",
 )
 
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("getOutcomeTest",function(object="ForecastData") standardGeneric("getOutcomeTest"))
 #' @export
@@ -253,7 +308,7 @@ setMethod("getOutcomeTest","ForecastData",
 )
 
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("getModelNames",function(object="ForecastData") standardGeneric("getModelNames"))
 #' @export
@@ -263,7 +318,7 @@ setMethod("getModelNames","ForecastData",
 		}
 )
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
 
@@ -279,7 +334,7 @@ setReplaceMethod(
 	}
 )
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("setPredTest<-",function(object,value){standardGeneric("setPredTest<-")})
 
@@ -295,7 +350,7 @@ setReplaceMethod(
 	}
 )
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
 
@@ -309,7 +364,7 @@ setReplaceMethod(
 	}
 )
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
 
@@ -323,7 +378,7 @@ setReplaceMethod(
 	}
 )
 
-#' @rdname makeForecastData
+#' @rdname ForecastData
 #' @export
 setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
 
