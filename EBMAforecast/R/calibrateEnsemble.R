@@ -11,7 +11,7 @@
 #' @param method The estimation method used.  Currently only implements "EM"
 #' @param ... Not implemented
 #'
-#' @return Returns a data of class 'FDatFitLogit', a subclass of 'ForecastData', with the following slots
+#' @return Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots
 #' \item{predCalibration}{A matrix containing the predictions of all component models and the EBMA model for all observations in the calibration period.} 
 #' \item{predTest}{A matrix containing the predictions of all component models and the EBMA model for all observations in the test period.}
 #' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 

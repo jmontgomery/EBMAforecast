@@ -2,8 +2,8 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 
-#setwd("~/Documents/GITHUB/EBMAforecast/")
-setwd("~/GITHUB/EBMAforecast/")
+setwd("~/Documents/GITHUB/EBMAforecast/")
+#setwd("~/GITHUB/EBMAforecast/")
 
 
 # Only need to run this portion once

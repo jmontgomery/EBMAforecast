@@ -38,8 +38,8 @@
   \item{...}{Not implemented}
 }
 \value{
-  Returns a data of class 'FDatFitLogit', a subclass of
-  'ForecastData', with the following slots
+  Returns a data of class 'FDatFitLogit' or FDatFitNormal,
+  a subclass of 'ForecastData', with the following slots
   \item{predCalibration}{A matrix containing the
   predictions of all component models and the EBMA model
   for all observations in the calibration period.}
