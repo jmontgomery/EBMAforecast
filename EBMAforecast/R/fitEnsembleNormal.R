@@ -31,10 +31,11 @@ setMethod(f="fitEnsemble",
                 ## Step 2: Calculat the W's
                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
                 W <- .unnormalizedW
-                W <- (W/rowSums(!colSums(g, na.rm=T)==0)) # the bottom here is the number of non-empty exchangeable runs for each model
+                W <- (W/rowSums(!colSums(g, na.rm=T)==0)) # the bottom here is the number of non-empty exchangeable draws for each model
                 W <- W/sum(.unnormalizedW)
                 W[W<ZERO]<-0
-                W <- array(W, dim=c(nDraws, nMod)) ; dimnames(W) <- list(1:nDraws, modelNames)
+                #W <- array(W, dim=c(nDraws, nMod)) ;
+                dimnames(W) <- list(1:nDraws, modelNames)
                 
                 ## Step 3: Calculate sigma squared
                 sigma2<-sum(Z * RSQ, na.rm=T)/sum(Z, na.rm=T) 
@@ -114,7 +115,7 @@ setMethod(f="fitEnsemble",
 #            }
 
             ## Set initial values for parameters
-            W <- array(1/(nMod*nDraws), dim=c(nDraws, nMod)) ; dimnames(W) <- list(1:nDraws, modelNames)
+            W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
             sigma2<-var(outcomeCalibration) 
 
                         print("eight")
@@ -135,17 +136,20 @@ setMethod(f="fitEnsemble",
             if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
                         print("nine")
 
+            ## ATTENTION: THIS IS *NOT* CORRECT FOR MISSING VALUES.
             ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
             bmaPred <- array(aaply(predCalibrationAdj, c(1,3), function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
+            if(nDraws>1){bmaPred <- array(c(aaply(bmaPred, 1, mean), rep(NA, nObsCal*(nDraws-1))),  dim=c(nObsCal, 1,nDraws))}
             cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
 
             ##If the test period data is included, calculate the EBMA forecast for the test period and merge onto predTest
            if(testPeriod){
              predTestAdj <- array(laply(1:nMod, function(x) {predict(models[[x]], newdata=data.frame(preds=predTest[x]))}), dim=c(nObsTest, nMod, nDraws))
              bmaPredTest <- array(aaply(predTestAdj, c(1,3), function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
+             if(nDraws>1){bmaPredTest <- array(c(aaply(bmaPredTest, 1, mean), rep(NA, nObsTest*(nDraws-1))),  dim=c(nObsTest, 1,nDraws))}
              test <- abind(bmaPredTest, .forecastData@predTest, along=2);  colnames(test) <- c("EBMA", modelNames)
            }
-           else{test <- .forecastData@predTest}
+           if(!testPeriod){{test <- .forecastData@predTest}}
 
 
             new("FDatFitNormal",

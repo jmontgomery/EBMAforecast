@@ -3,7 +3,7 @@
 setClass(Class="FDatFitNormal",
          contains="ForecastData",
          representation=representation(
-           modelWeights="matrix",
+           modelWeights="numeric",
            modelParams="array",
            variance="numeric",
            logLik="numeric",
