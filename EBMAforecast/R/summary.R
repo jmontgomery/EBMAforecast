@@ -71,6 +71,35 @@ setMethod(
             )
 
 
+setMethod(
+          f="summary",
+          signature="FDatFitNormal",
+          definition=function(object,
+            period="calibration",
+            fitStatistics=c("rmse", "mae"),
+           threshold=.5,
+            baseModel=0,
+            showCoefs=TRUE,
+            ...){
+            
+            out <- compareModels(object, .period=period, .fitStatistics=fitStatistics, .threshold=threshold, .baseModel=baseModel)
+            if(showCoefs){
+              coefs <- t(aaply(object@modelParams, 1:2, function(x) {mean(x, na.rm=TRUE)}))
+              coefs <- rbind(c(NA,NA), coefs)
+              out <- cbind(coefs, out)
+            }
+            # Adding weights column
+            W <- object@modelWeights
+            W <- c(NA, W)
+            out <- cbind(W, out)
+
+            
+            rownames(out) <- c("EBMA", object@modelNames)
+            new("SummaryForecastData", summaryData=out)
+              }
+            )
+
+
         
 #' @export
 setMethod(

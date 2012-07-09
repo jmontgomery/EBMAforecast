@@ -2,15 +2,26 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 
-setwd("~/Documents/GITHUB/EBMAforecast/")
-#setwd("~/GITHUB/EBMAforecast/")
+#setwd("~/Documents/GITHUB/EBMAforecast/")
+setwd("~/GITHUB/EBMAforecast/")
 
 
 # Only need to run this portion once
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
-jacob <- calibrateEnsemble(.forecastData=this.ForecastData2, model="normal", tol=1.490116e-08, maxIter=1000000)
+
+jacob2 <- calibrateEnsemble(.forecastData=this.ForecastData2, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE)
+jacob <- calibrateEnsemble(.forecastData=this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE)
+summary(jacob, showCoefs=TRUE)
+jacob@predTest-jacob@outcomeTest
+jacob@modelParams
+
+sum(jacob@modelWeights)
+print(jacob)
+jacob@modelWeights
+jacob2@modelWeights
+j.forecastData <- this.ForecastData
 
 .tester <- new("ForecastData")
 str(tester)
@@ -23,30 +34,33 @@ tester
 
 
 
+this.ForecastData3 <- this.ForecastData
+this.ForecastData3@predCalibration[2,1,1] <- NA
+this.ForecastData3@predCalibration[8,4,1] <- NA
+this.ForecastData3@predCalibration
+jacob3 <- calibrateEnsemble(this.ForecastData3, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE)
 
-this.ForecastData@predCalibration[2,1,1] <- NA
-this.ForecastData@predCalibration[8,4,1] <- NA
-this.ForecastData@predCalibration
-jacob <- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
+
+this.ForecastData4 <- this.ForecastData2
+this.ForecastData4@predCalibration[2,1,1] <- NA
+this.ForecastData4@predCalibration[8,4,1] <- NA
+this.ForecastData4@predCalibration[,5,2] <- NA
+print(this.ForecastData4@predCalibration)
+jacob4 <- calibrateEnsemble(this.ForecastData4, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE)
+
+this.ForecastData5 <- this.ForecastData2
+this.ForecastData5@predCalibration[2,1,1] <- NA
+this.ForecastData5@predCalibration[8,4,1] <- NA
+print(this.ForecastData5@predCalibration)
+jacob5 <- calibrateEnsemble(this.ForecastData5, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE)
+
+
 jacob@modelWeights
+jacob2@modelWeights
+jacob3@modelWeights
+jacob4@modelWeights
+jacob5@modelWeights
 
-
-jacob2<- calibrateEnsemble(this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000)
-f2+2
-### TODO:
-
-## Tests I want added
-## 1) The funciton should behave differently when we change the tol and maxIter options
-
-## Bugs we found:
-## 1) THe tolerance and maxIter options were not working as documentations suggested.
-
-## Bugs to track down -- I am getting an error in the "show" function for ForecastData for the presidential example.
-
-## Functionality to 
-
-
-###
 
 # run all tests to make sure everything is working as expected
 test_file("test_start.R")

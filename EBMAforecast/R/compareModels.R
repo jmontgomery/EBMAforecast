@@ -79,19 +79,22 @@ setMethod(f="compareModels",
           {
             if(.period == "calibration")
               {
-                preds <- .forecastData@predCalibration
+                preds <- aaply(.forecastData@predCalibration,c(1:2),mean)
                 y <- .forecastData@outcomeCalibration
               }
             else
               {
-                preds <- .forecastData@predTest
+                preds <-  aaply(.forecastData@predTest,c(1:2),mean)
                 y <- .forecastData@outcomeTest
               }
-            
+
+            print("one")
             num.models <- ncol(preds)
             num.obs <- nrow(preds)
             if(length(.baseModel)==1){baseModel <- rep(.baseModel, num.obs)}
 
+            print("two")
+            
             out <- new("CompareModels",                       
                        period=.period,
                        threshold=.threshold,
@@ -99,6 +102,8 @@ setMethod(f="compareModels",
                        )
             outMat <- matrix(NA, nrow=num.models, ncol=length(.fitStatistics))
             colnames(outMat) <- .fitStatistics
+
+            print("three")
             
             if("brier" %in%.fitStatistics){
               my.fun <- function(x){mean((x-y)^2)}
@@ -119,6 +124,22 @@ setMethod(f="compareModels",
               }
               outMat[,"pre"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }
+            if("rmse" %in% .fitStatistics){
+              my.fun <- function(x) {sqrt(mean((x-y)^2))}
+              outMat[,"rmse"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
+              print("rmse")
+            }
+            if("mae" %in% .fitStatistics){
+              my.fun <- function(x) {mean(abs(x-y))}
+              outMat[,"mae"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
+              print("mae")
+            }
+#            if("err" %in% .fitStatistics){
+#              my.fun <- function(x) {(x-y)}
+#              outMat[,"err"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
+#              print("err")
+#            }
+            
             
           out@fitStatistics <- outMat
             rownames(outMat) <- colnames(preds)
