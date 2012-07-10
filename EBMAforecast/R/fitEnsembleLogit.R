@@ -2,7 +2,7 @@
 
 #' @export
 setGeneric(name="fitEnsemble",
-           def=function(.forecastData, exp=1, tol=.001,maxIter=10000, method="EM", ...)
+           def=function(.forecastData,  tol=1.490116e-0, maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", ...)
            {standardGeneric("fitEnsemble")}
            )
 
@@ -10,10 +10,10 @@ setGeneric(name="fitEnsemble",
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataLogit"),
-          definition=function(.forecastData, exp, tol, maxIter, method)
+          definition=function(.forecastData,  tol=1.490116e-0, maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian")
           {
             
-            my.em <- function(y, PP.matrix, W, PP.W, z.numerator)
+            .em <- function(y, PP.matrix, W, PP.W, z.numerator)
               {
 
                 ## Step 1: Calculate the Z's
@@ -95,7 +95,7 @@ setMethod(f="fitEnsemble",
             PP.W[y==1] <- PP.W.one[y==1]
             PP.W[y==0] <- PP.W.zero[y==0]
 
-            this.out <- my.em(y=y, PP.matrix=PP.matrix, W=W, PP.W=PP.W, z.numerator=z.numerator)
+            this.out <- .em(y=y, PP.matrix=PP.matrix, W=W, PP.W=PP.W, z.numerator=z.numerator)
             W <- this.out$W
             PP.W <- this.out$PP.W
             em.old <- this.out$LL

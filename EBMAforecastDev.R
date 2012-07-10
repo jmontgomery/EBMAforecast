@@ -10,7 +10,7 @@ setwd("~/GITHUB/EBMAforecast/")
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
-plot(nonMissingFixed, subset=14, main=c("2004 Election"), xLab="Bush Vote Share", cols=rep("gray20", 6))
+
 
 this.ForecastData3 <- this.ForecastData
 this.ForecastData3@predCalibration[2,1,1] <- NA
@@ -51,7 +51,7 @@ print(missingUnfixed)
 (missingUnfixed)
 
 
-
+plot(nonMissingFixed, subset=14, main=c("2004 Election"), xLab="Bush Vote Share", cols=rep("gray20", 6))
 plot(nonMissingFixed, subset=14, main="2004 Election", xLab="Bush Vote Share", cols=rep("gray20", 6))
 plot(nonMissingFixed, main="2008 Election", xLab="Bush Vote Share", cols=rep("gray40", 6), period="test")
 plot(nonMissingUnfixed, subset=14, main="2004 Election", xLab="Bush Vote Share", cols=rep("gray", 6))

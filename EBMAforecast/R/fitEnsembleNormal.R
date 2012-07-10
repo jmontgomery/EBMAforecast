@@ -3,11 +3,9 @@
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
-          definition=function(.forecastData, tol=1.490116e-08, maxIter=10000, .method="EM", .exp=numeric(), useModelParams = TRUE, predType="posteriorMean")
+          definition=function(.forecastData, tol=1.490116e-08, maxIter=10000, method="EM", exp=numeric(), useModelParams = TRUE, predType="posteriorMean")
           {
-
-
-            my.em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
+            .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
               {
 
                 ## Step 1: Calculate the Z's
@@ -36,7 +34,6 @@ setMethod(f="fitEnsemble",
                 ## Step 3: Calculate sigma squared
                 sigma2<-sum(Z * RSQ, na.rm=T)/sum(Z, na.rm=T) 
 
-                
                 ## Step 4: Calculate the log-likelihood
                 LL <-sum(log(z.denom))
                 
@@ -44,111 +41,79 @@ setMethod(f="fitEnsemble",
                 return(out)
               }
 
-            print("one")
+
+            .predictCal <- function(x){
+              .rawPred <- predict(x)
+              .outPred <- rep(NA, nObsCal)
+              .outPred[as.numeric(names(.rawPred))] <- .rawPred
+              return(.outPred)
+            }
+
+            .modelFitter <- function(preds){
+              thisModel <- lm(outcomeCalibration~preds, x=TRUE)
+              return(thisModel)
+            }
 
             ##Extract data
             predCalibration <- getPredCalibration(.forecastData); outcomeCalibration <- getOutcomeCalibration(.forecastData)
             predTest <- getPredTest(.forecastData); outcomeTest <- getOutcomeTest(.forecastData)
             testPeriod <- length(predTest)>0            
             modelNames <- getModelNames(.forecastData)
-
-            print("two")
-            
             
             ## Set constants
             nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]
             nObsCal <- nrow(predCalibration); nObsTest <- nrow(predTest)
             ZERO<-1e-4
-
-                        print("three")
             
             ## Initiate storage
             predCalibrationAdj <-  array(NA, dim=c(nObsCal, nMod, nDraws))
             predTestAdj <-   array(NA, dim=c(nObsTest, nMod, nDraws))
 
-                                    print("four")
-
             ## Fit Models
-            modelFitter <- function(preds){
-              thisModel <- lm(outcomeCalibration~preds, x=TRUE)
-              thisModel
-            }
-            if(useModelParams==TRUE){
-              models <- aaply(predCalibration, 2:3, .fun=modelFitter)
-            }
-            
-            ## Apply constraints
-            print("five")
+            if(useModelParams==TRUE){models <- aaply(predCalibration, 2:3, .fun=.modelFitter)}
 
-            myPredictCal <- function(x){
-              .rawPred <- predict(x)
-              .outPred <- rep(NA, nObsCal)
-              .outPred[as.numeric(names(.rawPred))] <- .rawPred
-              .outPred
-            }
-            
             ## Extract needed info
-            if(nDraws>1 & useModelParams==TRUE){
-              predCalibrationAdj <- aperm(aaply(models, 1:2, myPredictCal), c(3,1,2))
-              modelParams <- aperm(aaply(models, 1:2, coefficients), c(3,1,2))
-              calResiduals <- outcomeCalibration-predCalibrationAdj
-              calResiduals2 <- calResiduals^2
-
-#              calResiduals <- aperm(aaply(models, 1:2, residuals), c(3,1,2))
-#              calResiduals2 <- calResiduals^2
-      #        logLikelihood <- t(aaply(models, 1:2, function(x) logLik(x)[1]))
-            }
             if(nDraws==1 & useModelParams==TRUE){
-              predCalibrationAdj <- aperm(array(laply(models, myPredictCal), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+              predCalibrationAdj <- aperm(array(laply(models, .predictCal), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
               modelParams <- aperm(array(laply(models, coefficients), dim=c(nMod, 2, nDraws)), c(2,1,3))
               calResiduals <- outcomeCalibration-predCalibrationAdj
               calResiduals2 <- calResiduals^2
-
- #             calResiduals <- aperm(array(laply(models, residuals), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
-#              calResiduals2 <- calResiduals^2
-        #      logLikelihood <- array(laply(models, function(x) logLik(x)[1]), dim=c(nDraws, nMod))
+            }
+            if(nDraws>1 & useModelParams==TRUE){ # This code is in development for exchangeability
+              predCalibrationAdj <- aperm(aaply(models, 1:2, .predictCal), c(3,1,2))
+              modelParams <- aperm(aaply(models, 1:2, coefficients), c(3,1,2))
+              calResiduals <- outcomeCalibration-predCalibrationAdj
+              calResiduals2 <- calResiduals^2
             }
             if(useModelParams==FALSE){
               predCalibrationAdj <- predCalibration
               modelParams <- array(c(0,1), dim=c(2,nMod,nDraws))
               calResiduals <- outcomeCalibration-predCalibration
               calResiduals2 <- calResiduals^2
-          #    print(predCalibrationAdj)
-          #    print(calResiduals)
-        #      logLikelihood <- t(aaply(models, 1:2, function(x) logLik(x)[1]))
             }
-
-
 
             dimnames(modelParams) <- list(c("Constant", "Predictor"), modelNames, 1:nDraws)
             dimnames(calResiduals) <- dimnames(calResiduals2) <-dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
-       #     dimnames(logLikelihood) <- list(1:nDraws, modelNames)
-            
-                        print("seven")
 
             ## Set initial values for parameters
             W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
             sigma2<-var(outcomeCalibration) 
 
-                        print("eight")
-            
+            ## Run EM
             .done <- FALSE
             .iter <- 0
             .emOld<-0
             while(.done == FALSE & .iter<maxIter){
-              .thisOut <- my.em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2)
+              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2)
               W <- .thisOut$W
               sigma2<-.thisOut$sigma2
               LL <- .thisOut$LL
               .done <- abs(.emOld-LL)/(1+abs(LL))<tol
               .emOld <- LL
               .iter <- .iter+1
-
-              }
+            }
             if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
-
-
 
             ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
@@ -171,48 +136,39 @@ setMethod(f="fitEnsemble",
              bmaPred <- array(aaply(.flatPreds, 1, .altQBMAnormal),  dim=c(nObsCal, 1,nDraws))
              bmaPred[,,-1] <- NA
             }
-
             cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
-            calFlat <- cbind(bmaPred[,,1], .flatPreds); colnames(calFlat) <- c("EBMA", modelNames)
             
-            print("Eighta")
-            
-            ##If the test period data is included, calculate the EBMA forecast for the test period and merge onto predTest
-            
-           if(testPeriod){
-             if(useModelParams==TRUE){
-             predTestAdj <- array(laply(1:nMod, function(x) {predict(models[[x]], newdata=data.frame(preds=predTest[x]))}), dim=c(nObsTest, nMod, nDraws))
-
-           }
-             if(useModelParams==FALSE){predTestAdj <- predTest}
-             .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
-
-             if (predType=="posteriorMean"){
-               bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
-               bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
-               bmaPredTest[,,-1] <- NA
-             }
+            if(testPeriod){
+              if(useModelParams==TRUE){
+                predTestAdj <- array(laply(1:nMod, function(x) {
+                  predict(models[[x]], newdata=data.frame(preds=predTest[x]))}), dim=c(nObsTest, nMod, nDraws))
+              } 
+              if(useModelParams==FALSE){predTestAdj <- predTest}
+              .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
+              
+              if (predType=="posteriorMean"){
+                bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
+                bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
+                bmaPredTest[,,-1] <- NA
+              }
              
-             if (predType=="posteriorMedian"){
-               .altQBMAnormal <- function(x){
-                 .x <- x[!is.na(x)]
-                 .W <- W[!is.na(x)]
-                 ..sdVec <- .sdVec[!is.na(x)]
-                 ensembleBMA:::quantBMAnormal(.5, .W, .x, ..sdVec)
-               }
-             bmaPredTest <- array(aaply(.flatPredsTest, 1, .altQBMAnormal),  dim=c(nObsTest, 1,nDraws))
-             bmaPred[,,-1] <- NA
+              if (predType=="posteriorMedian"){
+                .altQBMAnormal <- function(x){
+                  .x <- x[!is.na(x)]
+                  .W <- W[!is.na(x)]
+                  ..sdVec <- .sdVec[!is.na(x)]
+                  ensembleBMA:::quantBMAnormal(.5, .W, .x, ..sdVec)
+                }
+                bmaPredTest <- array(aaply(.flatPredsTest, 1, .altQBMAnormal),  dim=c(nObsTest, 1,nDraws))
+                bmaPred[,,-1] <- NA
+              }
+             
+              test <- abind(bmaPredTest, .forecastData@predTest, along=2);  colnames(test) <- c("EBMA", modelNames)
             }
-             
-             test <- abind(bmaPredTest, .forecastData@predTest, along=2);  colnames(test) <- c("EBMA", modelNames)
-             testFlat <- cbind(bmaPredTest[,,1], .flatPredsTest); colnames(testFlat) <- c("EBMA", modelNames)
-
-           }
             if(!testPeriod){{test <- .forecastData@predTest}}
-            print("nine")
+
 
             new("FDatFitNormal",
-            #list(
                 predCalibration=cal,
                 outcomeCalibration=outcomeCalibration,
                 predTest=test,
@@ -222,10 +178,10 @@ setMethod(f="fitEnsemble",
                 modelParams=modelParams,
                 variance=sigma2,
                 logLik=LL,
-                exp=.exp,
+                exp=exp,
                 tol=tol,
                 maxIter=maxIter,
-                method=.method,
+                method=method,
                 call=match.call()
                 )
           }

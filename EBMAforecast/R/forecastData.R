@@ -59,14 +59,16 @@ setClass(Class="ForecastData",
              {stop("The number of predictions and outcomes do not match in the calibration set.")}
            if(nrow(object@predTest)!=length(object@outcomeTest))
              {stop("The number of predictions and outcomes do not match in the test set.")}  
-            if(ncol(object@predTest)!=ncol(object@predCalibration))
-             {stop("The number of prediction models in the calibration and test set are different.")}    
-            if(dim(object@predTest)[3]!=dim(object@predCalibration)[3])
-             {stop("The number of exchangeable draws per model in the calibration and test are different.")}    
+           if(length(object@predTest)>0){
+             if(ncol(object@predTest)!=ncol(object@predCalibration))
+               {stop("The number of prediction models in the calibration and test set are different.")}    
+             if(dim(object@predTest)[3]!=dim(object@predCalibration)[3])
+               {stop("The number of exchangeable draws per model in the calibration and test are different.")}
+           }
            if(sum(is.na(object@outcomeCalibration)) > 0)
              {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
            if(sum(is.na(object@outcomeTest)) > 0)
-             {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
+             {stop("There are NAs in the outcome test set, these observations should be deleted from the data.")}
            }  
          )
 
