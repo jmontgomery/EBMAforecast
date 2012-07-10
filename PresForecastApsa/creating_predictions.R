@@ -54,10 +54,17 @@ hibbspreds <- read.csv("Predictions_hibbs.csv")
 insample.hibbs<-hibbspreds[,c("Year","Point_Pred")]
 names(insample.hibbs)<-c("Year","Hibbs")
 
+
+
+lockerbie<-read.csv("~/Documents/GIT/EBMAforecast/PresForecastApsa/LockerbieData.csv")
+insample.lockerbie<-lockerbie[,c("Year","Forecast")]
+names(insample.lockerbie)<-c("Year","Lockerbie")
+
 merge1<-merge(insample.campbel.trialheat,insample.campbel.bump,by="Year",all.x=TRUE,all.y=TRUE)
 merge2<-merge(merge1,insample.holbrook,by="Year",all.x=TRUE,all.y=TRUE)
 merge3<-merge(merge2,insample.cuzan.long,by="Year",all.x=TRUE,all.y=TRUE)
 merge4<-merge(merge3,insample.cuzan.short,by="Year",all.x=TRUE,all.y=TRUE)
+merge5<-merge(merge4,insample.hibbs,by="Year",all.x=TRUE,all.y=TRUE)
+insample.data<-merge(merge5,insample.lockerbie,by="Year",all.x=TRUE,all.y=TRUE)
 
-insample.data<-merge(merge4,insample.hibbs,by="Year",all.x=TRUE,all.y=TRUE)
 save(insample.data, file="insample.data.RData")
