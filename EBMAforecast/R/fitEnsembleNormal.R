@@ -3,7 +3,7 @@
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
-          definition=function(.forecastData, tol=1.490116e-08, maxIter=10000, .method="EM", .exp=numeric(), useModelParams = TRUE)
+          definition=function(.forecastData, tol=1.490116e-08, maxIter=10000, .method="EM", .exp=numeric(), useModelParams = TRUE, predType="posteriorMean")
           {
 
 
@@ -143,7 +143,7 @@ setMethod(f="fitEnsemble",
               .done <- abs(.emOld-LL)/(1+abs(LL))<tol
               .emOld <- LL
               .iter <- .iter+1
-              print(.iter)
+
               }
             if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
@@ -151,15 +151,26 @@ setMethod(f="fitEnsemble",
 
 
             ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
-            #### ATTENTION: This is *not* correct when there is a predictive model that makes no prediction at all for any observation in the test period.
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
-             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
-            bmaPred[,,-1] <- NA
-#            bmaPred
-#            bmaPred <- array(aaply(predCalibrationAdj, c(1,3), function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
-#            if(nDraws>1){
-#              bmaPred <- array(c(aaply(bmaPred, 1, mean), rep(NA, nObsCal*(nDraws-1))),  dim=c(nObsCal, 1,nDraws))
-#            }
+            .sdVec <- rep(sqrt(sigma2), nMod) 
+
+            if (predType=="posteriorMean"){
+              bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
+              bmaPred <-  bmaPred/array(t(W%*%t(1*!is.na(.flatPreds))), dim=c(nObsCal, 1, nDraws))
+              bmaPred[,,-1] <- NA
+            }
+
+            ## ATTENTION: Note if we are using posterior medians, this is *NOT* correct for exchangeable forecasts 
+            if (predType=="posteriorMedian"){
+              .altQBMAnormal <- function(x){
+                .x <- x[!is.na(x)]
+                .W <- W[!is.na(x)]
+                ..sdVec <- .sdVec[!is.na(x)]
+                ensembleBMA:::quantBMAnormal(.5, .W, .x, ..sdVec)
+              }
+             bmaPred <- array(aaply(.flatPreds, 1, .altQBMAnormal),  dim=c(nObsCal, 1,nDraws))
+             bmaPred[,,-1] <- NA
+            }
 
             cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
             calFlat <- cbind(bmaPred[,,1], .flatPreds); colnames(calFlat) <- c("EBMA", modelNames)
@@ -171,19 +182,31 @@ setMethod(f="fitEnsemble",
            if(testPeriod){
              if(useModelParams==TRUE){
              predTestAdj <- array(laply(1:nMod, function(x) {predict(models[[x]], newdata=data.frame(preds=predTest[x]))}), dim=c(nObsTest, nMod, nDraws))
-             print("1")
+
            }
              if(useModelParams==FALSE){predTestAdj <- predTest}
              .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
-             bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
-          #     array(aaply(predTestAdj, c(1,3), function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
-                        bmaPredTest[,,-1] <- NA
-             print("2")
-#             if(nDraws>1){bmaPredTest <- array(c(aaply(bmaPredTest, 1, mean), rep(NA, nObsTest*(nDraws-1))),  dim=c(nObsTest, 1,nDraws))}
-             print("3")
+
+             if (predType=="posteriorMean"){
+               bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
+               bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
+               bmaPredTest[,,-1] <- NA
+             }
+             
+             if (predType=="posteriorMedian"){
+               .altQBMAnormal <- function(x){
+                 .x <- x[!is.na(x)]
+                 .W <- W[!is.na(x)]
+                 ..sdVec <- .sdVec[!is.na(x)]
+                 ensembleBMA:::quantBMAnormal(.5, .W, .x, ..sdVec)
+               }
+             bmaPredTest <- array(aaply(.flatPredsTest, 1, .altQBMAnormal),  dim=c(nObsTest, 1,nDraws))
+             bmaPred[,,-1] <- NA
+            }
+             
              test <- abind(bmaPredTest, .forecastData@predTest, along=2);  colnames(test) <- c("EBMA", modelNames)
              testFlat <- cbind(bmaPredTest[,,1], .flatPredsTest); colnames(testFlat) <- c("EBMA", modelNames)
-             print("4")
+
            }
             if(!testPeriod){{test <- .forecastData@predTest}}
             print("nine")

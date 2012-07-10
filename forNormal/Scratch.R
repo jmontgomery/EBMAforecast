@@ -1,4 +1,4 @@
-rm(list=ls(all=TRUE))
+#rm(list=ls(all=TRUE))
 
 ##### testing the function to 
 ### read in data
@@ -11,9 +11,9 @@ library(plyr)
 hibbspreds <- read.csv("Prediction_hibbs.csv") # Hibbs predictive intervals generated in Stata.  See *.do file.
 master.data<-read.csv("presdata.csv") # read in data
 
-tyn = 14
+tyn = 15
 a = 1
-train.years =  13
+train.years =  14
 hibbpreds=hibbspreds
    master.years <- seq(1952, 2008, by=4)
    in.data <- matrix(NA, (tyn-1), 6)
@@ -62,26 +62,7 @@ hibbpreds=hibbspreds
     full.observed <- c(master.data$dv[10:(9+tyn)])
 
 this.ForecastData<-makeForecastData(.predCalibration=in.data, .outcomeCalibration=full.observed[1:tyn-1],.predTest=out.data,.outcomeTest=full.observed[tyn], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
-#this.ForecastData
-.forecastData <- this.ForecastData
-print(this.ForecastData)
-in.data2 <- array(in.data, dim=c(14,6,2))
-out.data2 <- array(out.data, dim=c(1,6,2))
-dim(out.data)
-#dimnames(in.data2) <- list(c(1:14), c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"), c(1:2))
-str(in.data2)
-getModelNames(.forecastData    )
 
-this.ForecastData2<-makeForecastData(.predCalibration=in.data2, .outcomeCalibration=full.observed[1:14],.predTest=out.data2,.outcomeTest=full.observed[tyn+1], .modelNames=c("Campbell", "Lewis-Beck",   "EWT2C2",     "Fair",    "Hibbs", "Abramowitz"))    
-.forecastData2 <- this.ForecastData
-.forecastData2
 
-###
-#library(abind)
-#testArray <- array(c(1,2,3,4,5,6,7,8), dim=c(2,2,2))
-#testArray
-#testVec <- matrix(c(9,10, rep(NA, 2)), ncol=2, nrow=2)
-#testVec <- array(testVec, dim=c(2,1,2))
-#dim(testVec)
-#testVec
-#abind(testArray, testVec, along=2)
+rm(list=ls()[1:17])
+rm(list=c("tyn", "train.years"))

@@ -10,19 +10,65 @@ setwd("~/GITHUB/EBMAforecast/")
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
+plot(nonMissingFixed, subset=14, main=c("2004 Election"), xLab="Bush Vote Share", cols=rep("gray20", 6))
 
-jacob2 <- calibrateEnsemble(.forecastData=this.ForecastData2, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE)
-jacob <- calibrateEnsemble(.forecastData=this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE)
-summary(jacob, showCoefs=TRUE)
-jacob@predTest-jacob@outcomeTest
-jacob@modelParams
+this.ForecastData3 <- this.ForecastData
+this.ForecastData3@predCalibration[2,1,1] <- NA
+this.ForecastData3@predCalibration[8,4,1] <- NA
+this.ForecastData3@predCalibration
 
-sum(jacob@modelWeights)
-print(jacob)
-jacob@modelWeights
-jacob2@modelWeights
-j.forecastData <- this.ForecastData
 
+nonMissingFixed <- calibrateEnsemble(.forecastData=this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE)
+nonMissingUnfixed <- calibrateEnsemble(.forecastData=this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE)
+missingFixed <- calibrateEnsemble(this.ForecastData3, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE)
+missingUnfixed <- calibrateEnsemble(this.ForecastData3, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE)
+
+nonMissingFixedMed <- calibrateEnsemble(.forecastData=this.ForecastData, model="normal", tol=1.490116e-08, maxIter=1000000,
+                                     useModelParams=FALSE, predType="posteriorMedian")
+summary(nonMissingFixedMed)
+missingFixedMed <- calibrateEnsemble(this.ForecastData3, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE, predType="posteriorMedian")
+summary(missingFixedMed)
+
+summary(nonMissingFixed, showCoefs=TRUE)
+summary(nonMissingUnfixed, showCoefs=TRUE)
+summary(missingFixed, showCoefs=TRUE)
+summary(missingUnfixed, showCoefs=TRUE)
+
+summary(nonMissingFixed, showCoefs=TRUE, period="test")
+summary(nonMissingUnfixed, showCoefs=TRUE, period="test")
+summary(missingFixed, showCoefs=TRUE, period="test")
+summary(missingUnfixed, showCoefs=TRUE, period="test")
+
+
+print(nonMissingFixed)
+print(nonMissingUnfixed)
+print(missingFixed)
+print(missingUnfixed)
+
+(nonMissingFixed)
+(nonMissingUnfixed)
+(missingFixed)
+(missingUnfixed)
+
+
+
+plot(nonMissingFixed, subset=14, main="2004 Election", xLab="Bush Vote Share", cols=rep("gray20", 6))
+plot(nonMissingFixed, main="2008 Election", xLab="Bush Vote Share", cols=rep("gray40", 6), period="test")
+plot(nonMissingUnfixed, subset=14, main="2004 Election", xLab="Bush Vote Share", cols=rep("gray", 6))
+plot(nonMissingUnfixed, main="2008 Election", xLab="Bush Vote Share", cols=rep("gray40", 6), period="test")
+plot(missingFixed, subset=14, main="2004 Election", xLab="Bush Vote Share", cols=rep("gray", 6))
+plot(missingFixed, main="2008 Election", xLab="Bush Vote Share", cols=rep("gray40", 6), period="test")
+plot(missingFixed, subset=14, main="2004 Election", xLab="Bush Vote Share", cols=rep("gray", 6))
+plot(missingFixed, main="2008 Election", xLab="Bush Vote Share", cols=rep("gray40", 6), period="test")
+
+
+plot(nonMissingUnfixed)
+plot(missingFixed)
+plot(missingUnfixed)
+
+
+
+# FOR FLO: We need to be able to make "empty" elements of all classes.  
 .tester <- new("ForecastData")
 str(tester)
 print(tester)
@@ -34,11 +80,6 @@ tester
 
 
 
-this.ForecastData3 <- this.ForecastData
-this.ForecastData3@predCalibration[2,1,1] <- NA
-this.ForecastData3@predCalibration[8,4,1] <- NA
-this.ForecastData3@predCalibration
-jacob3 <- calibrateEnsemble(this.ForecastData3, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE)
 
 
 this.ForecastData4 <- this.ForecastData2

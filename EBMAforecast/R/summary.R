@@ -86,7 +86,7 @@ setMethod(
             if(showCoefs){
               coefs <- t(aaply(object@modelParams, 1:2, function(x) {mean(x, na.rm=TRUE)}))
               coefs <- rbind(c(NA,NA), coefs)
-              out <- cbind(coefs, out)
+              out <- cbind(coefs, out@fitStatistics)
             }
             # Adding weights column
             W <- object@modelWeights

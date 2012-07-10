@@ -82,18 +82,34 @@ setMethod(f="compareModels",
                 preds <- aaply(.forecastData@predCalibration,c(1:2),mean)
                 y <- .forecastData@outcomeCalibration
               }
-            else
+            if(.period=="test")
               {
                 preds <-  aaply(.forecastData@predTest,c(1:2),mean)
+                print(preds)
                 y <- .forecastData@outcomeTest
               }
 
-            print("one")
+
             num.models <- ncol(preds)
             num.obs <- nrow(preds)
+            
+
+            if(length(y)<=1){
+
+              out <- new("CompareModels",
+                         period=.period,
+                         threshold=.threshold,
+                         baseModel=.baseModel
+                         )
+              warning ("Fit statistics cannot be calculated for one observation.")
+              outMat <- matrix(NA, nrow=length(preds), ncol=length(.fitStatistics))
+                               
+            } else {
+            
+            
             if(length(.baseModel)==1){baseModel <- rep(.baseModel, num.obs)}
 
-            print("two")
+
             
             out <- new("CompareModels",                       
                        period=.period,
@@ -103,7 +119,7 @@ setMethod(f="compareModels",
             outMat <- matrix(NA, nrow=num.models, ncol=length(.fitStatistics))
             colnames(outMat) <- .fitStatistics
 
-            print("three")
+
             
             if("brier" %in%.fitStatistics){
               my.fun <- function(x){mean((x-y)^2)}
@@ -125,25 +141,23 @@ setMethod(f="compareModels",
               outMat[,"pre"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }
             if("rmse" %in% .fitStatistics){
-              my.fun <- function(x) {sqrt(mean((x-y)^2))}
+              my.fun <- function(x) {sqrt(mean((x-y)^2, na.rm=TRUE))}
               outMat[,"rmse"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
-              print("rmse")
+
             }
             if("mae" %in% .fitStatistics){
-              my.fun <- function(x) {mean(abs(x-y))}
+              my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}
               outMat[,"mae"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
-              print("mae")
+
             }
-#            if("err" %in% .fitStatistics){
-#              my.fun <- function(x) {(x-y)}
-#              outMat[,"err"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
-#              print("err")
-#            }
             
-            
-          out@fitStatistics <- outMat
-            rownames(outMat) <- colnames(preds)
-          return(outMat)
+            ### NOTE: Make sure all of the above options work with missing values.  Also, if only work for one kind of data, throw an error
+
+         rownames(outMat) <- colnames(preds)            
+          }
+        out@fitStatistics <- outMat
+        return(out)
+
         }
 )
 # TODO: Need to make it so that some fit statistics are "ruled out" for some kinds of outcomes.
