@@ -1,0 +1,63 @@
+library(foreign)
+setwd("~/Documents/GIT/EBMAforecast/PresForecastApsa")
+holbrook<-read.dta("Holbrook_data_for_Ward.dta")
+data.holbrook<-subset(holbrook,year<2012)
+head(holbrook)
+
+model.holbrook<-lm(vote~conditions+openseat+conditions*openseat,data=data.holbrook)
+insample.holbrook<-fitted(model.holbrook)
+years<-data.holbrook$year
+insample.holbrook<-data.frame(years,insample.holbrook)
+names(insample.holbrook)<-c("Year","Holbrook")
+
+data.campbel<-read.csv("Campbel_data.csv")
+head(data.campbel)
+insample.campbel.trialheat<-data.campbel[,c("YEAR","PREDICT1")]
+insample.campbel.bump<-data.campbel[,c("YEAR","PREDICT2")]
+names(insample.campbel.trialheat)<-c("Year","Campbel.trialheat")
+names(insample.campbel.bump)<-c("Year","Campbel.bump")
+
+
+cuzan.data<-read.csv("data_cuzan2.csv")
+summary(cuzan.data)
+
+
+
+cuzan.long<-subset(cuzan.data,YEAR>1879 & YEAR<2012)
+cuzan.short<-subset(cuzan.data,YEAR>1915& YEAR<2012)
+
+#results not exactly the same
+cuzan1.short<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short)
+cuzan1.long<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.data)
+cuzan2.long<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS  +DURATION+PARTY,data=cuzan.data)
+cuzan2.short<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short)
+summary(cuzan1.long)
+summary(cuzan2.long)
+summary(cuzan1.short)
+summary(cuzan2.short)
+
+
+years.long<-cuzan.long[,"YEAR"]
+years.short<-cuzan.short[,"YEAR"]
+
+insample.cuzan1.short<-fitted(cuzan1.short)
+insample.cuzan2.short<-fitted(cuzan2.short)
+insample.cuzan1.long<-fitted(cuzan1.long)
+insample.cuzan2.long<-fitted(cuzan2.long)
+insample.cuzan.short<-data.frame(years.short,insample.cuzan1.short,insample.cuzan2.short)
+insample.cuzan.long<-data.frame(years.long,insample.cuzan1.long,insample.cuzan2.long)
+names(insample.cuzan.short)<-c("Year","Cuzan1.short","Cuzan2.short")
+names(insample.cuzan.long)<-c("Year","Cuzan1.long","Cuzan2.long")
+
+
+hibbspreds <- read.csv("Predictions_hibbs.csv")
+insample.hibbs<-hibbspreds[,c("Year","Point_Pred")]
+names(insample.hibbs)<-c("Year","Hibbs")
+
+merge1<-merge(insample.campbel.trialheat,insample.campbel.bump,by="Year",all.x=TRUE,all.y=TRUE)
+merge2<-merge(merge1,insample.holbrook,by="Year",all.x=TRUE,all.y=TRUE)
+merge3<-merge(merge2,insample.cuzan.long,by="Year",all.x=TRUE,all.y=TRUE)
+merge4<-merge(merge3,insample.cuzan.short,by="Year",all.x=TRUE,all.y=TRUE)
+
+insample.data<-merge(merge4,insample.hibbs,by="Year",all.x=TRUE,all.y=TRUE)
+save(insample.data, file="insample.data.RData")
