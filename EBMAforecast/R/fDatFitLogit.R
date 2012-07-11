@@ -4,23 +4,13 @@ setClass(Class="FDatFitLogit",
          contains="ForecastData",
          representation=representation(
            modelWeights="numeric",
-           modelParams="matrix",
+           modelParams="array",
            logLik="numeric",
            exp="numeric",
            tol="numeric",
            maxIter="numeric",
            method="character",
            call="call"
-           ),
-         prototype=prototype(
-           modelWeights=numeric(),
-           modelParams=matrix(NA, nrow=0, ncol=0),
-           logLik=numeric(),
-           exp=numeric(),
-           tol=numeric(),
-           maxIter=numeric(),
-           method=character(),
-           call=call(" ")
            ),
          validity=function(object){
            if(length(object@modelWeights)>0){
@@ -70,6 +60,8 @@ setMethod(
           f="plot",
           signature="FDatFitLogit",
           definition=function(x, y=NULL, period="calibration", ...){
+            #fix this when do exchangeable
+            nDraw=1
             numModels <- length(x@modelWeights)+1
             modelNames <- c("EBMA", x@modelNames)
             if(period=="calibration"){
@@ -80,7 +72,8 @@ setMethod(
             }
             par(mgp=c(1, 0, 0), lend = 2, mar=c(1,0,1,0), mfrow=c(numModels, 1))
             for (i in 1:numModels){
-              separationplot(pred=as.vector(.pred[,i]), actual=as.vector(.actual), heading=modelNames[i], newplot=F)
+              .miss <- is.na(.pred[,i, nDraw])
+              separationplot(pred=as.vector(.pred[!.miss,i, nDraw]), actual=as.vector(.actual[!.miss]), heading=modelNames[i], newplot=F)
             }
           }
           )

@@ -85,7 +85,6 @@ setMethod(f="compareModels",
             if(.period=="test")
               {
                 preds <-  aaply(.forecastData@predTest,c(1:2),mean)
-                print(preds)
                 y <- .forecastData@outcomeTest
               }
 
@@ -120,22 +119,28 @@ setMethod(f="compareModels",
             colnames(outMat) <- .fitStatistics
 
 
+
             
             if("brier" %in%.fitStatistics){
-              my.fun <- function(x){mean((x-y)^2)}
+              my.fun <- function(x){mean((x-y)^2, na.rm=TRUE)}
               outMat[,"brier"] <-aaply(preds, 2,.fun=my.fun, .expand=TRUE)
                                              }
             if("auc" %in% .fitStatistics){
               my.fun <- function(x){Hmisc::somers2(x, y)[1]}
               outMat[,"auc"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)}
             if("perCorrect" %in% .fitStatistics){
-              my.fun <- function(x){mean((x>.threshold)*y + (x<.threshold)*(1-y))}
+              my.fun <- function(x){mean((x>.threshold)*y + (x<.threshold)*(1-y), na.rm=TRUE)}
               outMat[,"perCorrect"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }
             if("pre" %in% .fitStatistics) {
               my.fun <- function(x){
-                num.wrong <- num.obs-sum((x>.threshold)*y + (x<.threshold)*(1-y))
-                baseline.wrong <- num.obs-sum(baseModel==y)
+                .miss <- is.na(x)
+                .nObsThis <- sum(!.miss)
+                .baseModelThis <- baseModel[!.miss]
+                .xThis <- x[!.miss]
+                .yThis <- y[!.miss]
+                num.wrong <- .nObsThis-sum((.xThis>.threshold)*.yThis + (.xThis<.threshold)*(1-.yThis))
+                baseline.wrong <- .nObsThis-sum(.baseModelThis==.yThis)
                 (baseline.wrong - num.wrong)/baseline.wrong
               }
               outMat[,"pre"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
@@ -152,8 +157,7 @@ setMethod(f="compareModels",
             }
             
             ### NOTE: Make sure all of the above options work with missing values.  Also, if only work for one kind of data, throw an error
-
-         rownames(outMat) <- colnames(preds)            
+            rownames(outMat) <- colnames(preds)            
           }
         out@fitStatistics <- outMat
         return(out)

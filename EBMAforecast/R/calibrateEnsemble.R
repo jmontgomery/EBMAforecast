@@ -70,8 +70,8 @@ setMethod(f="calibrateEnsemble",
           definition=function(
             .forecastData,
             exp=1,
-            tol=.001,
-            maxIter=10000,
+            tol=1.490116e-08,
+            maxIter=1e6,
             model="logit",
             method="EM",
             ...)

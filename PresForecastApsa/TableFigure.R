@@ -7,6 +7,9 @@ setwd("~/GITHUB/EBMAforecast/")
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
+ensemble <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE, predType="posteriorMedian")
+
+
 plot(ensemble, subset=15, main=c("2008 Election"), xLab="% Two Party Vote for Bush", col=rep("gray40", 8))                        
 par(mfrow=c(2,1))
 plot(ensemble, subset=14:15, main=c("2004 Election", "2008 Election"), xLab="% Two Party Vote for Bush", col=rep("gray40", 8))                        
@@ -23,11 +26,12 @@ setwd("~/Dropbox/EBMA/ReplicationFiles/ForPADataverse/")
 master.data <- read.csv("presdata.csv", row.names=1)
 this.out <- (master.data[my.years, "dv"])
 
-trial <- matrix(c(1,2,3,4,5,6,7,8), nrow=1)
-trial2 <- c(0)
+trial <- matrix(c(1,2,3,4,5,6,7,8), nrow=2, ncol=8)
+trial2 <- c(0, 2)
 thisFD <- makeForecastData(.predCalibration=this.pred, .outcomeCalibration=this.out, .predTest=trial, .outcomeTest=trial2, .modelNames=colnames(this.pred))
-ensemble <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE, predType="posteriorMedian")
+ensemble <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=TRUE, predType="posteriorMedian")
 summary(ensemble, showCoefs=FALSE)
+summary(ensemble, showCoefs=FALSE, period="test")
 
 par(mar=c(2,2,2,1), tcl=0, mgp=c(1,0,0))
 

@@ -54,9 +54,9 @@ setMethod(
             baseModel=0,
             showCoefs=TRUE,
             ...){
-            out <- compareModels(object, .period=period, .fitStatistics=fitStatistics, .threshold=threshold, .baseModel=baseModel)
+            out <- compareModels(object, .period=period, .fitStatistics=fitStatistics, .threshold=threshold, .baseModel=baseModel)@fitStatistics
             if(showCoefs){
-              coefs <- object@modelParams
+              coefs <- t(aaply(object@modelParams, 1:2, function(x) {mean(x, na.rm=TRUE)}))
               coefs <- rbind(c(NA,NA), coefs)
               out <- cbind(coefs, out)
             }

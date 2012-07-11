@@ -12,6 +12,31 @@ load_all(current.code)
 document(current.code)
 
 
+load("/Users/jmontgomery/Github/EBMAforecast/EBMAforecast/data/calibrationSample.rda")
+load("/Users/jmontgomery/Github/EBMAforecast/EBMAforecast/data/testSample.rda")
+
+calibrationSample[40, 2] <- calibrationSample[400, 3] <- calibrationSample[12, 1] <- NA
+testSample[50,2] <- calibrationSample[100, 3] <- calibrationSample[200, 1] <- NA
+
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+                                      .outcomeCalibration=calibrationSample[,"Insurgency"],
+                                      .predTest=testSample[,c("LMER", "SAE", "GLM")],
+                                     .outcomeTest=testSample[,"Insurgency"],
+                                      .modelNames=c("LMER", "SAE", "GLM"))
+
+this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit",  maxIter=25000, exp=3)
+
+summary(this.ensemble)
+summary(this.ensemble, period="test")
+plot(this.ensemble)
+plot(this.ensemble, period="test")
+
+summary(this.ensemble, period="calibration")
+plot(this.ensemble, period="calibration")
+summary(this.ensemble, period="test", showCoefs=FALSE)
+plot(this.ensemble, period="test")
+
+
 this.ForecastData3 <- this.ForecastData
 this.ForecastData3@predCalibration[2,1,1] <- NA
 this.ForecastData3@predCalibration[8,4,1] <- NA

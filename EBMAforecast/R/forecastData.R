@@ -84,21 +84,18 @@ setMethod("initialize", "ForecastData", function(.Object, ...) {
 
 #' @export
 setClass(Class="ForecastDataLogit",
-         contains="ForecastData",
-         validity=function(object){
-         	for(i in 1:nrow(object@outcomeCalibration)){
-         	if(object@outcomeCalibration[i,]!=1 & object@outcomeCalibration[i,]!=0)
-         	{stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome calibration set).")}	
-         	}
-         	for(i in 1:nrow(object@outcomeTest)){
-         	if(object@outcomeTest[i,]!=1 & object@outcomeTest[i,]!=0)
-         	{stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome test set).")}	
-         	}
-         	if(min(object@predCalibration)<0 || max(object@predCalibration)>1)
-         	{stop("The predictions for the binary model should be between 0 or 1 (Not true for prediction calibration set).")}	
-         	if(min(object@predTest)<0 || max(object@predTest)>1)
-         	{stop("The predictions for the binary model should be between 0 or 1 (Not true for prediction test set).")}	
-         	}
+         contains="ForecastData"
+         #,
+#         validity=function(object){
+#         	if(any(object@outcomeCalibration!=1 & object@outcomeCalibration!=0 )) 
+#         	{stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome calibration set).")}	
+#         	if(any(object@outcomeTest!=1 & object@outcomeTest!=0 & )) 
+##         	{stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome test set).")}	
+#         	if(min(object@predCalibration, na.rm=TRUE)<0 || max(object@predCalibration, na.rm=TRUE)>1)
+#         	{stop("The predictions for the binary model should be between 0 or 1 (Not true for prediction calibration set).")}	
+#         	if(min(object@predTest)<0 || max(object@predTest)>1)
+#         	{stop("The predictions for the binary model should be between 0 or 1 (Not true for prediction test set).")}	
+#         	}
 )
 
 
@@ -183,9 +180,7 @@ setAs(from="ForecastData", to="ForecastDataNormal",
 #' @rdname makeForecastData
 #' @export
 setGeneric(name="makeForecastData",
-           def=function(.predAll=NULL,
-             .outcomeAll=NULL,
-             .inOut=NULL,
+           def=function(
             .predCalibration=array(NA, dim=c(0,0,0)),
              .predTest=array(NA, dim=c(0,0,0)),
              .outcomeCalibration=numeric(),
