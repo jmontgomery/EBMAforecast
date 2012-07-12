@@ -2,8 +2,8 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 
-#setwd("~/Documents/GITHUB/EBMAforecast/")
-setwd("~/GITHUB/EBMAforecast/")
+setwd("~/Documents/GIT/EBMAforecast/")
+#setwd("~/GITHUB/EBMAforecast/")
 
 
 # Only need to run this portion once
@@ -102,7 +102,7 @@ tester <- makeForecastData()
 str(tester)
 print(tester)
 tester
-
+show(tester)
 
 
 
@@ -141,7 +141,6 @@ install(current.code)
 # Once it's installed, you can look at the demo
 library(EBMAforecast)
 demo(EBMAforecast)
-
 
 
 

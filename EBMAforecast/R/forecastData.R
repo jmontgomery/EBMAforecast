@@ -55,23 +55,27 @@ setClass(Class="ForecastData",
            outcomeTest=numeric(),
            modelNames=character()),
          validity=function(object){
-         	if(dim(object@predCalibration)[3]>1 || dim(object@predTest)[3]>1 || dim(object@outcomeCalibration)[3]>1 || dim(object@outcomeTest)[3]>1 )
+         	if(dim(object@predCalibration)[3]>1 || dim(object@predTest)[3]>1)
          	{stop("The package currently only supports matrices, not arrays. Coming soon!")}
-           if(nrow(object@predCalibration)!=length(object@outcomeCalibration))
-             {stop("The number of predictions and outcomes do not match in the calibration set.")}
-           if(nrow(object@predTest)!=length(object@outcomeTest))
-             {stop("The number of predictions and outcomes do not match in the test set.")}  
-           if(length(object@predTest)>0){
-             if(ncol(object@predTest)!=ncol(object@predCalibration))
-               {stop("The number of prediction models in the calibration and test set are different.")}    
-             if(dim(object@predTest)[3]!=dim(object@predCalibration)[3])
-               {stop("The number of exchangeable draws per model in the calibration and test are different.")}
-           }
-           if(sum(is.na(object@outcomeCalibration)) > 0)
+         	if(length(object@predCalibration)>0 || length(object@predTest)>0 ){
+           		if(nrow(object@predCalibration)!=length(object@outcomeCalibration))
+             	{stop("The number of predictions and outcomes do not match in the calibration set.")}
+           	}
+            if(length(object@predTest)>0 || length(object@outcomeTest)>0){ 
+           		if(nrow(object@predTest)!=length(object@outcomeTest))
+             	{stop("The number of predictions and outcomes do not match in the test set.")}
+           	}  
+           	if(length(object@predTest)>0){
+             	if(ncol(object@predTest)!=ncol(object@predCalibration))
+               	{stop("The number of prediction models in the calibration and test set are different.")}    
+             	if(dim(object@predTest)[3]!=dim(object@predCalibration)[3])
+               	{stop("The number of exchangeable draws per model in the calibration and test are different.")}
+           	}
+           	if(sum(is.na(object@outcomeCalibration)) > 0)
              {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
-           if(sum(is.na(object@outcomeTest)) > 0)
+           	if(sum(is.na(object@outcomeTest)) > 0)
              {stop("There are NAs in the outcome test set, these observations should be deleted from the data.")}
-           }  
+         }  
          )
 
 
@@ -231,11 +235,23 @@ setMethod(
 		f="print",
 		signature="ForecastData",
 		definition=function(x, digits=3, ...){
-			cat("* Prediction Calibration = \n"); print(x@predCalibration, na.print="", digits=digits);
-			cat("* Prediction Test = \n"); print(x@predTest, na.print="", digits=digits);
-				cat("* Outcome Calibration = \n");print(x@outcomeCalibration, na.print="", digits=digits);
-				cat("* Outcome Test = \n");print(x@outcomeTest, na.print="", digits=digits);
-				cat("* Model Names = \n ");print(x@modelNames, na.print="");
+			cat("* Prediction Calibration = \n"); 
+			if(length(x@predCalibration)>0)
+			{print(x@predCalibration, na.print="", digits=digits);}
+			else{print("Nothing Here")}
+			cat("* Prediction Test = \n"); 
+			if(length(x@predTest)>0)
+			{print(x@predTest, na.print="", digits=digits);}
+			else{print("Nothing Here")}
+			cat("* Outcome Calibration = \n");
+			if(length(x@outcomeCalibration)>0)
+			{print(x@outcomeCalibration, na.print="", digits=digits);}
+			else{print("Nothing Here")}
+			cat("* Outcome Test = \n");
+			if(length(x@outcomeTest)>0)
+			{print(x@outcomeTest, na.print="", digits=digits);}
+			else{print("Nothing Here")}
+			cat("* Model Names = \n ");print(x@modelNames, na.print="");
 			}
 			)
 
@@ -245,23 +261,46 @@ setMethod(
 		signature="ForecastData",
 		definition=function(object){
                   if (length(object@predCalibration)==0) {
-			cat("* Prediction Calibration = \n"); print(object@predCalibration, na.print="", digits=1);
-			cat("* Prediction Test = \n"); print(object@predTest, na.print="", digits=1);
-				cat("* Outcome Calibration = \n");print(object@outcomeCalibration, na.print="", digits=1);
-				cat("* Outcome Test = \n");print(object@outcomeTest, na.print="", digits=1);
-				cat("* Model Names = \n ");print(object@modelNames, na.print="");
+			cat("* Prediction Calibration = \n"); 
+			if(length(object@predCalibration)>0)
+			{print(object@predCalibration, na.print="", digits=1);}
+			else{print("Nothing Here")}
+			cat("* Prediction Test = \n"); 
+			if(length(object@predTest)>0)
+			{print(object@predTest, na.print="", digits=1);}
+			else{print("Nothing Here")}
+			cat("* Outcome Calibration = \n");
+			if(length(object@outcomeCalibration)>0)
+			{print(object@outcomeCalibration, na.print="", digits=1);}
+			else{print("Nothing Here")}
+			cat("* Outcome Test = \n");
+			if(length(object@outcomeTest)>0)
+			{print(object@outcomeTest, na.print="", digits=1);}
+			else{print("Nothing Here")}
+			cat("* Model Names = \n ");print(object@modelNames, na.print="");
                   }
-                  else{
-                  nrowCal=min(10,nrow(object@predCalibration))
-                  nrowTest=min(10,nrow(object@predTest))
-                  cat("Prediction Calibration = \n"); print(object@predCalibration[1:nrowCal,1:ncol(object@predCalibration),1], na.print="", digits=2);
-                  cat("* Prediction Test =\n"); print(object@predTest[1:nrowTest,1:ncol(object@predTest),1], na.print="", digits=2);
-                  cat("* Outcome Calibration = \n"); print(object@outcomeCalibration[1:nrowCal],na.print="", digits=2);
-                  cat("* Outcome Test = \n");print(object@outcomeTest[1:nrowTest], na.print="", digits=2);
-                  cat("* Model Names = \n "); print(object@modelNames,na.print="");
-                  cat("*** End Show (Forecast Data) *** \n")
-                }
-                }
+            else{
+            nrowCal=min(10,nrow(object@predCalibration))
+            nrowTest=min(10,nrow(object@predTest))
+            	cat("* Prediction Calibration = \n"); 
+				if(length(object@predCalibration)>0)
+				{print(object@predCalibration[1:nrowCal,1:ncol(object@predCalibration),1], na.print="", digits=2);}
+				else{print("Nothing Here")}
+				cat("* Prediction Test = \n"); 
+				if(length(object@predTest)>0)
+				{print(object@predTest[1:nrowTest,1:ncol(object@predTest),1], na.print="", digits=2);}
+				else{print("Nothing Here")}
+				cat("* Outcome Calibration = \n");
+				if(length(object@outcomeCalibration)>0)
+				{print(print(object@outcomeCalibration[1:nrowCal]),na.print="", digits=2);}
+				else{print("Nothing Here")}
+				cat("* Outcome Test = \n");
+				if(length(object@outcomeTest)>0)
+				{print(object@outcomeTest[1:nrowTest], na.print="", digits=2);}
+				else{print("Nothing Here")}
+				cat("* Model Names = \n ");print(object@modelNames,na.print="");
+            	}
+            }
           )
 
 #' @rdname ForecastData
