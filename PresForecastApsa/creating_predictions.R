@@ -120,3 +120,16 @@ insample.data<-merge(insample.data,erikson.insample,by="Year",all.x=TRUE,all.y=T
 
 insample.data
 save(insample.data,file="insample.data.RData")
+
+
+rm(list=ls(all=TRUE))
+setwd("~/Documents/GIT/EBMAforecast/PresForecastApsa")
+
+load("insample.data.RData")
+abramowitz.insample<-read.csv("Abramowitz_forecast.csv")
+
+head(insample.data)
+insample.data<-merge(insample.data,abramowitz.insample,by="Year",all.x=TRUE,all.y=TRUE)
+
+insample.data
+save(insample.data,file="insample.data.RData")
