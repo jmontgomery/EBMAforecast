@@ -78,6 +78,7 @@ library(foreign)
 berry<-read.dta("~/Documents/GIT/EBMAforecast/PresForecastApsa/Berry_forecast_data.dta")
 head(berry)
 berry_new<-berry[,c("year","voters","dpvoteest1","rpvoteest1")]
+berry
 berry_aggregate <-aggregate(berry_new, by=list(berry_new$year), FUN=sum)
 head(berry_aggregate)
 berry_aggregate<-berry_aggregate[,-2]
