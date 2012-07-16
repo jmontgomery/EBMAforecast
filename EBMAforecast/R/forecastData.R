@@ -55,8 +55,8 @@ setClass(Class="ForecastData",
            outcomeTest=numeric(),
            modelNames=character()),
          validity=function(object){
-         	if(dim(object@predCalibration)[3]>1 || dim(object@predTest)[3]>1)
-         	{stop("The package currently only supports matrices, not arrays. Coming soon!")}
+#         	if(dim(object@predCalibration)[3]>1 || dim(object@predTest)[3]>1)
+#         	{stop("The package currently only supports matrices, not arrays. Coming soon!")}
          	if(length(object@predCalibration)>0 || length(object@predTest)>0 ){
            		if(nrow(object@predCalibration)!=length(object@outcomeCalibration))
              	{stop("The number of predictions and outcomes do not match in the calibration set.")}

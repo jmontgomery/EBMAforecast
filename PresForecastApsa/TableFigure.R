@@ -1,3 +1,4 @@
+rm(list=ls())
 library(devtools)
 library(roxygen2)
 library(testthat)
@@ -15,14 +16,14 @@ load("/Users/jmontgomery/Github/EBMAforecast/PresForecastApsa/insample.data.RDat
 insample.data <- insample.data[-c(34,35),]
 rownames(insample.data) <- insample.data$Year
 my.years <- paste(seq(1948,2008, by=4))
-this.pred <- insample.data[my.years, -c(1, 7, 8)]
+this.pred <- insample.data[my.years, -c(1, 7, 8, 13)]
 this.pred
 setwd("~/Dropbox/EBMA/ReplicationFiles/ForPADataverse/")
 master.data <- read.csv("presdata.csv", row.names=1)
 this.out <- (master.data[my.years, "dv"])
 thisFD <- makeForecastData(.predCalibration=this.pred, .outcomeCalibration=this.out, .modelNames=colnames(this.pred))
-ensemble <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=, predType="posteriorMedian")
-summary(ensemble, showCoefs=FALSE)
+ensemble <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE, predType="posteriorMedian")
+summary(ensemble, showCoefs=TRUE)
 
 setwd("~/GITHUB/EBMAforecast/wordisbeautiful/")
 pdf(file="Figure1.pdf", width=5, height=6)
