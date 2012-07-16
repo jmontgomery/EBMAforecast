@@ -51,10 +51,10 @@ setMethod(f="fitEnsemble",
 
             .makeAdj <- function(x){
               .adjPred <- qlogis(x)
+              .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .negative <- .adjPred<0
               .miss <- is.na(.adjPred)
               .negative[.miss] <- FALSE
-              .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .adjPred[.negative] <- .adjPred[.negative]*(-1)
               .adjPred[.miss] <- NA
               .adjPred
@@ -112,6 +112,7 @@ setMethod(f="fitEnsemble",
               .done <- abs(.emOld-LL)/(1+abs(LL))<tol
               .emOld <- LL
               .iter <- .iter+1
+              print(.iter)
             }
             if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
