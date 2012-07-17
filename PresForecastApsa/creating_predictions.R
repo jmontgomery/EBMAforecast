@@ -130,6 +130,9 @@ abramowitz.insample<-read.csv("Abramowitz_forecast.csv")
 
 head(insample.data)
 insample.data<-merge(insample.data,abramowitz.insample,by="Year",all.x=TRUE,all.y=TRUE)
+lewisbeck<-read.csv("Lewis-Beck_Tien_forecasts.csv")
+insample.data<-merge(insample.data,lewisbeck,by="Year",all.x=TRUE,all.y=TRUE)
+
 
 insample.data
 save(insample.data,file="insample.data.RData")
