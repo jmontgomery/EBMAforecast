@@ -53,9 +53,11 @@ setMethod(f="fitEnsemble",
               .adjPred <- qlogis(x)
               .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .negative <- .adjPred<0
+              .pos <- .adjPred>1
               .miss <- is.na(.adjPred)
               .negative[.miss] <- FALSE
               .adjPred[.negative] <- .adjPred[.negative]*(-1)
+              #.adjPred[.pos] <- NA
               .adjPred[.miss] <- NA
               .adjPred
             }
@@ -91,6 +93,8 @@ setMethod(f="fitEnsemble",
             }
             if(useModelParams==FALSE){
               .adjPred <- .makeAdj(predCalibration)
+              .adjPred[outcomeCalibration==0,,1]<-(1-plogis(.adjPred[outcomeCalibration==0,,1]))
+              .adjPred[outcomeCalibration==1,,1]<-(plogis(.adjPred[outcomeCalibration==1,,1]))
               predCalibrationAdj <- .adjPred
               modelParams <- array(c(0,1), dim=c(2,nMod,nDraws))
             }
@@ -146,6 +150,8 @@ setMethod(f="fitEnsemble",
               } 
               if(useModelParams==FALSE){
                 .adjPred <- .makeAdj(predTest)
+                .adjPred[outcomeCalibration==0,,1]<-(1-plogis(.adjPred[outcomeCalibration==0,,1]))
+              	.adjPred[outcomeCalibration==1,,1]<-(plogis(.adjPred[outcomeCalibration==1,,1]))
                 predTestAdj <- .adjPred
               }
               .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
