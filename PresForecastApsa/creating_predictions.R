@@ -73,38 +73,45 @@ insample.data<-merge(merge5,insample.lockerbie,by="Year",all.x=TRUE,all.y=TRUE)
 
 
 ### Berry data
-library(foreign)
+#library(foreign)
 
-berry<-read.dta("~/Documents/GIT/EBMAforecast/PresForecastApsa/Berry_forecast_data.dta")
-head(berry)
-berry_new<-berry[,c("year","voters","dpvoteest1","rpvoteest1")]
-berry
-berry_aggregate <-aggregate(berry_new, by=list(berry_new$year), FUN=sum)
-head(berry_aggregate)
-berry_aggregate<-berry_aggregate[,-2]
-names(berry_aggregate)[1]<-"year"
+#berry<-read.dta("~/Documents/GIT/EBMAforecast/PresForecastApsa/Berry_forecast_data.dta")
+#head(berry)
+#berry_new<-berry[,c("year","voters","dpvoteest1","rpvoteest1")]
+#berry
+#berry_aggregate <-aggregate(berry_new, by=list(berry_new$year), FUN=sum)
+#head(berry_aggregate)
+#berry_aggregate<-berry_aggregate[,-2]
+#names(berry_aggregate)[1]<-"year"
 
-berry_est<-berry_aggregate
-berry_est$rep_share<-berry_est$rpvoteest1/berry_est$voters
-berry_est$dem_share<-berry_est$dpvoteest1/berry_est$voters
-
-
+#berry_est<-berry_aggregate
+#berry_est$rep_share<-berry_est$rpvoteest1/berry_est$voters
+#berry_est$dem_share<-berry_est$dpvoteest1/berry_est$voters
 
 
-berry_est$inc.share<-NA
-berry_est$inc.share<-ifelse(berry_est$year==1980,berry_est$dem_share,berry_est$inc.share)
-berry_est$inc.share<-ifelse(berry_est$year==1984,berry_est$rep_share,berry_est$inc.share)
-berry_est$inc.share<-ifelse(berry_est$year==1988,berry_est$rep_share,berry_est$inc.share)
-berry_est$inc.share<-ifelse(berry_est$year==1992,berry_est$rep_share,berry_est$inc.share)
-berry_est$inc.share<-ifelse(berry_est$year==1996,berry_est$dem_share,berry_est$inc.share)
-berry_est$inc.share<-ifelse(berry_est$year==2000,berry_est$dem_share,berry_est$inc.share)
-berry_est$inc.share<-ifelse(berry_est$year==2004,berry_est$rep_share,berry_est$inc.share)
-berry_est$inc.share<-ifelse(berry_est$year==2008,berry_est$rep_share,berry_est$inc.share)
-head(berry_est)
 
-berry<-berry_est[,c("year","inc.share")]
+
+#berry_est$inc.share<-NA
+#berry_est$inc.share<-ifelse(berry_est$year==1980,berry_est$dem_share,berry_est$inc.share)
+#berry_est$inc.share<-ifelse(berry_est$year==1984,berry_est$rep_share,berry_est$inc.share)
+#berry_est$inc.share<-ifelse(berry_est$year==1988,berry_est$rep_share,berry_est$inc.share)
+#berry_est$inc.share<-ifelse(berry_est$year==1992,berry_est$rep_share,berry_est$inc.share)
+#berry_est$inc.share<-ifelse(berry_est$year==1996,berry_est$dem_share,berry_est$inc.share)
+#berry_est$inc.share<-ifelse(berry_est$year==2000,berry_est$dem_share,berry_est$inc.share)
+#berry_est$inc.share<-ifelse(berry_est$year==2004,berry_est$rep_share,berry_est$inc.share)
+#berry_est$inc.share<-ifelse(berry_est$year==2008,berry_est$rep_share,berry_est$inc.share)
+#head(berry_est)
+
+#berry<-berry_est[,c("year","inc.share")]
+#names(berry)<-c("Year","berry")
+#berry$berry<-berry$berry*100
+#insample.data<-merge(insample.data,berry,by="Year",all.x=TRUE,all.y=TRUE)
+
+
+berry_forecast<-c(44.40,58.61,53.16,47.58,54.00,49.34,51.68,45.05,47.14)
+Year<-c(1980,1984,1988,1992,1996,2000,2004,2008,2012)
+berry<-data.frame(cbind(Year, berry_forecast))
 names(berry)<-c("Year","berry")
-berry$berry<-berry$berry*100
 insample.data<-merge(insample.data,berry,by="Year",all.x=TRUE,all.y=TRUE)
 
 save(insample.data, file="insample.data.RData")
