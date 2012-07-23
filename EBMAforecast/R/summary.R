@@ -56,7 +56,7 @@ setMethod(
             ...){
             out <- compareModels(object, .period=period, .fitStatistics=fitStatistics, .threshold=threshold, .baseModel=baseModel)@fitStatistics
             if(showCoefs){
-              coefs <- t(aaply(object@modelParams, 1:2, function(x) {mean(x, na.rm=TRUE)}))
+              coefs <- data.matrix(as.data.frame(t(aaply(object@modelParams, 1:2, function(x) {mean(x, na.rm=TRUE)}))))
               coefs <- rbind(c(NA,NA), coefs)
               out <- cbind(coefs, out)
             }
@@ -85,7 +85,7 @@ setMethod(
             out <- compareModels(object, .period=period, .fitStatistics=fitStatistics, .threshold=threshold, .baseModel=baseModel)@fitStatistics
             
             if(showCoefs){
-              coefs <- t(aaply(object@modelParams, 1:2, function(x) {mean(x, na.rm=TRUE)}))
+              coefs <- data.matrix(as.data.frame(t(aaply(object@modelParams, 1:2, function(x) {mean(x, na.rm=TRUE)}))))
               coefs <- rbind(c(NA,NA), coefs)
               out <- cbind(coefs, out)
             }

@@ -91,8 +91,31 @@ setMethod(f="compareModels",
 
             num.models <- ncol(preds)
             num.obs <- nrow(preds)
-            
+            if(class(.forecastData)[1]=="FDatFitLogit" & "rmse" %in% .fitStatistics){
+            	warning("RMSE statistics should not be calculated for models with binary outcomes. Use options brier, auc, pre, or perCorrect.")	
+            }
 
+			 if(class(.forecastData)[1]=="FDatFitLogit" & "mae" %in% .fitStatistics){
+            	warning("MAE statistics should not be calculated for models with binary outcomes.Use options brier, auc, pre, or perCorrect.")	
+            }
+            
+             if(class(.forecastData)[1]=="FDatFitNormal" & "brier" %in% .fitStatistics){
+            	warning("Brier scores should not be calculated for models with continuous dependent variables. Use options mae, or rmse.")	
+            }
+            
+             if(class(.forecastData)[1]=="FDatFitNormal" & "auc" %in% .fitStatistics){
+            	warning("AUC scores should not be calculated for models with continuous dependent variables. Use options mae, or rmse.")	
+            }
+            
+             if(class(.forecastData)[1]=="FDatFitNormal" & "pre" %in% .fitStatistics){
+            	warning("PRE statistics should not be calculated for models with continuous dependent variables.  Use options mae, or rmse.")	
+            }
+            
+             if(class(.forecastData)[1]=="FDatFitNormal" & "perCorrect" %in% .fitStatistics){
+            	warning("Percent Correct should not be calculated for models with continuous dependent variables.  Use options mae, or rmse.")	
+            }
+            
+            
             if(length(y)<=1){
 
               out <- new("CompareModels",
@@ -121,18 +144,18 @@ setMethod(f="compareModels",
 
 
             
-            if("brier" %in%.fitStatistics){
+            if("brier" %in%.fitStatistics & class(.forecastData)[1]=="FDatFitLogit"){
               my.fun <- function(x){mean((x-y)^2, na.rm=TRUE)}
               outMat[,"brier"] <-aaply(preds, 2,.fun=my.fun, .expand=TRUE)
                                              }
-            if("auc" %in% .fitStatistics){
+            if("auc" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitLogit"){
               my.fun <- function(x){Hmisc::somers2(x, y)[1]}
               outMat[,"auc"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)}
             if("perCorrect" %in% .fitStatistics){
               my.fun <- function(x){mean((x>.threshold)*y + (x<.threshold)*(1-y), na.rm=TRUE)}
               outMat[,"perCorrect"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }
-            if("pre" %in% .fitStatistics) {
+            if("pre" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitLogit") {
               my.fun <- function(x){
                 .miss <- is.na(x)
                 .nObsThis <- sum(!.miss)
@@ -145,12 +168,12 @@ setMethod(f="compareModels",
               }
               outMat[,"pre"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }
-            if("rmse" %in% .fitStatistics){
+            if("rmse" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitNormal"){
               my.fun <- function(x) {sqrt(mean((x-y)^2, na.rm=TRUE))}
               outMat[,"rmse"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
 
             }
-            if("mae" %in% .fitStatistics){
+            if("mae" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitNormal"){
               my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}
               outMat[,"mae"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
 
