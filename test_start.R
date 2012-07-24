@@ -228,7 +228,6 @@ test_that("maximum iteration changes if option is used",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0000000001, maxIter=25, exp=3)		
 expect_that(check1@maxIter,equals(25))
-expect_that(check1@iter,equals(25))	
 })
 
 test_that("exponent changes if option is used",{
@@ -236,6 +235,64 @@ this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LME
 check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=15)		
 expect_that(check1@exp,equals(15))
 })
+
+test_that("model parameters are turned of, all parameters are 0,1",{
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, useModelParams=FALSE)
+parameters<-matrix(c(0,1,0,1,0,1),ncol=3)		
+for(i in 1:2){
+	for(j in 1:3){
+		expect_that(matrix(check1@modelParams,ncol=3)[i,j], equals(parameters[i,j]))
+			}
+}
+})
+
+
+
+context("test for functionality of options in normal EBMA")
+#create data frame
+set.seed(123)
+predictions<-matrix(NA, nrow=400, ncol=4)
+predictions[,1]<-rnorm(400,mean=2.6,sd=5)
+predictions[,2]<-rnorm(400,mean=6,sd=10)
+predictions[,3]<-rnorm(400,mean=0.4,sd=8)
+predictions[,4]<-rnorm(400,mean=-2,sd=15)
+true<-rep(NA,400)
+true<-rnorm(400,mean=2.2,sd=2)
+
+test.pred<-matrix(NA, nrow=40, ncol=4)
+test.pred[,1]<-rnorm(40,mean=2.3,sd=7)
+test.pred[,2]<-rnorm(40,mean=3.3,sd=12)
+test.pred[,3]<-rnorm(40,mean=1.3,sd=11)
+test.pred[,4]<-rnorm(40,mean=2.2,sd=18)
+test.true<-rnorm(40,mean=2.2,sd=2)
+
+test_that("tolerance changes if option is used",{
+this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
+check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.0000141, maxIter=25000, exp=3)		
+expect_that(check1@tol,equals(0.0000141))	
+})
+
+test_that("maximum iteration changes if option is used",{
+check111<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.0000000001, maxIter=25, exp=3)		
+expect_that(check1@maxIter,equals(25))
+})
+
+test_that("exponent changes if option is used",{
+check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.000001, maxIter=25000, exp=15)		
+expect_that(check1@exp,equals(15))
+})
+
+test_that("model parameters are turned of, all parameters are 0,1",{
+check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, useModelParams=FALSE)
+parameters<-matrix(c(0,1,0,1,0,1,0,1),ncol=4)	
+for(i in 1:2){
+	for(j in 1:4){
+		expect_that(matrix(check1@modelParams,ncol=4)[i,j], equals(parameters[i,j]))
+			}
+}
+})
+
 
 
 ### same tests for normal function -- context("test for functionality of options in normal EBMA")
