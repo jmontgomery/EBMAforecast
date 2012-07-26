@@ -10,12 +10,12 @@ years<-data.holbrook$year
 insample.holbrook<-data.frame(years,insample.holbrook)
 names(insample.holbrook)<-c("Year","Holbrook")
 
-data.campbel<-read.csv("Campbel_data.csv")
-head(data.campbel)
-insample.campbel.trialheat<-data.campbel[,c("YEAR","PREDICT1")]
-insample.campbel.bump<-data.campbel[,c("YEAR","PREDICT2")]
-names(insample.campbel.trialheat)<-c("Year","Campbel.trialheat")
-names(insample.campbel.bump)<-c("Year","Campbel.bump")
+data.campbell<-read.csv("Campbell_data.csv")
+head(data.campbell)
+insample.campbell.trialheat<-data.campbell[,c("YEAR","PREDICT1")]
+insample.campbell.bump<-data.campbell[,c("YEAR","PREDICT2")]
+names(insample.campbell.trialheat)<-c("Year","Campbell.trialheat")
+names(insample.campbell.bump)<-c("Year","Campbell.bump")
 
 
 cuzan.data<-read.csv("data_cuzan2.csv")
@@ -60,7 +60,7 @@ lockerbie<-read.csv("~/Documents/GIT/EBMAforecast/PresForecastApsa/LockerbieData
 insample.lockerbie<-lockerbie[,c("Year","Forecast")]
 names(insample.lockerbie)<-c("Year","Lockerbie")
 
-merge1<-merge(insample.campbel.trialheat,insample.campbel.bump,by="Year",all.x=TRUE,all.y=TRUE)
+merge1<-merge(insample.campbell.trialheat,insample.campbell.bump,by="Year",all.x=TRUE,all.y=TRUE)
 merge2<-merge(merge1,insample.holbrook,by="Year",all.x=TRUE,all.y=TRUE)
 merge3<-merge(merge2,insample.cuzan.long,by="Year",all.x=TRUE,all.y=TRUE)
 merge4<-merge(merge3,insample.cuzan.short,by="Year",all.x=TRUE,all.y=TRUE)
@@ -141,5 +141,18 @@ lewisbeck<-read.csv("Lewis-Beck_Tien_forecasts.csv")
 insample.data<-merge(insample.data,lewisbeck,by="Year",all.x=TRUE,all.y=TRUE)
 
 
-insample.data
+insample.data<-insample.data[-c(34,35),]
 save(insample.data,file="insample.data.RData")
+
+data_2012<-insample.data[1,]
+
+data_2012<-data_2012[,-1]
+rownames(data_2012)<-2012
+data_2012[1,5]<-NA
+data_2012[1,6]<-NA
+
+
+### current 2012 forecasts
+data_2012["2012","Erikson.Wlezien"]<-52.2
+data_2012["2012","Holbrook"]<-47.8
+data_2012["2012","berry"]<-47.14
