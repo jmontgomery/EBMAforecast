@@ -3,7 +3,7 @@
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
-          definition=function(.forecastData, tol=1.490116e-08, maxIter=1e6, method="EM", exp=numeric(), useModelParams = TRUE, predType="posteriorMedian")
+          definition=function(.forecastData, tol=1.490116e-08, maxIter=1e6, method="EM", exp=numeric(), useModelParams = TRUE, predType="posteriorMedian", const=0)
           {
             .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
               {
@@ -22,6 +22,21 @@ setMethod(f="fitEnsemble",
                   aaply(g, 1, .fun=function(x) sum((!is.na(x)*1)*W))
 
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+              #  print("orig")
+               # print(rowSums(Z, na.rm=TRUE))
+              #  print(Z)
+
+                .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
+                .adjConst <- const*1/.missZ
+                #print(.adjConst)
+                #print(.missZ)
+                #print(.missZ*.adjConst)
+                Z <- .adjConst + (1-const)*Z
+
+#                Z[!is.na(Z)] <- const+(1-const)*Z[!is.na(Z)]
+          #  print("adj")
+           #               print(Z)
+             #   print(rowSums(Z, na.rm=TRUE))
                 Z[Z < ZERO] <- 0
                 Z[is.na(Z)] <- 0
 
