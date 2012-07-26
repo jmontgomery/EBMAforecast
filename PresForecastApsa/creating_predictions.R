@@ -157,6 +157,11 @@ data_2012["2012","Erikson.Wlezien"]<-52.2
 data_2012["2012","Holbrook"]<-47.8
 data_2012["2012","berry"]<-47.14
 data_2012["2012","Hibbs"]<-46.1
+data_2012["2012","Lockerbie"]<-54.00
+data_2012["2012","Campbell.trialheat"]<-50.6
+data_2012["2012","Campbell.bump"]<-50.4
+
+
 
  save(data_2012,file="data_2012.RData")
  
