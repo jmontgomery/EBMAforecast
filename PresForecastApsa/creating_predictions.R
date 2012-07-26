@@ -156,3 +156,8 @@ data_2012[1,6]<-NA
 data_2012["2012","Erikson.Wlezien"]<-52.2
 data_2012["2012","Holbrook"]<-47.8
 data_2012["2012","berry"]<-47.14
+data_2012["2012","Hibbs"]<-46.1
+
+ save(data_2012,file="data_2012.RData")
+ 
+ 
