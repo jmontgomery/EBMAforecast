@@ -13,6 +13,7 @@ document(current.code)
 
 setwd("~/GITHUB/EBMAforecast/PresForecastApsa/")
 load("/Users/jmontgomery/Github/EBMAforecast/PresForecastApsa/insample.data.RData")
+load("/Users/jmontgomery/Github/EBMAforecast/PresForecastApsa/data_2012.RData")
 insample.data <- insample.data[-c(34,35),]
 rownames(insample.data) <- insample.data$Year
 my.years <- paste(seq(1948,2008, by=4))
@@ -21,9 +22,15 @@ this.pred
 setwd("~/Dropbox/EBMA/ReplicationFiles/ForPADataverse/")
 master.data <- read.csv("presdata.csv", row.names=1)
 this.out <- (master.data[my.years, "dv"])
-thisFD <- makeForecastData(.predCalibration=this.pred, .outcomeCalibration=this.out, .modelNames=colnames(this.pred))
+this.test <- as.matrix(data_2012)[,-c(6,7)]
+length(this.test)
+ncol(this.pred)
 
-elist <- list()
+thisFD <- makeForecastData(.predCalibration=this.pred, .outcomeCalibration=this.out,  .modelNames=colnames(this.pred))
+thisFD@predTest <- array(this.test, dim=c(1, 12, 1))
+thisFD@outcomeTest <- 0
+
+eList <- list()
 counter <- 1
 for(i in  c(seq(0,.29, by=.01), seq(.3, 1, .1))){
   eList[[counter]] <- ensemble <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE, predType="posteriorMedian", const=i)
@@ -34,7 +41,7 @@ for(i in  c(seq(0,.29, by=.01), seq(.3, 1, .1))){
 
 ensemble <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=1.490116e-08, maxIter=1000000, useModelParams=FALSE, predType="posteriorMedian", const=.2)
 summary(ensemble, showCoefs=FALSE)
-
+ensemble@predTest
 
 
 setwd("~/GITHUB/EBMAforecast/wordisbeautiful/")
