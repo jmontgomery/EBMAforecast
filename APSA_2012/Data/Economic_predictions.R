@@ -60,5 +60,6 @@ true_un$year.quarter<-paste(true_un$year,true_un$quarter,sep=".")
 true_un<-true_un[,-c(1,2,4,5)]
 head(true_un)
 
+##now merge true data and forecasts
 unemployment_data<-merge(true_un, unemployment_forecast, by=("year.quarter"),all.x=TRUE,all.y=TRUE)
 save(unemployment_data,file="unemployment_data.RData")
