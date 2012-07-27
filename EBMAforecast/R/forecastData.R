@@ -75,10 +75,10 @@ setClass(Class="ForecastData",
              {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
            	if(sum(is.na(object@outcomeTest)) > 0)
              {stop("There are NAs in the outcome test set, these observations should be deleted from the data.")}
-            if(ncol(object@outcomeCalibration)>=nrow(object@predCalibration))
-            {stop("The number of observations in the calibration set should be at least larger than the number of component models included.")}
+            #if(nrow(object@predCalibration)<=(ncol(object@predCalibration)))
+           #{stop("The number of observations in the calibration set should be at least larger than the number of component models included.")}
             }  
-         )
+)
 
 
 ##
