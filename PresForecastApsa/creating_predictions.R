@@ -144,6 +144,11 @@ insample.data<-merge(insample.data,lewisbeck,by="Year",all.x=TRUE,all.y=TRUE)
 insample.data<-insample.data[-c(34,35),]
 save(insample.data,file="insample.data.RData")
 
+
+rm(list=ls(all=TRUE))
+setwd("~/Documents/GIT/EBMAforecast/PresForecastApsa")
+
+load("insample.data.RData")
 data_2012<-insample.data[1,]
 
 data_2012<-data_2012[,-1]
@@ -160,7 +165,7 @@ data_2012["2012","Hibbs"]<-46.1
 data_2012["2012","Lockerbie"]<-54.00
 data_2012["2012","Campbell.trialheat"]<-50.6
 data_2012["2012","Campbell.bump"]<-50.4
-
+data_2012["2012","Abramowitz"]<-50.5
 
 
  save(data_2012,file="data_2012.RData")
