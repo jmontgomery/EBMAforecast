@@ -16,6 +16,8 @@ unemp_new$UNEMP6<-ifelse(unemp_new$UNEMP6==-999,NA,unemp_new$UNEMP6)
 
 #create year.quarter variable
 unemp_new$year.quarter<-paste(unemp$year,unemp$quarter,sep=".")
+unemp_new$year.quarter<-as.numeric(unemp_new$year.quarter)
+
 head(unemp_new)
 ##drop year, quarter and industry for now
 unemp_new<-unemp_new[,-c(1,2,4)]
@@ -29,36 +31,33 @@ head(unemployment_forecast)
 unemp_true<-read.csv("True_unemp.csv")
 head(unemp_true)
 ## drop all vintages before 2012 may
-unemp_true<-unemp_true[,c("X","RUC12M5")]
+unemp_true<-unemp_true[,c("X","Realiz5")]
 
 head(unemp_true)
 
 # mark NAs
-unemp_true$RUC12M5<-ifelse(unemp_true$RUC12M5=="#N/A",NA,unemp_true$RUC12M5)
+#unemp_true$RUC12M5<-ifelse(unemp_true$RUC12M5=="#N/A",NA,unemp_true$RUC12M5)
 
 new<-t(as.data.frame((strsplit(as.character(unemp_true$X), ":"))))
 new<-as.data.frame(new)
-names(new)<-c("year","month")
+names(new)<-c("year","quarter")
 
 dim(new)
 
 unemp_true<-data.frame(cbind(unemp_true,new))
 head(unemp_true)
 unemp_true$year<-(as.numeric(unemp_true$year)+1946)
-unemp_true$month<-as.numeric(unemp_true$month)
-unemp_true$quarter<-NA
-unemp_true$quarter<-ifelse(unemp_true$month<4,1,unemp_true$quarter)
-unemp_true$quarter<-ifelse(unemp_true$month>3 & unemp_true$month<7,2,unemp_true$quarter)
-unemp_true$quarter<-ifelse(unemp_true$month>6 & unemp_true$month<9,2,unemp_true$quarter)
-unemp_true$quarter<-ifelse(unemp_true$month>8,4,unemp_true$quarter)
+unemp_true$quarter<-as.numeric(unemp_true$quarter)
 head(unemp_true)
-true_un<-unemp_true[,c("RUC12M5","year","quarter")]
+true_un<-unemp_true[,c("Realiz5","year","quarter")]
 true_un<-subset(true_un,true_un$year>1947)
 summary(true_un)
-true_un<-aggregate(true_un, by=list(true_un$year,true_un$quarter),FUN=mean)
+#true_un<-aggregate(true_un, by=list(true_un$year,true_un$quarter),FUN=mean)
 true_un$year.quarter<-paste(true_un$year,true_un$quarter,sep=".")
-true_un<-true_un[,-c(1,2,4,5)]
+true_un$year.quarter<-as.numeric(true_un$year.quarter)
+true_un<-true_un[,c(1,4)]
 head(true_un)
+names(true_un)[1]<-"Unemployment_Truth"
 
 ##now merge true data and forecasts
 unemployment_data<-merge(true_un, unemployment_forecast, by=("year.quarter"),all.x=TRUE,all.y=TRUE)
@@ -128,7 +127,7 @@ true_cpi$year.quarter<-paste(true_cpi$year,true_cpi$quarter,sep=".")
 true_cpi<-true_cpi[,-c(2,3)]
 head(true_cpi)
 true_cpi$year.quarter<-as.numeric(true_cpi$year.quarter)
-
+names(true_cpi)[1]<-"CPI_Truth"
 ##now merge true data and forecasts
 cpi_data<-merge(true_cpi, cpi_forecast, by=("year.quarter"),all.x=TRUE,all.y=TRUE)
 save(cpi_data,file="cpi_data.RData")
