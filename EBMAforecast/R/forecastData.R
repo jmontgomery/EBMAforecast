@@ -61,10 +61,10 @@ setClass(Class="ForecastData",
            		if(nrow(object@predCalibration)!=length(object@outcomeCalibration))
              	{stop("The number of predictions and outcomes do not match in the calibration set.")}
            	}
-            if(length(object@predTest)>0 || length(object@outcomeTest)>0){ 
-           		if(nrow(object@predTest)!=length(object@outcomeTest))
-             	{stop("The number of predictions and outcomes do not match in the test set.")}
-           	}  
+#            if(length(object@predTest)>0 || length(object@outcomeTest)>0){ 
+#           		if(nrow(object@predTest)!=length(object@outcomeTest))
+#             	{stop("The number of predictions and outcomes do not match in the test set.")}
+#           	} 
            	if(length(object@predTest)>0){
              	if(ncol(object@predTest)!=ncol(object@predCalibration))
                	{stop("The number of prediction models in the calibration and test set are different.")}    
@@ -75,7 +75,9 @@ setClass(Class="ForecastData",
              {stop("There are NAs in the outcome calibration set, these observations should be deleted from the data.")}
            	if(sum(is.na(object@outcomeTest)) > 0)
              {stop("There are NAs in the outcome test set, these observations should be deleted from the data.")}
-         }  
+            if(ncol(object@outcomeCalibration)>=nrow(object@predCalibration))
+            {stop("The number of observations in the calibration set should be at least larger than the number of component models included.")}
+            }  
          )
 
 
