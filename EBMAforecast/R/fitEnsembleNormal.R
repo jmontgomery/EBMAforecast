@@ -18,14 +18,21 @@ setMethod(f="fitEnsemble",
                           , dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
                 z.numerator<- aaply(.data=g, .margins=1, .fun=function(x){x*W})
                 z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
-                z.denom <- z.denom/
-                  aaply(g, 1, .fun=function(x) sum((!is.na(x)*1)*W))
+
+                ## Step 4: Calculate the log-likelihood
+                LL <-sum(log(z.denom))
+#                print(LL)
+
+                
+#                z.denom <- z.denom/
+ #                 aaply(g, 1, .fun=function(x) sum((!is.na(x)*1)*W))
 
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
               #  print("orig")
                # print(rowSums(Z, na.rm=TRUE))
               #  print(Z)
-
+                Z[Z < ZERO] <- 0
+                
                 .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
                 .adjConst <- const*1/.missZ
                 #print(.adjConst)
@@ -37,13 +44,13 @@ setMethod(f="fitEnsemble",
           #  print("adj")
            #               print(Z)
              #   print(rowSums(Z, na.rm=TRUE))
-                Z[Z < ZERO] <- 0
+
                 Z[is.na(Z)] <- 0
 
                 ## Step 2: Calculat the W's
                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
                 W <- .unnormalizedW
-                W <- (W/rowSums(!colSums(g, na.rm=T)==0)) # the bottom here is the number of non-empty exchangeable draws for each model
+              #  W <- (W/rowSums(!colSums(g, na.rm=T)==0)) # the bottom here is the number of non-empty exchangeable draws for each model
                 W <- W/sum(.unnormalizedW)
                 W[W<ZERO]<-0
                 names(W) <- modelNames
@@ -51,8 +58,6 @@ setMethod(f="fitEnsemble",
                 ## Step 3: Calculate sigma squared
                 sigma2<-sum(Z * RSQ, na.rm=T)/sum(Z, na.rm=T) 
 
-                ## Step 4: Calculate the log-likelihood
-                LL <-sum(log(z.denom))
                 
                 out <- list(LL=LL, W=W,sigma2=sigma2)
                 return(out)
