@@ -1,6 +1,5 @@
 rm(list=ls(all=TRUE))
-#setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
-setwd("~Github/EBMAforecast/APSA_2012/Data")
+setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
 library(reshape)
 
 
@@ -65,7 +64,7 @@ unemployment_data<-merge(true_un, unemployment_forecast, by=("year.quarter"),all
 unemployment_data<-unemployment_data[,-3]
 save(unemployment_data,file="unemployment_data.RData")
 
-head(unemployment_data)
+
 
 ############ do the same for cpi data
 rm(list=ls(all=TRUE))
