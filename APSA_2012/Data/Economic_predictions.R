@@ -15,18 +15,48 @@ unemp_new$industry<-ifelse(unemp_new$industry==-999,NA,unemp_new$industry)
 unemp_new$UNEMP3<-ifelse(unemp_new$UNEMP3==-999,NA,unemp_new$UNEMP3)
 unemp_new$UNEMP6<-ifelse(unemp_new$UNEMP6==-999,NA,unemp_new$UNEMP6)
 
+### split up unemp3 and unemp6 to make time reflect forecast quarter
+unemp3_data<-unemp_new[,c("year","quarter","id","industry","UNEMP3")]
+unemp3_data$quarter_new<-unemp3_data$quarter+1
+unemp3_data$year_new<-unemp3_data$year
+unemp3_data$year_new<-ifelse(unemp3_data$quarter_new==5,unemp3_data$year_new+1,unemp3_data$year_new)
+unemp3_data$quarter_new<-ifelse(unemp3_data$quarter_new==5,1,unemp3_data$quarter_new)
+
+unemp6_data<-unemp_new[,c("year","quarter","id","industry","UNEMP6")]
+unemp6_data$quarter_new<-unemp6_data$quarter
+unemp6_data$year_new<-unemp6_data$year+1
+
+head(unemp3_data)
+names(unemp3_data)<-c("survey.year","survey.quarter","id","industry","UNEMP3","forecast.quarter","forecast.year")
+head(unemp6_data)
+names(unemp6_data)<-c("survey.year","survey.quarter","id","industry","UNEMP6","forecast.quarter","forecast.year")
+
+
 #create year.quarter variable
-unemp_new$year.quarter<-paste(unemp$year,unemp$quarter,sep=".")
-unemp_new$year.quarter<-as.numeric(unemp_new$year.quarter)
+unemp3_data$survey.year.quarter<-paste(unemp3_data$survey.year,unemp3_data$survey.quarter,sep=".")
+unemp3_data$survey.year.quarter<-as.numeric(unemp3_data$survey.year.quarter)
+unemp3_data$forecast.year.quarter<-paste(unemp3_data$forecast.year,unemp3_data$forecast.quarter,sep=".")
+unemp3_data$forecast.year.quarter<-as.numeric(unemp3_data$forecast.year.quarter)
 
-head(unemp_new)
-##drop year, quarter and industry for now
-unemp_new<-unemp_new[,-c(1,2,4)]
+unemp6_data$survey.year.quarter<-paste(unemp6_data$survey.year,unemp6_data$survey.quarter,sep=".")
+unemp6_data$survey.year.quarter<-as.numeric(unemp6_data$survey.year.quarter)
+unemp6_data$forecast.year.quarter<-paste(unemp6_data$forecast.year,unemp6_data$forecast.quarter,sep=".")
+unemp6_data$forecast.year.quarter<-as.numeric(unemp6_data$forecast.year.quarter)
+head(unemp3_data)
+head(unemp6_data)
 
-melt=melt(unemp_new,id.vars=c("id","year.quarter"))
+
+##drop survey dates, forecast.year, forecast.quarter and industry for now
+unemp3_new<-unemp3_data[,-c(1,2,4,6,7,8)]
+unemp6_new<-unemp6_data[,-c(1,2,4,6,7,8)]
+head(unemp3_new)
+head(unemp6_new)
+unemp_formelt<-merge(unemp3_new,unemp6_new,by=c("id","forecast.year.quarter"),all.x=TRUE,all.y=TRUE)
+
+melt=melt(unemp_formelt,id.vars=c("id","forecast.year.quarter"))
 head(melt)
 
-unemployment_forecast=cast(melt,year.quarter +variable ~ id)
+unemployment_forecast=cast(melt,forecast.year.quarter +variable ~ id)
 head(unemployment_forecast)
 
 unemp_true<-read.csv("True_unemp.csv")
@@ -51,19 +81,21 @@ unemp_true$year<-(as.numeric(unemp_true$year)+1967)
 unemp_true$quarter<-as.numeric(unemp_true$quarter)
 head(unemp_true)
 true_un<-unemp_true[,c("Realiz5","year","quarter")]
-true_un<-subset(true_un,true_un$year>1947)
+#true_un<-subset(true_un,true_un$year>1947)
 summary(true_un)
 #true_un<-aggregate(true_un, by=list(true_un$year,true_un$quarter),FUN=mean)
 true_un$year.quarter<-paste(true_un$year,true_un$quarter,sep=".")
 true_un$year.quarter<-as.numeric(true_un$year.quarter)
 true_un<-true_un[,c(1,4)]
 head(true_un)
-names(true_un)[1]<-"Unemployment_Truth"
+names(true_un)<-c("Unemployment_Truth","forecast.year.quarter")
 
 ##now merge true data and forecasts
-unemployment_data<-merge(true_un, unemployment_forecast, by=("year.quarter"),all.x=TRUE,all.y=TRUE)
-unemployment_data<-unemployment_data[,-3]
-save(unemployment_data,file="unemployment_data.RData")
+unemployment_data<-merge(true_un, unemployment_forecast, by=("forecast.year.quarter"),all.x=TRUE,all.y=TRUE)
+head(unemployment_data)
+#unemployment_data<-unemployment_data[,-3]
+
+write.csv(unemployment_data,file="unemployment_data.csv")
 
 
 
@@ -85,22 +117,50 @@ cpi$CPI3<-ifelse(cpi$CPI3==-999,NA,cpi$CPI3)
 cpi$CPI6<-ifelse(cpi$CPI6==-999,NA,cpi$CPI6)
 
 
+### split up unemp3 and unemp6 to make time reflect forecast quarter
+cpi3_data<-cpi[,c("year","quarter","id","industry","CPI3")]
+cpi3_data$quarter_new<-cpi3_data$quarter+1
+cpi3_data$year_new<-cpi3_data$year
+cpi3_data$year_new<-ifelse(cpi3_data$quarter_new==5,cpi3_data$year_new+1,cpi3_data$year_new)
+cpi3_data$quarter_new<-ifelse(cpi3_data$quarter_new==5,1,cpi3_data$quarter_new)
+
+cpi6_data<-cpi[,c("year","quarter","id","industry","CPI6")]
+cpi6_data$quarter_new<-cpi6_data$quarter
+cpi6_data$year_new<-cpi6_data$year+1
+
+head(cpi3_data)
+names(cpi3_data)<-c("survey.year","survey.quarter","id","industry","CPI3","forecast.quarter","forecast.year")
+head(cpi6_data)
+names(cpi6_data)<-c("survey.year","survey.quarter","id","industry","CPI6","forecast.quarter","forecast.year")
+
+
 #create year.quarter variable
-cpi$year.quarter<-paste(cpi$year,cpi$quarter,sep=".")
-head(cpi)
-cpi<-subset(cpi,year>1982)
+cpi3_data$survey.year.quarter<-paste(cpi3_data$survey.year,cpi3_data$survey.quarter,sep=".")
+cpi3_data$survey.year.quarter<-as.numeric(cpi3_data$survey.year.quarter)
+cpi3_data$forecast.year.quarter<-paste(cpi3_data$forecast.year,cpi3_data$forecast.quarter,sep=".")
+cpi3_data$forecast.year.quarter<-as.numeric(cpi3_data$forecast.year.quarter)
 
-##drop year, quarter and industry for now
-cpi<-cpi[,-c(1,2,4)]
+cpi6_data$survey.year.quarter<-paste(cpi6_data$survey.year,cpi6_data$survey.quarter,sep=".")
+cpi6_data$survey.year.quarter<-as.numeric(cpi6_data$survey.year.quarter)
+cpi6_data$forecast.year.quarter<-paste(cpi6_data$forecast.year,cpi6_data$forecast.quarter,sep=".")
+cpi6_data$forecast.year.quarter<-as.numeric(cpi6_data$forecast.year.quarter)
+head(cpi3_data)
+head(cpi6_data)
 
-melt=melt(cpi,id.vars=c("id","year.quarter"))
+
+##drop survey dates, forecast.year, forecast.quarter and industry for now
+cpi3_new<-cpi3_data[,-c(1,2,4,6,7,8)]
+cpi6_new<-cpi6_data[,-c(1,2,4,6,7,8)]
+head(cpi3_new)
+head(cpi6_new)
+cpi_formelt<-merge(cpi3_new,cpi6_new,by=c("id","forecast.year.quarter"),all.x=TRUE,all.y=TRUE)
+
+melt=melt(cpi_formelt,id.vars=c("id","forecast.year.quarter"))
 head(melt)
 
-cpi_forecast=cast(melt,year.quarter +variable ~ id)
+cpi_forecast=cast(melt,forecast.year.quarter +variable ~ id)
 head(cpi_forecast)
-summary(cpi_forecast)
-cpi_forecast$year.quarter<-as.numeric(cpi_forecast$year.quarter)
-summary(cpi_forecast)
+
 
 cpi_true<-read.csv("True_cpi.csv")
 head(cpi_true)
@@ -123,16 +183,17 @@ cpi_true$year<-(as.numeric(cpi_true$year)+1967)
 cpi_true$quarter<-as.numeric(cpi_true$quarter)
 head(cpi_true)
 true_cpi<-cpi_true[,c("Realiz5","year","quarter")]
-true_cpi<-subset(true_cpi,true_cpi$year>1982)
+#true_cpi<-subset(true_cpi,true_cpi$year>1982)
 summary(true_cpi)
-true_cpi$year.quarter<-paste(true_cpi$year,true_cpi$quarter,sep=".")
+true_cpi$forecast.year.quarter<-paste(true_cpi$year,true_cpi$quarter,sep=".")
 true_cpi<-true_cpi[,-c(2,3)]
 head(true_cpi)
-true_cpi$year.quarter<-as.numeric(true_cpi$year.quarter)
+true_cpi$forecast.year.quarter<-as.numeric(true_cpi$forecast.year.quarter)
 names(true_cpi)[1]<-"CPI_Truth"
 ##now merge true data and forecasts
-cpi_data<-merge(true_cpi, cpi_forecast, by=("year.quarter"),all.x=TRUE,all.y=TRUE)
-save(cpi_data,file="cpi_data.RData")
+cpi_data<-merge(true_cpi, cpi_forecast, by=("forecast.year.quarter"),all.x=TRUE,all.y=TRUE)
+head(cpi_data)
+write.csv(cpi_data,file="cpi_data.csv")
 
 
 
