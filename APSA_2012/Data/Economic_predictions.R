@@ -1,5 +1,6 @@
 rm(list=ls(all=TRUE))
-setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
+#setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
+setwd("~/Github/EBMAforecast/APSA_2012/Data")
 library(reshape)
 
 
