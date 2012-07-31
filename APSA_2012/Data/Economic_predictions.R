@@ -61,6 +61,7 @@ names(true_un)[1]<-"Unemployment_Truth"
 
 ##now merge true data and forecasts
 unemployment_data<-merge(true_un, unemployment_forecast, by=("year.quarter"),all.x=TRUE,all.y=TRUE)
+unemployment_data<-unemployment_data[,-3]
 save(unemployment_data,file="unemployment_data.RData")
 
 
