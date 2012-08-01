@@ -1,6 +1,18 @@
 library("multicore")
 library("foreach")
 library("doMC")
+library(devtools)
+library(roxygen2)
+library(testthat)
+
+#setwd("~/Documents/GIT/EBMAforecast/")
+setwd("~/GITHUB/EBMAforecast/")
+
+
+# Only need to run this portion once
+current.code <- as.package("EBMAforecast")
+load_all(current.code)
+document(current.code)
 
 
 
@@ -13,17 +25,35 @@ ud4 <- subset(ud4, forecast.year.quarter>1971.2)
 ud4 <- ud4[rowMeans(is.na(ud4[,-c(1:3)]))!=1,]
 ud1 <- ud4
 
-myTestFunction <- function(.windowSize=30, .minCal=15, .predYearQuarter="1980.1", .const=0){
-.predYearQuarter="1991.1"
-.windowSize=40
-.minCal=10
+myTestFunction <- function(.windowSize=30, .minCal=15, .predYearQuarter="1980.1", .const=0, data=NULL, .imp=FALSE){
 
-  .predThis <- which(ud1$forecast.year.quarter==.predYearQuarter)
+  
+  .predThis <- which(data$forecast.year.quarter==.predYearQuarter)
   .theseRows <- (.predThis-.windowSize-1):(.predThis-1)
+  
+  
   .all <- length(.theseRows)
-  .selector <- colSums(is.na(ud1[.theseRows,]))<(.all-.minCal) & !is.na(ud1[.predThis,])
-  .reduced <- ud1[.theseRows, .selector]
-  .target <- ud1[.predThis, .selector]
+  .selector <- colSums(is.na(data[.theseRows,]))<(.all-.minCal) & !is.na(data[.predThis,])
+  .reduced <- data[.theseRows, .selector]
+
+   # this code takes out any row where we now have no forecasts
+  .rowSelector <- !(rowMeans(is.na(.reduced[,-(1:3)]))==1)
+  .reduced <- .reduced[.rowSelector,]
+
+  if(.imp){
+    .reduced[,-c(1:3)] <- t(apply(.reduced[,-c(1:3)],1,
+                                  function(x) {
+                                    x[is.na(x)] <- mean(x, na.rm=TRUE)
+                                    x
+                                  }
+                                  )
+                            )
+  }
+
+  
+  
+  
+  .target <- data[.predThis, .selector]
 
   .FD <- makeForecastData(.predCalibration=.reduced[,-c(1:3)]
                           ,.outcomeCalibration=.reduced[,2]
@@ -33,39 +63,124 @@ myTestFunction <- function(.windowSize=30, .minCal=15, .predYearQuarter="1980.1"
                           )
 
   ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const)
-  output <- data.frame(rownames(ud1[.predThis,]), ensemble@predTest[1])
-  colnames(output) <- c("row", "EBMA")
+  output <- matrix(c(as.numeric(rownames(data[.predThis,])), ensemble@predTest[1], as.numeric(ensemble@modelWeights)), nrow=1)
+  output <- data.frame(output)
+  colnames(output) <- c("row", "EBMA", ensemble@modelNames)
   output
 }
 
-myTestFunction(.predYearQuarter=ud1[41+37,1],.windowSize=40, .minCal=10, .const=.1)
+## a random tester to see if this is working
+jacob <- myTestFunction(.predYearQuarter="1991.1",.windowSize=40, .minCal=10, .const=0, data=ud4, .imp=TRUE)
+
+.sweep = thisSweep13
+data=ud4
+
+.modelNames <- colnames(.sweep)[-c(1:2)]
+.ensemblePred <- .sweep$EBMA
+.theseRows <- as.character(.sweep$row)
+.modelPreds <- data[.theseRows,.modelNames]
+.modelWeights <- .sweep[,-c(1:2)]
+                      .outcome <- data[.theseRows, 2]
+  .mean <- rowMeans(data[.theseRows,-c(1:3)], na.rm=TRUE) #maybe this should be the lagged (appropriately calculated?)  This serves as the naive model that serves as a baseline.
+
+modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
+
+  
+  .absErr <- abs(.thisForecastMatrix-.thisOutcome)
+  .sqrErr <- .absErr^2
+  .ape <- .absErr/abs(.thisOutcome) # absolute percent error
+
+  ## Mean absolute errror
+  mae <- colMeans(.absErr, na.rm=TRUE)
+
+  ## Root mean squared error
+  rmse <-  sqrt(colMeans(.sqrErr, na.rm=TRUE))
+
+  ## Median absolute deviation
+  mad <- apply(.absErr, 2, quantile, probs=.5, na.rm=TRUE)
+
+  ## Root mean Squaqred logarithmic error
+  .rmsle <- function(x, y){
+    mean((log(abs(x)+1)-log(abs(y)+1))^2, na.rm=TRUE)
+  }
+  rmsle <- apply(.thisForecastMatrix, 2, .rmsle, y=.thisOutcome)
+
+  ## mean absolute percentage error
+  mape <- colMeans(.ape, na.rm=TRUE)*100
+
+  ##median absolute percentage errro
+  meape <-  apply(.ape, 2, quantile, prob=.5, na.rm=TRUE)*100
+
+  ## median relative absolute error
+  .eStar <- .thisOutcome-.thisBaseline
+  .e <- .thisOutcome-.thisForecastMatrix
+  mrae <- apply(abs(.e/.eStar), 2, quantile, probs=.5, na.rm=TRUE)
+
+  ## percent worse
+  pw <- colMeans(abs(.e)>abs(.eStar), na.rm =TRUE)*100
+  
+
+  out <- cbind(mae, rmse, mad, rmsle, mape, meape, mrae, pw)
 
 
-     
+out
+}
+
+modelOut <- modelFits(.outcome, .modelPreds, .mean)
+cor(modelOut)
+## Now I need to calculate similar stats for the EBMA, but for the correct observations
+                      .ensemblePredMatrix <- matrix(.ensemblePred, nrow=nrow(.modelPreds), ncol=ncol(.modelPreds))
+                      .ensemblePredMatrix[is.na(.modelPreds)] <- NA
+
+ensembleOut <- modelFits(.outcome, .ensemblePredMatrix, .mean)
+
+## Total number of forecasts for models we are comparing ourselves with
+count <- colSums(!is.na(.modelPreds))
+
+plot(count, rowMeans((modelOut-ensembleOut)>0)) # this needs some jitter, or point size differentiation
+abline(h=.5)
+abline(v=5)
+plot(1:8, colMeans((modelOut-ensembleOut)>0)) 
+boxplot(modelOut)
+
 ### Run a bunch of them in paralel
-wrapper <- function(x, .const=0) {myTestFunction(.predYearQuarter=x, .windowSize=20, .minCal=10, .const=.const)}
+params <- expand.grid(wind=c(5,10,20,30), cal=c(3,5,10), crowds=seq(0,.2,.025), impute=c(TRUE, FALSE), data=c(1,2,3,4))
+params <- subset(params, wind>cal)
+dim(params)
 
-registerDoMC(cores=4)
-thisSweep1 <- thisSweep<- ldply(as.character(ud1[21:161,1]), wrapper, .parallel=TRUE)
-thisSweep2 <- ldply(as.character(ud1[21:161,1]), wrapper, .const=.1, .parallel=TRUE)
-thisSweep6 <- ldply(as.character(ud1[21:161,1]), wrapper, .const=.2, .parallel=TRUE)
+##ALERT: Why are there some with only one forecast?
 
-wrapper <- function(x, .const=0) {myTestFunction(.predYearQuarter=x, .windowSize=30, .minCal=10, .const=.const)}
-thisSweep3 <- ldply(as.character(ud1[31:161,1]), wrapper, .const=0, .parallel=TRUE)
-
-wrapper <- function(x, .const=0) {myTestFunction(.predYearQuarter=x, .windowSize=10, .minCal=5, .const=.const)}
-
-thisSweep5 <- ldply(as.character(ud1[21:161,1]), wrapper, .const=0, .parallel=TRUE)
+registerDoMC(cores=32)
+thisSweep1 <- thisSweep<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=0, .parallel=TRUE, .imp=FALSE, data=ud4)
+thisSweep2<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=.05, .parallel=TRUE)
+thisSweep3<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=.1, .parallel=TRUE)
+thisSweep4<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=.2, .parallel=TRUE)
 
 
-thisSweep <- thisSweep6
+thisSweep5<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=30, .minCal=10, .const=0, .parallel=TRUE)
+thisSweep6<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=0, .parallel=TRUE)
+thisSweep7<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=40, .minCal=15, .const=0, .parallel=TRUE)
 
-dim(ud1)
-rawPreds <- ud1[as.character(thisSweep$row),-c(1:3)]
-EBMA <- thisSweep$EBMA
-preds <- cbind(rowMeans(rawPreds, na.rm=TRUE), apply(rawPreds, 1, quantile, na.rm=TRUE, probs=.5), thisSweep$EBMA)
-colnames(preds) <- c("mean", "median", "EBMA")
-outcome <- ud1[as.character(thisSweep$row), 2]
+thisSweep8<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=30, .minCal=10, .const=.1, .parallel=TRUE)
+thisSweep9<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.1, .parallel=TRUE)
+thisSweep10<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=40, .minCal=15, .const=.1, .parallel=TRUE)
+
+
+thisSweep11<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=30, .minCal=15, .const=.1, .parallel=TRUE)
+
+thisSweep12<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.2, .parallel=TRUE)
+thisSweep13<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.05, .parallel=TRUE,  .imp=FALSE, data=ud4)
+
+thisSweep14<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=3, .const=.05, .parallel=TRUE)
+thisSweep15<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=2, .const=.05, .parallel=TRUE)
+
+thisSweep16<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=3, .const=.05, .parallel=TRUE)
+thisSweep17<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=5, .minCal=2, .const=.05, .parallel=TRUE)
+
+
+## This one with the actual ud1 data
+thisSweep18 <- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.05, .parallel=TRUE)
+
 
 
 compare2Ensemble <- function(column, .fun=my.fun){
@@ -79,22 +194,30 @@ compare2Ensemble <- function(column, .fun=my.fun){
    c(eval[1]-eval[2], length(.thisEBMA))
 }
 
+
+thisSweep <- thisSweepImp1
+dim(ud1)
+rawPreds <- ud1[as.character(thisSweep$row),-c(1:3)]
+EBMA <-  as.numeric(levels(thisSweep$EBMA)[thisSweep$EBMA])
+preds <- cbind(rowMeans(rawPreds, na.rm=TRUE), apply(rawPreds, 1, quantile, na.rm=TRUE, probs=.5), EBMA)
+colnames(preds) <- c("mean", "median", "EBMA")
+outcome <- ud1[as.character(thisSweep$row), 2]
 par(mfrow=c(3,1), mar=c(2,2,2,2), mgp=c(1,0,0))
 my.fun <- function(x) {sqrt(mean((x-y)^2, na.rm=TRUE))}
 rmse <- laply(1:426, compare2Ensemble)
- plot(rmse[,1]~rmse[,2], main="RMSE by number of predictions", xlab="# Predictions", ylab="RMSE", xlim=c(10, max(rmse[,2])))
+ plot(rmse[,1]~rmse[,2], main="RMSE by number of predictions", xlab="# Predictions", ylab="RMSE", xlim=c(1, max(rmse[,2])))
 abline(h=0)
 .table <- table(rmse[rmse[,2]>10,1]>0)
 .table/sum(.table)
 my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}
 mae <- laply(1:426, compare2Ensemble)
-plot(mae[,1]~mae[,2], main="MAE by number of predictions", xlab="# Predictions", ylab="MAE", xlim=c(10, max(mae[,2])))
+plot(mae[,1]~mae[,2], main="MAE by number of predictions", xlab="# Predictions", ylab="MAE", xlim=c(1, max(mae[,2])))
 abline(h=0)
 .table <- table(mae[mae[,2]>10,1]>0)
 .table/sum(.table)
 my.fun <- function(x) {quantile(abs(x-y), na.rm=TRUE, probs=.5)}
 mad <- laply(1:426, compare2Ensemble)
-plot(mad[,1]~mad[,2], main="Median  absolute deviation", xlab="# Predictions", ylab="MAD", xlim=c(10, max(mad[,2])))
+plot(mad[,1]~mad[,2], main="Median  absolute deviation", xlab="# Predictions", ylab="MAD", xlim=c(1, max(mad[,2])))
 abline(h=0)
 .table <- table(mad[mad[,2]>10,1]>0)
 .table/sum(.table)
