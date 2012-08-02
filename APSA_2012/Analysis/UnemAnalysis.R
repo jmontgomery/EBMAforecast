@@ -23,7 +23,7 @@ ud1 <- subset(ud, variable=="UNEMP3")
 ud4 <- subset(ud, variable=="UNEMP6")
 ud4 <- subset(ud4, forecast.year.quarter>1971.2)
 ud4 <- ud4[rowMeans(is.na(ud4[,-c(1:3)]))!=1,]
-ud1 <- ud4
+
 
 myTestFunction <- function(.windowSize=30, .minCal=15, .predYearQuarter="1980.1", .const=0, data=NULL, .imp=FALSE){
 
@@ -75,13 +75,25 @@ jacob <- myTestFunction(.predYearQuarter="1991.1",.windowSize=40, .minCal=10, .c
 .sweep = thisSweep13
 data=ud4
 
+
+
+.lagAmount=4
+.lag <-c(rep(NA, .lagAmount), data[1:(nrow(data)-.lagAmount),2])
+names(.lag) <- rownames(data)
+
+
+
 .modelNames <- colnames(.sweep)[-c(1:2)]
 .ensemblePred <- .sweep$EBMA
 .theseRows <- as.character(.sweep$row)
 .modelPreds <- data[.theseRows,.modelNames]
 .modelWeights <- .sweep[,-c(1:2)]
-                      .outcome <- data[.theseRows, 2]
-  .mean <- rowMeans(data[.theseRows,-c(1:3)], na.rm=TRUE) #maybe this should be the lagged (appropriately calculated?)  This serves as the naive model that serves as a baseline.
+.outcome <- data[.theseRows, 2]
+.mean <- rowMeans(data[.theseRows,-c(1:3)], na.rm=TRUE) #maybe this should be the lagged (appropriately calculated?)  This serves as the naive model that serves as a baseline.
+.lag <- .lag[.theseRows]
+
+
+data[(.theseRows-1), 2]
 
 modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
 
@@ -126,7 +138,7 @@ modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
 out
 }
 
-modelOut <- modelFits(.outcome, .modelPreds, .mean)
+modelOut <- modelFits(.outcome, .modelPreds, .lag)
 cor(modelOut)
 ## Now I need to calculate similar stats for the EBMA, but for the correct observations
                       .ensemblePredMatrix <- matrix(.ensemblePred, nrow=nrow(.modelPreds), ncol=ncol(.modelPreds))
@@ -137,11 +149,38 @@ ensembleOut <- modelFits(.outcome, .ensemblePredMatrix, .mean)
 ## Total number of forecasts for models we are comparing ourselves with
 count <- colSums(!is.na(.modelPreds))
 
-plot(count, rowMeans((modelOut-ensembleOut)>0)) # this needs some jitter, or point size differentiation
-abline(h=.5)
-abline(v=5)
-plot(1:8, colMeans((modelOut-ensembleOut)>0)) 
-boxplot(modelOut)
+
+par(mfrow=c(2,1), mar=c(2,4,3,1), mpg=c(1,0,0))
+# Compare with components by # forecasts
+plot(NULL, xlim=c(0, 100), ylim=c(0,100), xlab="Number of forecasts made", ylab="% of Metrics that EBMA Wins")
+text(count, jitter(rowMeans((modelOut-ensembleOut)>=0)*100, .75), substr(rownames(modelOut), 2, 9), cex=.5, ) # this needs some jitter, or point size differentiation
+abline(h=50, lty=3, col="gray20")
+title("% of metrics by which EBMA out-performs its \n components  by # of forecasts")
+# EBMA performance by meric
+plot(NULL, xlim=c(1, 8), ylim=c(0,100),  ylab="% of Models EBMA Beats", xaxt="n")
+text(1:8, colMeans((modelOut-ensembleOut)>=0)*100,toupper(colnames(modelOut)) )
+title("% of models EBMA beats by metric")
+
+dim(.sweep)
+head(.sweep[,-c(1:2)])
+
+library(colorRamps)
+
+par(pin=c(10,152), mar=c(.5,2,3,2))
+plot(NULL, xlim=c(4, 158), ylim=c(4,118), yaxt="n", xaxt="n", xlab="", ylab="")
+.thisRamp <- blue2red(1000)
+for (i in 121:1){
+.thisCol <- .thisRamp[round(as.matrix(.modelWeights[122-i,]*1000))][!is.na(.modelWeights[122-i,])]
+points((1:162)[!is.na(.modelWeights[122-i,])], rep(i, 162)[!is.na(.modelWeights[122-i,])], pch=15, cex=.5, xlim=c(1, 162), ylim=c(0,121), col=.thisCol)
+}
+par(las=2)
+mtext(substr(.modelNames, 2,9), side=3, at=1:162, cex=.3, padj=1)
+par(las=1)
+mtext(side=4, round(.ensemblePred-.outcome, 2), at=c(121:1), cex=.4, line=1, adj=1)
+mtext(side=4,  "Error", at=122, cex=.5, line=1, adj=1)
+mtext(side=2,  data[.theseRows,1], at=c(121:1), cex=.5, line=1, adj=.5)
+title("Ensemble weights and predictions for unemployment (4 quarters out)")
+legend(100, 120, c("Model weight = 1", "Model weight=0"), col=c("red", "blue"), pch=c(15, 15))
 
 ### Run a bunch of them in paralel
 params <- expand.grid(wind=c(5,10,20,30), cal=c(3,5,10), crowds=seq(0,.2,.025), impute=c(TRUE, FALSE), data=c(1,2,3,4))
