@@ -64,3 +64,33 @@ rownames(for_com)<-blub
 for_com<-for_com[order(rownames(for_com)),]
 test1==for_com[,3]  #correct!
 
+
+rm(list=ls(all=TRUE))
+
+
+setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
+new_data<-read.csv("unemployment_data.csv")
+head(new_data)
+
+for_test<-new_data[,-c(1,2,3,4)]
+head(for_test)
+for_test<-colSums(for_test,na.rm=TRUE)
+
+old_data<-read.csv("Individual_UNEMP.csv")
+
+head(old_data)
+
+### keep only quarter, year, UNEMP3, UNEMP6
+old_data<-old_data[,c("id","UNEMP3","UNEMP6")]
+
+head(old_data)
+
+old_data$UNEMP3<-ifelse(old_data$UNEMP3==-999,0,old_data$UNEMP3)
+
+old_data$UNEMP6<-ifelse(old_data$UNEMP6==-999,0,old_data$UNEMP6)
+head(old_data)
+for_com<-aggregate(old_data,by=list(old_data$id),FUN=sum)
+head(for_com)
+for_com$sum<-for_com$UNEMP3+for_com$UNEMP6
+for_com<-for_com[order(for_com$Group.1),]
+round(for_test,3)==round(for_com$sum,3) #correct!
