@@ -1,5 +1,5 @@
 rm(list=ls(all=TRUE))
-#setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
+setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
 setwd("~/Github/EBMAforecast/APSA_2012/Data")
 library(reshape)
 
@@ -95,10 +95,41 @@ unemployment_data<-merge(true_un, unemployment_forecast, by=("forecast.year.quar
 head(unemployment_data)
 #unemployment_data<-unemployment_data[,-3]
 
+#write.csv(unemployment_data,file="unemployment_data.csv")
+
+greenbook<-read.csv("Greenbook_Unemp.csv")
+head(greenbook)
+#only 1 and 4 quarters out kept
+greenbook<-greenbook[,c("year","quarter","GB_Unemp3","GB_Unemp6")]
+
+gb_unemp3<-greenbook[,c("year","quarter","GB_Unemp3")]
+gb_unemp6<-greenbook[,c("year","quarter","GB_Unemp6")]
+#gb_unemp3$GB_Unemp3<-ifelse(gb_unemp3$GB_Unemp3=="#N/A",NA,gb_unemp3$GB_Unemp3)
+#gb_unemp6$GB_Unemp6<-ifelse(gb_unemp6$GB_Unemp6=="#N/A",NA,gb_unemp6$GB_Unemp6)
+
+
+
+gb_unemp3$quarter<-gb_unemp3$quarter
+gb_unemp3$year<-ifelse(gb_unemp3$quarter==5,gb_unemp3$year+1,gb_unemp3$year)
+gb_unemp3$quarter<-ifelse(gb_unemp3$quarter==5,gb_unemp3$quarter+1,gb_unemp3$quarter)
+gb_unemp6$year<-gb_unemp6$year+1
+	
+gb_unemp3$Var<-"UNEMP3"
+gb_unemp6$Var<-"UNEMP6"
+
+gb_unemp3$forecast.year.quarter<-paste(gb_unemp3$year,gb_unemp3$quarter,sep=".")
+gb_unemp6$forecast.year.quarter<-paste(gb_unemp6$year,gb_unemp6$quarter,sep=".")
+gb_unemp3<-gb_unemp3[,-c(1,2)]
+gb_unemp6<-gb_unemp6[,-c(1,2)]
+names(gb_unemp3)<-"greenbook"
+names(gb_unemp6)<-"greenbook"
+
+
+greenbook_data<-rbind(gb_unemp3,gb_unemp6)
+names(greenbook_data)<-c("greenbook","Var","forecast.year.quarter")
+unemployment_data<-merge(unemployment_data,greenbook_data,by=c("forecast.year.quarter"))
+
 write.csv(unemployment_data,file="unemployment_data.csv")
-
-
-
 ############ do the same for cpi data
 rm(list=ls(all=TRUE))
 setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
@@ -193,7 +224,37 @@ names(true_cpi)[1]<-"CPI_Truth"
 ##now merge true data and forecasts
 cpi_data<-merge(true_cpi, cpi_forecast, by=("forecast.year.quarter"),all.x=TRUE,all.y=TRUE)
 head(cpi_data)
-write.csv(cpi_data,file="cpi_data.csv")
+#write.csv(cpi_data,file="cpi_data.csv")
 
 
+
+greenbook<-read.csv("Greenbook_CPI.csv")
+head(greenbook)
+#only 1 and 4 quarters out kept
+greenbook<-greenbook[,c("year","quarter","GB_CPIdot3","GB_CPIdot6")]
+
+gb_cpi3<-greenbook[,c("year","quarter","GB_CPIdot3")]
+gb_cpi6<-greenbook[,c("year","quarter","GB_CPIdot6")]
+
+
+
+gb_cpi3$quarter<-gb_cpi3$quarter
+gb_cpi3$year<-ifelse(gb_cpi3$quarter==5,gb_cpi3$year+1,gb_cpi3$year)
+gb_cpi3$quarter<-ifelse(gb_cpi3$quarter==5,gb_cpi3$quarter+1,gb_cpi3$quarter)
+gb_cpi6$year<-gb_cpi6$year+1
+	
+gb_cpi3$Var<-"CPI3"
+gb_cpi6$Var<-"CPI6"
+
+gb_cpi3$forecast.year.quarter<-paste(gb_cpi3$year,gb_cpi3$quarter,sep=".")
+gb_cpi6$forecast.year.quarter<-paste(gb_cpi6$year,gb_cpi6$quarter,sep=".")
+gb_cpi3<-gb_cpi3[,-c(1,2)]
+gb_cpi6<-gb_cpi6[,-c(1,2)]
+names(gb_cpi3)<-"greenbook"
+names(gb_cpi6)<-"greenbook"
+
+
+greenbook_data<-rbind(gb_cpi3,gb_cpi6)
+names(greenbook_data)<-c("greenbook","Var","forecast.year.quarter")
+cpi_data<-merge(cpi_data,greenbook_data,by=c("forecast.year.quarter"))
 
