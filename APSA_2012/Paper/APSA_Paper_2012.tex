@@ -1,0 +1,128 @@
+% EBMA paper for Political Analysis: As Accepted for Publication.
+
+
+
+%\documentclass[pdftex,12pt,fullpage,oneside,endnotes]{amsart}
+\documentclass[12pt,fullpage,endnotes]{article}
+%\usepackage{apsr}
+\usepackage{array,amsmath,psfrag,amssymb,subfigure,tabularx}
+\usepackage{hyperref,multicol}
+\usepackage{pa}
+\usepackage{booktabs}
+\usepackage[usenames]{color}
+\usepackage{datetime}
+\usepackage{dcolumn}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage[english]{babel}
+\usepackage{times}
+\usepackage{multirow}
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{endnotes}
+\usepackage[top=3cm, bottom=3cm, left=2.3cm, right=2.3cm]{geometry} 
+
+\newcommand{\note}[1]{\footnote{ #1 \vspace{4 mm}}}
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+\bibdata{Bibliography_EBMA}
+%\bibliographystyle{chicago}
+
+\newboolean{blind}
+\setboolean{blind}{false}
+
+
+\title{ITitle goes here \\\  \thanks{Thanks to me and you!
+   This work was supported by the Information Processing Technology Office of the
+    Defense Advanced Research Projects Agency through a
+    holding grant is to the Lockheed Martin Corporation [FA8650-07-C-7749].}}
+\author{
+Jacob M. Montgomery\\
+	Department of Political Science\\
+	Washington University in St. Louis\\
+	Campus Box 1063, One Brookings Drive\\
+	St. Louis, MO, USA, 63130-4899 
+	\and
+Florian M. Hollenbach  \\
+	Department of Political Science\\
+	Duke University\\
+	Perkins Hall 326 Box 90204\\
+	Durham, NC, USA, 27707-4330
+	\and
+Michael D. Ward\\
+	Department of Political Science\\
+	Duke University\\
+	Perkins Hall 326 Box 90204\\
+	Durham, NC, USA, 27707-4330\\
+	corresponding author: michael.d.ward@duke.edu
+} 
+
+
+
+
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\clearpage
+\pagestyle{myheadings}
+\markright{Montgomery, Hollenbach, \& Ward\hfill Ensemble BMA\hfill}
+\newpage
+%\singlespacing
+
+\thispagestyle{empty}
+
+
+\begin{abstract}
+%\begin{doublespace}
+ Bla bla blub
+ %  \end{doublespace}
+\end{abstract}
+
+%\doublespacing
+%\newpage
+
+
+\setcounter{page}{1}
+
+
+\section{Introduction}
+
+\section{Ensemble Bayesian model averaging} 
+
+
+\subsection{Overview of method}
+
+\subsection{Mathematical foundations}
+
+
+\section{Applications}
+\subsection{Predicting Unemployment}
+\subsection{Predicting Inflation}
+
+
+\section{Discussion} %%% Mike to re-write this section
+
+\newpage
+\appendix
+
+
+\section*{Appendix}
+
+%%Bib 
+\singlespacing
+\bibliographystyle{apsr}
+\bibliography{Bibliography_EBMA}
+
+
+\end{document}
+\bye
