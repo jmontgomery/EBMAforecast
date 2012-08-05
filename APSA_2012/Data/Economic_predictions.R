@@ -259,6 +259,7 @@ names(gb_cpi6)<-"greenbook"
 
 
 greenbook_data<-rbind(gb_cpi3,gb_cpi6)
-names(greenbook_data)<-c("greenbook","Var","forecast.year.quarter")
-cpi_data<-merge(cpi_data,greenbook_data,by=c("forecast.year.quarter"))
+names(greenbook_data)<-c("greenbook","variable","forecast.year.quarter")
+cpi_data<-merge(cpi_data,greenbook_data,by=c("forecast.year.quarter", "variable"))
+write.csv(cpi_data,file="cpi_data.csv")
 
