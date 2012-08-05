@@ -126,8 +126,12 @@ names(gb_unemp6)<-"greenbook"
 
 
 greenbook_data<-rbind(gb_unemp3,gb_unemp6)
-names(greenbook_data)<-c("greenbook","Var","forecast.year.quarter")
-unemployment_data<-merge(unemployment_data,greenbook_data,by=c("forecast.year.quarter"))
+names(greenbook_data)<-c("greenbook","variable","forecast.year.quarter")
+greenbook_data <- greenbook_data[order(greenbook_data$forecast.year.quarter, greenbook_data$variable),]
+greenbook_data
+unemployment_data<-merge(unemployment_data,greenbook_data,by=c("forecast.year.quarter", "variable"))
+head(unemployment_data)
+
 
 write.csv(unemployment_data,file="unemployment_data.csv")
 ############ do the same for cpi data
