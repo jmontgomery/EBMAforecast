@@ -1,24 +1,38 @@
 \name{plot}
 \alias{plot}
 \alias{plot,FDatFitLogit-method}
-\title{Plotting function for logistic ensemble models that have already been fit}
+\alias{plot,FDatFitNormal-method}
+\title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal"}
 \arguments{
-  \item{x}{An object of class "FDatFitLogit".}
+  \item{x}{An object of class "FDatFitLogit" or
+  "FDatFitNormal"}
 
   \item{period}{Can take value of "calibration" or "test"
   and indicates the period for which the plots should be
   produced.}
+
+  \item{subset}{The row names or numbers for the
+  observations the user wishes to plot.}
 }
 \value{
   NULL
 }
 \description{
-  This function creates separation plots for each of the
-  fitted models, including the EBMA model. Observations are
-  ordered from left to right with increasing predicted
-  probabilities, which is depicted by the black line.
-  Actual occurrences are displayed by red vertical lines.
-  Plots can be dislayed for the test or calibration period.
+  For objects of the class "FDatFitLogit", this function
+  creates separation plots for each of the fitted models,
+  including the EBMA model. Observations are ordered from
+  left to right with increasing predicted probabilities,
+  which is depicted by the black line. Actual occurrences
+  are displayed by red vertical lines. Plots can be
+  dislayed for the test or calibration period.
+}
+\details{
+  For objects of the class "FDatFitNormal", this function
+  creates a plot of the predictive density distribution
+  containing the EBMA PDF and the PDFs for all components
+  (scaled by their model weights).  It also plots the
+  prediction for the ensemble and the components for the
+  specified observations.
 }
 \examples{
 data(calibrationSample)
@@ -29,10 +43,9 @@ this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LME
 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 
-this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
+this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
 
 plot(this.ensemble, period="calibration")
-
 plot(this.ensemble, period="test")
 }
 \author{

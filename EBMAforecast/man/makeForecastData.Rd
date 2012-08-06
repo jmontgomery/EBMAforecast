@@ -2,20 +2,6 @@
 \alias{makeForecastData}
 \title{Build a ensemble forecasting data object}
 \arguments{
-  \item{.predAll}{An n by p matrix or data.frame containing
-  predictions, for both the calibration and test
-  observations.  This may also be a n by p by m array
-  containing multiple predictions for each model.  Missing
-  values are allowed.}
-
-  \item{.outcomeAll}{A vector of length n, containing the
-  true values of the dependent variable, for both the
-  calibration and test observations.}
-
-  \item{.inOut}{A dichotomous vector of length n, where 1
-  indicates that the observation is in the test sample and
-  0 that it is in the calibration sample.}
-
   \item{.predCalibration}{A matrix with the number of rows
   being the number of observations in the calibration
   period and a column with calibration period predictions
@@ -97,6 +83,6 @@ setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
   Forthcoming.
 }
 \seealso{
-  ensembleBMA, other functions
+  ensembleBMA
 }
 

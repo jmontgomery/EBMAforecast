@@ -98,7 +98,7 @@ expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_er
 context("Results Check")
 test_that("results are the same as presented in paper (calibration period)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, maxIter=25000, exp=3)
 test_mat<-round(as.matrix(compareModels(check1, .period="calibration")),3)
 check_against<-matrix(c(0.035,0.084, 0.068,0.077,0.960,0.971,0.922,0.656,0.971,0.871,0.901,0.918,0.649,-0.579,-0.211,0.000),ncol=4,nrow=4)
 for(i in 1:4){
@@ -111,7 +111,7 @@ for(i in 1:4){
 
 test_that("results are the same as presented in paper (test period)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)	
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, maxIter=25000, exp=3)	
 test_mat1<-round(as.matrix(compareModels(check1, .period="test")),3)
 check_against1<-matrix(c(0.039,0.080, 0.059,0.088,0.973,0.970,0.960,0.721,0.943,0.911,0.920,0.899,0.429,0.114,0.200,0.000),ncol=4,nrow=4)
 for(i in 1:4){
@@ -238,7 +238,7 @@ expect_that(check1@exp,equals(15))
 
 test_that("model parameters are turned of, all parameters are 0,1",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, useModelParams=FALSE)
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, maxIter=25000, useModelParams=FALSE)
 parameters<-matrix(c(0,1,0,1,0,1),ncol=3)		
 for(i in 1:2){
 	for(j in 1:3){
@@ -279,12 +279,12 @@ expect_that(check1@maxIter,equals(25))
 })
 
 test_that("exponent changes if option is used",{
-check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.000001, maxIter=25000, exp=15)		
+check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.0001, maxIter=25000, exp=15)		
 expect_that(check1@exp,equals(15))
 })
 
 test_that("model parameters are turned of, all parameters are 0,1",{
-check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, useModelParams=FALSE)
+check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.0001, maxIter=25000, useModelParams=FALSE)
 parameters<-matrix(c(0,1,0,1,0,1,0,1),ncol=4)	
 for(i in 1:2){
 	for(j in 1:4){

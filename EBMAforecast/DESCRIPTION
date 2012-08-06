@@ -1,11 +1,11 @@
 Package: EBMAforecast
 Type: Package
 Title: Ensemble BMA Forecasting
-Version: 0.3
-Date: 2012-05-06
-Author: Michael D. Ward and Jacob M. Montgomery
+Version: 0.4
+Date: 2012-08-08
+Author: Jacob M. Montgomery, Florian Hollenbach, and Michael D. Ward
 Maintainer: Jacob Montgomery <jacob.montgomery@wustl.edu>
-Description: Ensemble BMA for logistic regression
+Description: Ensemble BMA for social science data
 License: GPL (>= 2)
 Depends:
     separationplot,
@@ -16,12 +16,13 @@ Depends:
     abind
 LazyLoad: yes
 Collate:
-    'forecastData.R'
+    'ForecastData.R'
     'calibrateEnsemble.R'
-    'fDatFitLogit.R'
+    'FDatFitLogit.R'
     'compareModels.R'
     'document-data.R'
     'summary.R'
     'FDatFitNormal.R'
     'fitEnsembleLogit.R'
     'fitEnsembleNormal.R'
+    'makeForecastData.R'

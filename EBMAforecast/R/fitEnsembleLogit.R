@@ -2,7 +2,7 @@
 
 #' @export
 setGeneric(name="fitEnsemble",
-           def=function(.forecastData,  tol=1.490116e-08, maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", ...)
+           def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", ...)
            {standardGeneric("fitEnsemble")}
            )
 
@@ -10,7 +10,13 @@ setGeneric(name="fitEnsemble",
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataLogit"),
-          definition=function(.forecastData,  tol=1.490116e-08, maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian")
+          definition=function(.forecastData,
+            tol = sqrt(.Machine$double.eps),
+            maxIter=1e6,
+            method="EM",
+            exp=1,
+            useModelParams=TRUE,
+            predType="posteriorMedian")
           {
             
             .em <- function(outcomeCalibration, prediction, W)
@@ -21,15 +27,11 @@ setMethod(f="fitEnsemble",
                 z.numerator.zero <- aaply(1-prediction, 1, function(x){x*W})
                 z.numerator[outcomeCalibration==0,] <- z.numerator.zero[outcomeCalibration==0,]
                 z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
-                z.denom <- z.denom/
-                  aaply(prediction, 1, .fun=function(x) sum((!is.na(x)*1)*W))
-
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
 
                 ## Step 2: Calculat the W's
                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
                 W <- .unnormalizedW
-                W <- (W/rowSums(!colSums(prediction, na.rm=T)==0)) # the bottom here is the number of non-empty exchangeable draws for each model
                 W <- W/sum(.unnormalizedW)
                 W[W<ZERO]<-0
                 names(W) <- modelNames
@@ -37,7 +39,7 @@ setMethod(f="fitEnsemble",
                 ## Step 3: Calculate the log-likelihood
                 LL <-sum(log(z.denom))
                 
-                ## Output: Log-liklihood, PP.W, and Model Weights
+
                 out <- list(LL=LL, W=W)
                 return(out)
               }
@@ -65,9 +67,18 @@ setMethod(f="fitEnsemble",
             .modelFitter <- function(preds){
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
+              if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
               return(.thisModel)
             }
 
+            .predictTest <- function(x, i){
+              .rawPred <- predict(.models[[i]], newdata=data.frame(.adjPred=x), type="response")
+              .outPred <- rep(NA, nObsTest)a
+              .outPred[as.numeric(names(.rawPred))] <- .rawPred
+              return(.outPred)
+            }
+
+            
             ##Extract data
             predCalibration <- getPredCalibration(.forecastData); outcomeCalibration <- getOutcomeCalibration(.forecastData)
             predTest <- getPredTest(.forecastData); outcomeTest <- getOutcomeTest(.forecastData)
@@ -80,7 +91,7 @@ setMethod(f="fitEnsemble",
             ZERO<-1e-4
             
             ## Fit Models
-            if(useModelParams==TRUE){.models <- aaply(predCalibration, 2:3, .fun=.modelFitter)}
+            if(useModelParams==TRUE){.models <- aaply(predCalibration, 2:3, .fun=.modelFitter) }
 
             ## Extract needed info
             if(nDraws==1 & useModelParams==TRUE){
@@ -116,7 +127,6 @@ setMethod(f="fitEnsemble",
               .done <- abs(.emOld-LL)/(1+abs(LL))<tol
               .emOld <- LL
               .iter <- .iter+1
-              print(.iter)
             }
             if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
@@ -126,17 +136,8 @@ setMethod(f="fitEnsemble",
             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
             bmaPred <-  bmaPred/array(t(W%*%t(1*!is.na(.flatPreds))), dim=c(nObsCal, 1, nDraws))
             bmaPred[,,-1] <- NA
-
-            
-            ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
             cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
 
-            .predictTest <- function(x, i){
-              .rawPred <- predict(.models[[i]], newdata=data.frame(.adjPred=x), type="response")
-              .outPred <- rep(NA, nObsTest)
-              .outPred[as.numeric(names(.rawPred))] <- .rawPred
-              return(.outPred)
-            }
             
             if(.testPeriod){
               if(useModelParams==TRUE){

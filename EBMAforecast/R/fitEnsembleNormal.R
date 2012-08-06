@@ -3,7 +3,12 @@
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
-          definition=function(.forecastData, tol=1.490116e-08, maxIter=1e6, method="EM", exp=numeric(), useModelParams = TRUE, predType="posteriorMedian", const=0)
+          definition=function(.forecastData, tol = sqrt(.Machine$double.eps),
+            maxIter=1e6,
+            method="EM",
+            exp=numeric(),
+            useModelParams = TRUE,
+            predType="posteriorMedian")
           {
             .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
               {
@@ -18,39 +23,13 @@ setMethod(f="fitEnsemble",
                           , dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
                 z.numerator<- aaply(.data=g, .margins=1, .fun=function(x){x*W})
                 z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
-
-                ## Step 4: Calculate the log-likelihood
-                LL <-sum(log(z.denom))
-#                print(LL)
-
-                
-#                z.denom <- z.denom/
- #                 aaply(g, 1, .fun=function(x) sum((!is.na(x)*1)*W))
-
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
-              #  print("orig")
-               # print(rowSums(Z, na.rm=TRUE))
-              #  print(Z)
                 Z[Z < ZERO] <- 0
-                
-                .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
-                .adjConst <- const*1/.missZ
-                #print(.adjConst)
-                #print(.missZ)
-                #print(.missZ*.adjConst)
-                Z <- .adjConst + (1-const)*Z
-
-#                Z[!is.na(Z)] <- const+(1-const)*Z[!is.na(Z)]
-          #  print("adj")
-           #               print(Z)
-             #   print(rowSums(Z, na.rm=TRUE))
-
                 Z[is.na(Z)] <- 0
 
                 ## Step 2: Calculat the W's
                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
                 W <- .unnormalizedW
-              #  W <- (W/rowSums(!colSums(g, na.rm=T)==0)) # the bottom here is the number of non-empty exchangeable draws for each model
                 W <- W/sum(.unnormalizedW)
                 W[W<ZERO]<-0
                 names(W) <- modelNames
@@ -58,7 +37,10 @@ setMethod(f="fitEnsemble",
                 ## Step 3: Calculate sigma squared
                 sigma2<-sum(Z * RSQ, na.rm=T)/sum(Z, na.rm=T) 
 
-                
+
+                ## Step 4: Calculate the log-likelihood
+                LL <-sum(log(z.denom))
+
                 out <- list(LL=LL, W=W,sigma2=sigma2)
                 return(out)
               }
@@ -135,7 +117,6 @@ setMethod(f="fitEnsemble",
               .done <- abs(.emOld-LL)/(1+abs(LL))<tol
               .emOld <- LL
               .iter <- .iter+1
-#              print(.iter)
             }
             if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
@@ -150,7 +131,6 @@ setMethod(f="fitEnsemble",
               bmaPred[,,-1] <- NA
             }
 
-            ## ATTENTION: Note if we are using posterior medians, this is *NOT* correct for exchangeable forecasts 
             if (predType=="posteriorMedian"){
               .altQBMAnormal <- function(x){
                 .x <- x[!is.na(x)]
@@ -166,7 +146,7 @@ setMethod(f="fitEnsemble",
 
      
             if(.testPeriod){
-              if(useModelParams==TRUE){ # This needs to *not* be a double for loop
+              if(useModelParams==TRUE){ 
                 predTestAdj <- array(NA, dim=c(nObsTest, nMod, nDraws))
                 for (k in 1:nMod){
                  for (j in 1:nDraws){
@@ -212,6 +192,7 @@ setMethod(f="fitEnsemble",
                 exp=exp,
                 tol=tol,
                 maxIter=maxIter,
+                predType=predType,
                 method=method,
                 call=match.call()
                 )

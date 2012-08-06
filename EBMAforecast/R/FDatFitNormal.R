@@ -11,6 +11,7 @@ setClass(Class="FDatFitNormal",
            tol="numeric",
            maxIter="numeric",
            method="character",
+           predType="character",
            call="call"
            )
          )
@@ -24,7 +25,6 @@ setMethod(
             mainLabel=paste("Observation", subset), xLab="Outcome", yLab="Posterior Probability", cols=2:(length(x@modelNames)+1), ... )
           {
 
-            ## NOTE: This should be changed when implement exchangeable
             thisDraw=1
 
             if(period=="calibration"){

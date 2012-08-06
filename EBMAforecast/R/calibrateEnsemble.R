@@ -29,7 +29,7 @@
 #'
 #' @author Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
 #'
-#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
+#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
 #' @references Raftery, A. E., T. Gneiting, F. Balabdaoui and M. Polakowski. (2005). Using Bayesian Model Averaging to calibrate forecast ensembles. \emph{Monthly Weather Review}. \bold{133}:1155--1174.
 #' @references Sloughter, J. M., A. E. Raftery, T. Gneiting and C. Fraley. (2007). Probabilistic quantitative precipitation forecasting using Bayesian model averaging. \emph{Monthly Weather Review}. \bold{135}:3209--3220.
@@ -44,18 +44,18 @@
 #'.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 #' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 #'
-#' this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
+#' this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
 #'
 #' @keywords calibrate EBMA 
 #'
 #' @rdname calibrateEnsemble
-#' @aliases calibrateEnsemble,ForecastData-method fitEnsemble,ForecastDataLogit-method fitEnsemble,ForecastDataNormal-method FDatFitLogit-class ForecastData-class ForecastDataLogit-class  ForecastDataNormal-class
+#' @aliases fitEnsemble,ForecastDataLogit-method fitEnsemble,ForecastDataNormal-method FDatFitLogit-class ForecastDataLogit-class  ForecastDataNormal-class FDatFitNormal-class calibrateEnsemble,ForecastData-method 
 #' @export
 setGeneric(name="calibrateEnsemble",
            def=function(.forecastData=new("ForecastData"),
              exp=1,
-             tol=.001,
-             maxIter=10000,
+             tol=sqrt(.Machine$double.eps),
+             maxIter=1e6,
              model="logit",
              method="EM",
              ...)
@@ -70,7 +70,7 @@ setMethod(f="calibrateEnsemble",
           definition=function(
             .forecastData,
             exp=1,
-            tol=1.490116e-08,
+            tol=sqrt(.Machine$double.eps),
             maxIter=1e6,
             model="logit",
             method="EM",
