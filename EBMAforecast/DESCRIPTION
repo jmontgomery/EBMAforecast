@@ -16,9 +16,9 @@ Depends:
     abind
 LazyLoad: yes
 Collate:
-    'ForecastData.R'
+    'forecastData.R'
     'calibrateEnsemble.R'
-    'FDatFitLogit.R'
+    'fDatFitLogit.R'
     'compareModels.R'
     'document-data.R'
     'summary.R'

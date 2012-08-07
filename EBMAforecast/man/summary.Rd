@@ -14,12 +14,18 @@
   provided, either "calibration" or "test".}
 
   \item{fitStatistics}{A vector naming statistics that
+<<<<<<< HEAD
   should be calculated.  Possible values for objects in the
   "FDatFitLogit" subclass include "auc", "brier",
   "percCorrect", "pre". Possible values for objects in the
   "FDatFitNormal" subclass include "rmse" and "mae."
   Additional metrics will be made available in a future
   release of this package.}
+=======
+  should be calculated.  Possible values include "auc",
+  "brier", "percCorrect", "pre" for the logit model and
+  "rmse","mae" for the normal model.}
+>>>>>>> helpfiles
 
   \item{threshold}{The threshold used to calculate when a
   "positive" prediction is made for a model.  Not used for

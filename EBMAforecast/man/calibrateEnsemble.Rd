@@ -84,9 +84,15 @@
   however models with missing observations are penalized.
   When missing observations are prevalent in the
   calibration period, the EM algorithm is adjusted and
+<<<<<<< HEAD
   model paprameters are estimated by maximizing a
   renormalized partial expected complete-data
   log-likelihood (Fraley et al. 2010).
+=======
+  model parameters are estimated by ``maximizing a
+  renormalized partial expected complete-data
+  log-likelihood'' (Fraley et al. 2010).
+>>>>>>> helpfiles
 }
 \examples{
 \dontrun{data(calibrationSample)
