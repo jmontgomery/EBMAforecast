@@ -1,3 +1,7 @@
+data(calibrationSample)
+data(testSample)
+
+
 	context("Test if predictions between 0 and 1")
 test_that("error for predcalibration greater 1",{
 ##test 1 for error predcalibration not between 0 and 1
@@ -219,14 +223,14 @@ expect_that(this.ForecastData,equals(this.ForecastData.a))
 context("test for functionality of options in logit EBMA (logit)")
 test_that("tolerance changes if option is used (logit)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.000141, maxIter=25000, exp=3)		
-expect_that(check1@tol,equals(0.000141))	
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.00141, maxIter=25000, exp=3)		
+expect_that(check1@tol,equals(0.00141))	
 })
 
 test_that("maximum iteration changes if option is used (logit)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0000000001, maxIter=25, exp=3)		
-expect_that(check1@maxIter,equals(25))
+check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.0000000001, maxIter=15, exp=3)		
+expect_that(check1@maxIter,equals(15))
 })
 
 test_that("exponent changes if option is used (logit)",{
@@ -389,22 +393,61 @@ expect_error(calibrateEnsemble(this.ForecastData, model="logit", tol=0.01, maxIt
 
 context("test that results are same as in Raftery package")
 #create data frame
-set.seed(123)
-predictions<-matrix(NA, nrow=400, ncol=4)
-predictions[,1]<-rnorm(400,mean=2.6,sd=5)
-predictions[,2]<-rnorm(400,mean=6,sd=10)
-predictions[,3]<-rnorm(400,mean=0.4,sd=8)
-predictions[,4]<-rnorm(400,mean=-2,sd=15)
-true<-rep(NA,400)
-true<-rnorm(400,mean=2.2,sd=2)
+load("~/Documents/GIT/EBMAforecast/data_PA_presForecast.RData")
+tyn=15
+dates <- rep(NA, tyn)
+   for (i in 1:tyn){
+     dates[i] <- paste("2011", "01", 10+i, "01", sep="")
+    }
 
-test.pred<-matrix(NA, nrow=40, ncol=4)
-test.pred[,1]<-rnorm(40,mean=2.3,sd=7)
-test.pred[,2]<-rnorm(40,mean=3.3,sd=12)
-test.pred[,3]<-rnorm(40,mean=1.3,sd=11)
-test.pred[,4]<-rnorm(40,mean=2.2,sd=18)
-test.true<-rnorm(40,mean=2.2,sd=2)
-
+   pred.date <- dates[tyn]
+full.forecasts<-data_PA_presForecast[,c(1:6)]
+full.observed<-data_PA_presForecast[,7]
+library(ensembleBMA)
 test_that("same result as in Raftery",{
+   my.E.data <- ensembleData(forecasts=(full.forecasts)^(1/a), dates=dates, observations=full.observed,
+                             initializationTime=1, forecastHour=1) #Make a dataset of the appropriate format for the ensembleBMA package
+   fit.eBMA <- ensembleBMAnormal(my.E.data, trainingDays=train.years, dates=pred.date, minCRPS=FALSE,
+                              control=controlBMAnormal(biasCorrection="none",tol=0.00000001))
+my.data<-makeForecastData(.predCalibration=full.forecasts[c(1:14),],.outcomeCalibration=full.observed[c(1:14)],.predTest=full.forecasts[15,],.outcomeTest=full.observed[15], c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
+check1<-calibrateEnsemble(my.data, model="normal", maxIter=25000,useModelPara=FALSE,tol=0.00000001)
+round(check1@modelWeights,4)                            
+## this needs to be fixed
+round(fit.eBMA$weights,4)
+expect_that(round(check1@modelWeights,4),equals(round(fit.eBMA$weights,4)))
+})
 
-}
+
+
+context("test that results are same as in Raftery package with missing obs")
+tyn=15
+dates <- rep(NA, tyn)
+   for (i in 1:tyn){
+     dates[i] <- paste("2011", "01", 10+i, "01", sep="")
+    }
+
+   pred.date <- dates[tyn]
+full.forecasts<-data_PA_presForecast[,c(1:6)]
+full.observed<-data_PA_presForecast[,7]   
+full.forecasts<-data_PA_presForecast[,c(1:6)]
+full.observed<-data_PA_presForecast[,7]
+full.forecasts[1,6]<-NA
+full.forecasts[3,2]<-NA
+full.forecasts[2,2]<-NA
+full.forecasts[7,2]<-NA
+full.forecasts[6,1]<-NA
+full.forecasts[14,2]<-NA
+full.forecasts[7,6]<-NA
+library(ensembleBMA)
+test_that("same result as in Raftery",{
+   my.E.data <- ensembleData(forecasts=(full.forecasts)^(1/a), dates=dates, observations=full.observed,
+                             initializationTime=1, forecastHour=1) #Make a dataset of the appropriate format for the ensembleBMA package
+   fit.eBMA <- ensembleBMAnormal(my.E.data, trainingDays=train.years, dates=pred.date, minCRPS=FALSE,
+                              control=controlBMAnormal(biasCorrection="none",tol=0.00000001))
+my.data<-makeForecastData(.predCalibration=full.forecasts[c(1:14),],.outcomeCalibration=full.observed[c(1:14)],.predTest=full.forecasts[15,],.outcomeTest=full.observed[15], c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
+check1<-calibrateEnsemble(my.data, model="normal", maxIter=25000,useModelPara=FALSE,tol=0.00000001)
+## this needs to be fixed
+expect_that(round(check1@modelWeights,4),equals(round(fit.eBMA$weights,4)))
+})
+
+
