@@ -9,7 +9,7 @@
 #' @param maxIter The maximum number of iterations the EM algorithm will run before stopping automatically. The default is \code{maxIter=10000}.
 #' @param model The model type that should be used to the type of data that is being predicted (i.e., normal, binary, etc.)
 #' @param method The estimation method used.  Currently only implements "EM"
-#' @param predType The prediction type used for the EBMA model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. posterior median is the default.
+#' @param predType The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.
 #' @param ... Not implemented
 #'
 #' @return Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots

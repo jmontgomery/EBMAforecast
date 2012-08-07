@@ -17,7 +17,7 @@ setClass(Class="SummaryForecastData",
 #'
 #' @param object An object of class "FDatFitLogit"
 #' @param period The period for which the summary should be provided, either "calibration" or "test".
-#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre". 
+#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" for the logit model and "rmse","mae" for the normal model. 
 #' @param threshold The threshold used to calculate when a "positive" prediction is made by the model.
 #' @param baseModel Vector containing predictions used to calculate proportional reduction of error ("pre").
 #' @param showCoefs A logical indicating whether model ceofficients from the ensemble should be shown.
