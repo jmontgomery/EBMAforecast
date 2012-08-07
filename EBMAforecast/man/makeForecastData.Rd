@@ -47,13 +47,13 @@
   used to calibrate and fit the ensemble. Individual slots
   of the \code{ForecastData} object can be accessed and
   changed using the \code{get} and \code{set} functions
-  respectively. Missing observations are allowed in the
+  respectively. Missing predictions are allowed in the
   calibration set.
 }
 \examples{
 data(calibrationSample)
 
-data(testSample)
+\dontrun{data(testSample)
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -72,6 +72,7 @@ setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
 setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
 setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

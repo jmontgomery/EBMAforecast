@@ -12,7 +12,8 @@
 
   \item{.fitStatistics}{A vector naming statistics that
   should be calculated.  Possible values include "auc",
-  "brier", "percCorrect", "pre".}
+  "brier", "percCorrect", "pre" for logit models and
+  "mae","rsme" for normal models.}
 
   \item{.threshold}{The threshold used to calculate when a
   "positive" prediction is made by the model.}
@@ -42,10 +43,13 @@
   score, the percent of observations predicted correctly
   (\code{percCorrect}), as well as the proportional
   reduction in error compared to some baseline model
-  (\code{pre}).
+  (\code{pre}) for binary models. For models with normally
+  distributed outcomes the \code{CompareModels} function
+  can calculate the root mean squared error (\code{rmse})
+  as well as the mean absolute error (\code{mae}).
 }
 \examples{
-data(calibrationSample)
+\dontrun{data(calibrationSample)
 
 data(testSample)
 
@@ -58,6 +62,7 @@ this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, 
 compareModels(this.ensemble,"calibration")
 
 compareModels(this.ensemble,"test")
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

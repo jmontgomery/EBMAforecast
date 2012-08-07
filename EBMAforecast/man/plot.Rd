@@ -34,7 +34,7 @@
 }
 \description{
   Default plotting for objectes created by the
-  "calibrateEnsemble" funciton.  See details below.
+  "calibrateEnsemble" function.  See details below.
 }
 \details{
   For objects of the class "FDatFitLogit", this function

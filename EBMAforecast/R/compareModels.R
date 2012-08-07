@@ -42,7 +42,7 @@ setClass(Class="CompareModels",
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
 #' 
-#' @examples data(calibrationSample)
+#' @examples \dontrun{data(calibrationSample)
 #' 
 #' data(testSample) 
 #' 
@@ -55,7 +55,8 @@ setClass(Class="CompareModels",
 #' compareModels(this.ensemble,"calibration")
 #' 
 #' compareModels(this.ensemble,"test") 
-
+#'}
+#'
 #' @seealso ensembleBMA, other functions
 #' @aliases compareModels,ForecastData-method CompareModels-class
 #' @export

@@ -35,6 +35,11 @@
   \item{method}{The estimation method used.  Currently only
   implements "EM"}
 
+  \item{predType}{The prediction type used for the EBMA
+  model under the normal model, user can choose either
+  \code{posteriorMedian} or \code{posteriorMean}. Posterior
+  median is the default.}
+
   \item{...}{Not implemented}
 }
 \value{
@@ -77,9 +82,14 @@
   model's performance in the calibration period. Missing
   observations are allowed in the calibration period,
   however models with missing observations are penalized.
+  When missing observations are prevalent in the
+  calibration period, the EM algorithm is adjusted and
+  model paprameters are estimated by maximizing a
+  renormalized partial expected complete-data
+  log-likelihood (Fraley et al. 2010).
 }
 \examples{
-data(calibrationSample)
+\dontrun{data(calibrationSample)
 
 data(testSample)
 
@@ -88,6 +98,7 @@ this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LME
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 
 this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

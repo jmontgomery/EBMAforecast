@@ -30,7 +30,7 @@ setClass(Class="SummaryForecastData",
 #'
 #' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
 #'
-#' @examples data(calibrationSample)
+#' @examples \dontrun{ data(calibrationSample)
 #'
 #' data(testSample) 
 #' 
@@ -43,6 +43,8 @@ setClass(Class="SummaryForecastData",
 #' summary(this.ensemble, period="calibration") 
 #'
 #' summary(this.ensemble, period="test",showCoefs=FALSE)
+#'}
+#'
 #' @aliases summary,FDatFitLogit-method print,SummaryForecastData-method show,SummaryForecastData-method SummaryForecastData-class summary,FDatFitNormal-method
 #' @export
 setMethod(

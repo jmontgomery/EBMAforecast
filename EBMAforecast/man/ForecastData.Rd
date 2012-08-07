@@ -38,7 +38,8 @@
   using the \code{makeForecastData} function. Individual
   slots of the \code{ForecastData} object can be accessed
   and changed using the \code{get} and \code{set} functions
-  respectively.
+  respectively. Missing observations in the prediction
+  calibration set are allowed.
 }
 \details{
   A data object of the class 'ForecastData' has the
@@ -56,7 +57,7 @@
   containing the names of all component models. }
 }
 \examples{
-data(calibrationSample)
+\dontrun{ data(calibrationSample)
 
 data(testSample)
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
@@ -78,9 +79,12 @@ setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
 setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 }
+}
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and
   Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
+  and Florian M. Hollenbach
+  <\email{florian.hollenbach@duke.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
