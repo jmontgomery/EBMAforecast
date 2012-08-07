@@ -73,7 +73,7 @@ setMethod(f="fitEnsemble",
 
             .predictTest <- function(x, i){
               .rawPred <- predict(.models[[i]], newdata=data.frame(.adjPred=x), type="response")
-              .outPred <- rep(NA, nObsTest)a
+              .outPred <- rep(NA, nObsTest)
               .outPred[as.numeric(names(.rawPred))] <- .rawPred
               return(.outPred)
             }

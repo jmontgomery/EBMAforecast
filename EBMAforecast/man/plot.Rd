@@ -2,7 +2,7 @@
 \alias{plot}
 \alias{plot,FDatFitLogit-method}
 \alias{plot,FDatFitNormal-method}
-\title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal"}
+\title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal", which are the objects created by the calibrateEnsemble() funciton.}
 \arguments{
   \item{x}{An object of class "FDatFitLogit" or
   "FDatFitNormal"}
@@ -12,7 +12,8 @@
   produced.}
 
   \item{subset}{The row names or numbers for the
-  observations the user wishes to plot.}
+  observations the user wishes to plot.  Only implemented
+  for the subclass "FDatFitLogit"}
 }
 \value{
   NULL
@@ -53,15 +54,20 @@ plot(this.ensemble, period="test")
   Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
 \references{
-  Montgomery, Jacob M., Florian M. Hollenbach and Michael
-  D. Ward. (2012). Improving Predictions Using Ensemble
-  Bayesian Model Averaging. \emph{Political Analysis}.
-  Forthcoming.
+  Raftery, A. E., T. Gneiting, F. Balabdaoui and M.
+  Polakowski. (2005). Using Bayesian Model Averaging to
+  calibrate forecast ensembles. \emph{Monthly Weather
+  Review}. \bold{133}:1155--1174.
 
   Greenhill, B., M.D. Ward, A. Sacks. (2011). The
   Separation Plot: A New Visual Method For Evaluating the
   Fit of Binary Data. \emph{American Journal of Political
   Science}.\bold{55}: 991--1002.
+
+  Montgomery, Jacob M., Florian M. Hollenbach and Michael
+  D. Ward. (2012). Improving Predictions Using Ensemble
+  Bayesian Model Averaging. \emph{Political Analysis}.
+  \bold{20}: 271-291.
 }
 \seealso{
   \code{separationplot}

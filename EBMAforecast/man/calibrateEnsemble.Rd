@@ -95,7 +95,7 @@ this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, 
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
   D. Ward. (2012). Improving Predictions Using Ensemble
   Bayesian Model Averaging. \emph{Political Analysis}.
-  Forthcoming.
+  \bold{20}: 271-291.
 
   Raftery, A. E., T. Gneiting, F. Balabdaoui and M.
   Polakowski. (2005). Using Bayesian Model Averaging to

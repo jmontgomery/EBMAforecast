@@ -390,21 +390,35 @@ expect_error(calibrateEnsemble(this.ForecastData, model="logit", tol=0.01, maxIt
 context("test that results are same as in Raftery package")
 #create data frame
 set.seed(123)
-predictions<-matrix(NA, nrow=400, ncol=4)
-predictions[,1]<-rnorm(400,mean=2.6,sd=5)
-predictions[,2]<-rnorm(400,mean=6,sd=10)
-predictions[,3]<-rnorm(400,mean=0.4,sd=8)
-predictions[,4]<-rnorm(400,mean=-2,sd=15)
-true<-rep(NA,400)
-true<-rnorm(400,mean=2.2,sd=2)
+predictions<-matrix(NA, nrow=360, ncol=4)
+predictions[,1]<-rnorm(360,mean=2.6,sd=5)
+predictions[,2]<-rnorm(360,mean=6,sd=10)
+predictions[,3]<-rnorm(360,mean=0.4,sd=8)
+predictions[,4]<-rnorm(360,mean=-2,sd=15)
+true<-rep(NA,360)
+true<-rnorm(360,mean=2.2,sd=2)
 
-test.pred<-matrix(NA, nrow=40, ncol=4)
-test.pred[,1]<-rnorm(40,mean=2.3,sd=7)
-test.pred[,2]<-rnorm(40,mean=3.3,sd=12)
-test.pred[,3]<-rnorm(40,mean=1.3,sd=11)
-test.pred[,4]<-rnorm(40,mean=2.2,sd=18)
-test.true<-rnorm(40,mean=2.2,sd=2)
+test.pred<-matrix(NA, nrow=36, ncol=4)
+test.pred[,1]<-rnorm(36,mean=2.3,sd=7)
+test.pred[,2]<-rnorm(36,mean=3.3,sd=12)
+test.pred[,3]<-rnorm(36,mean=1.3,sd=11)
+test.pred[,4]<-rnorm(36,mean=2.2,sd=18)
+test.true<-rnorm(36,mean=2.2,sd=2)
 
+library(ensembleBMA)
+
+dates <- rep(NA, 396)
+   for (i in 1:396){
+     dates[i] <- paste("2011", "1", i, "1", sep="")
+    }
+pred.date <- dates[361:396]   
+full.forecasts<-rbind(predictions,test.pred)
+full.observed<-c(true,test.true) 
+my.E.data <- ensembleData(forecasts=(full.forecasts)^(1/1), dates=dates, observations=full.observed,
+                             initializationTime=1, forecastHour=1) #Make a dataset of the appropriate format for the ensembleBMA package
+train.years =  360                             
+   fit.eBMA <- ensembleBMAnormal(my.E.data, trainingDays=train.years, dates=pred.date, minCRPS=TRUE,
+                              control=controlBMAnormal(biasCorrection="none"))
 test_that("same result as in Raftery",{
 
 }
