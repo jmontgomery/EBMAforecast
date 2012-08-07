@@ -8,7 +8,10 @@
 \alias{fitEnsemble}
 \alias{fitEnsemble,ForecastDataLogit-method}
 \alias{fitEnsemble,ForecastDataNormal-method}
-\title{Calibrate an ensemble Bayesian Model Averaging model}
+\title{Calibrate an ensemble Bayesian Model Averaging model
+HEAD
+This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration period, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
+helpfiles}
 \arguments{
   \item{.forecastData}{An object of class 'ForecastData'
   that will be used to calibrate the model.}
@@ -72,6 +75,7 @@
   } \item{call}{The actual call used to create the object}
 }
 \description{
+  Calibrate an ensemble Bayesian Model Averaging model HEAD
   This function calibrates an EBMA model based on
   out-of-sample performance in the calibration time period.
   Given a dependent variable and calibration-sample
@@ -84,15 +88,9 @@
   however models with missing observations are penalized.
   When missing observations are prevalent in the
   calibration period, the EM algorithm is adjusted and
-<<<<<<< HEAD
   model paprameters are estimated by maximizing a
   renormalized partial expected complete-data
-  log-likelihood (Fraley et al. 2010).
-=======
-  model parameters are estimated by ``maximizing a
-  renormalized partial expected complete-data
-  log-likelihood'' (Fraley et al. 2010).
->>>>>>> helpfiles
+  log-likelihood (Fraley et al. 2010). helpfiles
 }
 \examples{
 \dontrun{data(calibrationSample)

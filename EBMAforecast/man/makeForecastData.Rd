@@ -47,13 +47,8 @@
   used to calibrate and fit the ensemble. Individual slots
   of the \code{ForecastData} object can be accessed and
   changed using the \code{get} and \code{set} functions
-<<<<<<< HEAD
   respectively. Missing predictions are allowed in the
   calibration set.
-=======
-  respectively. Missing observations are allowed in the
-  prediction calibration set.
->>>>>>> helpfiles
 }
 \examples{
 data(calibrationSample)

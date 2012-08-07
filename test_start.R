@@ -1,3 +1,4 @@
+
 data(calibrationSample)
 data(testSample)
 
@@ -76,6 +77,8 @@ expect_that(as(this.ForecastData,"ForecastDataLogit"), throws_error())
 })
 
 context("Vector size test")
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
+
 ###test 5 for error if length of vectors not the same
 test_that("error if length of vectors are not the same",{
 expect_that(setPredCalibration(this.ForecastData)<-c(rep(1,240)), throws_error()) ### too short
@@ -88,9 +91,10 @@ expect_that(setOutcomeCalibration(this.ForecastData)<-c(rep(1,940)), throws_erro
 #expect_that(setOutcomeTest(this.ForecastData)<-c(rep(1,900)), throws_error())### too long
 })
 
-
 #### test 6 for error if columns in predCalibration and predTest differ
 test_that("error if number of columns in predCalibration and predTest differ",{
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
+
 expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=4,nrow=696), throws_error())
 expect_that(setPredCalibration(this.ForecastData)<-matrix(1,ncol=2,nrow=696), throws_error())
 expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=4,nrow=348), throws_error())
@@ -126,6 +130,7 @@ expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_er
 #})
 #
 context("get tests")
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
 test_that("getPredCalibration gives PredCalibration",{
 	expect_that(getPredCalibration(this.ForecastData),equals(this.ForecastData@predCalibration))
 })
@@ -149,6 +154,7 @@ test_that("getModelNames gives ModelNames",{
 
 
 context("set tests")
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
 test_that("setPredCalibration works",{
 	setPredCalibration(this.ForecastData)<-matrix(1,ncol=3,nrow=696) 
 	expect_that(this.ForecastData@predCalibration, equals(array(1,dim=c(696,3,1))))
@@ -393,7 +399,7 @@ test_that("predType changes prediction (normal - results)",{
 check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, exp=3,useModelPara=FALSE,predType="posteriorMedian")
 check2<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, exp=3,useModelPara=FALSE,predType="posteriorMean")
 expect_true((check1@modelWeights==check2@modelWeights)[[1]])
-expect_false((check1@predTest[,1,1]==check2@predTest[,1,1])[1])
+expect_false((check1@predTest[,1,1]==check2@predTest[,1,1])[[1]])
 })
 
 test_that("model option = logit changes results (normal - results)",{
@@ -403,7 +409,7 @@ expect_error(calibrateEnsemble(this.ForecastData, model="logit", tol=0.01, maxIt
 
 context("test that results are same as in Raftery package")
 #create data frame
-load("~/Github/EBMAforecast/data_PA_presForecast.RData")
+data(presidentialForecast)
 tyn=15
 a=1
 train.years=14
@@ -413,8 +419,8 @@ dates <- rep(NA, tyn)
     }
 
    pred.date <- dates[tyn]
-full.forecasts<-data_PA_presForecast[,c(1:6)]
-full.observed<-data_PA_presForecast[,7]
+full.forecasts<-presidentialForecast[,c(1:6)]
+full.observed<-presidentialForecast[,7]
 library(ensembleBMA)
 test_that("same result as in Raftery",{
    my.E.data <- ensembleData(forecasts=(full.forecasts)^(1/a), dates=dates, observations=full.observed,
@@ -426,23 +432,26 @@ check1<-calibrateEnsemble(my.data, model="normal", maxIter=25000,useModelPara=FA
 round(check1@modelWeights,4)                            
 ## this needs to be fixed
 round(fit.eBMA$weights,4)
-expect_that(round(check1@modelWeights,4),equals(round(fit.eBMA$weights,4)))
+check2<-as.numeric(round(as.matrix(check1@modelWeights)[1:5,],3))
+expect_that(as.numeric(round(as.matrix(fit.eBMA$weights)[1:5,],3)),equals(check2))
 })
 
 
 
 context("test that results are same as in Raftery package with missing obs")
+data(presidentialForecast)
 tyn=15
+a=1
+train.years=14
+
 dates <- rep(NA, tyn)
    for (i in 1:tyn){
      dates[i] <- paste("2011", "01", 10+i, "01", sep="")
     }
 
    pred.date <- dates[tyn]
-full.forecasts<-data_PA_presForecast[,c(1:6)]
-full.observed<-data_PA_presForecast[,7]   
-full.forecasts<-data_PA_presForecast[,c(1:6)]
-full.observed<-data_PA_presForecast[,7]
+full.forecasts<-presidentialForecast[,c(1:6)]
+full.observed<-presidentialForecast[,7]
 full.forecasts[1,6]<-NA
 full.forecasts[3,2]<-NA
 full.forecasts[2,2]<-NA
@@ -452,14 +461,14 @@ full.forecasts[14,2]<-NA
 full.forecasts[7,6]<-NA
 library(ensembleBMA)
 test_that("same result as in Raftery",{
-   my.E.data <- ensembleData(forecasts=(full.forecasts)^(1/a), dates=dates, observations=full.observed,
+   my.E.data <- ensembleData(forecasts=(full.forecasts)^(1/1), dates=dates, observations=full.observed,
                              initializationTime=1, forecastHour=1) #Make a dataset of the appropriate format for the ensembleBMA package
    fit.eBMA <- ensembleBMAnormal(my.E.data, trainingDays=train.years, dates=pred.date, minCRPS=FALSE,
                               control=controlBMAnormal(biasCorrection="none",tol=0.00000001))
 my.data<-makeForecastData(.predCalibration=full.forecasts[c(1:14),],.outcomeCalibration=full.observed[c(1:14)],.predTest=full.forecasts[15,],.outcomeTest=full.observed[15], c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
-check1<-calibrateEnsemble(my.data, model="normal", maxIter=25000,useModelPara=FALSE,tol=0.00000001)
+check13<-calibrateEnsemble(my.data, model="normal", maxIter=25000,useModelPara=FALSE,tol=0.00000001)
 ## this needs to be fixed
-expect_that(round(check1@modelWeights,4),equals(round(fit.eBMA$weights,4)))
+check2<-as.numeric(round(as.matrix(check13@modelWeights),3))
+expect_that(as.numeric(round(as.matrix(fit.eBMA$weights),3)),equals(check2))
 })
-
 

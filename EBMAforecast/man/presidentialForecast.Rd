@@ -24,11 +24,7 @@
   (2008) \item\code{EWT2C2} Predictions from Column 2 in
   Table 2 model by Erickson and Wlezien (2008)
   \item\code{Actual} The true values of the dependent
-<<<<<<< HEAD:EBMAforecast/man/presidentialForecast.Rd
   variable, i.e. the incumbent-party voteshare in each
-=======
-  variable, i.e. the incumbent voteshare in each
->>>>>>> helpfiles:EBMAforecast/man/SampleDataPres.Rd
   presidential election in the sample }
 }
 \references{
