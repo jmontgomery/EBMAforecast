@@ -393,8 +393,10 @@ expect_error(calibrateEnsemble(this.ForecastData, model="logit", tol=0.01, maxIt
 
 context("test that results are same as in Raftery package")
 #create data frame
-load("~/Documents/GIT/EBMAforecast/data_PA_presForecast.RData")
+load("~/Github/EBMAforecast/data_PA_presForecast.RData")
 tyn=15
+a=1
+train.years=14
 dates <- rep(NA, tyn)
    for (i in 1:tyn){
      dates[i] <- paste("2011", "01", 10+i, "01", sep="")
@@ -408,9 +410,9 @@ test_that("same result as in Raftery",{
    my.E.data <- ensembleData(forecasts=(full.forecasts)^(1/a), dates=dates, observations=full.observed,
                              initializationTime=1, forecastHour=1) #Make a dataset of the appropriate format for the ensembleBMA package
    fit.eBMA <- ensembleBMAnormal(my.E.data, trainingDays=train.years, dates=pred.date, minCRPS=FALSE,
-                              control=controlBMAnormal(biasCorrection="none",tol=0.00000001))
+                              control=controlBMAnormal(biasCorrection="none",tol=0.000000001))
 my.data<-makeForecastData(.predCalibration=full.forecasts[c(1:14),],.outcomeCalibration=full.observed[c(1:14)],.predTest=full.forecasts[15,],.outcomeTest=full.observed[15], c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
-check1<-calibrateEnsemble(my.data, model="normal", maxIter=25000,useModelPara=FALSE,tol=0.00000001)
+check1<-calibrateEnsemble(my.data, model="normal", maxIter=25000,useModelPara=FALSE,tol=0.000000001)
 round(check1@modelWeights,4)                            
 ## this needs to be fixed
 round(fit.eBMA$weights,4)

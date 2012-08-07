@@ -1,9 +1,10 @@
 library(devtools)
 library(roxygen2)
 library(testthat)
-library(test)
-setwd("~/Documents/GIT/EBMAforecast/")
-#setwd("~/GITHUB/EBMAforecast/")
+
+
+#setwd("~/Documents/GIT/EBMAforecast/")
+setwd("~/GITHUB/EBMAforecast/")
 
 # Only need to run this portion once
 current.code <- as.package("EBMAforecast")

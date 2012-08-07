@@ -47,7 +47,8 @@
   used to calibrate and fit the Ensemble. Individual slots
   of the \code{ForecastData} object can be accessed and
   changed using the \code{get} and \code{set} functions
-  respectively.
+  respectively. Missing observations are allowed in the
+  calibration set.
 }
 \examples{
 data(calibrationSample)
@@ -75,6 +76,8 @@ setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and
   Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
+  and Florian M. Hollenbach
+  <\email{florian.hollenbach@duke.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
