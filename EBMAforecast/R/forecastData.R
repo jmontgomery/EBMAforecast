@@ -1,6 +1,6 @@
 #' An ensemble forecasting data object
 #'
-#' Objects of class \code{ForecastData} are used in the \code{calibrateEnsemble} function. Datasets should be converted into an object of class \code{ForecastData} using the \code{makeForecastData} function. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively.
+#' Objects of class \code{ForecastData} are used in the \code{calibrateEnsemble} function. Datasets should be converted into an object of class \code{ForecastData} using the \code{makeForecastData} function. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively. Missing observations in the prediction calibration set are allowed.
 #'
 #'
 #' A data object of the class 'ForecastData' has the following slots: 
@@ -11,7 +11,7 @@
 #' \item \code{outcomeTest} A vector containing the true values of the dependent variable for all observations in the test period.
 #' \item \code{modelNames} A character vector containing the names of all component models. }
 #'
-#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
+#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@duke.edu}>  
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
