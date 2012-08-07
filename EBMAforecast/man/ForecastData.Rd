@@ -70,7 +70,7 @@ getPredTest(this.ForecastData)
 getOutcomeTest(this.ForecastData)
 getModelNames(this.ForecastData)
 
-### to assign individual slots, use set funtions
+### to assign individual slots, use set functions
 
 setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
 setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
@@ -89,6 +89,6 @@ setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
   \bold{20}: 271-291.
 }
 \seealso{
-  ensembleBMA, other functions
+  ensembleBMA
 }
 

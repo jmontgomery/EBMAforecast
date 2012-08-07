@@ -29,7 +29,7 @@
 #' getOutcomeTest(this.ForecastData)
 #' getModelNames(this.ForecastData)
 #' 
-#' ### to assign individual slots, use set funtions
+#' ### to assign individual slots, use set functions
 #'
 #' setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
 #' setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
@@ -37,7 +37,7 @@
 #' setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 #' setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 #'
-#' @seealso ensembleBMA, other functions
+#' @seealso ensembleBMA
 #' @aliases ForecastData-class initialize,ForecastData-method setPredCalibration,ForecastData-method setOutcomeCalibration,ForecastData-method setPredTest,ForecastData-method setOutcomeTest,ForecastData-method setModelNames,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method  getModelNames,ForecastData-method getOutcomeCalibration,ForecastData-method getOutcomeTest,ForecastData-method getPredCalibration,ForecastData-method getPredTest,ForecastData-method
 #' @rdname ForecastData	
 #' @export

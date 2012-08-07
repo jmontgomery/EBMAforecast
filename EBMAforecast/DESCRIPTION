@@ -26,3 +26,4 @@ Collate:
     'fitEnsembleLogit.R'
     'fitEnsembleNormal.R'
     'makeForecastData.R'
+    'plot.R'

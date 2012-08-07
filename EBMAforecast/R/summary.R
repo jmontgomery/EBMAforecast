@@ -15,14 +15,15 @@ setClass(Class="SummaryForecastData",
 #'
 #' This function summarizes the Ensemble models that have been fit previously by the user.
 #'
-#' @param object An object of class "FDatFitLogit"
+#' @param object An object of the subclass "FDatFitLogit" or "FDatFitNormal"
 #' @param period The period for which the summary should be provided, either "calibration" or "test".
-#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" for the logit model and "rmse","mae" for the normal model. 
-#' @param threshold The threshold used to calculate when a "positive" prediction is made by the model.
-#' @param baseModel Vector containing predictions used to calculate proportional reduction of error ("pre").
+#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values for objects in the "FDatFitLogit" subclass include "auc", "brier", "percCorrect", "pre". Possible values for objects in the "FDatFitNormal" subclass include "rmse" and "mae."  Additional metrics will be made available in a future release of this package.
+#' @param threshold The threshold used to calculate when a "positive" prediction is made for a model.  Not used for objects of the "FDatFitNormal" subclass.
+#' @param baseModel Vector containing predictions used to calculate proportional reduction of error ("pre"). Not used for objects of the "FDatFitNormal" subclass.
 #' @param showCoefs A logical indicating whether model ceofficients from the ensemble should be shown.
 #' @param ... Not implemented
 #' @method summary FDatFitLogit
+#' @method summary FDatFitNormal
 #'
 #' @return A data object of the class 'SummaryForecastData' with the following slots:
 #' \item{summaryData}{Under the default, the function produces a matrix containing one row for each model plus one row for the EBMA forecast.  The first column is always the model weights assigned to the component models.  The second and third columns are for the model parameters for the transformation of the component models.  The remaining columns are the requested fit statistics for all models, as calculated by the \code{copareModels} function.  If \code{showCoefs=TRUE}, then those columns will be excluded. }

@@ -7,20 +7,27 @@
 \alias{summary,FDatFitNormal-method}
 \title{Summary Function}
 \arguments{
-  \item{object}{An object of class "FDatFitLogit"}
+  \item{object}{An object of the subclass "FDatFitLogit" or
+  "FDatFitNormal"}
 
   \item{period}{The period for which the summary should be
   provided, either "calibration" or "test".}
 
   \item{fitStatistics}{A vector naming statistics that
-  should be calculated.  Possible values include "auc",
-  "brier", "percCorrect", "pre".}
+  should be calculated.  Possible values for objects in the
+  "FDatFitLogit" subclass include "auc", "brier",
+  "percCorrect", "pre". Possible values for objects in the
+  "FDatFitNormal" subclass include "rmse" and "mae."
+  Additional metrics will be made available in a future
+  release of this package.}
 
   \item{threshold}{The threshold used to calculate when a
-  "positive" prediction is made by the model.}
+  "positive" prediction is made for a model.  Not used for
+  objects of the "FDatFitNormal" subclass.}
 
   \item{baseModel}{Vector containing predictions used to
-  calculate proportional reduction of error ("pre").}
+  calculate proportional reduction of error ("pre"). Not
+  used for objects of the "FDatFitNormal" subclass.}
 
   \item{showCoefs}{A logical indicating whether model
   ceofficients from the ensemble should be shown.}

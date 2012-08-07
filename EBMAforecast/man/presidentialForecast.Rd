@@ -1,6 +1,6 @@
 \docType{data}
-\name{SampleDataPres}
-\alias{SampleDataPres}
+\name{presidentialForecast}
+\alias{presidentialForecast}
 \title{Sample data Presidential Election}
 \description{
   This includes the sample data for the presidential
@@ -30,8 +30,8 @@
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
   D. Ward. (2012). Improving Predictions Using Ensemble
-  Bayesian Model Averaging. \emph{Political Analysis}.
-  Forthcoming.
+  Bayesian Model Averaging.  \emph{Political Analysis}.
+  \bold{20}: 271-291.
 
   Campbell, James E. 2008. The trial-heat forecast of the
   2008 presidential vote: Performance and value

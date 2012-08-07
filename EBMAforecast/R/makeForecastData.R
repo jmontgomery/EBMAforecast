@@ -1,6 +1,6 @@
 #' Build a ensemble forecasting data object
 #'
-#' This function uses the user provided component model forecasts and dependent variable observations to create an object of class \code{ForecastData}, which can then be used to calibrate and fit the Ensemble. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively. Missing observations are allowed in the prediction calibration set.
+#' This function uses the user provided component model forecasts and dependent variable observations to create an object of class \code{ForecastData}, which can then be used to calibrate and fit the ensemble. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively. Missing predictions are allowed in the calibration set.
 #'
 #' @param .predCalibration A matrix with the number of rows being the number of observations in the calibration period and a column with calibration period predictions for each model.
 #' @param .predTest A matrix with the number of rows being the number of observations in the test period and a column with test period predictions for each model.
@@ -33,7 +33,7 @@
 #' getOutcomeTest(this.ForecastData)
 #' getModelNames(this.ForecastData)
 #' 
-#' ### to assign individual slots, use set funtions
+#' ### to assign individual slots, use set functions
 #'
 #' setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
 #' setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]

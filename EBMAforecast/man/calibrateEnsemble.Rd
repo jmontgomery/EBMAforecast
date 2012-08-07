@@ -55,7 +55,7 @@
   of all component models.  If no model names are
   specified, names will be assigned automatically.}
   \item{modelWeights}{A vector containing the model weights
-  assigned to each moel} \item{modelParams}{The parameters
+  assigned to each model} \item{modelParams}{The parameters
   for the individual logit models that transform the
   component models} \item{logLik}{The final log-likelihood
   for the calibrated EBMA model} \item{exp}{The exponential
@@ -69,12 +69,12 @@
 \description{
   This function calibrates an EBMA model based on
   out-of-sample performance in the calibration time period.
-  Given a dependent variable and in-sample predictions from
-  multiple component forecast models in the
-  \code{ForecastData} the \code{calibrateEnsemble} function
-  fits an ensemble BMA mixture model. The weights assigned
-  to each model are derived from the individual model's
-  performance in the calibration period. Missing
+  Given a dependent variable and calibration-sample
+  predictions from multiple component forecast models in
+  the \code{ForecastData} the \code{calibrateEnsemble}
+  function fits an ensemble BMA mixture model. The weights
+  assigned to each model are derived from the individual
+  model's performance in the calibration period. Missing
   observations are allowed in the calibration period,
   however models with missing observations are penalized.
 }

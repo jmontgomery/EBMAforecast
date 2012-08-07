@@ -12,11 +12,13 @@
   in-sample predictions, generate ensemble out-of-sample
   predictions, and create useful data visualizations.
   Currently, the package can only handle dichotomous
-  outcomes, although additional models will be added to the
-  package in the coming months.
+  outcomes or those with normally distributed errors,
+  although additional models will be added to the package
+  in the coming months.
 }
 \examples{
 demo(EBMAforecast)
+demo(presidentialForecast)
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and
@@ -25,8 +27,8 @@ demo(EBMAforecast)
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
   D. Ward. (2012). Improving Predictions Using Ensemble
-  Bayesian Model Averaging. \emph{Political Analysis}.
-  Forthcoming.
+  Bayesian Model Averaging.  \emph{Political Analysis}.
+  \bold{20}: 271-291.
 
   Raftery, A. E., T. Gneiting, F. Balabdaoui and M.
   Polakowski. (2005). Using Bayesian Model Averaging to

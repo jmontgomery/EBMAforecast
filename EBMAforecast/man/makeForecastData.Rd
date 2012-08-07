@@ -44,7 +44,7 @@
   This function uses the user provided component model
   forecasts and dependent variable observations to create
   an object of class \code{ForecastData}, which can then be
-  used to calibrate and fit the Ensemble. Individual slots
+  used to calibrate and fit the ensemble. Individual slots
   of the \code{ForecastData} object can be accessed and
   changed using the \code{get} and \code{set} functions
   respectively. Missing observations are allowed in the
@@ -65,7 +65,7 @@ getPredTest(this.ForecastData)
 getOutcomeTest(this.ForecastData)
 getModelNames(this.ForecastData)
 
-### to assign individual slots, use set funtions
+### to assign individual slots, use set functions
 
 setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
 setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]

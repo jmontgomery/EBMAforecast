@@ -103,7 +103,7 @@ setMethod(f="fitEnsemble",
 
             ## Set initial values for parameters
             W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
-            sigma2<-1#var(outcomeCalibration) 
+            sigma2<-1
 
             ## Run EM
             .done <- FALSE

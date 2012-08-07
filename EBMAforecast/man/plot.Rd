@@ -2,7 +2,7 @@
 \alias{plot}
 \alias{plot,FDatFitLogit-method}
 \alias{plot,FDatFitNormal-method}
-\title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal", which are the objects created by the calibrateEnsemble() funciton.}
+\title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal", which are the objects created by the calibrateEnsemble() function.}
 \arguments{
   \item{x}{An object of class "FDatFitLogit" or
   "FDatFitNormal"}
@@ -13,27 +13,43 @@
 
   \item{subset}{The row names or numbers for the
   observations the user wishes to plot.  Only implemented
-  for the subclass "FDatFitLogit"}
+  for the subclass "FDatFitNormal"}
+
+  \item{mainLabel}{A vector strings to appear at the top of
+  each predictive posterior plot.  Only implemented for the
+  subclass "FDatFitNormal"}
+
+  \item{xLab}{The label for the x-axis. Only implemented
+  for the subclass "FDatFitNormal"}
+
+  \item{yLab}{The label for they-axis.  Only implemented
+  for the subclass "FDatFitNormal"}
+
+  \item{cols}{A vector containing the color for plotting
+  the predictive pdf of each component model forecast. Only
+  implemented for the subclass "FDatFitNormal"}
 }
 \value{
   NULL
 }
 \description{
+  Default plotting for objectes created by the
+  "calibrateEnsemble" funciton.  See details below.
+}
+\details{
   For objects of the class "FDatFitLogit", this function
   creates separation plots for each of the fitted models,
   including the EBMA model. Observations are ordered from
   left to right with increasing predicted probabilities,
   which is depicted by the black line. Actual occurrences
   are displayed by red vertical lines. Plots can be
-  dislayed for the test or calibration period.
-}
-\details{
-  For objects of the class "FDatFitNormal", this function
-  creates a plot of the predictive density distribution
-  containing the EBMA PDF and the PDFs for all components
-  (scaled by their model weights).  It also plots the
-  prediction for the ensemble and the components for the
-  specified observations.
+  displayed for the test or calibration period. For objects
+  of the class "FDatFitNormal", this function creates a
+  plot of the predictive density distribution containing
+  the EBMA PDF and the PDFs for all components (scaled by
+  their model weights).  It also plots the prediction for
+  the ensemble and the components for the specified
+  observations.
 }
 \examples{
 data(calibrationSample)
