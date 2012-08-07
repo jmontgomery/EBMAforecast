@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: APSA_Paper_2012.aux
+The style file: apsr.bst
+Database file #1: Bibliography_EBMA.bib
+You've used 2 entries,
+            2874 wiz_defined-function locations,
+            657 strings with 5180 characters,
+and the built_in function-call counts, 15864 in all, are:
+= -- 2674
+> -- 166
+< -- 0
++ -- 1308
+- -- 56
+* -- 1426
+:= -- 3050
+add.period$ -- 8
+call.type$ -- 2
+change.case$ -- 26
+chr.to.int$ -- 2
+cite$ -- 2
+duplicate$ -- 30
+empty$ -- 77
+format.name$ -- 62
+if$ -- 2863
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 2
+newline$ -- 11
+num.names$ -- 22
+pop$ -- 4
+preamble$ -- 1
+purify$ -- 30
+quote$ -- 0
+skip$ -- 29
+stack$ -- 0
+substring$ -- 3890
+swap$ -- 4
+text.length$ -- 28
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 8
+warning$ -- 0
+while$ -- 46
+width$ -- 0
+write$ -- 32

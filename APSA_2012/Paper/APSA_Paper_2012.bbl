@@ -1,0 +1,17 @@
+\begin{thebibliography}{xx}
+
+\harvarditem[Raftery et~al.]{Raftery, Gneiting, Balabdaoui \harvardand\
+  Polakowski}{2005}{Raftery:2005}
+Raftery, Adrian~E., Tilmann Gneiting, Fadoua Balabdaoui \harvardand\ Michael
+  Polakowski. 2005.
+\newblock ``Using {B}ayesian Model Averaging to Calibrate Forecast Ensembles.''
+  {\em Monthly Weather Review} 133(5):1155--1174.
+
+\harvarditem[Sloughter et~al.]{Sloughter, Raftery, Gneiting \harvardand\
+  Fraley}{2007}{Sloughter:2007}
+Sloughter, J.~McLean, Adrian~E. Raftery, Tilmann Gneiting \harvardand\ Chris
+  Fraley. 2007.
+\newblock ``Probabilistic Quantitative Precipitation Forecasting Using
+  {B}ayesian Model Averaging.'' {\em Monthly Weather Review} 135(9):3209--3220.
+
+\end{thebibliography}

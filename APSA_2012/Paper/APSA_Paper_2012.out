@@ -1,8 +1,10 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Ensemble Bayesian model averaging}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Overview of method}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Mathematical foundations}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Applications}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Predicting Unemployment}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Predicting Inflation}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Discussion}{}% 8
+\BOOKMARK [1][-]{section.2}{Notation and EBMA model}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Dynamic ensemble forecasting}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Estimation}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Missing forecast components}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Small sample adjustment}{}% 6
+\BOOKMARK [1][-]{section.4}{Applications}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Predicting unemployment}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Predicting presidential elections}{section.4}% 9
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 10

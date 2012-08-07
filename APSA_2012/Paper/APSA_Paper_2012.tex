@@ -37,8 +37,7 @@
 \setboolean{blind}{false}
 
 
-\title{Title goes here \\\  \thanks{Thanks to me and you!
-   This work was supported by the Information Processing Technology Office of the
+\title{Say yes to the guess: Ensemble forecasting with sparse data \thanks{This work was supported by the Information Processing Technology Office of the
     Defense Advanced Research Projects Agency through a
     holding grant is to the Lockheed Martin Corporation [FA8650-07-C-7749].}}
 \author{
@@ -93,29 +92,183 @@ Michael D. Ward\\
 
 \setcounter{page}{1}
 
-
 \section{Introduction}
 
-\section{Ensemble Bayesian model averaging} 
+Although accurate prediction of future events has not .  EBMA mixture
+models seek to collate the good parts of existing forecasting models
+while avoiding over-fitting to past observations or over-estimating
+our certainty about the future.  The hope is for greater accuracy as
+both the knowledge and implied uncertainty of a variety of approaches
+are integrated into a combined predictive probability distribution.
 
 
-\subsection{Overview of method}
+Specifically, the amount and quality of data for calibrating ensembles
+is.  However, \citet{Raftery:2005} first proposed EBMA mixture models
+as
 
-\subsection{Mathematical foundations}
+It is now common for people to make predictions
 
+
+
+
+
+The first constraint is the paucity of the data.  Relative to weather
+and other stuff, there just aren't a lot of observations, mostly
+stemming from the fact that for any given time period there is exactly
+one outcome.
+
+A second is the large number of forecasting efforts.  For example, the
+economic forecasting survey has like a billion experts.
+
+A final issue is the inconsistency with which forecasts are
+issued. For any given time window, there are many missing foreacsts.
+Moreover, it is not random with larger degrees of misssingness
+existing further back in time.
+
+As an example, Table 1 represents nearly the entire population of
+legitimate forecasting efforts.  We see all three of these things
+going on at the same time.
+
+
+\begin{table}[ht]
+\caption{Pre-election forecasts of the percent of the two-party vote going to the incumbent party in U.S. Presidential elections}
+\footnotesize
+\begin{center}
+\begin{tabular}{rlrrrrrrrrr}
+  \toprule
+  & F & A & C & H & LBRT & L & Hol & EW & Cuz \\ 
+  \midrule
+  1992 & 55.7 & 46.3 & 49.7 & 48.9 & 47.3 &  &  &  &  \\ 
+  1996 & 49.5 & 57.0 & 55.5 & 53.5 & 53.3 &  & 57.2 & 55.6 &  \\ 
+  2000 & 50.8 & 53.2 & 52.8 & 54.8 & 55.4 & 60.3 & 60.3 & 55.2 &  \\ 
+  2004 & 57.5 & 53.7 & 52.8 & 53.2 & 49.9 & 57.6 & 55.8 & 52.9 & 51.1 \\ 
+  2008 & 48.1 & 45.7 & 52.7 & 48.5 & 43.4 & 41.8 & 44.3 & 47.8 & 48.1 \\ 
+  \bottomrule
+
+\end{tabular}
+\end{center}
+Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}an.  Data taken from CITE SILVER POST HERE.
+\end{table}
+
+
+We adjust the basic EBMA model by better handling missing data, 
+
+\section{Notation and EBMA model} 
+
+Assume a quantity of interest to forecast, $\mathbf{y}^{t^*}$, in some
+future period $t^\ast \in T^\ast$.  Further assume that we have extant
+forecasts for events $\mathbf{y}^t$ for some past period $t \in T$
+that were generated from $K$ forecasting models or teams, $M_1, M_2,
+\ldots, M_K$, which have prior probability $M_k\sim \pi(M_k)$. The PDF
+for $\mathbf{y}^t$ is $p(\mathbf{y}^t|M_k)$, the predictive PDF for
+the quantity of interest is $p(\mathbf{y}^{t^*}|M_k$), the conditional
+probability for each model is $p(M_k|\mathbf{y}^t) =
+p(\mathbf{y}^t|M_k)\pi(M_k)/\underset{k=1}{\overset{K}{\sum}}p(\mathbf{y}^t|M_k)\pi(M_k)$
+and the and the marginal predictive PDF is $p(\mathbf{y}^{t^*}) =
+\underset{k=1}{\overset{K}{\sum}}
+p(\mathbf{y}^{t^*}|M_k)p(M_k|\mathbf{y}^{t})$.  This can be viewed as
+the weighted average of the component PDFs where the weights are
+determined by each model's performance within the already-observed
+period $T$.
+
+
+
+\subsection{Dynamic ensemble forecasting}
+
+The EBMA procedure assumes the prior construction of multiple
+forecasting models or heuristics in some training period $T^{\prime}$.
+The goal is to estimate the parameters for the ensemble prediction
+model using $\mathbf{f}^{t}_k$ for some period $T$.  t is then
+possible to generate true ensemble forecasts ($\mathbf{f}_k^{t^\ast}$)
+for observations in the test period $t^\ast \in T^*$.  Past
+applications have typically statistically post-process the predictions
+for out-of-sample bias reduction and treat these re-calibrated
+predictions as a component model.  However, in the presence of sparse
+data we treat these raw predictions as a component model in the steps
+below.  Additional discussion of this is below.
+
+As a running example, let us assume that we have $K$ forecasting
+efforts for modeling insurgencies in a set of countries $S$ ongoing
+throughout the training ($T^{\prime}$) validation ($T$) and test
+($T^\ast$) periods.  We will associate each component forecast with a
+component PDF, $g_k(\mathbf{y}|\mathbf{f}_k^{s|t, t^\ast})$, which may
+be the original prediction from the forecast model or the
+bias-corrected forecast.
+
+
+The EBMA PDF is then a finite mixture of the $K$ component PDFs,
+denoted
+\begin{equation}
+\small
+\label{BMA-eq}
+p(\mathbf{y}|\mathbf{f}_1^{s|t}, \ldots, \mathbf{f}_K^{s|t})=\overset{K}{\underset{k=1}{\sum}} w_k
+g_k(\mathbf{y}|\mathbf{f}_k^{s|t}),
+\end{equation}
+\noindent The $w_k$'s $\in [0,1]$ are model probabilities and
+$\sum_{k=1}^Kw_k=1$.  Roughly speaking, they are associated with each
+component model's predictive performance in the validation period
+controlling for the degree to which they offer unique insight (i.e.,
+a model's predictions are distinct from those of other component models).
+We provide additional discussion about the model weights in the
+election forecasting example below.  Details for parameter estimation
+are provided in Appendix A.  The ensemble PDF for an insurgency in the
+test period $t^\ast$ in country $s$ is then:
+\begin{equation}
+\label{BMA-eq2}
+\small
+p(y|f_{1}^{s|t^\ast}, \ldots,
+f_{K}^{s|t^\ast})=\overset{K}{\underset{k=1}{\sum}} w_k
+g_k(y|f_{k}^{s|t^*}).
+\end{equation}
+
+
+\citet{Raftery:2005} propose approximating the conditional PDF as a
+normal distribution centered at a linear transformation of the
+individual forecast, $g_k(\mathbf{y}|\mathbf{f}_k^{s|t}) = N(a_{k0} +
+a_{k1}\mathbf{f}_k^{s|t}, \sigma^2)$.  Prior applications have found
+that this adjustment of the component models' forecasts reduces
+over-fitting and improves the performance of the final ensemble
+forecasting model \citep{Raftery:2005}.\note{Our adjustments to the
+  basic EBMA method for application to dichotomous outcomes, as well
+  as details of parameter estimation, are shown in Appendix A.}  Using
+\eqref{BMA-eq} and \eqref{BMA-eq2} above, the EBMA PDF is then
+\begin{equation} \small
+p(\mathbf{y}|\mathbf{f}_1^{s|t}, \ldots, \mathbf{f}_K^{s|t}) = \overset{K}{\underset{k=1}{\sum}} w_k N(a_{k0} +
+a_{k1}\mathbf{f}_k^{s|t}, \sigma^2),
+\end{equation}
+\noindent and the predictive distribution for some observation $y$ is 
+\begin{equation} \small
+p(y|f_1^{s|t^\ast}, \ldots, f_K^{s|t^\ast}) = \overset{K}{\underset{k=1}{\sum}} w_k N(a_{k0} +
+a_{k1}f_k^{s|t^\ast}, \sigma^2)
+ \end{equation}
+ \noindent Thus, the predictive PDF is a mixture of $K$ normal
+ distributions each of whose mean is determined by the component
+ prediction ($f_k^{s|t^\ast}$) and whose ``height'' (i.e, the total
+ area under the curve for component $k$) is determined by the model
+ weight $w_k$.
+
+\subsection{Estimation}
+
+\subsection{Missing forecast components}
+
+%\section{Window selection} Jacob thinks this should be a short subsection eventually.  But not for APSA.
+
+\section{Small sample adjustment}
+
+%\section{Simulations} Jacob think we will want just a bit of this.  But not for APSA.
 
 \section{Applications}
-\subsection{Predicting Unemployment}
-\subsection{Predicting Inflation}
+\subsection{Predicting unemployment}
+\subsection{Predicting presidential elections}
 
 
-\section{Discussion} %%% Mike to re-write this section
+\section{Discussion} 
 
-\newpage
-\appendix
+% \newpage
+% \appendix
 
 
-\section*{Appendix}
+% \section*{Appendix}
 
 %%Bib 
 \singlespacing
