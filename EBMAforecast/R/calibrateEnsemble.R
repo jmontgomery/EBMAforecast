@@ -1,14 +1,14 @@
 #' Calibrate an ensemble Bayesian Model Averaging model
 #'HEAD
-#' This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration period, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
+#' This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration set, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
 #'helpfiles
 #'
 #' @param .forecastData An object of class 'ForecastData' that will be used to calibrate the model.
 #' @param exp The exponential shrinkage term.  Forecasts are raised to the (1/exp) power on the logit scale for the purposes of bias reduction.  The default value is \code{exp=3}.
 #' @param tol Tolerance for improvements in the log-likelihood before the EM algorithm will stop optimization.  The default is \code{tol= 0.01}, which is somewhat high.  Researchers may wish to reduce this by an order of magnitude for final model estimation. 
 #' @param maxIter The maximum number of iterations the EM algorithm will run before stopping automatically. The default is \code{maxIter=10000}.
-#' @param model The model type that should be used to the type of data that is being predicted (i.e., normal, binary, etc.)
-#' @param method The estimation method used.  Currently only implements "EM"
+#' @param model The model type that should be used given the type of data that is being predicted (i.e., normal, binary, etc.).
+#' @param method The estimation method used.  Currently only implements "EM".
 #' @param predType The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.
 #' @param ... Not implemented
 #'
@@ -18,14 +18,14 @@
 #' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
 #' \item{outcomeTest}{An optional vector containing the true values of the dependent variable for all observations in the test period.}
 #' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
-#' \item{modelWeights}{A vector containing the model weights assigned to each model}
-#' \item{modelParams}{The parameters for the individual logit models that transform the component models}
-#' \item{logLik}{The final log-likelihood for the calibrated EBMA model}
-#' \item{exp}{The exponential shrinkage term}
+#' \item{modelWeights}{A vector containing the model weights assigned to each model.}
+#' \item{modelParams}{The parameters for the individual logit models that transform the component models.}
+#' \item{logLik}{The final log-likelihood for the calibrated EBMA model.}
+#' \item{exp}{The exponential shrinkage term.}
 #' \item{tol}{Tolerance for improvements in the log-likelihood before the EM algorithm will stop optimization.}
-#' \item{maxIter}{The maximum number of iterations the EM algorithm will run before stopping automatically}
+#' \item{maxIter}{The maximum number of iterations the EM algorithm will run before stopping automatically.}
 #' \item{method}{The estimation method used. }
-#' \item{call}{The actual call used to create the object}
+#' \item{call}{The actual call used to create the object.}
 #'
 #'
 #' @author Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@duke.edu}>

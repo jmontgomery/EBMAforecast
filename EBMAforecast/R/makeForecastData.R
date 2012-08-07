@@ -1,9 +1,9 @@
 #' Build a ensemble forecasting data object
 #'
-#' This function uses the user provided component model forecasts and dependent variable observations to create an object of class \code{ForecastData}, which can then be used to calibrate and fit the ensemble. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively. Missing predictions are allowed in the calibration set.
+#' This function uses the component model forecasts and dependent variable observations provided by the user to create an object of class \code{ForecastData}, which can then be used to calibrate and fit the ensemble. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively. Missing predictions are allowed in the calibration set.
 #'
 #' @param .predCalibration A matrix with the number of rows being the number of observations in the calibration period and a column with calibration period predictions for each model.
-#' @param .predTest A matrix with the number of rows being the number of observations in the test period and a column with test period predictions for each model.
+#' @param .predTest A vector with the number of rows being the number of observations in the test period and a column with test period predictions for each model.
 #' @param .outcomeCalibration A vector with the true values of the dependent variable for each observation in the calibration period.  
 #' @param .outcomeTest A vector with the true values of the dependent variable for each observation in the test period.
 #' @param .modelNames A vector of length p with the names of the component models.  
