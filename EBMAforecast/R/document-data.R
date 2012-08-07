@@ -45,7 +45,7 @@ NULL
 #' \item\code{Fair} Forecasts from Fair's presidential vote share model (2010)  
 #' \item\code{Lewis-Beck/Tien} Predictions from the ``Jobs Model Forecast''	by Michael Lewis-Beck and Charles Tien (2008)   
 #' \item\code{EWT2C2} Predictions from Column 2 in Table 2 model by Erickson and Wlezien (2008) 
-#' \item\code{IncVoteShare} The true values of the dependent variable, i.e. the incumbent voteshare in each presidential election in the sample
+#' \item\code{Actual} The true values of the dependent variable, i.e. the incumbent voteshare in each presidential election in the sample
 #'} 
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. Forthcoming.
 #'
