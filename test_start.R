@@ -280,6 +280,7 @@ check2<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, maxIter=2
 expect_false((check1@modelWeights==check2@modelWeights)[[1]])	
 })
 
+
 test_that("model option = normal changes results (logit - results)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.01, maxIter=25000, exp=3,useModelPara=FALSE)
@@ -384,6 +385,15 @@ test_that("model parameters are turned of, all parameters are 0,1 (normal - resu
 check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, exp=3,useModelPara=FALSE)
 check2<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, exp=3,useModelPara=TRUE)
 expect_false((check1@modelWeights==check2@modelWeights)[[1]])
+})
+
+
+test_that("predType changes prediction (normal - results)",{
+	this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
+check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, exp=3,useModelPara=FALSE,predType="posteriorMedian")
+check2<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.00001, maxIter=25000, exp=3,useModelPara=FALSE,predType="posteriorMean")
+expect_true((check1@modelWeights==check2@modelWeights)[[1]])
+expect_false((check1@predTest[,1,1]==check2@predTest[,1,1])[1])
 })
 
 test_that("model option = logit changes results (normal - results)",{
