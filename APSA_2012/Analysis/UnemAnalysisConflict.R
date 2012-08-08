@@ -73,7 +73,7 @@ myTestFunction <- function(.windowSize=30, .minCal=15, .predYearQuarter="1980.1"
                           ,.modelNames=colnames(.reduced[,-c(1:3)])
                           )
 
-  ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const)
+  ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const,  predType="posteriorMedian")
   output <- matrix(c(as.numeric(rownames(data[.predThis,])), ensemble@predTest[1], as.numeric(ensemble@modelWeights)), nrow=1)
   output <- data.frame(output)
   colnames(output) <- c("row", "EBMA", ensemble@modelNames)
@@ -89,6 +89,8 @@ thisSweep1<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, 
 thisSweep2<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.1, .parallel=TRUE,  .imp=FALSE, data=ud4)
 thisSweep3<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=0, .parallel=TRUE,  .imp=FALSE, data=ud4)
 thisSweep4<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=1, .parallel=TRUE,  .imp=FALSE, data=ud4)
+
+thisSweepTEMP<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=1, .parallel=TRUE,  .imp=FALSE, data=ud4)
 
 modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
 
@@ -217,6 +219,9 @@ all <- all[!is.na(.green),]
 .redLag <- .lag[!is.na(.green)]
 
 
+all2 <- cbind(.ensemblePred3, .ensemblePred, .ensemblePred2,  .ensemblePred4, .green, .median, .mean)
+all2 <- all2[!is.na(.green),]
+
 ### A basic plot of all 3
 pdf(height=4, width=7, file="timeSeries.pdf")
 par(mar=c(2,2,3,2), mfrow=c(1,1), mgp=c(1,0,0), tcl=0)
@@ -229,108 +234,11 @@ legend(2000, 10, c("Oberved", "EBMA", "Median", "Green Book"), col=c("black", "b
 dev.off()
 
 library(xtable)
-.outTable <- modelFits(.redOut, all, .redLag)
-xtable(.outTable[c(1,4,3,2),])
-.outTable[c(1,4,3,2),]
+.outTable <- modelFits(.redOut, all2, .redLag)
+xtable(.outTable)
+.outTable
 
 
 #######USEFUL CODE STOPS HERE
 
-
-
-### Run a bunch of them in paralel
-params <- expand.grid(wind=c(5,10,20,30), cal=c(3,5,10), crowds=seq(0,.2,.025), impute=c(TRUE, FALSE), data=c(1,2,3,4))
-params <- subset(params, wind>cal)
-dim(params)
-
-
-
-
-
-registerDoMC(cores=32)
-thisSweep1 <- thisSweep<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=0, .parallel=TRUE, .imp=FALSE, data=ud4)
-thisSweep2<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=.05, .parallel=TRUE)
-thisSweep3<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=.1, .parallel=TRUE)
-thisSweep4<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=10, .const=.2, .parallel=TRUE)
-
-
-thisSweep5<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=30, .minCal=10, .const=0, .parallel=TRUE)
-thisSweep6<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=0, .parallel=TRUE)
-thisSweep7<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=40, .minCal=15, .const=0, .parallel=TRUE)
-
-thisSweep8<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=30, .minCal=10, .const=.1, .parallel=TRUE)
-thisSweep9<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.1, .parallel=TRUE)
-thisSweep10<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=40, .minCal=15, .const=.1, .parallel=TRUE)
-
-
-thisSweep11<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=30, .minCal=15, .const=.1, .parallel=TRUE)
-
-thisSweep12<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.2, .parallel=TRUE)
-thisSweep13<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.05, .parallel=TRUE,  .imp=FALSE, data=ud4)
-
-thisSweep14<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=3, .const=.05, .parallel=TRUE)
-thisSweep15<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=2, .const=.05, .parallel=TRUE)
-
-thisSweep16<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=20, .minCal=3, .const=.05, .parallel=TRUE)
-thisSweep17<- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=5, .minCal=2, .const=.05, .parallel=TRUE)
-
-
-## This one with the actual ud1 data
-thisSweep18 <- ldply(as.character(ud1[41:161,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.05, .parallel=TRUE)
-
-
-
-compare2Ensemble <- function(column, .fun=my.fun){
-  .thisInd <- !is.na(rawPreds[,column])
-  .thisPred <- rawPreds[.thisInd, column]
-  .thisEBMA <- EBMA[.thisInd]
-  .forEval <- cbind(.thisPred, .thisEBMA)
-   colnames(.forEval) <- c(colnames(rawPreds)[column], "EBMA")
-   y<<-outcome[.thisInd]
-   eval <- aaply(.forEval, 2, .fun=my.fun, .expand=TRUE )
-   c(eval[1]-eval[2], length(.thisEBMA))
-}
-
-
-thisSweep <- thisSweepImp1
-dim(ud1)
-rawPreds <- ud1[as.character(thisSweep$row),-c(1:3)]
-EBMA <-  as.numeric(levels(thisSweep$EBMA)[thisSweep$EBMA])
-preds <- cbind(rowMeans(rawPreds, na.rm=TRUE), apply(rawPreds, 1, quantile, na.rm=TRUE, probs=.5), EBMA)
-colnames(preds) <- c("mean", "median", "EBMA")
-outcome <- ud1[as.character(thisSweep$row), 2]
-par(mfrow=c(3,1), mar=c(2,2,2,2), mgp=c(1,0,0))
-my.fun <- function(x) {sqrt(mean((x-y)^2, na.rm=TRUE))}
-rmse <- laply(1:426, compare2Ensemble)
- plot(rmse[,1]~rmse[,2], main="RMSE by number of predictions", xlab="# Predictions", ylab="RMSE", xlim=c(1, max(rmse[,2])))
-abline(h=0)
-.table <- table(rmse[rmse[,2]>10,1]>0)
-.table/sum(.table)
-my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}
-mae <- laply(1:426, compare2Ensemble)
-plot(mae[,1]~mae[,2], main="MAE by number of predictions", xlab="# Predictions", ylab="MAE", xlim=c(1, max(mae[,2])))
-abline(h=0)
-.table <- table(mae[mae[,2]>10,1]>0)
-.table/sum(.table)
-my.fun <- function(x) {quantile(abs(x-y), na.rm=TRUE, probs=.5)}
-mad <- laply(1:426, compare2Ensemble)
-plot(mad[,1]~mad[,2], main="Median  absolute deviation", xlab="# Predictions", ylab="MAD", xlim=c(1, max(mad[,2])))
-abline(h=0)
-.table <- table(mad[mad[,2]>10,1]>0)
-.table/sum(.table)
-
-
-   y<<-outcome
-# compare to means
-my.fun <- function(x) {sqrt(mean((x-y)^2, na.rm=TRUE))}
-temp <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
-temp <- temp[!is.na(temp)]
-temp[order(temp)]
-
-my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}
-temp <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
-temp <- temp[!is.na(temp)]
-temp[order(temp)]
-
-####
 

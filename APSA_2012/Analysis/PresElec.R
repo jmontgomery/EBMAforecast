@@ -15,27 +15,27 @@ load_all(current.code)
 document(current.code)
 
 
-
 rm(list=ls())
-pres <- read.csv("~/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver.csv", as.is=TRUE, header=TRUE)
+pres <- read.csv("~/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
 
-pres <- pres[1:5,]
+
 colnames(pres)[1] <- "year"
 lewisBeck <- c(pres[1,5], pres[2:5,12]) 
-myPres <- cbind(pres$year, pres$TRUE., NA, pres$Fair, pres$Abramowitz, pres[,4], pres$Hibbs, lewisBeck, pres$Lockerbi, pres$Holbrook,pres[,"Wlezien...Erikson"], pres[,23])
+myPres <- cbind(pres$year, pres$Actual, NA, pres$Fair, pres$Abramowitz, pres$Campbell, pres$Hibbs, pres$Lewis.Beck.Tien, pres$Lockerbie, pres$Holbrook, pres$Erikson.Wlezien, pres$Cuzan)
 colnames(myPres) <- c("year", "truth", "junk", "Fair", "Abramowitz", "Campbell", "Hibbs", "LewisBeck", "Lockerbie","Holbrook", "Erikson", "Cuzan")
 myPres <- data.frame(myPres)
+myPres$LewisBeck[1] <- 47.3
 myPres[,1] <- as.character(myPres[,1])
 
 .predThis=5
 data=myPres
 .minCal=2
-.theseRows <- c(1:5)
+.theseRows <- c(1:4)
 .all <- 4
 .const=.1
 
 #.selector <-  colSums(is.na(data[.theseRows,]))<=  (.all-.minCal) & !is.na(data[.predThis,])
-.selector <- rep(TRUE, 9)
+.selector <- c(rep(TRUE, 11), FALSE)
 .reduced <- data[.theseRows, .selector]
 #.target <- data[.predThis, .selector]
 .target <- data[5,.selector]
@@ -50,3 +50,5 @@ data=myPres
  ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const)
 summary(ensemble)
 ensemble@predTest
+
+plot(ensemble, period="test")
