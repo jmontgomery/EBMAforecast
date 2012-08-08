@@ -25,8 +25,9 @@ ud4 <- subset(ud4, forecast.year.quarter>1971.2)
 ud4 <- ud4[rowMeans(is.na(ud4[,-c(1:3)]))!=1,]
 
 ud4Green <- ud4[,c("forecast.year.quarter", "greenbook", "variable")]
-ud4 <- ud4[,c(1,3,2,4:429)]
-
+#ud4 <- ud4[,c(1,3,2,4:429)]
+ud4 <- ud4[,c(1,3,2,4:430)]
+colnames(ud4)[430] <- "XGB"
 
 
 ud1Green <- ud1[,c("forecast.year.quarter", "greenbook", "variable")]
@@ -83,8 +84,11 @@ myTestFunction <- function(.windowSize=30, .minCal=15, .predYearQuarter="1980.1"
 jacob <- myTestFunction(.predYearQuarter="1991.1",.windowSize=40, .minCal=10, .const=0, data=ud4, .imp=FALSE)
 
 
-registerDoMC(cores=4)
-thisSweep13<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.05, .parallel=TRUE,  .imp=FALSE, data=ud4)
+registerDoMC(cores=32)
+thisSweep1<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.05, .parallel=TRUE,  .imp=FALSE, data=ud4)
+thisSweep2<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=.1, .parallel=TRUE,  .imp=FALSE, data=ud4)
+thisSweep3<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=0, .parallel=TRUE,  .imp=FALSE, data=ud4)
+thisSweep4<- ldply(as.character(ud4[41:146,1]), myTestFunction, .windowSize=10, .minCal=5, .const=1, .parallel=TRUE,  .imp=FALSE, data=ud4)
 
 modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
 
@@ -130,7 +134,7 @@ out
 }
 
 
-.sweep = thisSweep13
+.sweep = thisSweep1
 data=ud4
 
 
@@ -150,6 +154,11 @@ names(.lag) <- rownames(data)
 .lag <- .lag[.theseRows]
 .nrow=dim(.modelPreds)[1]; .ncol=dim(.modelPreds)[2]
 
+
+.ensemblePred2 <- thisSweep2$EBMA
+.ensemblePred3 <- thisSweep3$EBMA
+.ensemblePred4 <- thisSweep4$EBMA
+
 modelOut <- modelFits(.outcome, .modelPreds, .lag)
 cor(modelOut)
 ## Now I need to calculate similar stats for the EBMA, but for the correct observations
@@ -161,22 +170,23 @@ ensembleOut <- modelFits(.outcome, .ensemblePredMatrix, .lag)
 ## Total number of forecasts for models we are comparing ourselves with
 count <- colSums(!is.na(.modelPreds))
 
-
+setwd("/Users/jmontgomery/GitHub/EBMAforecast/APSA_2012/Paper/")
+pdf(width=6, height=6, file="compare2Components.pdf")
 par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.main=.9)
 # Compare with components by # forecasts
-plot(NULL, xlim=c(0, 100), ylim=c(0,100), xlab="# of forecasts made", ylab="% Metrics EBMA >= Components")
+plot(NULL, xlim=c(0, 108), ylim=c(0,100), xlab="# of forecasts made", ylab=expression(paste("% Metrics ", EBMA<=c, "component", sep="")))
 text(count, jitter(rowMeans((modelOut-ensembleOut)>=0)*100, .75), substr(rownames(modelOut), 2, 9), cex=.5, ) # this needs some jitter, or point size differentiation
 abline(h=50, lty=3, col="gray20")
 title("Comparing EBMA with components", line=.5, cex=.7)
 # EBMA performance by meric
-plot(NULL, xlim=c(1, 8), ylim=c(0,100),  ylab="% of Models EBMA Equals or Beats", xaxt="n", xlab="")
+plot(NULL, xlim=c(1, 8), ylim=c(0,100),  ylab=expression(paste("% Models ", EBMA<=c, "component", sep="")), xaxt="n", xlab="")
 text(1:8, colMeans((modelOut-ensembleOut)>=0)*100,toupper(colnames(modelOut)) )
 title("% of models EBMA equals or beats by metric", line=.5, cex=.7)
-
+dev.off()
 
 library(colorRamps)
 
-
+pdf(height=9, width=7, file="awesome.pdf")
 par(mar=c(.5,2,3,2), mfrow=c(1,1), mgp=c(2,1,0))
 plot(NULL, xlim=c(3, .ncol-3), ylim=c(3, .nrow-3), yaxt="n", xaxt="n", xlab="", ylab="")
 .thisRamp <- blue2red(1001)
@@ -190,9 +200,9 @@ par(las=1)
 mtext(side=4, round(.ensemblePred-.outcome, 2), at=c(.nrow:1), cex=.4, line=1, adj=1)
 mtext(side=4,  "Error", at=.nrow+1, cex=.5, line=1, adj=1)
 mtext(side=2,  data[.theseRows,1], at=c(.nrow:1), cex=.5, line=1, adj=.5)
-title("Ensemble weights and predictions for unemployment (4 quarters out)")
+title("Ensemble weights and  for U.S. unemployment ")
 legend(.ncol-40, .nrow-20, c("0", "1/4", "1/2", "3/4", "1" ), col=.thisRamp[seq(1,1001, by=250)], pch=c(15, 15,15,15,15), cex=.8, title="Model Weights")
-
+dev.off()
 
 
 
@@ -201,23 +211,27 @@ legend(.ncol-40, .nrow-20, c("0", "1/4", "1/2", "3/4", "1" ), col=.thisRamp[seq(
 .median <- apply(data[.theseRows,-c(1:3)], 1, quantile, probs=.5, na.rm=TRUE)
 .green <- subset(ud4Green, forecast.year.quarter%in%data[.theseRows,1])$greenbook
 .time <- subset(ud4Green, forecast.year.quarter%in%data[.theseRows,1])$forecast.year.quarter
-
-all <- cbind(.ensemblePred, .mean, .median, .green)
+all <- cbind(.ensemblePred, .median, .green)
 all <- all[!is.na(.green),]
 .redOut <- .outcome[!is.na(.green)]
 .redLag <- .lag[!is.na(.green)]
 
 
 ### A basic plot of all 3
-plot(.time, .redOut, type="l", lwd=2)
-for(i in 1:4){
-  lines(.time, all[,i], col=1+i, lty=2)
+pdf(height=4, width=7, file="timeSeries.pdf")
+par(mar=c(2,2,3,2), mfrow=c(1,1), mgp=c(1,0,0), tcl=0)
+plot(.time, .redOut, type="l", lwd=2, ylab="% Unemployment", xlab="Year", main="Observed and forecasted U.S. unemployment (1981-2007)")
+mycols <- c("blue", "red", "darkgreen")
+for(i in 1:3){
+  lines(.time, all[,i], col=mycols[i], lty=1+i)
 }
+legend(2000, 10, c("Oberved", "EBMA", "Median", "Green Book"), col=c("black", "blue", "red", "darkgreen"), lty=c(1, 2,3,4))
+dev.off()
 
 library(xtable)
 .outTable <- modelFits(.redOut, all, .redLag)
 xtable(.outTable[c(1,4,3,2),])
-
+.outTable[c(1,4,3,2),]
 
 
 #######USEFUL CODE STOPS HERE

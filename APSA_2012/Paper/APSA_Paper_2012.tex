@@ -37,7 +37,7 @@
 \setboolean{blind}{false}
 
 
-\title{Say yes to the guess: Ensemble forecasting with sparse data \thanks{This work was supported by the Information Processing Technology Office of the
+\title{Say yes to the guess: \\Ensembles for prediction with scantily clad data\thanks{This work was supported by the Information Processing Technology Office of the
     Defense Advanced Research Projects Agency through a
     holding grant is to the Lockheed Martin Corporation [FA8650-07-C-7749].}}
 \author{
@@ -94,41 +94,83 @@ Michael D. Ward\\
 
 \section{Introduction}
 
-Although accurate prediction of future events has not .  EBMA mixture
-models seek to collate the good parts of existing forecasting models
-while avoiding over-fitting to past observations or over-estimating
-our certainty about the future.  The hope is for greater accuracy as
-both the knowledge and implied uncertainty of a variety of approaches
-are integrated into a combined predictive probability distribution.
+Although accurate prediction of future events is not the primary goal
+for most social sciences, recent years have witnessed spreading of
+systematic forecasting from more traditional topics (e.g., GDP growth
+and unemployment) to many new domains (e.g., elections and mass
+killings) .  Several factors have motivated this increase.  To begin
+with, testing systematic predictions about future events against
+observed outcomes is generally seen as the most stringent validity
+check of statistical and theoretical models.  In addition, forecasting
+of important political, economic, and social events is of great
+interest to policymakers and the general public who are generally less
+interested testing theories of the world than correctly anticipating
+and altering the future.
 
+With the proliferation of forecasting efforts, however, comes a need
+for sensible methods to aggregate and utilize the various scholarly
+efforts.  One attractive solutions to this problem is to combine
+various prediction models and create an ensemble forecast.  Combining
+forecasts reduces reliance on any single data source or methodology,
+but also allows for the incorporation of more information than any one
+model is likely to include in isolation.  Across subject domains,
+ensemble predictions are usually more accurate than any individual
+component model. Second, they are signiﬁcantly less likely to make
+dramatically incorrect predictions \citep{Bates:1969, Armstrong:2001,
+  Raftery:2005}.
 
-Specifically, the amount and quality of data for calibrating ensembles
-is.  However, \citet{Raftery:2005} first proposed EBMA mixture models
-as
+The idea of ensemble learning itself has a long history in the machine
+learning and nonparametric statistics community. The most thorough
+treatment is found in \citet{Hastie:2009}. A wide range of statistical
+approaches including neural nets, bagging, random forests, additive
+regression trees, and boosting and more may be properly considered
+ensemble approaches.  
 
-It is now common for people to make predictions
+One ensemble method advocated recently for forecasting is ensemble
+Bayesian model averaging (EBMA). This methods was first proposed by
+\citet{Raftery:2005} and recently forwarded as a useful method for the
+social sciences by \citet{Montgomery:2012a}. In essence, EBMA creates a
+finite mixture model that creates a kind of weighted average of
+forecasts.  EBMA mixture models seek to collate the good parts of
+existing forecasting models while avoiding over-fitting to past
+observations or over-estimating our certainty about the future.  The
+hope is for greater accuracy as both the knowledge and implied
+uncertainty of a variety of approaches are integrated into a combined
+predictive probability distribution.
 
+However, there are several challenges for creating ensemble
+predictions for many social science applications.  To begin with
+amount and quality of data for calibrating ensembles is far from
+ideal.  EBMA was first developed for use in weather forecasting where
+measurement of outcomes is fairly precise and data is relatively
+abundant.  Predicting, for instance, water surface temperatures in 200
+locations across five days provides 1,000 observations by which model
+weights can be calibrated.  Forecasting quarterly GDP
+growth in the United States for five \textit{years} only provides 20.
 
-
-
-
-The first constraint is the paucity of the data.  Relative to weather
-and other stuff, there just aren't a lot of observations, mostly
-stemming from the fact that for any given time period there is exactly
-one outcome.
-
-A second is the large number of forecasting efforts.  For example, the
-economic forecasting survey has like a billion experts.
+A second and related issue is that there tends to be a lot more
+forecasts than observations.  For example, the economic forecasting
+survey has like a billion experts.  blah, balh
 
 A final issue is the inconsistency with which forecasts are
-issued. For any given time window, there are many missing foreacsts.
-Moreover, it is not random with larger degrees of misssingness
-existing further back in time.
+issued. Given the lengthy time periods involved, of any given time
+window there are many missing forecasts.  Moreover, we cannot assume
+that forecasts for any time period from a specific model or team are
+missing at random.  Particularly unsuccessful forecasts may be
+suppressed.  Moreover, forecasts have tended to accumulate with more
+observations being available for more proximate time periods.
 
-As an example, Table 1 represents nearly the entire population of
-legitimate forecasting efforts.  We see all three of these things
-going on at the same time.
-
+One example of forecasting that combines all of these issues in the
+prediction of U.S. Presidential elections.  Table 1 represents nearly
+entirety of scholarly forecasts which produced more than one forecast
+for elections in the 20th century \footnote{Citations.  Also something
+  here about how we previously calibrated based on in-sample, but here
+  we are focused on pure out-of-sample forecasts}.  In this instance
+we have only five observations by which to calibrate a model while we
+have nine forecasts.  Moreover, several of the individual forecasts
+are missing for a significant portion of the data.  The forecast of
+Cuzan, for instance, is missing for 60\% of the elections in the
+dataset.
 
 \begin{table}[ht]
 \caption{Pre-election forecasts of the percent of the two-party vote going to the incumbent party in U.S. Presidential elections}
@@ -150,18 +192,33 @@ going on at the same time.
 Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}an.  Data taken from CITE SILVER POST HERE.
 \end{table}
 
+While particularly egregious for presidential forecasting, these data
+issues are endemic across the social sciences.  Blah, blah
 
-We adjust the basic EBMA model by better handling missing data, 
+In this paper, we explore several adjustments to the basic EBMA model
+as specified in \citet{Montgomery:2012} that can help applied
+researchers create ensemble forecasts even in the presence of these
+kinds of data-quality issues.  Specifically, we show EBMA can be
+adjusted to easily accomodate missing forecasts.  In addition, we
+propose an alteration to the basic model.  Below, we briefly introduce
+the basic EBMA model in Section \ref{model}.  We outline modifications
+to the model for missingness and small samples in Sections
+\ref{missing} and \ref{woc}. In Section \ref{empirics}, we apply the
+adjusted EBMA model to unemployment data as well as presidential
+forecasting models shown in Table 1.
 
-\section{Notation and EBMA model} 
+
+\section{Notation and basic EBMA model} 
+\label{model}
 
 Assume a quantity of interest to forecast, $\mathbf{y}^{t^*}$, in some
 future period $t^\ast \in T^\ast$.  Further assume that we have extant
 forecasts for events $\mathbf{y}^t$ for some past period $t \in T$
 that were generated from $K$ forecasting models or teams, $M_1, M_2,
-\ldots, M_K$, which have prior probability $M_k\sim \pi(M_k)$. The PDF
-for $\mathbf{y}^t$ is $p(\mathbf{y}^t|M_k)$, the predictive PDF for
-the quantity of interest is $p(\mathbf{y}^{t^*}|M_k$), the conditional
+\ldots, M_K$, for which have a prior probability distribution $M_k\sim
+\pi(M_k)$. The PDF for $\mathbf{y}^t$ is denoted
+$p(\mathbf{y}^t|M_k)$.  Under this model, the predictive PDF for the
+quantity of interest is $p(\mathbf{y}^{t^*}|M_k$), the conditional
 probability for each model is $p(M_k|\mathbf{y}^t) =
 p(\mathbf{y}^t|M_k)\pi(M_k)/\underset{k=1}{\overset{K}{\sum}}p(\mathbf{y}^t|M_k)\pi(M_k)$
 and the and the marginal predictive PDF is $p(\mathbf{y}^{t^*}) =
@@ -171,98 +228,259 @@ the weighted average of the component PDFs where the weights are
 determined by each model's performance within the already-observed
 period $T$.
 
-
-
 \subsection{Dynamic ensemble forecasting}
 
-The EBMA procedure assumes the prior construction of multiple
-forecasting models or heuristics in some training period $T^{\prime}$.
-The goal is to estimate the parameters for the ensemble prediction
-model using $\mathbf{f}^{t}_k$ for some period $T$.  t is then
-possible to generate true ensemble forecasts ($\mathbf{f}_k^{t^\ast}$)
-for observations in the test period $t^\ast \in T^*$.  Past
-applications have typically statistically post-process the predictions
-for out-of-sample bias reduction and treat these re-calibrated
-predictions as a component model.  However, in the presence of sparse
-data we treat these raw predictions as a component model in the steps
-below.  Additional discussion of this is below.
+The EBMA procedure assumes $K$ forecasting throughout the training
+($T^{\prime}$) calibration ($T$) and test ($T^\ast$) periods.  The goal is
+to estimate the parameters for the ensemble prediction model using
+$\mathbf{f}^{t}_k$ for some period $T$.  It is then possible to
+generate true ensemble forecasts ($\mathbf{f}_k^{t^\ast}$) for
+observations in the test period $t^\ast \in T^*$.
 
-As a running example, let us assume that we have $K$ forecasting
-efforts for modeling insurgencies in a set of countries $S$ ongoing
-throughout the training ($T^{\prime}$) validation ($T$) and test
-($T^\ast$) periods.  We will associate each component forecast with a
-component PDF, $g_k(\mathbf{y}|\mathbf{f}_k^{s|t, t^\ast})$, which may
-be the original prediction from the forecast model or the
-bias-corrected forecast.
+Let $g_k(\mathbf{y}|\mathbf{f}_k^{s|t, t^\ast})$ represent the
+predictive PDF of component $k$, which may be the original prediction
+from the forecast model or the bias-corrected forecast.  The EBMA PDF
+is then a finite mixture of the $K$ component PDFs, denoted
+$p(\mathbf{y}|\mathbf{f}_1^{s|t}, \ldots,
+\mathbf{f}_K^{s|t})=\overset{K}{\underset{k=1}{\sum}} w_k
+g_k(\mathbf{y}|\mathbf{f}_k^{s|t})$, where $w_k \in [0,1]$ are model
+probabilities, $p(M_k|\mathbf{y}^t)$, and $\sum_{k=1}^Kw_k=1$. The
+ensemble predictive PDF with this notation is is then
+$p(y|f_{1}^{t^\ast}, \ldots,
+f_{K}^{t^\ast})=\overset{K}{\underset{k=1}{\sum}} w_k
+g_k(y|f_{k}^{t^*})$.
 
 
-The EBMA PDF is then a finite mixture of the $K$ component PDFs,
-denoted
+
+Past applications have statistically post-process the predictions for
+out-of-sample bias reduction and treat these adjusted predictions as a
+component model. \citet{Raftery:2005} propose approximating the
+conditional PDF as a normal distribution centered at a linear
+transformation of the individual forecast,
+$g_k(\mathbf{y}|\mathbf{f}_k^{s|t}) = N(a_{k0} +
+a_{k1}\mathbf{f}_k^{t}, \sigma^2)$. However, in the presence of sparse
+data, including the additional $\mathbf{a}$ parameters risks
+over-fitting and reduced predictive performance.  We therefore use a
+simpler formulation where $g_k(\mathbf{y}|\mathbf{f}_k^{t}) =
+N(\mathbf{f}_k^{t}, \sigma^2)$.  Thus, the ultimate predictive
+distribution for some observation $y^{t^\ast}$ is 
+
 \begin{equation}
-\small
-\label{BMA-eq}
-p(\mathbf{y}|\mathbf{f}_1^{s|t}, \ldots, \mathbf{f}_K^{s|t})=\overset{K}{\underset{k=1}{\sum}} w_k
-g_k(\mathbf{y}|\mathbf{f}_k^{s|t}),
+\label{pdf}p(y|f_1^{s|t^\ast},
+\ldots, f_K^{s|t^\ast}) = \overset{K}{\underset{k=1}{\sum}} w_k
+N(f_k^{t^\ast}, \sigma^2).
 \end{equation}
-\noindent The $w_k$'s $\in [0,1]$ are model probabilities and
-$\sum_{k=1}^Kw_k=1$.  Roughly speaking, they are associated with each
-component model's predictive performance in the validation period
-controlling for the degree to which they offer unique insight (i.e.,
-a model's predictions are distinct from those of other component models).
-We provide additional discussion about the model weights in the
-election forecasting example below.  Details for parameter estimation
-are provided in Appendix A.  The ensemble PDF for an insurgency in the
-test period $t^\ast$ in country $s$ is then:
+
+\noindent This, is a mixture of $K$ normal distributions each of whose mean is
+determined by $f_k^{t^\ast}$ and which is scaled by the model weights
+$w_k$.
+
+\subsection{Parameter estimation}
+
+Since the component model forecasts, $f^t_1, \ldots, f^t_k$, are
+pre-determined, EBMA model is fully specified by estimating model
+weights, $w_1, \ldots, w_k$ and the common variance parameter
+$\sigma^2$.  We estimate these by maximum likelihood methods
+\citep{Raftery:2005}, although \citet{Vrugt:2008} have proposed
+estimation via Markov chain Monte Carlo metods.  The log likelihood
+function is
+
 \begin{equation}
-\label{BMA-eq2}
-\small
-p(y|f_{1}^{s|t^\ast}, \ldots,
-f_{K}^{s|t^\ast})=\overset{K}{\underset{k=1}{\sum}} w_k
-g_k(y|f_{k}^{s|t^*}).
+\mathcal{L}(w_1, \ldots, w_k, \sigma^2)=\sum_tlog\left(\sum_{k=1}^Kw_kN(f^t_k, \sigma^2) \right).
 \end{equation}
 
 
-\citet{Raftery:2005} propose approximating the conditional PDF as a
-normal distribution centered at a linear transformation of the
-individual forecast, $g_k(\mathbf{y}|\mathbf{f}_k^{s|t}) = N(a_{k0} +
-a_{k1}\mathbf{f}_k^{s|t}, \sigma^2)$.  Prior applications have found
-that this adjustment of the component models' forecasts reduces
-over-fitting and improves the performance of the final ensemble
-forecasting model \citep{Raftery:2005}.\note{Our adjustments to the
-  basic EBMA method for application to dichotomous outcomes, as well
-  as details of parameter estimation, are shown in Appendix A.}  Using
-\eqref{BMA-eq} and \eqref{BMA-eq2} above, the EBMA PDF is then
-\begin{equation} \small
-p(\mathbf{y}|\mathbf{f}_1^{s|t}, \ldots, \mathbf{f}_K^{s|t}) = \overset{K}{\underset{k=1}{\sum}} w_k N(a_{k0} +
-a_{k1}\mathbf{f}_k^{s|t}, \sigma^2),
+\noindent This function cannot be maximized analytically, so
+\citet{Raftery:2005} propose an EM algorithm which explicitly
+expresses EBMA as a finite mixture model (CITE: McLachlan and Peel 200
+and the new Imai AJPS).  We introduce the unobserved quantities
+$z_k^t$, which represents the probabilty that observation $y^t$ is
+``best'' predicted by model $k$.  The E step involves calculating
+estimates for these unobserved quantities using the formula
+\begin{equation}
+\label{E-step}
+\hat{z}^{(j+1)t}_{k} = \frac{\hat{w}^{(j)}_k
+p^{(j)}(y|f_{k}^{t})}{\overset{K}{\underset{k=1}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|f_{k}^{t})},
 \end{equation}
-\noindent and the predictive distribution for some observation $y$ is 
-\begin{equation} \small
-p(y|f_1^{s|t^\ast}, \ldots, f_K^{s|t^\ast}) = \overset{K}{\underset{k=1}{\sum}} w_k N(a_{k0} +
-a_{k1}f_k^{s|t^\ast}, \sigma^2)
- \end{equation}
- \noindent Thus, the predictive PDF is a mixture of $K$ normal
- distributions each of whose mean is determined by the component
- prediction ($f_k^{s|t^\ast}$) and whose ``height'' (i.e, the total
- area under the curve for component $k$) is determined by the model
- weight $w_k$.
+\noindent where the superscript $j$ refers to the $j$th iteration of
+the EM algorithm.
 
-\subsection{Estimation}
+$w_k^{(j)}$ is the estimate of $w_k$ in the $j$th iteration and
+$p^{(j)}(.)$ is shown in \eqref{pdf}.  Assuming these estimates of
+$z_{k}^{s|t}$ are correct, it is then straightforward to derive the
+maximizing value for the model weights. Thus, the M step estimates
+these as 
 
-\subsection{Missing forecast components}
+\begin{equation}
+\label{M-step}
+\hat{w}^{(j+1)}_k=\frac{1}{n}\underset{t}{\sum}\hat{z}^{(j+1)t}_{k},
+\end{equation}
+
+\noindent where $n$ represents the number of observations in the
+validation dataset.  Finally,
+
+\begin{equation}
+\label{sigma}
+\hat{\sigma}^{2(j+1)}=\frac{1}{n}\underset{t}{\sum}\overset{K}{\underset{k=1}{\sum}}\hat{z}^{(j+1)t}_{k}(y-f_{k}^{t})^2.
+\end{equation}
+\noindent The E and M steps are iterated until the improvement in the
+log-likelihood is no larger than some pre-defined tolerance.  We
+initiate the algorithm with the assumption that all models are equally
+likely, $w_k = \frac{1}{K} ~ \forall ~ k \in [1, \ldots, K]$ and
+$\sigma^2=1$.
+
+
+\section{Missing forecasts}
+\label{missing}
+
+To accomodate missing ensemble values, \citep{Fraley:2010} modify the EM algorithm as follows. \footnote{In future versions of this paper, we hope to compare alternative methods for handling missing data including imputation gaussian copulas (CITATIONS). }  Define $$\mathcal{A}^t = \{i|\mbox{ensemble member i available at time t}\}.$$.
+
+\noindent which is simply the indicators of the list of components that provide forecasts for observation $y_t$.   For convenience, define $\tilde{z}_k^{(j+1)t} \equiv {{\underset{k \in A^t}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|f_{k}^{t})}/{\underset{k \in A^t}\sum w_k^{(j)}}$.  Equation \ref{E-step} is then replaced with
+
+\begin{equation}
+\hat{z}^{(j+1)t}_{k} = \Bigg\{ \begin{array}{c} {\hat{w}^{(j)}_k p^{(j)}(y|f_{k}^{t})}/{\tilde{z}_k^{(j+1)t} } \mbox{ if } k \in \mathcal{A}^t\\ 0 \mbox{ if } k \notin \mathcal{A}^t \end{array}
+\end{equation}
+
+
+
+\noindent  The M steps in Equations \ref{M-step} and \ref{sigma} are likewise replaced with
+
+\begin{equation}
+\hat{w}^{(j+1)}_k=\frac{\underset{t}{\sum}\hat{z}^{(j+1)t}_{k}}{\underset{t}{\sum}\overset{K}{\underset{k=1}{ \sum}} \hat{z}_k^{(j+1)t}}
+\end{equation}
+
+
+\noindent and
+
+\begin{equation}
+\hat{\sigma}^{2(j+1)}=\frac{\underset{t}{\sum}\overset{K}{\underset{k=1}{\sum}}\hat{z}^{(j+1)t}_{k}(y-f_{k}^{t})^2 }{\underset{t}{\sum}\overset{K}{\underset{k=1}{ \sum}} \hat{z}_k^{(j+1)t}}.
+\end{equation}
+
 
 %\section{Window selection} Jacob thinks this should be a short subsection eventually.  But not for APSA.
 
 \section{Small sample adjustment}
+\label{woc}
+
+When ensembles are calibrated on very few observations, there is an
+increased chance that EBMA may over-weight high performing models in a
+way that reduces out of sample performance.  Thus, we introduce a
+``wisdom of crowds'' parameter, $c \in [0,1]$, that reflects our prior
+belief that all models should receive some weight.  In essence, we
+rescale $z^t_k$ to have a minimum value $\frac{c}{K}$.  This
+essentially states that there is, at a minimum, a $\frac{c}{K}$
+probability that the observation is correctly represented by each
+model $k$.  Since $\overset{K}{\underset{k=1}{\sum}} z_k^t = 1$, this
+implies that $z_k^t \in [\frac{c}{K}, (1-c)]$.  To achieve this, we
+replace Equation \ref{M-step} above with
+
+\begin{equation}
+\hat{z}^{(j+1)t}_{k} = \frac{c}{K} + (1-c)\frac{\hat{w}^{(j)}_k
+p^{(j)}(y|f_{k}^{t})}{\overset{K}{\underset{k=1}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|f_{k}^{t})}.
+\end{equation}
+
+
+
+
+Note that when $c=1$, that all models are considered equally
+informative about the outcome and $w_k=\frac{1}{K} \forall K$. Thus, we see that the arithmetic mean or
+median of component forecasts for time period $t$ represents a special
+case of EBMA where $c=1$.\footnote{The mean or median would be
+  equivalent depending on if the posterior mean or median is used to
+  make a point prediction.}  Likewise, the general EBMA discussed in
+\citet{Montgomery:2012} represents special case of this more general
+model where $c=0$.
 
 %\section{Simulations} Jacob think we will want just a bit of this.  But not for APSA.
 
 \section{Applications}
+\label{empirics}
+
+Blah, blah transition paragraph here
+
+
 \subsection{Predicting unemployment}
+
+Blah, blah.  Short lit review of this topic here
+
+The eight metrics selected are mean absolute error (MAE), root mean
+squared error (RMSE), median absolute deviation (MAD), root mean
+squared logarithmic error (RMSLE), mean absolute percentage error
+(MAPE), median absolute percentage error (MEAPE), median relative
+absolute error (MRAE) and percent worse (PW).  The latter two metrics
+are measured relative to a naive model simply predicting the future
+rate of unemployment as being the same as the current rate of
+unemployment.  Although these metrics are all correlated, there are
+significant differences (\citet[][]{brandt:freeman:schrodt:2011} for a
+more thorough discussion of these prediction metrics).  The
+correlations range from a low of 0.2 (MRAE and MAE) to a high of .98
+(MAE and RMSE).
+
+The EBMA model uses only 163 models out of a 293 forecasts available
+over this period.
+
+\begin{figure}[h!]
+\caption{Clever caption here}
+\begin{center}
+\includegraphics{compare2Components}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[h!]
+\caption{Clever caption here}
+\begin{center}
+\includegraphics[scale=.95]{awesome}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[h!]
+\caption{Clever caption here}
+\begin{center}
+\includegraphics[scale=1]{timeSeries}
+\end{center}
+\end{figure}
+
+
+
+\begin{table}[ht]
+\caption{clever caption here}
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & MAE & RMSE & MAD & RMSLE & MAPE & MEAPE & MRAE & PW \\ 
+\midrule
+ EBMA (c=0)& 0.54 & 0.74 & 0.37 & 0.009 & 8.37 & 6.49 & \textbf{0.73} & \textbf{27.36} \\ 
+  EBMA (c=0.05)& \textbf{0.54} & 0.74 &\textbf{ 0.37} & \textbf{0.009} & \textbf{8.33} & \textbf{6.30} & 0.75 & \textbf{27.36} \\ 
+ EBMA (c=0.1)& 0.54 & 0.74 & 0.35 & 0.009 & 8.40 & 6.44 & 0.76 & 28.30 \\ 
+EBMA (c=1) & 0.61 & 0.80 & 0.46 & 0.010 & 9.72 & 8.92 & 0.95 & 46.23 \\ 
+ Green Book& 0.57 & \textbf{0.73} & 0.43 & 0.009 & 9.37 & 8.81 & 1.00 & 45.28 \\ 
+ Forecast Median& 0.62 & 0.81 & 0.47 & 0.011 & 9.83 & 8.87 & 0.98 & 47.17 \\ 
+Forecast Mean& 0.61 & 0.80 & 0.46 & 0.010 & 9.71 & 9.06 & 0.93 & 46.23 \\ 
+\bottomrule
+\end{tabular}
+\end{center}
+
+The model with the lowest score for each metric are shown in bold.  
+\end{table}
+
+
 \subsection{Predicting presidential elections}
+
+Blah, Blah
+
 
 
 \section{Discussion} 
+
+
+Super blah, blah.  
+
+In future drafts of this paper we hope to (1) compare alternative
+methods of handling missing data (2) discuss how to select window of
+time for calibration and (c) conduct some simulation studies to
+explore settings for $c$ parameter.
 
 % \newpage
 % \appendix

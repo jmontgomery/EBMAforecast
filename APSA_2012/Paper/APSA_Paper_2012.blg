@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: APSA_Paper_2012.aux
 The style file: apsr.bst
 Database file #1: Bibliography_EBMA.bib
-You've used 2 entries,
+Warning--I didn't find a database entry for "Montgomery:2012a"
+You've used 8 entries,
             2874 wiz_defined-function locations,
-            657 strings with 5180 characters,
-and the built_in function-call counts, 15864 in all, are:
-= -- 2674
-> -- 166
+            705 strings with 6529 characters,
+and the built_in function-call counts, 46729 in all, are:
+= -- 7755
+> -- 596
 < -- 0
-+ -- 1308
-- -- 56
-* -- 1426
-:= -- 3050
-add.period$ -- 8
-call.type$ -- 2
-change.case$ -- 26
-chr.to.int$ -- 2
-cite$ -- 2
-duplicate$ -- 30
-empty$ -- 77
-format.name$ -- 62
-if$ -- 2863
++ -- 3769
+- -- 204
+* -- 4082
+:= -- 9210
+add.period$ -- 34
+call.type$ -- 8
+change.case$ -- 104
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 115
+empty$ -- 259
+format.name$ -- 209
+if$ -- 8403
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 2
-newline$ -- 11
-num.names$ -- 22
-pop$ -- 4
+missing$ -- 7
+newline$ -- 38
+num.names$ -- 104
+pop$ -- 33
 preamble$ -- 1
-purify$ -- 30
+purify$ -- 120
 quote$ -- 0
-skip$ -- 29
+skip$ -- 98
 stack$ -- 0
-substring$ -- 3890
-swap$ -- 4
-text.length$ -- 28
+substring$ -- 11087
+swap$ -- 12
+text.length$ -- 112
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 30
 warning$ -- 0
-while$ -- 46
+while$ -- 194
 width$ -- 0
-write$ -- 32
+write$ -- 124
+(There was 1 warning)

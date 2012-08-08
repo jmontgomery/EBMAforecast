@@ -1,5 +1,46 @@
 \begin{thebibliography}{xx}
 
+\harvarditem{Armstrong}{2001}{Armstrong:2001}
+Armstrong, J.~Scott. 2001.
+\newblock Combining Forecasts.  In {\em Principles of Forecasting: A Handbook
+  for Researchers and Practitioners}, ed. J.~Scott Armstrong.
+\newblock Norwell, MA:  Kluwer Academic Publishers.
+
+\harvarditem{Bates \harvardand\ Granger}{1969}{Bates:1969}
+Bates, J.M. \harvardand\ Clive~W.J. Granger. 1969.
+\newblock ``The Combination of Forecasts.'' {\em Operations Research}
+  20(4):451--468.
+
+\harvarditem[Brandt, Freeman \harvardand\ Schrodt]{Brandt, Freeman \harvardand\
+  Schrodt}{2011}{brandt:freeman:schrodt:2011}
+Brandt, Patrick~T., John~R. Freeman \harvardand\ Philip~A. Schrodt. 2011.
+\newblock ``Racing Horses: Constructing and Evaluating Forecasts in Political
+  Science.'' Paper prepared for the 28th Annual Summer Meeting of the Society
+  for Political Methodology.
+  \url{http://polmeth.wustl.edu/media/Paper/RHMethods20110721small_1.pdf}
+  (accessed August 20, 2011).
+
+\harvarditem[Fraley, Raftery \harvardand\ Gneiting]{Fraley, Raftery
+  \harvardand\ Gneiting}{2010}{Fraley:2010}
+Fraley, Chris, Adrian~E. Raftery \harvardand\ Tilmann Gneiting. 2010.
+\newblock ``Calibrating Multimodel Forecast Ensembles with Exchangeable and
+  Missing Members Using {B}ayesian Model Averaging.'' {\em Monthly Weather
+  Review} 138(1):190--202.
+
+\harvarditem[Hastie, Tibshirani \harvardand\ Friedman]{Hastie, Tibshirani
+  \harvardand\ Friedman}{2009}{Hastie:2009}
+Hastie, Trevor, Robert Tibshirani \harvardand\ Jerome Friedman. 2009.
+\newblock {\em The Elements of Statistical Learning: Data Mining, Inference,
+  and Prediction}.
+\newblock New York, NY:  Springer.
+
+\harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
+  \harvardand\ Ward}{2012}{Montgomery:2012}
+Montgomery, Jacob~M., Florian Hollenbach \harvardand\ MIchael~D. Ward. 2012.
+\newblock ``{"Replication data for: Improving Predictions Using Ensemble
+  Bayesian Model Averaging"}.''.
+\newblock http://hdl.handle.net/1902.1/17286 IQSS Dataverse Network.
+
 \harvarditem[Raftery et~al.]{Raftery, Gneiting, Balabdaoui \harvardand\
   Polakowski}{2005}{Raftery:2005}
 Raftery, Adrian~E., Tilmann Gneiting, Fadoua Balabdaoui \harvardand\ Michael
@@ -7,11 +48,10 @@ Raftery, Adrian~E., Tilmann Gneiting, Fadoua Balabdaoui \harvardand\ Michael
 \newblock ``Using {B}ayesian Model Averaging to Calibrate Forecast Ensembles.''
   {\em Monthly Weather Review} 133(5):1155--1174.
 
-\harvarditem[Sloughter et~al.]{Sloughter, Raftery, Gneiting \harvardand\
-  Fraley}{2007}{Sloughter:2007}
-Sloughter, J.~McLean, Adrian~E. Raftery, Tilmann Gneiting \harvardand\ Chris
-  Fraley. 2007.
-\newblock ``Probabilistic Quantitative Precipitation Forecasting Using
-  {B}ayesian Model Averaging.'' {\em Monthly Weather Review} 135(9):3209--3220.
+\harvarditem[Vrugt, Diks \harvardand\ Clark]{Vrugt, Diks \harvardand\
+  Clark}{2008}{Vrugt:2008}
+Vrugt, Jasper~A., Cees~G.H. Diks \harvardand\ Martyn~P. Clark. 2008.
+\newblock ``Ensemble {B}ayesian Model Averaging Using {M}arkov Chain {M}onte
+  {C}arlo Sampling.'' {\em Environmental Fluid Mechanics} 8(5):579--595.
 
 \end{thebibliography}

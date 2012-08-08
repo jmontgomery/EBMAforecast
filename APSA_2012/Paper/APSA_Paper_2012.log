@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.6.1)  7 AUG 2012 15:57
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.6.1)  8 AUG 2012 15:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -628,125 +628,127 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 83.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 150.
+Missing character: There is no Ô in font ptmr7t!
+Missing character: There is no ¨ in font ptmr7t!
+Missing character: There is no Å in font ptmr7t!
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 132.
+
+
+Package natbib Warning: Citation `Montgomery:2012a' on page 1 undefined on inpu
+t line 132.
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.173 
+l.162 
        [1
 
 ]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 176.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 192.
 
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 202.
-
-LaTeX Font Info:    Calculating math sizes for size <> on input line 206.
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 206.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 218.
+Overfull \hbox (59.83038pt too wide) in paragraph at lines 214--230
+\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 (\OT1/cmr/bx/n/12 y[]\OMS/cmsy/m/n/12 j\OML/c
+mm/m/it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ^^Y\OT1/cmr/m/n/12 (\OML/cmm/m/
+it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 =[]p\OT1/cmr/m/n/12 (\OT1/cmr/bx/n/1
+2 y[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ^^
+Y\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 )$ \OT1/ptm/m/n/12 and th
+e and the marginal pre-dic-tive PDF is $\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 (\OT1
+/cmr/bx/n/12 y[]\OT1/cmr/m/n/12 ) = []\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 (\OT1/c
+mr/bx/n/12 y[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m
+/it/12 p\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 M[]\OMS/cmsy/m/n/12 j\OT1/cmr/bx/n/12
+ y[]\OT1/cmr/m/n/12 )$\OT1/ptm/m/n/12 .
+ []
 
 [2]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 231.
+ [3] [4] [5] <compare2Components.pdf, id=136, 433.62pt x 433.62pt>
+File: compare2Components.pdf Graphic file (type pdf)
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 235.
+<use compare2Components.pdf>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<awesome.pdf, id=137, 505.89pt x 650.43pt>
+File: awesome.pdf Graphic file (type pdf)
+ <use awesome.pdf>
+
+LaTeX Warning: Float too large for page by 41.43329pt on input line 435.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 240.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(./APSA_Paper_2012.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 279.
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 279.
+<timeSeries.pdf, id=138, 505.89pt x 289.08pt>
+File: timeSeries.pdf Graphic file (type pdf)
+ <use timeSeries.pdf>
+Overfull \hbox (22.4766pt too wide) in paragraph at lines 441--442
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(./APSA_Paper_2012.bbl [6]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 20.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [7 <./compare2Components.pdf>]
+Underfull \hbox (badness 3849) in paragraph at lines 39--43
+[]\OT1/ptm/m/n/12 Montgomery, Ja-cob M., Flo-rian Hol-len-bach and MIchael D. W
+ard. 2012.  ``"Repli-ca-
+ []
+
+
+Underfull \hbox (badness 5091) in paragraph at lines 39--43
+\OT1/ptm/m/n/12 tion data for: Im-prov-ing Pre-dic-tions Us-ing En-sem-ble Baye
+sian Model Av-er-ag-ing".''.
+ []
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
+[8] [9 <./awesome.pdf>] [10 <./timeSeries.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
  (./APSA_Paper_2012.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 279.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
 Package rerunfilecheck Info: File `APSA_Paper_2012.out' has not changed.
-(rerunfilecheck)             Checksum: 441918AC241D3AA521B65B099B18D1F7;622.
-
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 4.5pt have occurred.
-
+(rerunfilecheck)             Checksum: E37BA9771AC0D01FEEB989018728DA64;614.
  ) 
 Here is how much of TeX's memory you used:
- 8243 strings out of 493763
- 121079 string characters out of 3144955
- 239169 words of memory out of 3000000
- 11291 multiletter control sequences out of 15000+200000
- 40153 words of font info for 101 fonts, out of 3000000 for 9000
+ 8315 strings out of 493763
+ 122198 string characters out of 3144955
+ 241804 words of memory out of 3000000
+ 11331 multiletter control sequences out of 15000+200000
+ 38503 words of font info for 89 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 31i,8n,28p,884b,339s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 31i,12n,28p,884b,436s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
-xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/tex
-live/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
-ive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
-ve/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texliv
+exlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/te
+xlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/tex
+live/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texl
+ive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texliv
 e/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/
-2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
-10/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2010
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2010/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2010/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2010/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2010/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2010/texmf-dis
-t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/ty
-pe1/urw/times/utmr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/urw/ti
-mes/utmr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on APSA_Paper_2012.pdf (4 pages, 168457 bytes).
+2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/20
+10/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2010/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2010/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2010/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2010/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2010/texmf-d
+ist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2010/texmf-dist/font
+s/type1/urw/times/utmb8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/ur
+w/times/utmr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/ut
+mr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+
+Output written on APSA_Paper_2012.pdf (11 pages, 240617 bytes).
 PDF statistics:
- 155 PDF objects out of 1000 (max. 8388607)
- 130 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 256 PDF objects out of 1000 (max. 8388607)
+ 218 compressed objects within 3 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
