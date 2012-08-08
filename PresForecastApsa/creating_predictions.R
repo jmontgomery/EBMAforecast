@@ -154,7 +154,7 @@ data_2012<-insample.data[1,]
 data_2012<-data_2012[,-1]
 rownames(data_2012)<-2012
 data_2012[1,5]<-NA
-data_2012[1,6]<-NA
+data_2012[1,4]<-NA
 
 
 ### current 2012 forecasts
@@ -166,6 +166,8 @@ data_2012["2012","Lockerbie"]<-54.00
 data_2012["2012","Campbell.trialheat"]<-50.6
 data_2012["2012","Campbell.bump"]<-50.4
 data_2012["2012","Abramowitz"]<-50.5
+data_2012["2012","Lewis.Beck_Tien_Jobs"]<-47.6
+data_2012["2012","Lewis.Beck_Tien_Proxy"]<-51.4
 
 
  save(data_2012,file="data_2012.RData")

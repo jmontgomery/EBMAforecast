@@ -25,36 +25,12 @@ summary(cuzan.data)
 
 cuzan.long<-subset(cuzan.data,YEAR>1879 & YEAR<2012)
 cuzan.short<-subset(cuzan.data,YEAR>1915& YEAR<2012)
-cuzan.long.2004<-subset(cuzan.data,YEAR>1879 & YEAR<2004)
-cuzan.short.2004<-subset(cuzan.data,YEAR>1915& YEAR<2004)
-cuzan.2004<-subset(cuzan.data,YEAR==2004)
 
-cuzan1.short<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short.2004)
-cuzan1.long<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.long.2004)
-cuzan2.long<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS  +DURATION+PARTY,data=cuzan.long.2004)
-cuzan2.short<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short.2004)
-
-predict(cuzan1.short,cuzan.2004)
-predict(cuzan1.long,cuzan.2004)
-predict(cuzan2.short,cuzan.2004)
-predict(cuzan2.long,cuzan.2004)
-
-cuzan.long.2008<-subset(cuzan.data,YEAR>1879 & YEAR<2008)
-cuzan.short.2008<-subset(cuzan.data,YEAR>1915& YEAR<2008)
-cuzan.2008<-subset(cuzan.data,YEAR==2008)
-
-cuzan1.short<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short.2008)
-cuzan1.long<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.long.2008)
-cuzan2.long<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS  +DURATION+PARTY,data=cuzan.long.2008)
-cuzan2.short<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short.2008)
-
-predict(cuzan1.short,cuzan.2008)
-predict(cuzan1.long,cuzan.2008)
-predict(cuzan2.short,cuzan.2008)
-predict(cuzan2.long,cuzan.2008)
-
-
-
+#results not exactly the same
+cuzan1.short<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short)
+cuzan1.long<-lm(VOTE2~FISCAL_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.data)
+cuzan2.long<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS  +DURATION+PARTY,data=cuzan.data)
+cuzan2.short<-lm(VOTE2~FPRIME_2012+GROWTH+ALLNEWS+DURATION+PARTY,data=cuzan.short)
 summary(cuzan1.long)
 summary(cuzan2.long)
 summary(cuzan1.short)
@@ -178,18 +154,22 @@ data_2012<-insample.data[1,]
 data_2012<-data_2012[,-1]
 rownames(data_2012)<-2012
 data_2012[1,5]<-NA
-data_2012[1,6]<-NA
+data_2012[1,4]<-NA
 
 
 ### current 2012 forecasts
 data_2012["2012","Erikson.Wlezien"]<-52.2
 data_2012["2012","Holbrook"]<-47.8
 data_2012["2012","berry"]<-47.14
-data_2012["2012","Hibbs"]<-46.1
+data_2012["2012","Hibbs"]<-47.5
 data_2012["2012","Lockerbie"]<-54.00
 data_2012["2012","Campbell.trialheat"]<-50.6
 data_2012["2012","Campbell.bump"]<-50.4
 data_2012["2012","Abramowitz"]<-50.5
+data_2012["2012","Lewis.Beck_Tien_Jobs"]<-47.6
+data_2012["2012","Lewis.Beck_Tien_Proxy"]<-51.4
+data_2012["2012","Cuzan1.short"]<-45.5
+data_2012["2012","Cuzan2.short"]<-46.9
 
 
  save(data_2012,file="data_2012.RData")
