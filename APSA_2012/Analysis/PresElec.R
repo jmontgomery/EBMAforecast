@@ -34,23 +34,32 @@ myPres
 data=myPres
 .minCal=2
 .theseRows <- c(1:5)
-.const=.1
+.const=.05
 
-#.selector <-  colSums(is.na(data[.theseRows,]))<=  (.all-.minCal) & !is.na(data[.predThis,])
-.selector <- c(rep(TRUE, 11), FALSE)
+.selector <- c(rep(TRUE, 11), TRUE)
 .reduced <- data[.theseRows, .selector]
-#.target <- data[.predThis, .selector]
 .target <- data[5,.selector]
 
- .FD <- makeForecastData(.predCalibration=.reduced[,-c(1:3)]
+load("~/Github/EBMAforecast/PresForecastPS/data_2012.RData")
+
+pred12 <- matrix(c(49.5, 50.5, 50.6, 47.5, 47.6, 54, 47.8, 52.2, NA), nrow=1)
+
+
+.FD <- makeForecastData(.predCalibration=.reduced[,-c(1:3)]
                           ,.outcomeCalibration=.reduced[,2]
-                          ,.predTest=.target[,-c(1:3)]
-                          ,.outcomeTest=.target[,2]
+                          ,.predTest=pred12
                           ,.modelNames=colnames(.reduced[,-c(1:3)])
                           )
 
- ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, )
-summary(ensemble)
+ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const)
+summary(ensemble, showCoefs=FALSE)
+library(xtable)
+xtable(summary(ensemble, showCoefs=FALSE)@summaryData)
 ensemble@predTest
 
-plot(ensemble, subset=5, main="2008")
+setwd("~/GitHub/EBMAforecast/APSA_2012/Paper/")
+pdf(width=6, height=6, file="presForecast.pdf")
+par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.main=.9)
+plot(ensemble, subset=5, main="2008 (In-sample)", xLab="% Two party vote for incumbent")
+plot(ensemble, subset=1, period="test", main="2012 (Out-of-sample)", xLab="% Two party vote for incumbent")
+dev.off()

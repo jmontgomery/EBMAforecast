@@ -2,26 +2,12 @@
 \alias{makeForecastData}
 \title{Build a ensemble forecasting data object}
 \arguments{
-  \item{.predAll}{An n by p matrix or data.frame containing
-  predictions, for both the calibration and test
-  observations.  This may also be a n by p by m array
-  containing multiple predictions for each model.  Missing
-  values are allowed.}
-
-  \item{.outcomeAll}{A vector of length n, containing the
-  true values of the dependent variable, for both the
-  calibration and test observations.}
-
-  \item{.inOut}{A dichotomous vector of length n, where 1
-  indicates that the observation is in the test sample and
-  0 that it is in the calibration sample.}
-
   \item{.predCalibration}{A matrix with the number of rows
   being the number of observations in the calibration
   period and a column with calibration period predictions
   for each model.}
 
-  \item{.predTest}{A matrix with the number of rows being
+  \item{.predTest}{A vector with the number of rows being
   the number of observations in the test period and a
   column with test period predictions for each model.}
 
@@ -55,18 +41,19 @@
   specified, names will be assigned automatically.}
 }
 \description{
-  This function uses the user provided component model
-  forecasts and dependent variable observations to create
-  an object of class \code{ForecastData}, which can then be
-  used to calibrate and fit the Ensemble. Individual slots
-  of the \code{ForecastData} object can be accessed and
-  changed using the \code{get} and \code{set} functions
-  respectively.
+  This function uses the component model forecasts and
+  dependent variable observations provided by the user to
+  create an object of class \code{ForecastData}, which can
+  then be used to calibrate and fit the ensemble.
+  Individual slots of the \code{ForecastData} object can be
+  accessed and changed using the \code{get} and \code{set}
+  functions respectively. Missing predictions are allowed
+  in the calibration set.
 }
 \examples{
 data(calibrationSample)
 
-data(testSample)
+\dontrun{data(testSample)
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -78,7 +65,7 @@ getPredTest(this.ForecastData)
 getOutcomeTest(this.ForecastData)
 getModelNames(this.ForecastData)
 
-### to assign individual slots, use set funtions
+### to assign individual slots, use set functions
 
 setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
 setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
@@ -86,17 +73,20 @@ setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
 setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 }
+}
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and
   Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
+  and Florian M. Hollenbach
+  <\email{florian.hollenbach@duke.edu}>
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
   D. Ward. (2012). Improving Predictions Using Ensemble
   Bayesian Model Averaging. \emph{Political Analysis}.
-  Forthcoming.
+  \bold{20}: 271-291.
 }
 \seealso{
-  ensembleBMA, other functions
+  ensembleBMA
 }
 

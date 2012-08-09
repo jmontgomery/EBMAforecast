@@ -38,7 +38,8 @@
 \setboolean{blind}{false}
 
 
-\title{Say yes to the guess: \\Ensembles for prediction with scantily clad data\thanks{This work was supported by the Information Processing Technology Office of the
+\title{Say yes to the guess: \\ Fitting quality ensembles on a tight
+  (data) budget\thanks{This work was supported by the Information Processing Technology Office of the
     Defense Advanced Research Projects Agency through a
     holding grant is to the Lockheed Martin Corporation [FA8650-07-C-7749].}}
 \author{
@@ -544,22 +545,70 @@ these metrics.
 
 \subsection{U.S. presidential elections}
 
-With these 
+Informed by the above discussion, we return briefly to the example
+with which we began -- predicting U.S. presidential elections.  Using
+the forecasts shown in Table 1, we fit an EBMA model with $c=0.05$.
+The model weights and in-sample fit statistics for the ensemble and
+its components are shown in Table \ref{presModel}.
+
+\begin{table}[ht]
+\caption{The model names need to be fixed. Nice caption here.}
+\label{presModel}
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+ & W & RMSE& MAE\\ 
+\midrule
+EBMA &  & 1.92 & 1.56 \\ 
+  Fair & 0.02 & 5.53 & 4.58 \\ 
+  Abramowitz & 0.78 & 2.02 & 1.72 \\ 
+  Campbell & 0.07 & 3.46 & 2.88 \\ 
+  Hibbs & 0.04 & 2.68 & 2.44 \\ 
+  LewisBeck & 0.06 & 2.78 & 2.28 \\ 
+  Lockerbie & 0.00 & 7.33 & 6.97 \\ 
+  Holbrook & 0.01 & 5.73 & 4.77 \\ 
+  Erikson & 0.02 & 2.74 & 2.25 \\ 
+  Cuzan & 0.00 & 0.99 & 0.75 \\ 
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+Figure \ref{pres} shows the posterior predictive distribution for the
+2008 election (top) and, based on current forecasts from each of the
+component models, 2012 election.  We predict that Obama is going to
+win by very little, but that our credible intervals are quite wide.
+
+\begin{figure}[h]
+\caption{Clever caption here}
+\label{pres}
+\begin{center}
+\includegraphics[scale=.8]{presForecast}
+\end{center}
+
+Explain the figure
+\end{figure}
+
+
 
 
 
 \section{Discussion} 
 
 
-Super blah, blah.  
+Super blah, blah.  We are awesome. Publish this article please.
 
 In future drafts of this paper we hope to (1) compare alternative
 methods of handling missing data (2) discuss how to select window of
 time for calibration and (c) conduct some simulation studies to
-explore settings for $c$ parameter.
+explore settings for $c$ parameter and to test the numerical stability
+of our results.
 
-% \newpage
-% \appendix
+
+
+ \newpage
+ \appendix
 
 
  \section*{Appendix}
