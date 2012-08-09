@@ -26,12 +26,14 @@ colnames(myPres) <- c("year", "truth", "junk", "Fair", "Abramowitz", "Campbell",
 myPres <- data.frame(myPres)
 myPres$LewisBeck[1] <- 47.3
 myPres[,1] <- as.character(myPres[,1])
+myPres
+
+
 
 .predThis=5
 data=myPres
 .minCal=2
-.theseRows <- c(1:4)
-.all <- 4
+.theseRows <- c(1:5)
 .const=.1
 
 #.selector <-  colSums(is.na(data[.theseRows,]))<=  (.all-.minCal) & !is.na(data[.predThis,])
@@ -47,8 +49,8 @@ data=myPres
                           ,.modelNames=colnames(.reduced[,-c(1:3)])
                           )
 
- ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const)
+ ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, )
 summary(ensemble)
 ensemble@predTest
 
-plot(ensemble, period="test")
+plot(ensemble, subset=5, main="2008")

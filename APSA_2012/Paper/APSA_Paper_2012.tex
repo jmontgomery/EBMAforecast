@@ -25,6 +25,7 @@
 \usepackage{hyperref}
 \usepackage{endnotes}
 \usepackage[top=3cm, bottom=3cm, left=2.3cm, right=2.3cm]{geometry} 
+%\usepackage[nolist]{endfloat}
 
 \newcommand{\note}[1]{\footnote{ #1 \vspace{4 mm}}}
 
@@ -399,52 +400,114 @@ model where $c=0$.
 Blah, blah transition paragraph here
 
 
-\subsection{Predicting unemployment}
+\subsection{Quarterly unemployment}
 
-Blah, blah.  Short lit review of this topic here
+Blah, blah.  Short lit review of this topic here.  We are looking at
+predictions of U.S. unemployment four quarters out.
 
-The eight metrics selected are mean absolute error (MAE), root mean
-squared error (RMSE), median absolute deviation (MAD), root mean
-squared logarithmic error (RMSLE), mean absolute percentage error
-(MAPE), median absolute percentage error (MEAPE), median relative
-absolute error (MRAE) and percent worse (PW).  The latter two metrics
-are measured relative to a naive model simply predicting the future
-rate of unemployment as being the same as the current rate of
-unemployment.  Although these metrics are all correlated, there are
-significant differences (\citet[][]{brandt:freeman:schrodt:2011} for a
-more thorough discussion of these prediction metrics).  The
-correlations range from a low of 0.2 (MRAE and MAE) to a high of .98
-(MAE and RMSE).
+For each period $t$, we calibrate an ensemble model using forecaster
+performance over the past ten quarters.  Only forecasts that had made
+predictions for five of these quarters were included in the ensemble.
+Thus, the EBMA model uses only 163 models out of a possible 293
+forecasting models that made predictions during the period we study.
+In addition to forecasts collected by the survey, we include the
+``Green Book'' forecasts produced by the Federal reserve.  This model
+serves both as a component of the ensemble and as a true baseline
+model with which to compare the EBMA forecasts.  Due to missing data
+early in the time series and the fact that Green Book forecasts are
+sequestered for five years, we generate forecasts beginning in the
+third quarter of 1983 and running through the fourth quarter of 2007.
 
-The EBMA model uses only 163 models out of a 293 forecasts available
-over this period.
 
-\begin{figure}[h!]
+Figure \ref{modelWeights} provides a visual representation of EBMA
+model calibrations throughout this period.  In this figure, the wisdom
+of crowds tuning parameter is set to a modest $c=0.05$.  The colors
+indicate the model weight assigned to each component on a red-blue
+color ramp (excluded components are simply blank).  In this figure
+models assigned no weight are shown in dark blue while models that are
+heavily weighted are shown in red.
+
+\begin{figure}[h]
 \caption{Clever caption here}
+\label{modelWeights}
+\begin{center}
+\includegraphics[scale=.95]{awesome}
+\end{center}
+
+\footnotesize Description of figure.
+
+\end{figure}
+
+Figure \ref{modelWeights} shows clearly difficulties inherent in
+forecasting with this type of data.  For any given year, only a subset
+of forecasting teams offer a prediction.  Further, an even smaller
+subset both offer a predictions and have made a sufficiently large
+number of prior forecasts to facilitate model calibration.  Finally,
+the very sparseness of the data encourages the model to place a very
+large amount of weight on the best performing models.
+
+We now turn to evaluating the performance of the ensemble relative to
+its 163 component forecasts.  To do this, we focus on eight model fit
+indices available in the literature.  The eight metrics we use are
+mean absolute error (MAE), root mean squared error (RMSE), median
+absolute deviation (MAD), root mean squared logarithmic error (RMSLE),
+mean absolute percentage error (MAPE), median absolute percentage
+error (MEAPE), median relative absolute error (MRAE) and percent worse
+(PW).  The latter two metrics are measured relative to a naive model
+simply predicting the future rate of unemployment as being the same as
+the current rate of unemployment.
+
+
+\begin{figure}[h]
+\caption{Clever caption here}
+\label{compare2Components}
 \begin{center}
 \includegraphics{compare2Components}
 \end{center}
 \end{figure}
 
+It is important to note that many of these forecasters make
+predictions in a relatively small subset of cases.  That is, the each
+model $k$ offers forecasts for only a subset of cases $n_k \subset n$.
+To create a fair comparison, therefore, we calculate these fit indices
+only for $n_k \forall k \in [1,K]$.  By this measure, the EBMA model
+performs very well.  Figure \ref{compare2Components} provides a
+summary of these results.  The top panel shows the percentage of
+metrics by which EBMA outperforms each component. The bottom panel
+shows the percentage of component models that EBMA ``beats'' as
+measured by each metric.
 
-\begin{figure}[h!]
+Notably, the relative superiority of EBMA to its components is
+somewhat less for components that provide few forecasts.  This
+reflects the fact that with so many forecasts, some are likely to be
+more accurate than the ensemble by chance alone. However, across a
+large number of forecasts, EBMA significantly outperforms any of its
+components, including the Green Book (GB).  It is also worth noting
+that only 6 out of the total 163 components outperforms EBMA on every
+metric.
+
+\begin{figure}[h]
 \caption{Clever caption here}
+\label{timeSeries}
 \begin{center}
-\includegraphics[scale=.95]{awesome}
+\includegraphics[scale=.8]{timeSeries}
 \end{center}
 \end{figure}
 
 
-\begin{figure}[h!]
-\caption{Clever caption here}
-\begin{center}
-\includegraphics[scale=1]{timeSeries}
-\end{center}
-\end{figure}
+Another approach to evaluating the performance of EBMA is to compare
+its predictive accuracy to that made by other systematic forecasting
+efforts and methods of generating ensemble predictions.  Specifically,
+we compare EBMA's predictive accuracy to (1) the Green Book, (2) the
+median forecaster prediction and (3) the mean forecaster
+prediction.\footnote{Note that the EBMA model is calculated only a the
+  subset of forecasts that have made a sufficiently large number of
+  recent predictions to calibrate model weights.  Thus, the median
+  forecast and the ensemble forecast will not be the same even when
+  $c=1$.  }  The first three of these forecasts and the true level of
+unemployment are shown in Figure \ref{timeSeries}.
 
-
-
-\begin{table}[ht]
+\begin{table}[h]
 \caption{clever caption here}
 \begin{center}
 \begin{tabular}{lrrrrrrrr}
@@ -462,13 +525,26 @@ Forecast Mean& 0.61 & 0.80 & 0.46 & 0.010 & 9.71 & 9.06 & 0.93 & 46.23 \\
 \end{tabular}
 \end{center}
 
+\label{compareTable1}
 The model with the lowest score for each metric are shown in bold.  
 \end{table}
 
 
-\subsection{Predicting presidential elections}
+Table \ref{compareTable1} compares these baseline models using all
+eight of the metrics to EBMA moels with $c=$0, 0.05, 0.1, and 1
+respectively.  The bolded cells in each column indicate the model that
+performed ``best'' as measured by each metric.  With one exception,
+the Green Book outperforms the ensemble by 0.01 on RMSE, EBMA model
+outperforms both the Green Book forecast and unweighted mean and
+median forecast.  Moreover, these results indicate that the $c$
+parameter is best set to a smal number.  In general, the model with
+$c=0.05$ performs best (or is tied for best) on six out of eight of
+these metrics.
 
-Blah, Blah
+
+\subsection{U.S. presidential elections}
+
+With these 
 
 
 
@@ -486,7 +562,10 @@ explore settings for $c$ parameter.
 % \appendix
 
 
-% \section*{Appendix}
+ \section*{Appendix}
+
+Mathematical description of the various model fit statistics here.  
+
 
 %%Bib 
 \singlespacing

@@ -1,0 +1,45 @@
+\begin{table*}
+[ht]
+\caption{Pre-election forecasts of the percent of the two-party vote going to the incumbent party in U.S. Presidential elections}
+\footnotesize
+\begin{center}
+\begin{tabular}{rlrrrrrrrrr}
+  \toprule
+  & F & A & C & H & LBRT & L & Hol & EW & Cuz \\
+  \midrule
+  1992 & 55.7 & 46.3 & 49.7 & 48.9 & 47.3 &  &  &  &  \\
+  1996 & 49.5 & 57.0 & 55.5 & 53.5 & 53.3 &  & 57.2 & 55.6 &  \\
+  2000 & 50.8 & 53.2 & 52.8 & 54.8 & 55.4 & 60.3 & 60.3 & 55.2 &  \\
+  2004 & 57.5 & 53.7 & 52.8 & 53.2 & 49.9 & 57.6 & 55.8 & 52.9 & 51.1 \\
+  2008 & 48.1 & 45.7 & 52.7 & 48.5 & 43.4 & 41.8 & 44.3 & 47.8 & 47.7 \\
+  \bottomrule
+
+\end{tabular}
+\end{center}
+Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}an.  Data taken from CITE SILVER POST HERE.
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}
+[ht]
+\caption{clever caption here}
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & MAE & RMSE & MAD & RMSLE & MAPE & MEAPE & MRAE & PW \\
+\midrule
+ EBMA (c=0)& 0.54 & 0.74 & 0.37 & 0.009 & 8.37 & 6.49 & \textbf{0.73} & \textbf{27.36} \\
+  EBMA (c=0.05)& \textbf{0.54} & 0.74 &\textbf{ 0.37} & \textbf{0.009} & \textbf{8.33} & \textbf{6.30} & 0.75 & \textbf{27.36} \\
+ EBMA (c=0.1)& 0.54 & 0.74 & 0.35 & 0.009 & 8.40 & 6.44 & 0.76 & 28.30 \\
+EBMA (c=1) & 0.61 & 0.80 & 0.46 & 0.010 & 9.72 & 8.92 & 0.95 & 46.23 \\
+ Green Book& 0.57 & \textbf{0.73} & 0.43 & 0.009 & 9.37 & 8.81 & 1.00 & 45.28 \\
+ Forecast Median& 0.62 & 0.81 & 0.47 & 0.011 & 9.83 & 8.87 & 0.98 & 47.17 \\
+Forecast Mean& 0.61 & 0.80 & 0.46 & 0.010 & 9.71 & 9.06 & 0.93 & 46.23 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The model with the lowest score for each metric are shown in bold.
+\end{table*}
+\efloatseparator
+ 
