@@ -1,5 +1,5 @@
 library(foreign)
-setwd("~/Documents/GIT/EBMAforecast/PresForecastApsa")
+setwd("~/Documents/GIT/EBMAforecast/PresForecastPS")
 holbrook<-read.dta("Holbrook_data_for_Ward.dta")
 data.holbrook<-subset(holbrook,year<2012)
 head(holbrook)
@@ -56,7 +56,7 @@ names(insample.hibbs)<-c("Year","Hibbs")
 
 
 
-lockerbie<-read.csv("~/Documents/GIT/EBMAforecast/PresForecastApsa/LockerbieData.csv")
+lockerbie<-read.csv("~/Documents/GIT/EBMAforecast/PresForecastPS/LockerbieData.csv")
 insample.lockerbie<-lockerbie[,c("Year","Forecast")]
 names(insample.lockerbie)<-c("Year","Lockerbie")
 
@@ -117,7 +117,7 @@ insample.data<-merge(insample.data,berry,by="Year",all.x=TRUE,all.y=TRUE)
 save(insample.data, file="insample.data.RData")
 
 rm(list=ls(all=TRUE))
-setwd("~/Documents/GIT/EBMAforecast/PresForecastApsa")
+setwd("~/Documents/GIT/EBMAforecast/PresForecastPS")
 
 load("insample.data.RData")
 erikson.insample<-read.csv("Erikson_Wlezien_forecast.csv")
@@ -130,7 +130,7 @@ save(insample.data,file="insample.data.RData")
 
 
 rm(list=ls(all=TRUE))
-setwd("~/Documents/GIT/EBMAforecast/PresForecastApsa")
+setwd("~/Documents/GIT/EBMAforecast/PresForecastPS")
 
 load("insample.data.RData")
 abramowitz.insample<-read.csv("Abramowitz_forecast.csv")
@@ -146,7 +146,7 @@ save(insample.data,file="insample.data.RData")
 
 
 rm(list=ls(all=TRUE))
-setwd("~/Documents/GIT/EBMAforecast/PresForecastApsa")
+setwd("~/Documents/GIT/EBMAforecast/PresForecastPS")
 
 load("insample.data.RData")
 data_2012<-insample.data[1,]
@@ -161,13 +161,15 @@ data_2012[1,4]<-NA
 data_2012["2012","Erikson.Wlezien"]<-52.2
 data_2012["2012","Holbrook"]<-47.8
 data_2012["2012","berry"]<-47.14
-data_2012["2012","Hibbs"]<-46.1
+data_2012["2012","Hibbs"]<-47.5
 data_2012["2012","Lockerbie"]<-54.00
 data_2012["2012","Campbell.trialheat"]<-50.6
 data_2012["2012","Campbell.bump"]<-50.4
 data_2012["2012","Abramowitz"]<-50.5
 data_2012["2012","Lewis.Beck_Tien_Jobs"]<-47.6
 data_2012["2012","Lewis.Beck_Tien_Proxy"]<-51.4
+data_2012["2012","Cuzan1.short"]<-45.5
+data_2012["2012","Cuzan2.short"]<-46.9
 
 
  save(data_2012,file="data_2012.RData")
