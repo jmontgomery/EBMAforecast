@@ -95,7 +95,7 @@ dev.off()
 
 
 ### WARNING: This should be changed before to make sure no missing values
-modelPreds <- ensemble1@predTest[-1]
+modelPreds <- ensemble@predTest[-1]
 .miss <- !is.na(modelPreds)
 modelPreds[!.miss] <- 50.5
 
@@ -108,12 +108,12 @@ touchyQuantBMANormal <- function (alpha, WEIGHTS, MEAN, SD, up, low)
 }
 
 
-ensembleBMA:::quantBMAnormal(.05, ensemble1@modelWeights, modelPreds, rep(sqrt(ensemble1@variance), length(modelPreds)))
-ensembleBMA:::quantBMAnormal(.95, ensemble1@modelWeights, modelPreds, rep(sqrt(ensemble1@variance), length(modelPreds)))
+ensembleBMA:::quantBMAnormal(.05, ensemble@modelWeights, modelPreds, rep(sqrt(ensemble@variance), length(modelPreds)))
+ensembleBMA:::quantBMAnormal(.95, ensemble@modelWeights, modelPreds, rep(sqrt(ensemble@variance), length(modelPreds)))
 
 
 # Prob that Obama wins
-1-ensembleBMA:::cdfBMAnormal(50, ensemble1@modelWeights, modelPreds, rep(sqrt(ensemble1@variance), length(modelPreds)), 0)
+1-ensembleBMA:::cdfBMAnormal(50, ensemble@modelWeights, modelPreds, rep(sqrt(ensemble@variance), length(modelPreds)), 0)
 
 
 
