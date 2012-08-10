@@ -1,5 +1,10 @@
 \begin{thebibliography}{xx}
 
+\harvarditem{Abramowitz}{2008}{Abramowitz:2008}
+Abramowitz, Alan~I. 2008.
+\newblock ``Forecasting the 2008 Presidential Election with the Time-for-Change
+  Model.'' {\em PS: Political Science \& Politics} 41(4):691--695.
+
 \harvarditem{Armstrong}{2001}{Armstrong:2001}
 Armstrong, J.~Scott. 2001.
 \newblock Combining Forecasts.  In {\em Principles of Forecasting: A Handbook
@@ -11,14 +16,27 @@ Bates, J.M. \harvardand\ Clive~W.J. Granger. 1969.
 \newblock ``The Combination of Forecasts.'' {\em Operations Research}
   20(4):451--468.
 
-\harvarditem[Brandt, Freeman \harvardand\ Schrodt]{Brandt, Freeman \harvardand\
-  Schrodt}{2011}{brandt:freeman:schrodt:2011}
-Brandt, Patrick~T., John~R. Freeman \harvardand\ Philip~A. Schrodt. 2011.
-\newblock ``Racing Horses: Constructing and Evaluating Forecasts in Political
-  Science.'' Paper prepared for the 28th Annual Summer Meeting of the Society
-  for Political Methodology.
-  \url{http://polmeth.wustl.edu/media/Paper/RHMethods20110721small_1.pdf}
-  (accessed August 20, 2011).
+\harvarditem{Campbell}{2008}{Campbell:2008}
+Campbell, James~E. 2008.
+\newblock ``The Trial-heat Forecast of the 2008 Presidential Vote: Performance
+  and Value Considerations in an Open-Seat Election.'' {\em PS: Political
+  Science \& Politics} 41(4):697--701.
+
+\harvarditem{Erikson \harvardand\ Wlezien}{2008}{Erikson:Wlezien:2008}
+Erikson, Robert~S. \harvardand\ Christopher Wlezien. 2008.
+\newblock ``Leading Economic Indicators, the Polls, and the Presidential
+  Vote.'' {\em PS: Political Science \& Politics} 41(4):703--707.
+
+\harvarditem{Fair}{2009}{Fair:2009}
+Fair, Ray~C. 2009.
+\newblock ``Presidential and Congressional Vote-Share Equations.'' {\em
+  American Journal of Political Science} 53(1):55--72.
+
+\harvarditem{Fair}{2011}{Fair2011}
+Fair, Ray~C. 2011.
+\newblock ``Vote-Share Equations: November 2010 Update.'' Working Paper, Yale
+  University. \url{http://fairmodel.econ.yale.edu/vote2012/index2.htm}
+  (accessed March 07, 2011).
 
 \harvarditem[Fraley, Raftery \harvardand\ Gneiting]{Fraley, Raftery
   \harvardand\ Gneiting}{2010}{Fraley:2010}
@@ -27,6 +45,15 @@ Fraley, Chris, Adrian~E. Raftery \harvardand\ Tilmann Gneiting. 2010.
   Missing Members Using {B}ayesian Model Averaging.'' {\em Monthly Weather
   Review} 138(1):190--202.
 
+\harvarditem[Graefe et~al.]{Graefe, Cuzan, Jones \harvardand\
+  Armstrong}{2010}{Graefe:2010}
+Graefe, Andreas, Aldfred~G. Cuzan, Randal~J. Jones \harvardand\ J.~Scott
+  Armstrong. 2010.
+\newblock ``Combining Forecasts for {U.S.} Presidential Elections: {The
+  PollyVote}.'' Working Paper.
+  \url{http://dl.dropbox.com/u/3662406/Articles/Graefe_et_al_Combining.pdf}
+  (accessed May 15, 2011).
+
 \harvarditem[Hastie, Tibshirani \harvardand\ Friedman]{Hastie, Tibshirani
   \harvardand\ Friedman}{2009}{Hastie:2009}
 Hastie, Trevor, Robert Tibshirani \harvardand\ Jerome Friedman. 2009.
@@ -34,12 +61,42 @@ Hastie, Trevor, Robert Tibshirani \harvardand\ Jerome Friedman. 2009.
   and Prediction}.
 \newblock New York, NY:  Springer.
 
+\harvarditem{Hibbs}{2012}{hibbs:2012}
+Hibbs, Douglas~A. 2012.
+\newblock ``Obama's Re-election Prospects under `Bread and Peace/ Voting in the
+  2012 US Presidential Election.''
+  \url{http://www.douglas-hibbs.com/HibbsArticles/HIBBS_OBAMA-REELECT-31July2012r1.pdf}.
+
+\harvarditem{Hoff}{2007}{Hoff:2007}
+Hoff, Peter~D. 2007.
+\newblock ``Extending the Rank LIkelihood for Semiparametric Copula
+  Estimation.'' {\em Annals of Applied Statistics} 1(1):265--283.
+
+\harvarditem{Holbrook}{2008}{Holbrook:2008}
+Holbrook, Thomas~M. 2008.
+\newblock ``Incumbency, National Conditions, and the 2008 Presidential
+  Election.'' {\em PS: Political Science \& Politics} 41(4):709--712.
+
+\harvarditem{Imai \harvardand\ Tingley}{2012}{imai:tingley:2012}
+Imai, Kosuke \harvardand\ Dustin Tingley. 2012.
+\newblock ``A Statistical Method for Empirical Testing of Competing Theories.''
+  {\em American Journal of Political Science} 56(1):218--236.
+
+\harvarditem{Lockerbie}{2008}{Lockerbie:2008}
+Lockerbie, Brad. 2008.
+\newblock ``Election Forecasting: The Future of the Presidency and the House.''
+  {\em PS: Political Science \& Politics} 41(4):713--716.
+
+\harvarditem{McLachlan \harvardand\ Peel}{2000}{mclachlan:peel:2000}
+McLachlan, Geoffrey \harvardand\ David Peel. 2000.
+\newblock {\em Finite Mixture Models}.
+\newblock New York, NY:  John Wiley \& Sons, Ltd.
+
 \harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
-  \harvardand\ Ward}{2012}{Montgomery:2012}
-Montgomery, Jacob~M., Florian Hollenbach \harvardand\ MIchael~D. Ward. 2012.
-\newblock ``{"Replication data for: Improving Predictions Using Ensemble
-  Bayesian Model Averaging"}.''.
-\newblock http://hdl.handle.net/1902.1/17286 IQSS Dataverse Network.
+  \harvardand\ Ward}{2012}{mhw:2012}
+Montgomery, Jacob~M., Florian Hollenbach \harvardand\ Michael~D. Ward. 2012.
+\newblock ``Improving Predictions Using Ensemble Bayesian Model Averaging.''
+  {\em Political Analysis} 20(3):271--291.
 
 \harvarditem[Raftery et~al.]{Raftery, Gneiting, Balabdaoui \harvardand\
   Polakowski}{2005}{Raftery:2005}

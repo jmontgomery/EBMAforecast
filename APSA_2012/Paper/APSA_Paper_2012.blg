@@ -1,48 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2010)
+This is BibTeX, Version 0.99d (TeX Live 2011)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: APSA_Paper_2012.aux
 The style file: apsr.bst
 Database file #1: Bibliography_EBMA.bib
-Warning--I didn't find a database entry for "Montgomery:2012a"
-You've used 8 entries,
+You've used 19 entries,
             2874 wiz_defined-function locations,
-            705 strings with 6529 characters,
-and the built_in function-call counts, 46729 in all, are:
-= -- 7755
-> -- 596
+            761 strings with 7904 characters,
+and the built_in function-call counts, 77768 in all, are:
+= -- 12747
+> -- 871
 < -- 0
-+ -- 3769
-- -- 204
-* -- 4082
-:= -- 9210
-add.period$ -- 34
-call.type$ -- 8
-change.case$ -- 104
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 115
-empty$ -- 259
-format.name$ -- 209
-if$ -- 8403
++ -- 5981
+- -- 312
+* -- 6636
+:= -- 15651
+add.period$ -- 77
+call.type$ -- 19
+change.case$ -- 247
+chr.to.int$ -- 19
+cite$ -- 19
+duplicate$ -- 275
+empty$ -- 623
+format.name$ -- 336
+if$ -- 13953
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 7
-newline$ -- 38
-num.names$ -- 104
-pop$ -- 33
+missing$ -- 18
+newline$ -- 82
+num.names$ -- 217
+pop$ -- 63
 preamble$ -- 1
-purify$ -- 120
+purify$ -- 285
 quote$ -- 0
-skip$ -- 98
+skip$ -- 234
 stack$ -- 0
-substring$ -- 11087
-swap$ -- 12
-text.length$ -- 112
+substring$ -- 18022
+swap$ -- 32
+text.length$ -- 266
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 30
+type$ -- 72
 warning$ -- 0
-while$ -- 194
+while$ -- 437
 width$ -- 0
-write$ -- 124
-(There was 1 warning)
+write$ -- 268

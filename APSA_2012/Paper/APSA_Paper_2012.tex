@@ -24,7 +24,7 @@
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{endnotes}
-\usepackage[top=3cm, bottom=3cm, left=2.3cm, right=2.3cm]{geometry} 
+\usepackage[top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm]{geometry} 
 %\usepackage[nolist]{endfloat}
 
 \newcommand{\note}[1]{\footnote{ #1 \vspace{4 mm}}}
@@ -38,10 +38,9 @@
 \setboolean{blind}{false}
 
 
-\title{Say yes to the guess: \\ Fitting quality ensembles on a tight
-  (data) budget\thanks{This work was supported by the Information Processing Technology Office of the
-    Defense Advanced Research Projects Agency through a
-    holding grant is to the Lockheed Martin Corporation [FA8650-07-C-7749].}}
+\title{Say Yes to the Guess: \\ Fitting Quality Ensembles on a Tight
+  (data) Budget\thanks{This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
+    }}
 \author{
 Jacob M. Montgomery\\
 	Department of Political Science\\
@@ -84,7 +83,9 @@ Michael D. Ward\\
 
 \begin{abstract}
 %\begin{doublespace}
- Bla bla blub
+We consider ensemble Bayesian model averaging in the context of missing data.  If only
+a few ensembles are missing  estimates the standard approaches introduced by \cite{Raftery:2005} work fine. If, however, ensembles have more extensive missing-ness, then EBMA has a tendency to overweight ensembles with a few observations, which can seriously undermine the advantages of using an ensemble approach in prediction.  We demonstrate this problem and provide a solution that
+diminishes this possibility by introducing a ``wisdom of the crowds'' parameter. We demonstrate that this helps the predictive accuracy of EBMA estimates in political and economic applications in which there are ongoing forecasting efforts.
  %  \end{doublespace}
 \end{abstract}
 
@@ -117,9 +118,8 @@ forecasts reduces reliance on any single data source or methodology,
 but also allows for the incorporation of more information than any one
 model is likely to include in isolation.  Across subject domains,
 ensemble predictions are usually more accurate than any individual
-component model. Second, they are signiﬁcantly less likely to make
-dramatically incorrect predictions \citep{Bates:1969, Armstrong:2001,
-  Raftery:2005}.
+component model. Second, they are significantly less likely to make
+dramatically incorrect predictions \citep{Bates:1969,Armstrong:2001,Raftery:2005}.
 
 The idea of ensemble learning itself has a long history in the machine
 learning and nonparametric statistics community. The most thorough
@@ -131,7 +131,7 @@ ensemble approaches.
 One ensemble method advocated recently for forecasting is ensemble
 Bayesian model averaging (EBMA). This methods was first proposed by
 \citet{Raftery:2005} and recently forwarded as a useful method for the
-social sciences by \citet{Montgomery:2012a}. In essence, EBMA creates a
+social sciences by \citet{mhw:2012}. In essence, EBMA creates a
 finite mixture model that creates a kind of weighted average of
 forecasts.  EBMA mixture models seek to collate the good parts of
 existing forecasting models while avoiding over-fitting to past
@@ -151,8 +151,10 @@ weights can be calibrated.  Forecasting quarterly GDP
 growth in the United States for five \textit{years} only provides 20.
 
 A second and related issue is that there tends to be a lot more
-forecasts than observations.  For example, the economic forecasting
-survey has like a billion experts.  blah, balh
+forecasts than observations.  For example, the well known forecaster of U.S. politics, Nate Silver,
+updates his forecasts of the 2012 presidential election weekly, yielding dozens of forecasts
+for a single outcome \url{http://fivethirtyeight.blogs.nytimes.com/}.  Similarly, in the field of economics, a wide variety of consulting firms, banks, and international organizations each provide multiple
+forecast for various economic quantities. An example are the various forecasts of the FOMC of the U.S. Federal Reserve Board, which are frequently updated, as for example in \url{http://1.usa.gov/zjyisV}.
 
 A final issue is the inconsistency with which forecasts are
 issued. Given the lengthy time periods involved, of any given time
@@ -165,7 +167,9 @@ observations being available for more proximate time periods.
 One example of forecasting that combines all of these issues in the
 prediction of U.S. Presidential elections.  Table 1 represents nearly
 entirety of scholarly forecasts which produced more than one forecast
-for elections in the 20th century \footnote{Citations.  Also something
+for elections in the 20th century \footnote{
+\cite[See, for example]{Fair:2009,Fair2011,Abramowitz:2008,Campbell:2008,hibbs:2012,Lockerbie:2008,Erikson:Wlezien:2008,Graefe:2010,Holbrook:2008}.
+A recent symposium in {\em PS: Political Science} presents and summarizes recent attempts by a variety of scholars to predict the 2012 U.S. Presidential Election.  Also something
   here about how we previously calibrated based on in-sample, but here
   we are focused on pure out-of-sample forecasts}.  In this instance
 we have only five observations by which to calibrate a model while we
@@ -176,6 +180,7 @@ dataset.
 
 \begin{table}[ht]
 \caption{Pre-election forecasts of the percent of the two-party vote going to the incumbent party in U.S. Presidential elections}
+\label{tab:one}
 \footnotesize
 \begin{center}
 \begin{tabular}{rlrrrrrrrrr}
@@ -191,23 +196,23 @@ dataset.
 
 \end{tabular}
 \end{center}
-Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}an.  Data taken from CITE SILVER POST HERE.
+Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}an.  Data taken from the collation presented at \url{http://fivethirtyeight.blogs.nytimes.com/2012/08/07/models-models-everywhere/}.
 \end{table}
 
 While particularly egregious for presidential forecasting, these data
-issues are endemic across the social sciences.  Blah, blah
+issues are endemic across the social sciences.
 
 In this paper, we explore several adjustments to the basic EBMA model
-as specified in \citet{Montgomery:2012} that can help applied
+as specified in \citet{mhw:2012} that can help applied
 researchers create ensemble forecasts even in the presence of these
 kinds of data-quality issues.  Specifically, we show EBMA can be
-adjusted to easily accomodate missing forecasts.  In addition, we
+adjusted to easily accommodate missing forecasts.  In addition, we
 propose an alteration to the basic model.  Below, we briefly introduce
 the basic EBMA model in Section \ref{model}.  We outline modifications
-to the model for missingness and small samples in Sections
+to the model for missing-ness and small samples in Sections
 \ref{missing} and \ref{woc}. In Section \ref{empirics}, we apply the
 adjusted EBMA model to unemployment data as well as presidential
-forecasting models shown in Table 1.
+forecasting models shown in Table~ref{tab:one}.
 
 
 \section{Notation and basic EBMA model} 
@@ -294,9 +299,8 @@ function is
 
 \noindent This function cannot be maximized analytically, so
 \citet{Raftery:2005} propose an EM algorithm which explicitly
-expresses EBMA as a finite mixture model (CITE: McLachlan and Peel 200
-and the new Imai AJPS).  We introduce the unobserved quantities
-$z_k^t$, which represents the probabilty that observation $y^t$ is
+expresses EBMA as a finite mixture model \cite{mclachlan:peel:2000,imai:tingley:2012}.  We introduce the unobserved quantities
+$z_k^t$, which represents the probability that observation $y^t$ is
 ``best'' predicted by model $k$.  The E step involves calculating
 estimates for these unobserved quantities using the formula
 \begin{equation}
@@ -335,7 +339,7 @@ $\sigma^2=1$.
 \section{Missing forecasts}
 \label{missing}
 
-To accomodate missing ensemble values, \citep{Fraley:2010} modify the EM algorithm as follows. \footnote{In future versions of this paper, we hope to compare alternative methods for handling missing data including imputation gaussian copulas (CITATIONS). }  Define $$\mathcal{A}^t = \{i|\mbox{ensemble member i available at time t}\}.$$.
+To accommodate missing ensemble values, \citep{Fraley:2010} modify the EM algorithm as follows. \footnote{In future research, we intend to compare alternative methods for handling missing data, including the use of gaussian copulas \cite{Hoff:2007}.}  Define $$\mathcal{A}^t = \{i|\mbox{ensemble member i available at time t}\}.$$.
 
 \noindent which is simply the indicators of the list of components that provide forecasts for observation $y_t$.   For convenience, define $\tilde{z}_k^{(j+1)t} \equiv {{\underset{k \in A^t}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|f_{k}^{t})}/{\underset{k \in A^t}\sum w_k^{(j)}}$.  Equation \ref{E-step} is then replaced with
 
@@ -390,7 +394,7 @@ median of component forecasts for time period $t$ represents a special
 case of EBMA where $c=1$.\footnote{The mean or median would be
   equivalent depending on if the posterior mean or median is used to
   make a point prediction.}  Likewise, the general EBMA discussed in
-\citet{Montgomery:2012} represents special case of this more general
+\citet{mhw:2012} represents special case of this more general
 model where $c=0$.
 
 %\section{Simulations} Jacob think we will want just a bit of this.  But not for APSA.
@@ -398,7 +402,8 @@ model where $c=0$.
 \section{Applications}
 \label{empirics}
 
-Blah, blah transition paragraph here
+We now turn to examining how these methods work in two areas that typify forecasting in
+the social sciences. One is the estimation of an economic series, unemployment, and the second in the area of predicting the vote for the incumbent in U.S. presidential elections.
 
 
 \subsection{Quarterly unemployment}
@@ -564,7 +569,7 @@ EBMA &  & 1.92 & 1.56 \\
   Abramowitz & 0.78 & 2.02 & 1.72 \\ 
   Campbell & 0.07 & 3.46 & 2.88 \\ 
   Hibbs & 0.04 & 2.68 & 2.44 \\ 
-  LewisBeck & 0.06 & 2.78 & 2.28 \\ 
+  Lewis-Beck & 0.06 & 2.78 & 2.28 \\ 
   Lockerbie & 0.00 & 7.33 & 6.97 \\ 
   Holbrook & 0.01 & 5.73 & 4.77 \\ 
   Erikson & 0.02 & 2.74 & 2.25 \\ 
@@ -596,8 +601,14 @@ Explain the figure
 
 \section{Discussion} 
 
+Missing data is always a conundrum, and a pain.  If there is missing data in ensembles even more pernicious effects are possible as the weights assigned by EBMA typically overweight the ensembles with a lot of missing data, and as a result diminish, rather than enhance, the predictive accuracy of the weighted average. We introduce a way around this problem by the introduction of a parameter which spreads the weights out over the ensemble components in a way that helps to preserve the advantages of the ensemble.  
 
-Super blah, blah.  We are awesome. Publish this article please.
+JACOB, statisticians will want to know why we don't just estimate C.
+
+
+
+
+
 
 In future drafts of this paper we hope to (1) compare alternative
 methods of handling missing data (2) discuss how to select window of
@@ -605,7 +616,7 @@ time for calibration and (c) conduct some simulation studies to
 explore settings for $c$ parameter and to test the numerical stability
 of our results.
 
-
+Thank you and good night. Tip your server.
 
  \newpage
  \appendix
