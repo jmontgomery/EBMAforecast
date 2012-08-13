@@ -394,15 +394,12 @@ model where $c=0$.
 
 \section{Applications}
 \label{empirics}
-
-We now turn to examining how these methods work in two areas that typify forecasting in
+After explaining the methodological background to EBMA in general and our two adjustments we now turn to examining how these methods work in two areas that typify forecasting in
 the social sciences. One is the estimation of an economic series, unemployment, and the second in the area of predicting the vote for the incumbent in U.S. presidential elections.
 
-
-\subsection{Quarterly unemployment}
+\subsection{Quarterly unemployment}\label{econ}
 Forecasting macroeconomic variables is a quite common exercise in the field of economics and statistics. Receiving as accurate as possible forecasts of economic variables is a necessity for many policy makers as well as businesses. Most forecasts are created using a wide variety of statistical models.\footnote{For a more comprehensive overview on foresting of economic variables and time-series forecasting see \citet{Elliott:Timmermann:2008} and \citet{Goijer:Hyndman:2006}.} 
-The majority of scholars employs sophisticated time-series models in an attempt to make the most accurate predictions. For a long time the probably most commonly used statistical method for economic forecasts were simple ARIMA and vector autoregressive (VAR) models, in an attempt to deal with the inherent dynamics in the data. However, the sophistication and complexity of forecasting models has increased considerably since the 1980s. In particular non-linear dynamic models have gained prominence, such as for example, threshold autoregressive models (TAR), Markov switching autoregressive models (MSA) or smooth transition
-autoregression (STAR) \citep{Elliott:Timmermann:2008,Montgomery:etal:1998}. More recently Bayesian VAR models and state-space models have gained more attention of forecasters when predicting unemployment and other economic variables \citep{Goijer:Hyndman:2006,Elliott:Timmermann:2008}. 
+The majority of scholars employs sophisticated time-series models in an attempt to make the most accurate predictions. For a long time the most commonly used statistical method for economic forecasts were simple ARIMA and vector autoregressive (VAR) models, in an attempt to deal with the inherent dynamics in the data. However, the sophistication and complexity of forecasting models has increased considerably since the 1980s. In particular non-linear dynamic models have gained prominence, such as for example, threshold autoregressive models (TAR), Markov switching autoregressive models (MSA), or smooth transition autoregression (STAR) \citep{Elliott:Timmermann:2008,Montgomery:etal:1998}. More recently Bayesian VAR models and state-space models have  also gained more attention of forecasters when predicting unemployment and other economic variables \citep{Goijer:Hyndman:2006,Elliott:Timmermann:2008}. 
 
 In addition beginning with \citet{Bates:1969} scholars have attempted to improve the accuracy of forecasts by combining different forecasts in a meaningful way \citep{Palm:Zellner:1992,Elliott:Timmermann:2008}.  With the introduction of Bayesian averaging methods, the combination of predictive models has been successfully used to improve the forecasting efforts of inflation \citep{Koop:2010,Wright:2009}, GDP \citep{Billio:2010}, stock prices \citep{Billio:2011} as well as exchange rates \citep{Wright:2008}.  
 
@@ -410,30 +407,29 @@ In addition to statistical models economic variables are often predicted using e
 
 This plethora of quarterly predictions is optimal for us to apply the Ensemble Bayesian model averaging on. We therefore use forecasts of the civilian unemployment rate (UNEMP) as published by the SPF. For this application we select the forecast horizon to be four quarters into the future, i.e. predictions made in the first quarter of 2002 are for the first quarter of 2003 and so on. In total the SPF data on unemployment contains forecasts by 569 different teams, however for any quarter in the SPF sample, the average number of forecast teams making a prediction for four quarters into the future is quite small and the majority of observations for any given quarter is missing.\footnote{On average only 8.4 per cent of all teams make a forecast for any one quarter.}
 
-In addition to the forecasts collected by the survey, we include the ``Greenbook'' forecasts produced by the Federal Reserve. These forecasts are made by the research staff of the Board of Governors and are handed out prior to meetings of the Federal Reserve Open Market Committee (FOMC). We merge these data based on the quarter that is predicted. To evaluate forecasts we use the most recent vintage available, i.e. the data is likely to have been revised. All predictions are evaluated using the historical unemployment rate for each quarter as recorded today.\footnote{As \citet{Croushore:Stark:2001} describe depending on the forecast exercise it can make a difference whether the forecast models are evaluated using ``real-time'' or the latest available data. We have decided here to use the latest available data and do not believe that it should make a difference in our case, as all predictions are evaluated against the same data and EBMA is a mixture of the other forecast models. However, in a future version of this paper we will replicate this analysis using real-time data to evaluate the forecasts.}
+In addition to the forecasts collected by the survey, we include the ``Greenbook'' forecasts produced by the Federal Reserve. These forecasts are made by the research staff of the Board of Governors and are handed out prior to meetings of the Federal Reserve Open Market Committee (FOMC). We merge these data based on the quarter that is predicted. However, it has been noted that an aggregation of the SPF forecasts and the Greenbook forecasts are very similar to each other \citep{Baghestani:2008}. 
+
+To evaluate forecasts we use the most recent data available, i.e. the most recent vintage, where the data is likely to have been revised. All predictions are evaluated using the historical unemployment rate for each quarter as recorded today.\footnote{As \citet{Croushore:Stark:2001} describe, depending on the forecast exercise it can make a difference whether the forecast models are evaluated using ``real-time'' or the latest available data. We have decided here to use the latest available data and do not believe that it should make a difference in our case, as all predictions are evaluated against the same data and EBMA is a mixture of the other forecast models. However, in a future version of this paper we will replicate this analysis using real-time data to evaluate the forecasts.}
 
 Given the SPF and Greenbook unemployment forecasts we calibrate an ensemble model for each period $t$, using forecaster
-performance over the past ten quarters.  Only forecasts that had made
+performance over the past ten quarters. Thus the EBMA calibration period is rolling, with a different calibration period for each quarter EBMA model. Only forecasts that had made
 predictions for five of these quarters were included in the ensemble.
 Thus, the EBMA model uses only 163 models out of a possible 293
 forecasting models that made predictions during the period we study.
-  This model serves both as a component of the ensemble and as a true baseline % what do you mean her Jacob?
-model with which to compare the EBMA forecasts. Due to missing data
-early in the time series and the fact that Greenbook forecasts are
+ % This model serves both as a component of the ensemble and as a true baseline model with which to compare the EBMA forecasts. %this sentence doesn't make sense. what is meant?
+Due to missing data early in the time series and the fact that Greenbook forecasts are
 sequestered for five years, we generate forecasts beginning in the
 third quarter of 1983 and running through the fourth quarter of 2007.
 
 
 Figure \ref{modelWeights} provides a visual representation of EBMA
-model calibrations throughout this period.  In this figure, the wisdom
-of crowds tuning parameter is set to a modest $c=0.05$.  The colors
+model calibrations throughout this period. As one can see, the EBMA model calibration is different for each quarter, given the rolling calibration window discussed above. The models depicted in this figure are estimated with the wisdom of crowds tuning parameter set to a modest $c=0.05$.  The colors
 indicate the model weight assigned to each component on a red-blue
-color ramp (components not included in the ensemble are simply blank).  In this figure
-models assigned no weight are shown in dark blue while models that are
+color ramp (components not included in the ensemble are simply blank).  Component forecasts that did not receive any weights in a given model are shown in dark blue while models that are
 heavily weighted are shown in red.
 
 \begin{figure}[h]
-\caption{Clever caption here}
+\caption{Model Weights with Rolling EBMA Calibration Window}
 \label{modelWeights}
 \begin{center}
 \includegraphics[scale=.95]{awesome}
@@ -443,11 +439,11 @@ heavily weighted are shown in red.
 
 \end{figure}
 
-Figure \ref{modelWeights} shows clearly difficulties inherent in
-forecasting with this type of data.  For any given year, only a subset
-of forecasting teams offer a prediction.  Further, an even smaller
-subset contains models that both offer a predictions and have made a sufficiently large
-number of prior forecasts to facilitate model calibration.  Finally,
+Figure \ref{modelWeights} shows clearly the difficulties inherent in
+forecasting with this type of data. As mentioned above, for any given year, only a subset
+of forecasting teams even offer a prediction.  Further, an even smaller
+subset of models offer both a prediction for the quarter to be forecasted and have made a sufficiently large
+number of prior forecasts to facilitate the model calibration.  Finally,
 the very sparseness of the data encourages the ensemble model to place a very
 large amount of weight on the best performing models.
 
@@ -464,15 +460,18 @@ the current rate of unemployment.
 
 
 \begin{figure}[h]
-\caption{Clever caption here}
+\caption{Performance Comparison}
 \label{compare2Components}
 \begin{center}
 \includegraphics{compare2Components}
 \end{center}
+
+\footnotesize This figure shows the the performance of the EBMA model against its component models on a number of metrics. The top panel shows the percentage of metrics that EBMA outperforms each of the component models on. The bottom panel shows the percent of component models that are beat or tied by the EBMA model for any given metric. 
+
 \end{figure}
 
 It is important to note that many of these forecasters make
-predictions in a relatively small subset of cases.  That is, the each
+predictions in a relatively small subset of cases.  That is, each
 model $k$ offers forecasts for only a subset of cases $n_k \subset n$.
 To create a fair comparison, therefore, we calculate these fit indices
 only for $n_k \forall k \in [1,K]$.  By this measure, the EBMA model
@@ -485,14 +484,14 @@ measured by each metric.
 Notably, the relative superiority of EBMA to its components is
 somewhat less for components that provide few forecasts.  This
 reflects the fact that with so many forecasts, some are likely to be
-more accurate than the ensemble by chance alone. However, across a
+more accurate than the ensemble by chance alone. Additionally, when the number of forecasts is low it is likely that a given model received less weight than it ``deserves'' given the model's performance because of the few number of forecasts. However, across a
 large number of forecasts, EBMA significantly outperforms any of its
 components, including the Greenbook (GB).  It is also worth noting
-that only 6 out of the total 163 components outperforms EBMA on every
+that only 6 out of the total 163 components outperform EBMA on every
 metric.
 
 \begin{figure}[h]
-\caption{Clever caption here}
+\caption{Time-series plot of the Unemployment Forecasts}
 \label{timeSeries}
 \begin{center}
 \includegraphics[scale=.8]{timeSeries}
@@ -513,7 +512,7 @@ prediction.\footnote{Note that the EBMA model is calculated on only a the
 unemployment are shown in Figure \ref{timeSeries}.
 
 \begin{table}[h]
-\caption{clever caption here}
+\caption{Model Comparison via Error Statistics}
 \begin{center}
 \begin{tabular}{lrrrrrrrr}
 \toprule
@@ -531,9 +530,8 @@ Forecast Mean& 0.61 & 0.80 & 0.46 & 0.010 & 9.71 & 9.06 & 0.93 & 46.23 \\
 \end{center}
 
 \label{compareTable1}
-The model with the lowest score for each metric are shown in bold.  
+This table depicts a number of error statistics for a variety of forecasting models calculated based on the SPF and Greenbook data. The model with the lowest score for each metric are shown in bold. As one can see aside from the RMSE and the MRAE statistics, the EBMA model with $c=0.05$ scores the best on all other statistics. 
 \end{table}
-
 
 Table \ref{compareTable1} compares these baseline models using all
 eight of the metrics to EBMA moels with $c=$0, 0.05, 0.1, and 1
@@ -546,20 +544,22 @@ parameter is best set to a small number.  In general, the model with
 $c=0.05$ performs best (or is tied for best) on six out of eight of
 these metrics.
 
+In addition figure \ref{timeSeries} shows a visual representation of the Greenbook, median SPF and the EBMA (with $c=0.05$) forecasts over time, as well as the true unemployment rate. As was noted above and is clearly visible, the SPF and Greenbook forecasts are very similar. \citet{Baghestani:2008} noted that the Greenbook forecast is slightly biased to over predict the unemployment rate. In some periods EBMA is able to correct this bias, however given the kind of component models the improvement in that direction is rather small. In general however it is easily visible that the EBMA forecast is closer to the actual rate than the median SPF or the Greenbook forecast.
 
 \subsection{U.S. presidential elections}
 
-Informed by the above discussion, we return briefly to the example
-with which we began -- predicting U.S. presidential elections.  Using
-the forecasts shown in Table 1, we fit an EBMA model with $c=0.05$.
-The model weights and in-sample fit statistics for the ensemble and
+Informed by the above discussion, we now turn to our second application. We return briefly to the example
+with which we began -- predicting U.S. presidential elections.  As was explained above, the number of observations with which to calibrate the EBMA model is extremely small in this example, while quite a number of forecasting models exist. This created problems for the original EBMA algorithm and warrants our proposed adjustments. 
+
+Usingthe forecasts shown in Table 1, we fit an EBMA model with $c=0.05$.
+The model weights and calibration fit statistics for the ensemble and
 its components are shown in Table \ref{presModel}.
 
 
 % latex table generated in R 2.15.1 by xtable 1.7-0 package
 % Sun Aug 12 21:58:55 2012
 \begin{table}[ht]
-\caption{The model names need to be fixed. Nice caption here.}
+\caption{Presidential Election Forecast: Model weights and calibration period fit statistics.}
 \label{presModel}
 \begin{center}
 \begin{tabular}{rrrr}
@@ -605,11 +605,12 @@ EBMA &  & 1.92 & 1.56 \\
 %\end{center}
 %\end{table}
 
+As can be seen in table \ref{presModel}, the EBMA model assigns the majority of weight to the Abramowitz model with the Campbell model receiving the second largest weight. These weights are based on the performance of each model in the elections between 1992 and 2008. In addition the Cuz\`an and Bundrick model is weighted to such a small degree because only out-of-sample predictions for 2004 and 2008 were available here.
 
 Figure \ref{pres} shows the posterior predictive distribution for the
 2008 election (top) and, based on current forecasts from each of the
-component models, 2012 election.  We predict that Obama is going to
-win by very little, however the credible intervals are quite wide, indicating a lot of uncertainty.
+component models, the out-of-sample prediction for the 2012 election.  We predict that Obama is going to
+win by very little, however the credible intervals are quite wide, indicating a lot of uncertainty. Component models predictive distributions are shown in color (scaled by their respective weight), while the EBMA predictive distribution is shown in black. Vertical dashes indicate the point prediction of each model. The vertical dashed line in the top panel depicts the actual election result. 
 
 \begin{figure}[h]
 \caption{Clever caption here}
@@ -625,15 +626,13 @@ The figure shows the density functions for each of the component models in diffe
 
 
 \section{Discussion} 
+Ensemble Bayesian model averaging is a principled way of combining forecasts to improve prediction accuracy. However, the calibration of such models in the social sciences is often hindered by the quality and availability of data. One, in many forecasting exercises the number of forecasting models is large, yet the number of observations on which the EBMA model can be trained is small. This creates problems for the estimation of model weights, as it is likely that overly high weights are assigned to models that are performing well over this particular period. Second, many predictive models do not provide forecasts for all observations in the sample or the time-period for which forecasts exist are different for different models. In the standard EBMA model missing observations necessitate list-wise deletion. 
 
-Missing data is always a conundrum, and a pain.  If there is missing data in ensembles even more pernicious effects are possible as the weights assigned by EBMA typically overweight the ensembles with a lot of missing data, and as a result diminish, rather than enhance, the predictive accuracy of the weighted average. We introduce a way around this problem by the introduction of a parameter which spreads the weights out over the ensemble components in a way that helps to preserve the advantages of the ensemble.  
+In this paper we attempt to deal with both of these issues, to make EBMA more applicable for researchers and predictioneers in the social sciences. After introducing the math behind the common EBMA framework and its notation in the first section we proceed to propose an adjustment to the EBMA estimation that allows for missing observations in the calibration period. We then introduce a ``wisdom of the crowds'' parameter into the model that forces EBMA to put some weight on all component models. Introducing this constant aids the calibration of EBMA when the number of observations in the calibration period is small. 
 
-JACOB, statisticians will want to know why we don't just estimate C.
+After explaining our adjustments we apply the ``new'' EBMA model to two prediction exercises. In section \ref{econ} we use ensemble Bayesian model averaging to combine predictions of the unemployment rate in the US from the Survey of Professional Forecasters as well as the Fed's Greenbook. As we show, even when a large number of forecasts is missing for any given quarter, EBMA generally outperforms the Greenbook, SPF component models, as well as the median SPF forecast. In a second example we use the out-of-sample forecasts of nine famous prediction models of presidential elections from 1992 to 2008 to calibrate an ensemble model. We use the model calibrated to make an informed prediction for the 2012 elections based on a weighted combination of the component model predictions for 2012.  
 
-
-
-
-
+Missing data is always a conundrum, and a pain. This is especially true when creating ensemble predictions. The combination of missing observations with short calibration periods are especially damaging. EBMA typically underweights the ensembles with a lot of missing data, and as a result can diminish, rather than enhance, the predictive accuracy of the weighted average. We introduce a way around this problem by the introduction of a parameter which spreads the weights out over the ensemble components in a way that helps to preserve the advantages of the ensemble.  
 
 In future drafts of this paper we hope to (1) compare alternative
 methods of handling missing data (2) discuss how to select window of
