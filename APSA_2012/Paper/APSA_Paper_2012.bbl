@@ -16,11 +16,56 @@ Bates, J.M. \harvardand\ Clive~W.J. Granger. 1969.
 \newblock ``The Combination of Forecasts.'' {\em Operations Research}
   20(4):451--468.
 
+\harvarditem[Billio et~al.]{Billio, Casarin, Ravazzolo \harvardand\
+  Van~Dijk}{2010}{Billio:2010}
+Billio, Monica, Roberto Casarin, Francesco Ravazzolo \harvardand\ Herman~K.
+  Van~Dijk. 2010.
+\newblock ``Combining Predictive Densities Using {B}ayesian Filtering with
+  Applications to {US} Economics Data.'' Norges Bank Working Paper.
+  \url{http://ssrn.com/abstract=1735421} (accessed June 1, 2011).
+
+\harvarditem[Billio et~al.]{Billio, Casarin, Ravazzolo \harvardand\
+  Van~Dijk}{2011}{Billio:2011}
+Billio, Monica, Roberto Casarin, Francesco Ravazzolo \harvardand\ Herman~K.
+  Van~Dijk. 2011.
+\newblock ``Bayesian Combinations of Stock Price Predictions with an
+  Application to the {A}msterdam Exchange Index.'' Tinbergen Institute
+  Discussion Paper No. 2011-082/4.
+  \url{http://www.tinbergen.nl/discussionpapers/11082.pdf} (accessed June 1,
+  2011).
+
 \harvarditem{Campbell}{2008}{Campbell:2008}
 Campbell, James~E. 2008.
 \newblock ``The Trial-heat Forecast of the 2008 Presidential Vote: Performance
   and Value Considerations in an Open-Seat Election.'' {\em PS: Political
   Science \& Politics} 41(4):697--701.
+
+\harvarditem{Croushore \harvardand\ Stark}{2001}{Croushore:Stark:2001}
+Croushore, Dean \harvardand\ Tom Stark. 2001.
+\newblock ``A Real-Time Data Set for Macroeconomists.'' {\em Journal of
+  Econometrics} 105(1):111--130.
+
+\harvarditem{Cuz\`an \harvardand\ Bundrick}{2004}{Cuzan:2004}
+Cuz\`an, Alfred~G. \harvardand\ Charles~M. Bundrick. 2004.
+\newblock ``Fiscal Effects on Presidential Elections: A Forecast for 2004.''
+  Paper prepared for presentation at the American Political Science
+  Association, Chicago
+  \url{http://uwf.edu/govt/facultyforums/documents/fiscaleffectsprselect2004.pdf}.
+
+\harvarditem{Cuz\`an \harvardand\ Bundrick}{2008}{Cuzan:Bundrick:2008}
+Cuz\`an, Alfred~G. \harvardand\ Charles~M. Bundrick. 2008.
+\newblock ``Forecasting the 2008 Presidential Election: A Challenge for the
+  Fiscal Model.'' {\em PS: Political Science \& Politics} 41(4):717--722.
+
+\harvarditem{{De Goijer} \harvardand\ Hyndman}{2006}{Goijer:Hyndman:2006}
+{De Goijer}, Jan~G. \harvardand\ Rob~J. Hyndman. 2006.
+\newblock ``25 years of time series forecasting.'' {\em International Journal
+  of Forecasting} 22(3):443--473.
+
+\harvarditem{Elliott \harvardand\ Timmermann}{2008}{Elliott:Timmermann:2008}
+Elliott, Graham \harvardand\ Allan Timmermann. 2008.
+\newblock ``Economic Forecasting.'' {\em Journal of Economic Literature}
+  46(1):3--56.
 
 \harvarditem{Erikson \harvardand\ Wlezien}{2008}{Erikson:Wlezien:2008}
 Erikson, Robert~S. \harvardand\ Christopher Wlezien. 2008.
@@ -82,6 +127,13 @@ Imai, Kosuke \harvardand\ Dustin Tingley. 2012.
 \newblock ``A Statistical Method for Empirical Testing of Competing Theories.''
   {\em American Journal of Political Science} 56(1):218--236.
 
+\harvarditem{Koop \harvardand\ Korobilis}{2009}{Koop:2010}
+Koop, Gary \harvardand\ Dimitris Korobilis. 2009.
+\newblock ``Forecasting Inflation Using Dynamic Model Averaging.'' Working
+  Paper.
+  \url{http://personal.strath.ac.uk/gary.koop/koop_korobilis_forecasting_inflation_using_DMA.pdf}
+  (accessed May 25, 2011).
+
 \harvarditem{Lockerbie}{2008}{Lockerbie:2008}
 Lockerbie, Brad. 2008.
 \newblock ``Election Forecasting: The Future of the Presidency and the House.''
@@ -92,11 +144,23 @@ McLachlan, Geoffrey \harvardand\ David Peel. 2000.
 \newblock {\em Finite Mixture Models}.
 \newblock New York, NY:  John Wiley \& Sons, Ltd.
 
+\harvarditem[Montgomery et~al.]{Montgomery, Zarnowitz, Tsay \harvardand\
+  George}{1998}{Montgomery:etal:1998}
+Montgomery, Alan~L., Victor Zarnowitz, Ruey Tsay \harvardand\ Tiaom George.
+  1998.
+\newblock ``Forecasting the U.S. Unemployement Rate.'' {\em Journal of the
+  American Statistical Association} 93(442):478--493.
+
 \harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
   \harvardand\ Ward}{2012}{mhw:2012}
 Montgomery, Jacob~M., Florian Hollenbach \harvardand\ Michael~D. Ward. 2012.
 \newblock ``Improving Predictions Using Ensemble Bayesian Model Averaging.''
   {\em Political Analysis} 20(3):271--291.
+
+\harvarditem{Palm \harvardand\ Zellner}{1992}{Palm:Zellner:1992}
+Palm, Franz~C. \harvardand\ Arnold Zellner. 1992.
+\newblock ``To Combine of Not to Combine? Issues of Combining Forecasts.'' {\em
+  Journal of Forecasting} 11(8):687--701.
 
 \harvarditem[Raftery et~al.]{Raftery, Gneiting, Balabdaoui \harvardand\
   Polakowski}{2005}{Raftery:2005}
@@ -110,5 +174,15 @@ Raftery, Adrian~E., Tilmann Gneiting, Fadoua Balabdaoui \harvardand\ Michael
 Vrugt, Jasper~A., Cees~G.H. Diks \harvardand\ Martyn~P. Clark. 2008.
 \newblock ``Ensemble {B}ayesian Model Averaging Using {M}arkov Chain {M}onte
   {C}arlo Sampling.'' {\em Environmental Fluid Mechanics} 8(5):579--595.
+
+\harvarditem{Wright}{2008}{Wright:2008}
+Wright, Jonathan~H. 2008.
+\newblock ``Bayesian Model Averaging and Exchange Rate Forecasts.'' {\em
+  Journal of Econometrics} 146(2):329--341.
+
+\harvarditem{Wright}{2009}{Wright:2009}
+Wright, Jonathan~H. 2009.
+\newblock ``Forecasting {US} Inflation by {B}ayesian Model Averaging.'' {\em
+  Journal of Forecasting} 28(2):131--144.
 
 \end{thebibliography}

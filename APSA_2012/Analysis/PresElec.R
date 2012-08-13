@@ -42,7 +42,7 @@ data=myPres
 
 load("~/Github/EBMAforecast/PresForecastPS/data_2012.RData")
 
-pred12 <- matrix(c(49.5, 50.5, 50.6, 47.5, 47.6, 54, 47.8, 52.2, NA), nrow=1)
+pred12 <- matrix(c(49.5, 50.5, 50.6, 47.5, 47.6, 54, 47.8, 52.2, 46.9), nrow=1) #added the Cuzan short FPRIME pred for 2012
 
 
 .FD <- makeForecastData(.predCalibration=.reduced[,-c(1:3)]

@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: APSA_Paper_2012.aux
 The style file: apsr.bst
 Database file #1: Bibliography_EBMA.bib
-You've used 19 entries,
+You've used 31 entries,
             2874 wiz_defined-function locations,
-            761 strings with 7904 characters,
-and the built_in function-call counts, 77768 in all, are:
-= -- 12747
-> -- 871
+            836 strings with 10126 characters,
+and the built_in function-call counts, 134793 in all, are:
+= -- 22211
+> -- 1509
 < -- 0
-+ -- 5981
-- -- 312
-* -- 6636
-:= -- 15651
-add.period$ -- 77
-call.type$ -- 19
-change.case$ -- 247
-chr.to.int$ -- 19
-cite$ -- 19
-duplicate$ -- 275
-empty$ -- 623
-format.name$ -- 336
-if$ -- 13953
++ -- 10484
+- -- 536
+* -- 11574
+:= -- 26998
+add.period$ -- 125
+call.type$ -- 31
+change.case$ -- 403
+chr.to.int$ -- 31
+cite$ -- 31
+duplicate$ -- 435
+empty$ -- 984
+format.name$ -- 573
+if$ -- 24209
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 18
-newline$ -- 82
-num.names$ -- 217
-pop$ -- 63
+missing$ -- 26
+newline$ -- 130
+num.names$ -- 354
+pop$ -- 92
 preamble$ -- 1
-purify$ -- 285
+purify$ -- 465
 quote$ -- 0
-skip$ -- 234
+skip$ -- 381
 stack$ -- 0
-substring$ -- 18022
-swap$ -- 32
-text.length$ -- 266
+substring$ -- 31458
+swap$ -- 52
+text.length$ -- 434
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 120
 warning$ -- 0
-while$ -- 437
+while$ -- 711
 width$ -- 0
-write$ -- 268
+write$ -- 430
