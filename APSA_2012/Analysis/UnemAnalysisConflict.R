@@ -110,7 +110,7 @@ modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
 
   ## Root mean Squaqred logarithmic error
   .rmsle <- function(x, y){
-    mean((log(abs(x)+1)-log(abs(y)+1))^2, na.rm=TRUE)
+    sqrt(mean((log(abs(x)+1)-log(abs(y)+1))^2, na.rm=TRUE))
   }
   rmsle <- apply(.thisForecastMatrix, 2, .rmsle, y=.thisOutcome)
 
@@ -173,6 +173,7 @@ ensembleOut <- modelFits(.outcome, .ensemblePredMatrix, .lag)
 count <- colSums(!is.na(.modelPreds))
 
 setwd("/Users/jmontgomery/GitHub/EBMAforecast/APSA_2012/Paper/")
+
 pdf(width=6, height=6, file="compare2Components.pdf")
 par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.main=.9)
 # Compare with components by # forecasts
@@ -189,7 +190,7 @@ dev.off()
 library(colorRamps)
 
 pdf(height=9, width=7, file="awesome.pdf")
-par(mar=c(.5,2,3,2), mfrow=c(1,1), mgp=c(2,1,0))
+par(mar=c(.5,2,.5,2), mfrow=c(1,1), mgp=c(2,1,0))
 plot(NULL, xlim=c(3, .ncol-3), ylim=c(3, .nrow-3), yaxt="n", xaxt="n", xlab="", ylab="")
 .thisRamp <- blue2red(1001)
 for (i in .nrow:1){
@@ -202,7 +203,7 @@ par(las=1)
 mtext(side=4, round(.ensemblePred-.outcome, 2), at=c(.nrow:1), cex=.4, line=1, adj=1)
 mtext(side=4,  "Error", at=.nrow+1, cex=.5, line=1, adj=1)
 mtext(side=2,  data[.theseRows,1], at=c(.nrow:1), cex=.5, line=1, adj=.5)
-title("Ensemble weights and  for U.S. unemployment ")
+#title("Ensemble weights and  for U.S. unemployment ")
 legend(.ncol-40, .nrow-20, c("0", "1/4", "1/2", "3/4", "1" ), col=.thisRamp[seq(1,1001, by=250)], pch=c(15, 15,15,15,15), cex=.8, title="Model Weights")
 dev.off()
 
@@ -225,7 +226,7 @@ all2 <- all2[!is.na(.green),]
 ### A basic plot of all 3
 pdf(height=4, width=7, file="timeSeries.pdf")
 par(mar=c(2,2,3,2), mfrow=c(1,1), mgp=c(1,0,0), tcl=0)
-plot(.time, .redOut, type="l", lwd=2, ylab="% Unemployment", xlab="Year", main="Observed and forecasted U.S. unemployment (1981-2007)")
+plot(.time, .redOut, type="l", lwd=2, ylab="% Unemployment", xlab="Year", main="")
 mycols <- c("blue", "red", "darkgreen")
 for(i in 1:3){
   lines(.time, all[,i], col=mycols[i], lty=1+i)
