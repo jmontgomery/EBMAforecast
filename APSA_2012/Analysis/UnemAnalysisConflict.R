@@ -225,11 +225,11 @@ all2 <- all2[!is.na(.green),]
 
 ### A basic plot of all 3
 pdf(height=4, width=7, file="timeSeries.pdf")
-par(mar=c(2,2,3,2), mfrow=c(1,1), mgp=c(1,0,0), tcl=0)
+par(mar=c(2,2,.5,2), mfrow=c(1,1), mgp=c(1,0,0), tcl=0)
 plot(.time, .redOut, type="l", lwd=2, ylab="% Unemployment", xlab="Year", main="")
 mycols <- c("blue", "red", "darkgreen")
 for(i in 1:3){
-  lines(.time, all[,i], col=mycols[i], lty=1+i)
+  lines(.time, all[,i], col=mycols[i], lty=1+i, lwd=2)
 }
 legend(2000, 10, c("Oberved", "EBMA", "Median", "Green Book"), col=c("black", "blue", "red", "darkgreen"), lty=c(1, 2,3,4))
 dev.off()
