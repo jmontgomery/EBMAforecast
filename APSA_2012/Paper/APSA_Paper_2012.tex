@@ -39,7 +39,8 @@
 
 
 \title{Say Yes to the Guess: \\ Tailoring Elegant Ensembles on a Tight
-  (Data) Budget\thanks{This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
+  (Data) Budget\thanks{Presented at the 2012 Annual Meeting of the American Political Science Association, August 30 - September 2, New Orleans, Louisiana. 
+%This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a %holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval %Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
     }}
 \author{
 Jacob M. Montgomery\\
@@ -76,10 +77,17 @@ Michael D. Ward\\
 \pagestyle{myheadings}
 \markright{Montgomery, Hollenbach, \& Ward\hfill Ensemble BMA\hfill}
 \newpage
-%\singlespacing
+\singlespacing
 
 \thispagestyle{empty}
 
+{\centering \bf \large Say Yes to the Guess: \\ Tailoring Elegant Ensembles on a Tight (Data) Budget \\}
+
+\begin{center}
+\begin{tabular}{ccc}
+Jacob M. Montgomery, & Florian Hollenbach, & \& Michael D. Ward\\
+\end{tabular}
+\end{center}
 
 \begin{abstract}
   \noindent We consider ensemble Bayesian model averaging (EBMA) in
@@ -99,10 +107,10 @@ Michael D. Ward\\
   introducing a ``wisdom of the crowds'' parameter to the standard
   EBMA framework. We show that this solution improves predictive
   accuracy of EBMA forecasts in both political and economic
-  applications.
+  applications.  \today.
 \end{abstract}
 
-\doublespacing
+%\doublespacing
 %\newpage
 
 
@@ -162,8 +170,8 @@ locations across five days provides 1,000 observations by which model
 weights can be calibrated.  Forecasting quarterly GDP growth in the
 United States for five \textit{years} provides only 20.
 
-A second and related issue is that in many forecasting exercises there
-tend to be many more forecasts than observations.  For example, the
+A second and related issue is dimensionality. Many predictive examples
+contain many more forecasts than observations.  For example, the
 well known forecaster of U.S. politics, Nate Silver, updates his
 forecasts of the 2012 presidential election weekly, yielding dozens of
 forecasts for a single outcome
@@ -175,7 +183,7 @@ Federal Open Market Committee (FOMC) of the U.S. Federal Reserve
 Board, which are frequently updated, as for example here:
 \url{http://1.usa.gov/zjyisV}.
 
-A final issue is the inconsistency with which forecasts are
+A additional issue is the inconsistency with which forecasts are
 issued. Given the lengthy time periods involved, there are likely to
 be many missing forecasts in any given time window.  Moreover, we
 cannot assume that forecasts for any time period from a specific model
@@ -183,7 +191,7 @@ or team are missing at random.  Particularly unsuccessful forecasts
 may be suppressed and some forecasting efforts are only active for
 short time-periods due to poor performance.  Moreover, forecasts have
 tended to accumulate with more potential components being available
-for more proximate time periods.
+for more proximate time periods. 
 
 One example of forecasting that combines all of these issues in the
 prediction of U.S. Presidential elections.  Table 1 represents nearly
@@ -232,7 +240,7 @@ Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bram
 \end{table}
 
 While particularly egregious for presidential election forecasting,
-these data issues are endemic to the social sciences.  In this paper,
+these data issues are endemic to the social sciences.  In this manuscript,
 we explore several adjustments to the basic EBMA model as specified in
 \citet{mhw:2012} that can help applied researchers create ensemble
 forecasts even in the presence of these data-quality issues.
@@ -293,8 +301,6 @@ $p(y|f_{1}^{t^\ast}, \ldots,
 f_{K}^{t^\ast})=\overset{K}{\underset{k=1}{\sum}} w_k
 g_k(y|f_{k}^{t^*})$.
 
-
-
 Past applications have statistically post-processed the predictions for
 out-of-sample bias reduction and treated these adjusted predictions as a
 component model. \citet{Raftery:2005} propose approximating the
@@ -314,8 +320,8 @@ distribution for some observation $y^{t^\ast}$ is
 N(f_k^{t^\ast}, \sigma^2).
 \end{equation}
 
-\noindent This, is a mixture of $K$ normal distributions each of whose
-means are determined by $f_k^{t^\ast}$ and which are scaled by the
+\noindent This, is a weighted mixture of $K$ normal distributions each with 
+means  determined by $f_k^{t^\ast}$ and scaled by the
 model weights $w_k$.
 
 \subsection{Parameter estimation}
@@ -349,7 +355,7 @@ p^{(j)}(y|f_{k}^{t})}{\overset{K}{\underset{k=1}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|
 \noindent where the superscript $j$ refers to the $j$th iteration of
 the EM algorithm.
 
-$w_k^{(j)}$ is the estimate of $w_k$ in the $j$th iteration and
+Note that $w_k^{(j)}$ is the estimate of $w_k$ in the $j$th iteration and
 $p^{(j)}(.)$ is shown in \eqref{pdf}.  Assuming these estimates of
 $z_{k}^{s|t}$ are correct, it is then straightforward to derive the
 maximizing value for the model weights. Thus, the M step estimates
@@ -383,8 +389,9 @@ listwise deletion. To better accommodate missing values in component
 models prediction within the EBMA procedure we follow
 \citet{Fraley:2010} and modify the EM algorithm as
 follows.\footnote{In future research, we intend to compare alternative
-  methods for handling missing data, including the use of gaussian
-  copulas to impute the missing predictions \citep{Hoff:2007}.}
+  methods for handling missing data. %, including the use of Gaussian
+%  copulas to impute the missing predictions \citep{Hoff:2007}.
+}
 Define $$\mathcal{A}^t = \{i|\mbox{ensemble member i available at time
   t}\},$$\noindent which is simply the indicators of the list of
 components that provide forecasts for observation $y^t$.  For
@@ -431,7 +438,7 @@ predictions. %% We should probably do some simulations to show this.
 
 To deal with this issue, we introduce a ``wisdom of crowds''
 parameter, $c \in [0,1]$, that reflects our prior belief that all
-models should receive some weight.  In essence, we rescale $z^t_k$ to
+models should receive some, but not necessarily equal, weight. We rescale $z^t_k$ to
 have a minimum value $\frac{c}{K}$.  This states that there is, at a
 minimum, a $\frac{c}{K}$ probability that the observation is correctly
 represented by each model $k$.  Since
@@ -444,9 +451,6 @@ Equation \ref{M-step} above with
 p^{(j)}(y|f_{k}^{t})}{\overset{K}{\underset{k=1}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|f_{k}^{t})}.
 \end{equation}
 
-
-
-
 Note that when $c=1$, all models are considered equally informative
 about the outcome and $w_k=\frac{1}{K} \forall K$. Thus, we see that
 the arithmetic mean or median of component forecasts for time period
@@ -457,18 +461,20 @@ EBMA discussed in \citet{mhw:2012} represents a special case of this
 more general model where $c=0$.
 
 %\section{Simulations} Jacob thinks we will want just a bit of this.  But not for APSA.
+% I agree. Twice.
 
 \section{Applications}
 \label{empirics}
 
+Generally, forecasting is not well developed or extensive in the social sciences.
+
 We now turn to examining how these methods work in two areas that
-typify forecasting in the social sciences. One is the estimation of an
-economic series, unemployment, and the second in the area of
-predicting the vote for the incumbent party in U.S. presidential
-elections.
+exemplify forecasting in the social sciences. The first  is the estimation of  unemployment, 
+and the second in the area of predicting the vote for the incumbent party in U.S. presidential
+elections. Both areas have well developed forecasting traditions in the scholarly and policy community.
 
 
-\subsection{Quarterly unemployment}
+\subsection{Quarterly unemployment in the United States}
 \label{econ}
 
 Forecasting macroeconomic variables is a quite common exercise in the
@@ -500,7 +506,9 @@ macroeconomic indicators including inflation
 
 Policy makers too have come to rely on ensemble forecasts of a sort.
 The desire to aggregate the collective wisdom of multiple forecasting
-temas is apparent in the \textit{Survey of Professional Forecasters
+{\LARGE What is this word? Supposed to be?} 
+{\bf temas}
+is apparent in the \textit{Survey of Professional Forecasters
   (SPF)} published by the \textit{Federal Reserve Bank of
   Philadelphia}.  The \textit{SPF} includes forecasts for a large
 number of macroeconomic variables in the U.S., including the
@@ -562,13 +570,7 @@ Book forecasts are sequestered for five years, we generate forecasts
 beginning in the third quarter of 1983 and running through the fourth
 quarter of 2007.
 
-Figure \ref{modelWeights} provides a visual representation of EBMA
-model calibrations throughout this period.  In this figure, the wisdom
-of crowds tuning parameter is set to a modest $c=0.05$.  The colors
-indicate the model weight assigned to each component on a red-blue
-color ramp (components not included in the ensemble are blank).
-Models assigned no weight are shown in dark blue while models that are
-heavily weighted are shown in red.
+
 
 \begin{figure}[h]
   \caption{Ensemble weights for SPF forecasts of U.S. unemployment
@@ -586,7 +588,14 @@ components excluded in a given model are left blank.
 
 \end{figure}
 
-Figure \ref{modelWeights} shows clearly the difficulties inherent in
+Figure \ref{modelWeights} provides a visual representation of EBMA
+model calibrations throughout this period.  In this figure, the wisdom
+of crowds tuning parameter is set to a modest $c=0.05$.  The colors
+indicate the model weight assigned to each component on a red-blue
+color ramp (components not included in the ensemble are blank).
+Models assigned no weight are shown in dark blue while models that are
+heavily weighted are shown in red. Figure \ref{modelWeights} also illustrates
+the difficulties inherent in
 forecasting with this type of data.  For any given year, only a subset
 of forecasting teams offer a prediction.  Further, an even smaller
 subset contains models that both offer a predictions and have made a
@@ -681,6 +690,8 @@ is closer to the actual rate than the median SPF or the Green Book
 forecast.
 
 
+{\LARGE \bf Jacob, c=0 looks the same as c=,05; is this a rounding issue?}
+
 \begin{table}[h]
 \caption{Comparing adjusted EBMA models with Green Book, median, and mean forecasts of U.S. Unemployment (1981-2007)}
 \begin{center}
@@ -736,7 +747,7 @@ in Table \ref{presModel}.
 \begin{center}
 \begin{tabular}{lrrrr}
   \toprule
- & EBMA Weight &RMSE &MAE \\ 
+ & \shortstack{EBMA\\ Weight}&RMSE &MAE \\ 
   \midrule
 EBMA &  & 1.92 & 1.56 \\ 
   Fair & 0.02 & 5.53 & 4.58 \\ 
@@ -760,6 +771,8 @@ performance of each model in forecasting the incumbent vote share in
 the presidential elections between 1992 and 2008. The Cuz\`an and
 Bundrick model is weighted to such a small degree because only
 out-of-sample predictions for 2004 and 2008 were available here.
+
+{\Large \bf Jacob/Flo: Why are these results different than symposium. Perhaps a footnote?}
 
 
 
@@ -806,11 +819,11 @@ all observations in the sample, as some forecasts may be missing or
 the time-period for which forecasts were made are different for
 different models. In the standard EBMA model introduced in
 \citet{mhw:2012} missing observations in component model predictions
-necessitate listwise deletion.
+are not allowed.
 
 
-In this paper, we attempt to deal with both of these issues to make
-EBMA more applicable for researchers and predictioneers in the social
+In this manuscript, we address both of these issues to make
+EBMA more applicable for researchers and so-called predictioneers in the social
 sciences. After reviewing the standard EBMA framework, we proceed to
 introduce an adjustment to the EBMA estimation that allows for missing
 observations in the calibration period. As a further adjustment, we
@@ -858,7 +871,7 @@ the numerical stability of our results.
 % MIKE, we probably could in a fully Bayesian framework.  But to
 % identify the model, we would still probably have to put bounds on it.
 
-
+{\bf \Large  Figure 3 has a typo and why are the predictions out of phase with the Observed?}
  \newpage
  \appendix
 
@@ -876,17 +889,17 @@ the numerical stability of our results.
    additional discussion of comparative fit metrics.}
 
  Donating the median of some vector $\mathbf{x}$ as $med(\mathbf{x})$,
- and the standard indicator function as $I(.)$,
-
-$$ MAE =\frac{\sum_1^n{e_i}}{n},$$
-$$  RMSE = \sqrt{\frac{\sum_1^n{e^2_i}}{n}}, $$
-$$  MAD =med(\mathbf{e}), $$
-$$  RMSLE = \sqrt{\frac{\sum_1^n\left(ln(f_i+1) - ln(y_i+1)  \right)^2}{n}}, $$
-$$  MAPE = \frac{\sum_1^n{a_i}}{n}, $$
-$$   MEAPE = med(\mathbf{a}), $$
-$$ MRAE = med\left(\frac{e_1}{b_1}, \ldots, \frac{e_n}{b_n} \right),   $$ and
-$$ PW  = \frac{\sum_1^nI(e_i > b_i)}{n}$$
-
+ and the standard indicator function as $I(.)$, we define the following heuristic statistics:
+ \begin{eqnarray*}
+ \mathrm{MAE} &=& \frac{\sum_1^n{e_i}}{n}\\
+  \mathrm{RMSE} &=& \sqrt{\frac{\sum_1^n{e^2_i}}{n}} \\
+  \mathrm{MAD} &=& \mathrm{med}(\mathbf{e}) \\
+  \mathrm{RMSLE} &=& \sqrt{\frac{\sum_1^n\left(ln(f_i+1) - ln(y_i+1)  \right)^2}{n}} \\
+  \mathrm{MAPE} &=& \frac{\sum_1^n{a_i}}{n} \\
+   \mathrm{MEAPE} &=& \mathrm{med}(\mathbf{a}) \\
+ \mathrm{MRAE} &=& \mathrm{med}\left(\frac{e_1}{b_1}, \ldots, \frac{e_n}{b_n} \right) \\
+ \mathrm{PW} &=& \frac{\sum_1^nI(e_i > b_i)}{n}
+\end{eqnarray*}
 
 
 
