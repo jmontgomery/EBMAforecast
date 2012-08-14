@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 AUG 2012 22:27
-=======
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.6.1)  14 AUG 2012 11:29
->>>>>>> Jacob's edits on APSA paper
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.6.1)  14 AUG 2012 11:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -528,21 +524,21 @@ LaTeX Warning: Unused global option(s):
 (./APSA_Paper_2012.aux)
 \openout1 = `APSA_Paper_2012.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 71.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -561,13 +557,8 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 \everyMPtoPDFconversion=\toks28
 )
 \AtBeginShipoutBox=\box56
-<<<<<<< HEAD
-Package hyperref Info: Link coloring OFF on input line 70.
- (/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/nameref.sty
-=======
 Package hyperref Info: Link coloring OFF on input line 71.
  (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/nameref.sty
->>>>>>> Jacob's edits on APSA paper
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/refcount.sty
@@ -578,9 +569,9 @@ Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 )
 \c@section@level=\count161
 )
-LaTeX Info: Redefining \ref on input line 70.
-LaTeX Info: Redefining \pageref on input line 70.
-LaTeX Info: Redefining \nameref on input line 70.
+LaTeX Info: Redefining \ref on input line 71.
+LaTeX Info: Redefining \pageref on input line 71.
+LaTeX Info: Redefining \nameref on input line 71.
 
 (./APSA_Paper_2012.out) (./APSA_Paper_2012.out)
 \@outlinefile=\write5
@@ -621,16 +612,11 @@ LaTeX Info: Redefining \nameref on input line 70.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<<<<<<< HEAD
-LaTeX Font Info:    Try loading font information for U+msa on input line 72.
-(/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsa.fd
-=======
 LaTeX Font Info:    Try loading font information for U+msa on input line 73.
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
->>>>>>> Jacob's edits on APSA paper
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 72.
+LaTeX Font Info:    Try loading font information for U+msb on input line 73.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -639,41 +625,24 @@ Non-PDF special ignored!
 
 {/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 83.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-<<<<<<< HEAD
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
-=======
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 111.
->>>>>>> Jacob's edits on APSA paper
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-<<<<<<< HEAD
-l.126 
-       [1
-
-]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 152.
-=======
 l.142 
        [1
 
 ]
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 169.
->>>>>>> Jacob's edits on APSA paper
 
  (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-<<<<<<< HEAD
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 193.
-
-Overfull \hbox (5.24461pt too wide) in paragraph at lines 193--194
-=======
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 230.
 
 Underfull \hbox (badness 1014) in paragraph at lines 230--231
@@ -685,29 +654,12 @@ T1/ptm/m/n/10 lezien and \OT1/ptm/b/n/10 Cuz[]\OT1/ptm/m/n/10 an. Data
 
 
 Overfull \hbox (5.24461pt too wide) in paragraph at lines 230--231
->>>>>>> Jacob's edits on APSA paper
 \OT1/pcr/m/n/10 models-[]based-[]on-[]fundamentals-[]have-[]failed-[]at-[]predi
 cting-[]presidential-[]elections/$[]\OT1/ptm/m/n/10 . 
  []
 
 [3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-<<<<<<< HEAD
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 233.
- [4] [5] [6] [7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 405--405
-[][]\OT1/ptm/m/n/10 See []$\OT1/pcr/m/n/10 http : / / www . phil . frb . org / 
-research-[]and-[]data / real-[]time-[]center /
- []
-
-[10] <awesome.pdf, id=265, 505.89pt x 650.43pt>
-File: awesome.pdf Graphic file (type pdf)
- <use awesome.pdf>
-Package pdftex.def Info: awesome.pdf used on input line 434.
-(pdftex.def)             Requested size: 480.59276pt x 617.905pt.
-
-Overfull \hbox (10.83737pt too wide) in paragraph at lines 434--435
-=======
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 269.
  [4] [5] [6] [7] [8]
 Underfull \hbox (badness 2970) in paragraph at lines 502--502
@@ -725,38 +677,15 @@ Underfull \hbox (badness 3158) in paragraph at lines 502--502
 File: awesome.pdf Graphic file (type pdf)
  <use awesome.pdf>
 Overfull \hbox (10.83737pt too wide) in paragraph at lines 567--568
->>>>>>> Jacob's edits on APSA paper
  [] 
  []
 
 
-<<<<<<< HEAD
-LaTeX Warning: Float too large for page by 65.3234pt on input line 439.
-=======
 LaTeX Warning: Float too large for page by 65.3234pt on input line 576.
->>>>>>> Jacob's edits on APSA paper
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<<<<<<< HEAD
-[11] <compare2Components.pdf, id=274, 433.62pt x 433.62pt>
-File: compare2Components.pdf Graphic file (type pdf)
-
-<use compare2Components.pdf>
-Package pdftex.def Info: compare2Components.pdf used on input line 465.
-(pdftex.def)             Requested size: 433.61894pt x 433.61894pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<timeSeries.pdf, id=276, 505.89pt x 289.08pt>
-File: timeSeries.pdf Graphic file (type pdf)
- <use timeSeries.pdf>
-Package pdftex.def Info: timeSeries.pdf used on input line 496.
-(pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
-
-=======
 [10] <compare2Components.pdf, id=261, 433.62pt x 433.62pt>
 File: compare2Components.pdf Graphic file (type pdf)
 
@@ -767,27 +696,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <timeSeries.pdf, id=263, 505.89pt x 289.08pt>
 File: timeSeries.pdf Graphic file (type pdf)
  <use timeSeries.pdf>
->>>>>>> Jacob's edits on APSA paper
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12]
+[11]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-<<<<<<< HEAD
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 520.
- [13] [14] <presForecast.pdf, id=306, 433.62pt x 433.62pt>
-File: presForecast.pdf Graphic file (type pdf)
-
-<use presForecast.pdf>
-Package pdftex.def Info: presForecast.pdf used on input line 618.
-(pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[15] [16] (./APSA_Paper_2012.bbl [17]
-Underfull \hbox (badness 3108) in paragraph at lines 87--91
-=======
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 665.
  [12] <presForecast.pdf, id=283, 433.62pt x 433.62pt>
 File: presForecast.pdf Graphic file (type pdf)
@@ -798,87 +711,28 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [13] [14] (./APSA_Paper_2012.bbl [15]
 Underfull \hbox (badness 3108) in paragraph at lines 90--94
->>>>>>> Jacob's edits on APSA paper
 \OT1/ptm/m/n/12 ver-sity. []$\OT1/pcr/m/n/12 http : / / fairmodel . econ . yale
  . edu / vote2012 / index2 . htm$[] \OT1/ptm/m/n/12 (ac-cessed
  []
 
-<<<<<<< HEAD
-
-Underfull \hbox (badness 1418) in paragraph at lines 101--107
-=======
 [16]
 Underfull \hbox (badness 1418) in paragraph at lines 104--110
->>>>>>> Jacob's edits on APSA paper
 \OT1/pcr/m/n/12 dl . dropbox . com / u / 3662406 / Articles / Graefe _ et _ al 
 _ Combining . pdf$[] \OT1/ptm/m/n/12 (ac-
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 3068) in paragraph at lines 116--120
-=======
 Underfull \hbox (badness 3068) in paragraph at lines 119--123
->>>>>>> Jacob's edits on APSA paper
 []\OT1/ptm/m/n/12 Hibbs, Dou-glas A. 2012.  ``Obama's Re-election Prospects un-
 der `Bread and Peace/
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 1147) in paragraph at lines 116--120
-=======
 Underfull \hbox (badness 1147) in paragraph at lines 119--123
->>>>>>> Jacob's edits on APSA paper
 \OT1/ptm/m/n/12 Vot-ing in the 2012 US Pres-i-den-tial Elec-tion.'' []$\OT1/pcr
 /m/n/12 http : / / www . douglas-[]hibbs . com /
  []
 
-<<<<<<< HEAD
-[18])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 659.
- [19] [20 <./awesome.pdf>] [21 <./compare2Components.pdf>] [22 <./timeSeries.pd
-f>] [23 <./presForecast.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 659.
- (./APSA_Paper_2012.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 659.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 659.
-Package rerunfilecheck Info: File `APSA_Paper_2012.out' has not changed.
-(rerunfilecheck)             Checksum: 587B6B503D980396B3FAE119D57492E2;607.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 659.
- ) 
-Here is how much of TeX's memory you used:
- 8698 strings out of 493633
- 127160 string characters out of 3143378
- 254197 words of memory out of 3000000
- 11717 multiletter control sequences out of 15000+200000
- 40702 words of font info for 93 fonts, out of 3000000 for 9000
- 831 hyphenation exceptions out of 8191
- 30i,12n,28p,1075b,482s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2011/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/te
-xlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/tex
-live/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
-ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texli
-ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive
-/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2
-011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/201
-1/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2011/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2011/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist
-/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/t
-ype1/urw/times/utmb8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/t
-imes/utmr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmr8
-a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on APSA_Paper_2012.pdf (24 pages, 444970 bytes).
-PDF statistics:
- 467 PDF objects out of 1000 (max. 8388607)
- 410 compressed objects within 5 object streams
- 84 named destinations out of 1000 (max. 500000)
-=======
 [17])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 809.
  [18] [19 <./awesome.pdf>] [20 <./compare2Components.pdf>] [21 <./timeSeries.pd
@@ -920,6 +774,5 @@ PDF statistics:
  448 PDF objects out of 1000 (max. 8388607)
  393 compressed objects within 4 object streams
  83 named destinations out of 1000 (max. 500000)
->>>>>>> Jacob's edits on APSA paper
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
