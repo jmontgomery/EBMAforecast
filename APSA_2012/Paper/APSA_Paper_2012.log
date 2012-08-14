@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 AUG 2012 14:24
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 AUG 2012 22:27
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -619,56 +619,50 @@ Non-PDF special ignored!
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 83.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 96.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.127 
+l.126 
        [1
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 153.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 152.
 
  (/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 194.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 193.
 
-Overfull \hbox (5.24461pt too wide) in paragraph at lines 194--195
+Overfull \hbox (5.24461pt too wide) in paragraph at lines 193--194
 \OT1/pcr/m/n/10 models-[]based-[]on-[]fundamentals-[]have-[]failed-[]at-[]predi
 cting-[]presidential-[]elections/$[]\OT1/ptm/m/n/10 . 
  []
 
 [3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 234.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 233.
  [4] [5] [6] [7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 406--406
+Underfull \hbox (badness 10000) in paragraph at lines 405--405
 [][]\OT1/ptm/m/n/10 See []$\OT1/pcr/m/n/10 http : / / www . phil . frb . org / 
 research-[]and-[]data / real-[]time-[]center /
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 410.
-
-Package natbib Warning: Citation `Baghestani:2008' on page 10 undefined on inpu
-t line 410.
-
-[10] <awesome.pdf, id=266, 505.89pt x 650.43pt>
+[10] <awesome.pdf, id=265, 505.89pt x 650.43pt>
 File: awesome.pdf Graphic file (type pdf)
  <use awesome.pdf>
-Package pdftex.def Info: awesome.pdf used on input line 435.
+Package pdftex.def Info: awesome.pdf used on input line 434.
 (pdftex.def)             Requested size: 480.59276pt x 617.905pt.
 
-Overfull \hbox (10.83737pt too wide) in paragraph at lines 435--436
+Overfull \hbox (10.83737pt too wide) in paragraph at lines 434--435
  [] 
  []
 
 
-LaTeX Warning: Float too large for page by 65.3234pt on input line 440.
+LaTeX Warning: Float too large for page by 65.3234pt on input line 439.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -677,7 +671,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: compare2Components.pdf Graphic file (type pdf)
 
 <use compare2Components.pdf>
-Package pdftex.def Info: compare2Components.pdf used on input line 466.
+Package pdftex.def Info: compare2Components.pdf used on input line 465.
 (pdftex.def)             Requested size: 433.61894pt x 433.61894pt.
 
 
@@ -686,87 +680,69 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <timeSeries.pdf, id=276, 505.89pt x 289.08pt>
 File: timeSeries.pdf Graphic file (type pdf)
  <use timeSeries.pdf>
-Package pdftex.def Info: timeSeries.pdf used on input line 497.
+Package pdftex.def Info: timeSeries.pdf used on input line 496.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [12]
-
-Package natbib Warning: Citation `Baghestani:2008' on page 13 undefined on inpu
-t line 547.
-
-[13] <presForecast.pdf, id=298, 433.62pt x 433.62pt>
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 520.
+ [13] [14] <presForecast.pdf, id=306, 433.62pt x 433.62pt>
 File: presForecast.pdf Graphic file (type pdf)
- <use presForecast.pdf>
-Package pdftex.def Info: presForecast.pdf used on input line 619.
+
+<use presForecast.pdf>
+Package pdftex.def Info: presForecast.pdf used on input line 618.
 (pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14]
-
-LaTeX Warning: Reference `econ' on page 15 undefined on input line 633.
-
 [15] [16] (./APSA_Paper_2012.bbl [17]
-Underfull \hbox (badness 3108) in paragraph at lines 81--85
+Underfull \hbox (badness 3108) in paragraph at lines 87--91
 \OT1/ptm/m/n/12 ver-sity. []$\OT1/pcr/m/n/12 http : / / fairmodel . econ . yale
  . edu / vote2012 / index2 . htm$[] \OT1/ptm/m/n/12 (ac-cessed
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 95--101
+Underfull \hbox (badness 1418) in paragraph at lines 101--107
 \OT1/pcr/m/n/12 dl . dropbox . com / u / 3662406 / Articles / Graefe _ et _ al 
 _ Combining . pdf$[] \OT1/ptm/m/n/12 (ac-
  []
 
 
-Underfull \hbox (badness 3068) in paragraph at lines 110--114
+Underfull \hbox (badness 3068) in paragraph at lines 116--120
 []\OT1/ptm/m/n/12 Hibbs, Dou-glas A. 2012.  ``Obama's Re-election Prospects un-
 der `Bread and Peace/
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 110--114
+Underfull \hbox (badness 1147) in paragraph at lines 116--120
 \OT1/ptm/m/n/12 Vot-ing in the 2012 US Pres-i-den-tial Elec-tion.'' []$\OT1/pcr
 /m/n/12 http : / / www . douglas-[]hibbs . com /
  []
 
 [18])
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 660.
-[19] [20 <./awesome.pdf>] [21 <./compare2Components.pdf>] [22 <./timeSeries.pdf
->] [23 <./presForecast.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 660.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 659.
+ [19] [20 <./awesome.pdf>] [21 <./compare2Components.pdf>] [22 <./timeSeries.pd
+f>] [23 <./presForecast.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 659.
  (./APSA_Paper_2012.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 660.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 660.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 659.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 659.
 Package rerunfilecheck Info: File `APSA_Paper_2012.out' has not changed.
 (rerunfilecheck)             Checksum: 587B6B503D980396B3FAE119D57492E2;607.
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 660.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 659.
  ) 
 Here is how much of TeX's memory you used:
- 8695 strings out of 493633
- 127088 string characters out of 3143378
- 255114 words of memory out of 3000000
- 11715 multiletter control sequences out of 15000+200000
+ 8698 strings out of 493633
+ 127160 string characters out of 3143378
+ 254197 words of memory out of 3000000
+ 11717 multiletter control sequences out of 15000+200000
  40702 words of font info for 93 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 30i,12n,28p,1003b,482s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,12n,28p,1075b,482s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2011/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/te
 xlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/tex
@@ -785,10 +761,10 @@ st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist
 ype1/urw/times/utmb8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on APSA_Paper_2012.pdf (24 pages, 444263 bytes).
+Output written on APSA_Paper_2012.pdf (24 pages, 444970 bytes).
 PDF statistics:
- 461 PDF objects out of 1000 (max. 8388607)
- 404 compressed objects within 5 object streams
- 83 named destinations out of 1000 (max. 500000)
+ 467 PDF objects out of 1000 (max. 8388607)
+ 410 compressed objects within 5 object streams
+ 84 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

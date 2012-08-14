@@ -5,8 +5,8 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 
-#setwd("~/Documents/GIT/EBMAforecast/")
-setwd("~/GITHUB/EBMAforecast/")
+setwd("~/Documents/GIT/EBMAforecast/")
+#setwd("~/GITHUB/EBMAforecast/")
 
 
 # Only need to run this portion once
@@ -21,7 +21,7 @@ ud <- read.csv("~/Documents/GIT/EBMAforecast/APSA_2012/Data/unemployment_data.cs
 
 ud1 <- subset(ud, variable=="UNEMP3")
 ud4 <- subset(ud, variable=="UNEMP6")
-ud4 <- subset(ud4, forecast.year.quarter>1971.2)
+ud4 <- subset(ud4, forecast.year.quarter>1983.2)
 
 ud_sub<-ud4[,-c(1,2,3,430)]
 dim(ud_sub)
