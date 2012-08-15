@@ -231,7 +231,7 @@ mycols <- c("blue", "red", "darkgreen")
 for(i in 1:3){
   lines(.time, all[,i], col=mycols[i], lty=1+i, lwd=2)
 }
-legend(2000, 10, c("Oberved", "EBMA", "Median", "Green Book"), col=c("black", "blue", "red", "darkgreen"), lty=c(1, 2,3,4))
+legend(2000, 10, c("Observed", "EBMA", "Median", "Green Book"), col=c("black", "blue", "red", "darkgreen"), lty=c(1, 2,3,4))
 dev.off()
 
 library(xtable)
