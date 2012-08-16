@@ -141,6 +141,11 @@ lewisbeck<-read.csv("Lewis-Beck_Tien_forecasts.csv")
 insample.data<-merge(insample.data,lewisbeck,by="Year",all.x=TRUE,all.y=TRUE)
 
 
+norpoth<-read.csv("norpoth_forecast.csv")
+norpoth$Norpoth_inc<-ifelse(norpoth$repub_inc==1,100-norpoth$Norpoth,norpoth$Norpoth)
+norpoth2<-norpoth[,c("Year","Norpoth_inc")]
+insample.data<-merge(insample.data,norpoth2,by="Year",all.x=TRUE,all.y=TRUE)
+
 insample.data<-insample.data[-c(34,35),]
 save(insample.data,file="insample.data.RData")
 
@@ -170,7 +175,7 @@ data_2012["2012","Lewis.Beck_Tien_Jobs"]<-47.6
 data_2012["2012","Lewis.Beck_Tien_Proxy"]<-51.4
 data_2012["2012","Cuzan1.short"]<-45.5
 data_2012["2012","Cuzan2.short"]<-46.9
-
+data_2012["2012","Norpoth_inc"]<-53.2
 
  save(data_2012,file="data_2012.RData")
  
