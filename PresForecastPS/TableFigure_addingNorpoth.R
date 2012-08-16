@@ -45,7 +45,7 @@ for(i in  c(seq(0,.29, by=.01), seq(.3, .5, .1))){
   counter <- counter+1
 }
 
-ensemble1 <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=sqrt(.Machine$double.eps), maxIter=1000000, useModelParams=FALSE, predType="posteriorMedian", const=.5)
+ensemble1 <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=sqrt(.Machine$double.eps), maxIter=1000000, useModelParams=FALSE, predType="posteriorMedian", const=0.05)
 summary(ensemble1, showCoefs=FALSE)
 ensemble1@predTest
 
