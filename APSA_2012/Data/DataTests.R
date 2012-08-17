@@ -95,6 +95,42 @@ for_com$sum<-for_com$UNEMP3+for_com$UNEMP6
 for_com<-for_com[order(for_com$Group.1),]
 round(for_test,3)==round(for_com$sum,3) #correct!
 
+
+
+##### Making sure the data is correct, check correlation between median, mean spf and greenbook
+
+rm(list=ls(all=TRUE))
+library(R.native)
+setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Data")
+new_data<-read.csv("unemployment_data.csv")
+head(new_data)
+dim(new_data)
+
+median<-apply(new_data[,c(5:430)],1,FUN=median,na.rm=TRUE)
+mean<-apply(new_data[,c(5:430)],1,FUN=mean,na.rm=TRUE)
+length(mean)
+length(median)
+for_merge<-new_data[,c(2,3,4,431)]
+test<-cbind(for_merge,mean,median)
+
+
+test6<-subset(test,test$variable=="UNEMP6" & test$forecast.year.quarter>1980.2)
+plot(test6$forecast.year.quarter,test6$Unemployment_Truth,type="l")
+lines(test6$forecast.year.quarter,test6$mean,col="red")
+lines(test6$forecast.year.quarter,test6$median,col="blue")
+lines(test6$forecast.year.quarter,test6$greenbook,col="green")
+
+#### sems all okay!
+old_data<-read.csv("Individual_UNEMP.csv")
+head(old_data)
+
+test_old<-old_data[,c(1,2,3,10)]
+head(test_old)
+test_old$UNEMP6<-ifelse(test_old$UNEMP6==-999,NA,test_old$UNEMP6)
+median<-aggregate(test_old,FUN=median,by=list(test_old$year,test_old$quarter),na.rm=TRUE)
+
+mean<-aggregate(test_old,FUN=mean,by=list(test_old$year,test_old$quarter),na.rm=TRUE)
+
 ##### CPI
 rm(list=ls(all=TRUE))
 

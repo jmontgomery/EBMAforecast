@@ -109,18 +109,19 @@ gb_unemp6<-greenbook[,c("year","quarter","GB_Unemp6")]
 
 
 
-gb_unemp3$quarter<-gb_unemp3$quarter
-gb_unemp3$year<-ifelse(gb_unemp3$quarter==5,gb_unemp3$year+1,gb_unemp3$year)
-gb_unemp3$quarter<-ifelse(gb_unemp3$quarter==5,gb_unemp3$quarter+1,gb_unemp3$quarter)
-gb_unemp6$year<-gb_unemp6$year+1
+gb_unemp3$forecast.quarter<-gb_unemp3$quarter+1
+gb_unemp3$forecast.year<-ifelse(gb_unemp3$forecast.quarter==5,gb_unemp3$year+1,gb_unemp3$year)
+gb_unemp3$forecast.quarter<-ifelse(gb_unemp3$forecast.quarter==5,1,gb_unemp3$forecast.quarter)
+gb_unemp6$forecast.year<-gb_unemp6$year+1
+gb_unemp6$forecast.quarter<-gb_unemp6$quarter	
 	
 gb_unemp3$Var<-"UNEMP3"
 gb_unemp6$Var<-"UNEMP6"
 
-gb_unemp3$forecast.year.quarter<-paste(gb_unemp3$year,gb_unemp3$quarter,sep=".")
-gb_unemp6$forecast.year.quarter<-paste(gb_unemp6$year,gb_unemp6$quarter,sep=".")
-gb_unemp3<-gb_unemp3[,-c(1,2)]
-gb_unemp6<-gb_unemp6[,-c(1,2)]
+gb_unemp3$forecast.year.quarter<-paste(gb_unemp3$forecast.year,gb_unemp3$forecast.quarter,sep=".")
+gb_unemp6$forecast.year.quarter<-paste(gb_unemp6$forecast.year,gb_unemp6$forecast.quarter,sep=".")
+gb_unemp3<-gb_unemp3[,-c(1,2,4,5)]
+gb_unemp6<-gb_unemp6[,-c(1,2,4,5)]
 names(gb_unemp3)<-"greenbook"
 names(gb_unemp6)<-"greenbook"
 
