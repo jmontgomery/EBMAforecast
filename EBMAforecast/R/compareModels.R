@@ -188,5 +188,4 @@ setMethod(f="compareModels",
 
         }
 )
-# TODO: Need to make it so that some fit statistics are "ruled out" for some kinds of outcomes.
-# TODO: Need to make the compareModels() function throw an error when asked to evaluate over period where the data is not sufficient.
+
