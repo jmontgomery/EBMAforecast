@@ -40,7 +40,7 @@
 
 \title{Say Yes to the Guess: \\ Tailoring Elegant Ensembles on a Tight
   (Data) Budget\thanks{Presented at the 2012 Annual Meeting of the American Political Science Association, August 30 - September 2, New Orleans, Louisiana. 
-%This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a %holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval %Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
+This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
     }}
 \author{
 Jacob M. Montgomery\\
@@ -567,29 +567,29 @@ quarter of 2007.
 
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
   \caption{Ensemble weights for SPF forecasts of U.S. unemployment
     with a rolling calibration window}
 \label{modelWeights}
 \begin{center}
-\includegraphics[scale=.90]{awesome}
+\includegraphics[scale=.70]{awesome}
 \end{center}
 
-\footnotesize This figure shows the component weights for each EBMA
+\footnotesize This graphic illustrates the component weights for each EBMA
 model estimated between 1983 and 2007. Ensembles are calibrated on the
-past ten quarters. The colors going from blue to red indicate
+past ten quarters. The colors range from blue to red to indicate
 increasing weights for components in a given ensemble model. Those
-components excluded in a given model are left blank.
+components excluded in a given model are missing.
 
 \end{figure}
 
-Figure \ref{modelWeights} provides a visual representation of EBMA
+Figure~\ref{modelWeights} provides a visual representation of EBMA
 model calibrations throughout this period.  In this figure, the wisdom
 of crowds tuning parameter is set to a modest $c=0.05$.  The colors
 indicate the model weight assigned to each component on a red-blue
 color ramp (components not included in the ensemble are blank).
 Models assigned no weight are shown in dark blue while models that are
-heavily weighted are shown in red. Figure \ref{modelWeights} also illustrates
+heavily weighted are shown in red. Figure~\ref{modelWeights} also illustrates
 the difficulties inherent in
 forecasting with this type of data.  For any given year, only a subset
 of forecasting teams offer a prediction.  Further, an even smaller
@@ -612,7 +612,7 @@ the current rate of unemployment.  Further details for these metrics
 are shown in the Appendix \citep{brandt:freeman:schrodt:2011}.
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 \caption{Comparing predictive accuracy of EBMA and component models with eight metrics}
 \label{compare2Components}
 \begin{center}
@@ -634,7 +634,7 @@ predictions in a relatively small subset of cases.  That is, each
 model $k$ offers forecasts for only a subset of cases $n_k \subset n$.
 To create a fair comparison, therefore, we calculate these fit indices
 only for $n_k \forall k \in [1,K]$.  By this measure, the EBMA model
-performs very well.  Figure \ref{compare2Components} provides a
+performs very well.  Figure~\ref{compare2Components} provides a
 summary of these results.  The top panel shows the percentage of
 metrics by which EBMA outperforms each component. The bottom panel
 shows the percentage of component models that EBMA ``beats'' as
@@ -670,9 +670,9 @@ prediction.\footnote{Note that the EBMA model is calculated on only a the
   recent predictions to calibrate model weights.  Thus, the median
   forecast and the ensemble forecast will not be the same even when
   $c=1$.  }  The first three of these forecasts and the true level of
-unemployment are shown in Figure \ref{timeSeries}.
+unemployment are shown in Figure~\ref{timeSeries}.
 
-Figure \ref{timeSeries} shows a visual representation of the
+Figure~\ref{timeSeries} shows a visual representation of the
 Greenbook, median SPF and the EBMA (with $c=0.05$) forecasts over
 time, as well as the true unemployment rate. As was noted above and is
 clearly visible, the SPF and Greenbook forecasts are quite
@@ -709,7 +709,7 @@ Definitions of model fit statistics are provided in the Appendix. The model with
 \end{table}
 
 
-Table \ref{compareTable1} formally compares these baseline models
+Table~\ref{compareTable1} formally compares these baseline models
 using all eight of the metrics to EBMA models with $c=$0, 0.05, 0.1,
 and 1 respectively.  The bolded cells in each column indicate the
 model that performed ``best'' as measured by each metric.  With one
@@ -730,7 +730,7 @@ application and return briefly to the example with which we began --
 predicting U.S. presidential elections.  Using the forecasts shown in
 Table 1, we fit an EBMA model with $c=0.05$.  The model weights and
 in-sample fit statistics for the ensemble and its components are shown
-in Table \ref{presModel}.
+in Table~\ref{presModel}.
 
 
 % latex table generated in R 2.15.1 by xtable 1.7-0 package
@@ -758,7 +758,7 @@ EBMA &  & 1.92 & 1.56 \\
 \end{center}
 \end{table}
 
-As can be seen in Table \ref{presModel}, the EBMA model assigns the
+As can be seen in Table~\ref{presModel}, the EBMA model assigns the
 majority of weight to the Abramowitz model with the model by Campbell
 receiving the second largest weight. These weights are based on the
 performance of each model in forecasting the incumbent vote share in
@@ -769,7 +769,7 @@ out-of-sample predictions for 2004 and 2008 were available here.
 
 
 
-Figure \ref{pres} shows the posterior predictive distribution for the
+Figure~\ref{pres} shows the posterior predictive distribution for the
 2008 election (top) and, based on current forecasts from each of the
 component models, the 2012 election.  We predict that Obama is going to
 win by very little, however the credible intervals are quite wide,
@@ -853,16 +853,11 @@ the prediction is quite large).
 % spreads the weights out over the ensemble components in a way that
 % helps to preserve the advantages of the ensemble.
 
-Finally, we note that in future drafts of this paper, we hope to (1)
+Finally, we note that in future research, we intend to (1)
 compare alternative methods of handling missing data (2) discuss how
-to select window of time for calibration and (3) conduct some
-simulation studies to explore settings for $c$ parameter and to test
+to select window of time for calibration, (3) conduct
+simulation studies to explore settings for $c$ parameter, and (4) test
 the numerical stability of our results.
-
-
-% JACOB, statisticians will want to know why we don't just estimate C.
-% MIKE, we probably could in a fully Bayesian framework.  But to
-% identify the model, we would still probably have to put bounds on it.
 
 
  \newpage
