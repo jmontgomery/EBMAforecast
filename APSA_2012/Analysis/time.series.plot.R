@@ -23,8 +23,9 @@ pdf(height=4, width=7, file="mdwtimeSeries2.pdf")
 par(mar=c(2,2,.5,2), mfrow=c(1,1), mgp=c(1,0.25,0), tcl=0)
 mycols <- c("gray90",rgb(241,163,64,maxColorValue=255), rgb(230, 97, 1,maxColorValue=255), rgb(35, 132, 67,maxColorValue=255))
 mywidths <- c(10,8,4,4)
-plot(.time, .redOut, type="l", lwd=mywidths[1], ylab="", xlab="", main="", bty="n", las=1,col=mycols[1])
-axis(1,at=c(1981,1985,1990,1995,2000,2005,2008))
+plot(.time, .redOut, type="l", lwd=mywidths[1], ylab="", xlab="", main="", bty="n", las=1,col=mycols[1],xlim=c(1981,2008),axes=F)
+myyears<-c("1980","1985","1990","1995","2000","2005","2008")
+axis(1,at=c(1980,1985,1990,1995,2000,2005,2008),labels=myyears,cex.axis=.9)
 
 for(i in 1:3){
   lines(.time, all[,i], col=mycols[i+1], lty=1, lwd=mywidths[i+1])
