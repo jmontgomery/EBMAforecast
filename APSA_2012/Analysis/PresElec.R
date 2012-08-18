@@ -16,6 +16,7 @@ document(current.code)
 
 
 rm(list=ls())
+#pres <- read.csv("~/Documents/GIT/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
 pres <- read.csv("~/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
 
 
@@ -40,9 +41,13 @@ data=myPres
 .reduced <- data[.theseRows, .selector]
 .target <- data[5,.selector]
 
+load("~/Documents/GIT/EBMAforecast/PresForecastPS/data_2012.RData")
+
 load("~/Github/EBMAforecast/PresForecastPS/data_2012.RData")
 
-pred12 <- matrix(c(49.5, 50.5, 50.6, 47.5, 47.6, 54, 47.8, 52.2, 46.9), nrow=1) #added the Cuzan short FPRIME pred for 2012
+
+pred12<-matrix(c(49.5,50.5,50.6,47.5,47.6,54,47.8,52.6,46.9),nrow=1) ### updated with latest numbers
+#pred12 <- matrix(c(49.5, 50.5, 50.6, 47.5, 47.6, 54, 47.8, 52.2, 46.9), nrow=1) #added the Cuzan short FPRIME pred for 2012
 
 
 .FD <- makeForecastData(.predCalibration=.reduced[,-c(1:3)]
