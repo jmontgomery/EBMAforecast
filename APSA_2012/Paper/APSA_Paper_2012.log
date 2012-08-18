@@ -1,6 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  15 AUG 2012 13:26
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  18 AUG 2012 12:41
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **APSA_Paper_2012.tex
 (./APSA_Paper_2012.tex
@@ -645,9 +646,15 @@ cting-[]presidential-[]elections/$[]\OT1/ptm/m/n/10 .
  []
 
 [2] [3] [4] [5] [6]
-Underfull \hbox (badness 2970) in paragraph at lines 517--517
-\OT1/ptm/m/n/10 reau of Eco-nomic Re-search (NBER). Since 1990, how-ever, it is
- ad-min-is-tered by the Fed-eral Re-serve
+Underfull \hbox (badness 6220) in paragraph at lines 517--517
+[][]\OT1/ptm/m/n/10 The \OT1/ptm/m/it/10 SPF \OT1/ptm/m/n/10 was first ad-min-i
+s-tered in 1968 by the Amer-i-can Sta-tis-ti-cal As-so-ci-a-tion and the Na-
+ []
+
+
+Underfull \hbox (badness 2582) in paragraph at lines 517--517
+\OT1/ptm/m/n/10 tional Bu-reau of Eco-nomic Re-search (NBER). Since 1990, how-e
+ver, it is run by the Fed-eral Re-serve
  []
 
 
@@ -656,45 +663,41 @@ Underfull \hbox (badness 3158) in paragraph at lines 517--517
  . frb . org / research-[]and-[]data / real-[]time-[]center /
  []
 
-[7] <awesome.pdf, id=243, 505.89pt x 650.43pt>
+[7] <awesome.pdf, id=247, 505.89pt x 650.43pt>
 File: awesome.pdf Graphic file (type pdf)
  <use awesome.pdf>
-Package pdftex.def Info: awesome.pdf used on input line 577.
-(pdftex.def)             Requested size: 480.59276pt x 617.905pt.
-
-Overfull \hbox (10.83737pt too wide) in paragraph at lines 577--578
- [] 
- []
+Package pdftex.def Info: awesome.pdf used on input line 575.
+(pdftex.def)             Requested size: 455.29678pt x 585.38159pt.
 
 
-LaTeX Warning: Float too large for page by 79.8234pt on input line 586.
+LaTeX Warning: Float too large for page by 32.96786pt on input line 584.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<compare2Components.pdf, id=248, 433.62pt x 433.62pt>
+<compare2Components.pdf, id=252, 433.62pt x 433.62pt>
 File: compare2Components.pdf Graphic file (type pdf)
 
 <use compare2Components.pdf>
-Package pdftex.def Info: compare2Components.pdf used on input line 621.
+Package pdftex.def Info: compare2Components.pdf used on input line 619.
 (pdftex.def)             Requested size: 433.61894pt x 433.61894pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<timeSeries.pdf, id=250, 505.89pt x 289.08pt>
+<timeSeries.pdf, id=254, 505.89pt x 289.08pt>
 File: timeSeries.pdf Graphic file (type pdf)
  <use timeSeries.pdf>
-Package pdftex.def Info: timeSeries.pdf used on input line 660.
+Package pdftex.def Info: timeSeries.pdf used on input line 658.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8] [9] <presForecast.pdf, id=276, 433.62pt x 433.62pt>
+[8] [9] <presForecast.pdf, id=280, 433.62pt x 433.62pt>
 File: presForecast.pdf Graphic file (type pdf)
  <use presForecast.pdf>
-Package pdftex.def Info: presForecast.pdf used on input line 789.
+Package pdftex.def Info: presForecast.pdf used on input line 787.
 (pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
 
 
@@ -725,21 +728,21 @@ Underfull \hbox (badness 1147) in paragraph at lines 125--129
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 907.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 905.
  [14] [15 <./awesome.pdf>] [16 <./compare2Components.pdf>] [17 <./timeSeries.pd
 f>] [18 <./presForecast.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 907.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 905.
  (./APSA_Paper_2012.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 907.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 907.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 905.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 905.
 Package rerunfilecheck Info: File `APSA_Paper_2012.out' has not changed.
 (rerunfilecheck)             Checksum: A8DFBE05C9E92D1FA8F50507F4BE5797;628.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 907.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 905.
  ) 
 Here is how much of TeX's memory you used:
  8694 strings out of 493633
  127201 string characters out of 3143378
- 258287 words of memory out of 3000000
+ 257286 words of memory out of 3000000
  11718 multiletter control sequences out of 15000+200000
  40702 words of font info for 93 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
@@ -762,10 +765,10 @@ st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist
 ype1/urw/times/utmb8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on APSA_Paper_2012.pdf (19 pages, 449090 bytes).
+Output written on APSA_Paper_2012.pdf (19 pages, 449728 bytes).
 PDF statistics:
- 441 PDF objects out of 1000 (max. 8388607)
- 390 compressed objects within 4 object streams
+ 445 PDF objects out of 1000 (max. 8388607)
+ 394 compressed objects within 4 object streams
  79 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
