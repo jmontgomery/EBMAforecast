@@ -5,7 +5,7 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 
-#setwd("~/Documents/GIT/EBMAforecast/")
+#setwd("~/DocumentsGIT/EBMAforecast/")
 setwd("~/GITHUB/EBMAforecast/")
 
 
@@ -223,15 +223,21 @@ all <- all[!is.na(.green),]
 all2 <- cbind(.ensemblePred3, .ensemblePred, .ensemblePred2,  .ensemblePred4, .green, .median, .mean)
 all2 <- all2[!is.na(.green),]
 
+#save(all,file="estimation.results.Rdata")
+#save(.time, file="estimation.time.RData")
+#save(.redOut, file="ebma.est.RData")
+
+library(RColorBrewer)
+mycols<-brewer.pal(4,"Set3")
 ### A basic plot of all 3
-pdf(height=4, width=7, file="timeSeries.pdf")
+pdf(height=4, width=7, file="timeSeries2.pdf")
 par(mar=c(2,2,.5,2), mfrow=c(1,1), mgp=c(1,0,0), tcl=0)
-plot(.time, .redOut, type="l", lwd=2, ylab="% Unemployment", xlab="Year", main="")
-mycols <- c("blue", "red", "darkgreen")
+plot(.time, .redOut, type="l", lwd=3, ylab="", xlab="Year", main="", bty="n", las=1,col=mycols[1])
+#mycols <- c("blue", "red", "darkgreen")
 for(i in 1:3){
-  lines(.time, all[,i], col=mycols[i], lty=1+i, lwd=2)
+  lines(.time, all[,i], col=mycols[i+1], lty=1+i, lwd=3)
 }
-legend(2000, 10, c("Observed", "EBMA", "Median", "Green Book"), col=c("black", "blue", "red", "darkgreen"), lty=c(1, 2,3,4))
+legend(2000, 10, c("Observed", "EBMA", "Median", "Green Book"), col=mycols, lty=c(1, 2,3,4),bty="n",lwd=3)
 dev.off()
 
 library(xtable)
