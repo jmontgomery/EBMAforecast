@@ -39,7 +39,7 @@
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
   D. Ward. (2012). Improving Predictions Using Ensemble
   Bayesian Model Averaging. \emph{Political Analysis}.
-  \emph{Political Analysis}. \bold{20}: 271-291.
+  \bold{20}: 271-291.
 }
 \keyword{datasets}
 
