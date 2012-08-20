@@ -15,28 +15,30 @@
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
-#' @examples \dontrun{ data(calibrationSample)
+#' @examples
 #' 
-#' data(testSample) 
-#' this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
-#' .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
-#' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+#' data(calibrationSample)
+#' 
+#' ##data(testSample) 
+#' ##this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+#' ##.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
+#' ##.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 #' 
 #' ### to acces individual slots in the ForecastData object
-#' getPredCalibration(this.ForecastData)
-#' getOutcomeCalibration(this.ForecastData)
-#' getPredTest(this.ForecastData)
-#' getOutcomeTest(this.ForecastData)
-#' getModelNames(this.ForecastData)
+#' ##getPredCalibration(this.ForecastData)
+#' ##getOutcomeCalibration(this.ForecastData)
+#' ##getPredTest(this.ForecastData)
+#' ##getOutcomeTest(this.ForecastData)
+#' ##getModelNames(this.ForecastData)
 #' 
 #' ### to assign individual slots, use set functions
 #'
-#' setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
-#' setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
-#' setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
-#' setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
-#' setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
-#'}
+#' ##setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
+#' ##setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
+#' ##setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
+#' ##setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
+#' ##setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+#'
 #'
 #' @seealso ensembleBMA
 #' @aliases ForecastData-class initialize,ForecastData-method setPredCalibration,ForecastData-method setOutcomeCalibration,ForecastData-method setPredTest,ForecastData-method setOutcomeTest,ForecastData-method setModelNames,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method  getModelNames,ForecastData-method getOutcomeCalibration,ForecastData-method getOutcomeTest,ForecastData-method getPredCalibration,ForecastData-method getPredTest,ForecastData-method
