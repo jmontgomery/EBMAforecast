@@ -90,7 +90,7 @@
   al. 2010).
 }
 \examples{
-\dontrun{data(calibrationSample)
+data(calibrationSample)
 
 data(testSample)
 
@@ -99,7 +99,6 @@ this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LME
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 
 this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
-}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

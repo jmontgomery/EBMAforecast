@@ -53,7 +53,7 @@
   been fit previously by the user.
 }
 \examples{
-\dontrun{ data(calibrationSample)
+data(calibrationSample)
 
 data(testSample)
 
@@ -66,7 +66,6 @@ this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001,e
 summary(this.ensemble, period="calibration")
 
 summary(this.ensemble, period="test",showCoefs=FALSE)
-}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

@@ -10,15 +10,13 @@ current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
 
-## run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
-test_file("test_start.R")
-
 # Check that the package is constructed correctly
 check(current.code)
 
 # Check demo
 install(current.code)
 library(EBMAforecast)
+
 demo(EBMAforecast)
 demo(presForecast)
 
