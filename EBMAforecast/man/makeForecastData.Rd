@@ -53,9 +53,7 @@
 \examples{
 data(calibrationSample)
 
-
-
-data(testSample)
+\dontrun{data(testSample)
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -74,6 +72,7 @@ setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
 setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
 setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

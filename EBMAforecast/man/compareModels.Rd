@@ -51,7 +51,7 @@
   (\code{mae}).
 }
 \examples{
-data(calibrationSample)
+\dontrun{data(calibrationSample)
 
 data(testSample)
 
@@ -65,6 +65,7 @@ compareModels(this.ensemble,"calibration")
 
 compareModels(this.ensemble,"test")
 }
+}
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and
   Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
@@ -76,6 +77,6 @@ compareModels(this.ensemble,"test")
   \bold{20}: 271-291.
 }
 \seealso{
-  ensembleBMA
+  ensembleBMA, other functions
 }
 
