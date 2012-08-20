@@ -10,7 +10,7 @@
 \alias{fitEnsemble,ForecastDataNormal-method}
 \title{Calibrate an ensemble Bayesian Model Averaging model
 HEAD
-This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration period, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
+This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration set, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
 helpfiles}
 \arguments{
   \item{.forecastData}{An object of class 'ForecastData'
@@ -31,12 +31,12 @@ helpfiles}
   algorithm will run before stopping automatically. The
   default is \code{maxIter=10000}.}
 
-  \item{model}{The model type that should be used to the
+  \item{model}{The model type that should be used given the
   type of data that is being predicted (i.e., normal,
-  binary, etc.)}
+  binary, etc.).}
 
   \item{method}{The estimation method used.  Currently only
-  implements "EM"}
+  implements "EM".}
 
   \item{predType}{The prediction type used for the EBMA
   model under the normal model, user can choose either
@@ -63,16 +63,17 @@ helpfiles}
   of all component models.  If no model names are
   specified, names will be assigned automatically.}
   \item{modelWeights}{A vector containing the model weights
-  assigned to each model} \item{modelParams}{The parameters
-  for the individual logit models that transform the
-  component models} \item{logLik}{The final log-likelihood
-  for the calibrated EBMA model} \item{exp}{The exponential
-  shrinkage term} \item{tol}{Tolerance for improvements in
-  the log-likelihood before the EM algorithm will stop
+  assigned to each model.} \item{modelParams}{The
+  parameters for the individual logit models that transform
+  the component models.} \item{logLik}{The final
+  log-likelihood for the calibrated EBMA model.}
+  \item{exp}{The exponential shrinkage term.}
+  \item{tol}{Tolerance for improvements in the
+  log-likelihood before the EM algorithm will stop
   optimization.} \item{maxIter}{The maximum number of
   iterations the EM algorithm will run before stopping
-  automatically} \item{method}{The estimation method used.
-  } \item{call}{The actual call used to create the object}
+  automatically.} \item{method}{The estimation method used.
+  } \item{call}{The actual call used to create the object.}
 }
 \description{
   Calibrate an ensemble Bayesian Model Averaging model HEAD
@@ -87,10 +88,10 @@ helpfiles}
   observations are allowed in the calibration period,
   however models with missing observations are penalized.
   When missing observations are prevalent in the
-  calibration period, the EM algorithm is adjusted and
-  model paprameters are estimated by maximizing a
-  renormalized partial expected complete-data
-  log-likelihood (Fraley et al. 2010). helpfiles
+  calibration set, the EM algorithm is adjusted and model
+  paprameters are estimated by maximizing a renormalized
+  partial expected complete-data log-likelihood (Fraley et
+  al. 2010). helpfiles
 }
 \examples{
 \dontrun{data(calibrationSample)

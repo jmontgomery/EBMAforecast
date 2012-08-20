@@ -2,7 +2,7 @@
 \alias{plot}
 \alias{plot,FDatFitLogit-method}
 \alias{plot,FDatFitNormal-method}
-\title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal", which are the objects created by the calibrateEnsemble() function.}
+\title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal", which are the objects created by the \code{calibrateEnsemble()} function.}
 \arguments{
   \item{x}{An object of class "FDatFitLogit" or
   "FDatFitNormal"}
@@ -22,7 +22,7 @@
   \item{xLab}{The label for the x-axis. Only implemented
   for the subclass "FDatFitNormal"}
 
-  \item{yLab}{The label for they-axis.  Only implemented
+  \item{yLab}{The label for the y-axis.  Only implemented
   for the subclass "FDatFitNormal"}
 
   \item{cols}{A vector containing the color for plotting
@@ -46,10 +46,10 @@
   displayed for the test or calibration period. For objects
   of the class "FDatFitNormal", this function creates a
   plot of the predictive density distribution containing
-  the EBMA PDF and the PDFs for all components (scaled by
-  their model weights).  It also plots the prediction for
-  the ensemble and the components for the specified
-  observations.
+  the EBMA PDF and the PDFs for all component models
+  (scaled by their model weights).  It also plots the
+  prediction for the ensemble and the components for the
+  specified observations.
 }
 \examples{
 data(calibrationSample)
