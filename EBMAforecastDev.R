@@ -5,26 +5,25 @@ library(testthat)
 #setwd("~/Documents/GIT/EBMAforecast/")
 setwd("~/GITHUB/EBMAforecast/")
 
-# Only need to run this portion once
+## Only need to run this portion once
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
 
 install(current.code)
 
-# Once it's installed, you can look at the demo
+
 library(EBMAforecast)
-# run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
+
+## run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
 test_file("test_start.R")
 
 # Check that the package is constructed correctly
 check(current.code)
 
-## you can install to run the demo and see help files
-install(current.code)
 
-# Once it's installed, you can look at the demo
-library(EBMAforecast)
+
+# Check demo
 demo(EBMAforecast)
 demo(presForecast)
 
