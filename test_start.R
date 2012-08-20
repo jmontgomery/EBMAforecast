@@ -130,11 +130,8 @@ expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_er
 #})
 #
 context("get tests")
- this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-
-
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
 test_that("getPredCalibration gives PredCalibration",{
-
 	expect_that(getPredCalibration(this.ForecastData),equals(this.ForecastData@predCalibration))
 })
 
@@ -157,9 +154,7 @@ test_that("getModelNames gives ModelNames",{
 
 
 context("set tests")
- this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-
-
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
 test_that("setPredCalibration works",{
 	setPredCalibration(this.ForecastData)<-matrix(1,ncol=3,nrow=696) 
 	expect_that(this.ForecastData@predCalibration, equals(array(1,dim=c(696,3,1))))
