@@ -14,9 +14,7 @@
   Currently, the package can only handle dichotomous
   outcomes or those with normally distributed errors,
   although additional models will be added to the package
-  in the coming months. Missing observation are allowed in
-  the calibration set, but models with many predictions
-  missing are penalized.
+  in the coming months.
 }
 \examples{
 \dontrun{demo(EBMAforecast)

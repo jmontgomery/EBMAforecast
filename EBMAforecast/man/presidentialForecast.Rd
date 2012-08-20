@@ -6,26 +6,26 @@
   This includes the data for the presidential election
   forecasting example in Montgomery, Hollenbach and Ward
   (2012). The data ranges from 1952 to 2008 and includes
-  predictions for the six different component models
-  included in the Ensemble model. Users may split the
-  sample into calibration and test sample.
+  predictions for the six different models included in the
+  Ensemble model. Users may split the sample into
+  calibration and test sample.
 }
 \details{
   The variables included in the dataset are: \itemize{
   \item\code{Campbell} Predictions of Campbell's
-  ``Trial-Heat and Economy Model'' (Campbell 2008).
+  ``Trial-HEat and Economy Model'' (Campbell 2008)
   \item\code{Abramowitz} Predictions of Abramowitz's ``Time
-  for Change Model'' (Abramowitz 2008). \item\code{Hibbs}
+  for Change Model'' (Abramowitz 2008) \item\code{Hibbs}
   Predictions for the ``Bread and Peace Model'' created by
-  Douglas Hibbs (2008). \item\code{Fair} Forecasts from
-  Fair's presidential vote share model (2010).
+  Douglas Hibbs (2008) \item\code{Fair} Forecasts from
+  Fair's presidential vote share model (2010)
   \item\code{Lewis-Beck/Tien} Predictions from the ``Jobs
   Model Forecast'' by Michael Lewis-Beck and Charles Tien
-  (2008). \item\code{EWT2C2} Predictions from the model in
-  Column 2 in Table 2 by Erickson and Wlezien (2008).
+  (2008) \item\code{EWT2C2} Predictions from Column 2 in
+  Table 2 model by Erickson and Wlezien (2008)
   \item\code{Actual} The true values of the dependent
   variable, i.e. the incumbent-party voteshare in each
-  presidential election in the sample. }
+  presidential election in the sample }
 }
 \references{
   Montgomery, Jacob M., Florian M. Hollenbach and Michael
@@ -38,13 +38,13 @@
   considerations in an open-seat election.  \emph{PS:
   Political Science & Politics} \bold{41}:697-701.
 
-  Hibbs, Douglas A. 2000. Bread and peace voting in U.S
+  Hibbs, Douglas A. 2000. Bread and peace voting in U.S>
   presidential elections.  \emph{Public Choice}
   \bold{104}:149-180.
 
   Fair, Ray C. 2010. Presidential and Congressional
   vote-share equations: November 2010 update. Working
-  Paper. Yale University.
+  Paper. Yale University
 
   Lewis-Beck, Michael S. and Charles Tien. 2008. The job of
   president and the jobs model forecast: Obama for '08?

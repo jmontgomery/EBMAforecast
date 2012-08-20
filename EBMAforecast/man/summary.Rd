@@ -25,12 +25,12 @@
   "positive" prediction is made for a model.  Not used for
   objects of the "FDatFitNormal" subclass.}
 
-  \item{baseModel}{A vector containing predictions used to
+  \item{baseModel}{Vector containing predictions used to
   calculate proportional reduction of error ("pre"). Not
   used for objects of the "FDatFitNormal" subclass.}
 
   \item{showCoefs}{A logical indicating whether model
-  coefficients from the ensemble should be shown.}
+  ceofficients from the ensemble should be shown.}
 
   \item{...}{Not implemented}
 }
@@ -40,13 +40,13 @@
   the function produces a matrix containing one row for
   each model plus one row for the EBMA forecast.  The first
   column is always the model weights assigned to the
-  component models.  The second and third columns display
+  component models.  The second and third columns are for
   the model parameters for the transformation of the
   component models.  The remaining columns are the
   requested fit statistics for all models, as calculated by
   the \code{copareModels} function.  If
-  \code{showCoefs=FALSE}, then the model parameters will
-  not be shown.}
+  \code{showCoefs=TRUE}, then those columns will be
+  excluded. }
 }
 \description{
   This function summarizes the Ensemble models that have

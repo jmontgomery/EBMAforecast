@@ -7,7 +7,7 @@
   period and a column with calibration period predictions
   for each model.}
 
-  \item{.predTest}{A vector with the number of rows being
+  \item{.predTest}{A matrix with the number of rows being
   the number of observations in the test period and a
   column with test period predictions for each model.}
 
@@ -41,14 +41,14 @@
   specified, names will be assigned automatically.}
 }
 \description{
-  This function uses the component model forecasts and
-  dependent variable observations provided by the user to
-  create an object of class \code{ForecastData}, which can
-  then be used to calibrate and fit the ensemble.
-  Individual slots of the \code{ForecastData} object can be
-  accessed and changed using the \code{get} and \code{set}
-  functions respectively. Missing predictions are allowed
-  in the calibration set.
+  This function uses the user provided component model
+  forecasts and dependent variable observations to create
+  an object of class \code{ForecastData}, which can then be
+  used to calibrate and fit the ensemble. Individual slots
+  of the \code{ForecastData} object can be accessed and
+  changed using the \code{get} and \code{set} functions
+  respectively. Missing predictions are allowed in the
+  calibration set.
 }
 \examples{
 data(calibrationSample)

@@ -45,10 +45,10 @@
   A data object of the class 'ForecastData' has the
   following slots: \itemize{ \item \code{predCalibration}
   An array containing the predictions of all component
-  models for the observations in the calibration period.
+  models for all observations in the calibration period.
   \item \code{predTest} An array containing the predictions
-  of all component models for all the observations in the
-  test period. \item \code{outcomeCalibration} A vector
+  of all component models for all observations in the test
+  period. \item \code{outcomeCalibration} A vector
   containing the true values of the dependent variable for
   all observations in the calibration period. \item
   \code{outcomeTest} A vector containing the true values of
