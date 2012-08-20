@@ -180,6 +180,7 @@ setMethod(f="compareModels",
 
             }
             
+            ### NOTE: Make sure all of the above options work with missing values.  Also, if only work for one kind of data, throw an error
             rownames(outMat) <- colnames(preds)            
           }
         out@fitStatistics <- outMat
@@ -187,3 +188,5 @@ setMethod(f="compareModels",
 
         }
 )
+# TODO: Need to make it so that some fit statistics are "ruled out" for some kinds of outcomes.
+# TODO: Need to make the compareModels() function throw an error when asked to evaluate over period where the data is not sufficient.
