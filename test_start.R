@@ -102,33 +102,18 @@ expect_that(setPredTest(this.ForecastData)<-matrix(1,ncol=2,nrow=348), throws_er
 })
 
 ### test 7  check that results for calibration set and test set are the same as in paper after ensemble
-#context("Results Check")
-#test_that("results are the same as presented in paper (calibration period)",{
-#this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", #"GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", #"GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-#check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, maxIter=25000, exp=3)
-#test_mat<-round(as.matrix(compareModels(check1, .period="calibration")@fitStatistics),3)
-#check_against<-matrix(c(0.035,0.084, #0.068,0.077,0.960,0.971,0.922,0.656,0.971,0.871,0.901,0.918,0.649,-0.579,-0.211,0.000),ncol=4,nrow=4)
-#for(i in 1:4){
-#	for(j in 1:4){
-#		expect_that(test_mat[i,j], equals(check_against[i,j]))
-#			
-#			}
-#}
-#})
+context("Results Check for logit")
+test_that("results are the same as presented in paper (calibration period)",{
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+check1<-calibrateEnsemble(this.ForecastData, model="logit", maxIter=25000, exp=3)
+test_mat<-round(check1@modelWeights,2)
+check_against<-(c(0.85,0.15,0.00))
+expect_that(test_mat[[1]], equals(check_against[1]))
+expect_that(test_mat[[2]], equals(check_against[2]))
+expect_that(test_mat[[3]], equals(check_against[3]))
+})
 
-#test_that("results are the same as presented in paper (test period)",{
-#this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", #"GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", #"GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
-#check1<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, maxIter=25000, exp=3)	
-#test_mat1<-round(as.matrix(compareModels(check1, .period="test")),3)
-#check_against1<-matrix(c(0.039,0.080, #0.059,0.088,0.973,0.970,0.960,0.721,0.943,0.911,0.920,0.899,0.429,0.114,0.200,0.000),ncol=4,nrow=4)
-#for(i in 1:4){
-#	for(j in 1:4){
-#		expect_that(test_mat1[i,j], equals(check_against1[i,j]))
-#			
-#			}
-#}
-#})
-#
+
 context("get tests")
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
 test_that("getPredCalibration gives PredCalibration",{

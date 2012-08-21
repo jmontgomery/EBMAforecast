@@ -64,6 +64,7 @@ setGeneric(name="calibrateEnsemble",
              maxIter=1e6,
              model="logit",
              method="EM",
+             useModelParams=TRUE,
              ...)
            {standardGeneric("calibrateEnsemble")}
            )
@@ -94,6 +95,8 @@ setMethod(f="calibrateEnsemble",
                              tol=tol,
                              maxIter=maxIter,
                              method="EM",
+                             useModelParams=useModelParams,
+                             predType=predType,
                              ...), parent.frame())
           }
           )
