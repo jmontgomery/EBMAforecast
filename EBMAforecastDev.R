@@ -3,6 +3,8 @@ library(roxygen2)
 library(testthat)
 
 #setwd("~/Documents/GIT/EBMAforecast/")
+
+
 setwd("~/GITHUB/EBMAforecast/")
 
 # Only need to run this portion once
@@ -11,7 +13,7 @@ load_all(current.code)
 document(current.code)
 
 # check to see if ti works.
-check(current.code)
+check(current.code, cleanup=FALSE)
 
 ## you can install to run the demo and see help files
 install(current.code)
