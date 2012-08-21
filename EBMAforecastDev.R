@@ -44,4 +44,4 @@ help(presidentialForecast)
 # Note: Can use use promptClass(), promptMethods() to write skelletons for specific items
 
 # once we are all ready, we submit to cran
-#release(current.code, check=FALSE)
+release(current.code, check=FALSE)
