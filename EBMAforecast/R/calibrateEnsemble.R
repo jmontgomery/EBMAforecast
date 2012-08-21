@@ -10,6 +10,7 @@
 #' @param model The model type that should be used given the type of data that is being predicted (i.e., normal, binary, etc.).
 #' @param method The estimation method used.  Currently only implements "EM".
 #' @param predType The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.
+#' @param useModelParams A logical that indicates whether the regression parameters should be used to post-process the data.  The default is TRUE.  We recommend setting this to FALSE for sparse datasets or datasets modeling rare events.  
 #' @param ... Not implemented
 #'
 #' @return Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots

@@ -43,6 +43,12 @@ helpfiles}
   \code{posteriorMedian} or \code{posteriorMean}. Posterior
   median is the default.}
 
+  \item{useModelParams}{A logical that indicates whether
+  the regression parameters should be used to post-process
+  the data.  The default is TRUE.  We recommend setting
+  this to FALSE for sparse datasets or datasets modeling
+  rare events.}
+
   \item{...}{Not implemented}
 }
 \value{
