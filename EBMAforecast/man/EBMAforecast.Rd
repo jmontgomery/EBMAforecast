@@ -19,9 +19,11 @@
   missing are penalized.
 }
 \examples{
+\dontrun{
 demo(EBMAforecast)
 
 demo(presForecast)
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

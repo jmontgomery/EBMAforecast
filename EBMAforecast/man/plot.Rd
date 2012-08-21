@@ -54,6 +54,7 @@
 \examples{
 data(calibrationSample)
 
+\dontrun{
 data(testSample)
 
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
@@ -64,6 +65,8 @@ this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, 
 
 plot(this.ensemble, period="calibration")
 plot(this.ensemble, period="test")
+
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

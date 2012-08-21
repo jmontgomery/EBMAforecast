@@ -41,6 +41,7 @@
 #'
 #' @examples 
 #'
+#' \dontrun{
 #' data(calibrationSample)
 #'
 #' data(testSample) 
@@ -50,7 +51,7 @@
 #' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 #'
 #' this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
-#'
+#' }
 #'
 #' @keywords calibrate EBMA 
 #'

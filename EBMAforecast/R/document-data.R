@@ -82,8 +82,10 @@ NULL
 #' @references Fraley, C., A. E. Raftery, and T. Gneiting. (2010). Calibrating multimodel forecast ensembles with exchangeable and missing members using Bayesian model averaging. \emph{Monthly Weather Review}. \bold{138}:190--202.
 #' @examples 
 #'
+#' \dontrun{
 #' demo(EBMAforecast)
 #' 
 #' demo(presForecast)
+#'}
 #'
 NULL

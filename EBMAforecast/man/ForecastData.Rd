@@ -57,27 +57,29 @@
   containing the names of all component models. }
 }
 \examples{
+\dontrun{
 data(calibrationSample)
 
-##data(testSample)
-##this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
-##.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
-##.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+data(testSample)
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
+.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 
 ### to acces individual slots in the ForecastData object
-##getPredCalibration(this.ForecastData)
-##getOutcomeCalibration(this.ForecastData)
-##getPredTest(this.ForecastData)
-##getOutcomeTest(this.ForecastData)
-##getModelNames(this.ForecastData)
+getPredCalibration(this.ForecastData)
+getOutcomeCalibration(this.ForecastData)
+getPredTest(this.ForecastData)
+getOutcomeTest(this.ForecastData)
+getModelNames(this.ForecastData)
 
 ### to assign individual slots, use set functions
 
-##setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
-##setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
-##setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
-##setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
-##setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
+setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
+setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
+setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
+setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and

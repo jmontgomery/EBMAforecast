@@ -28,6 +28,7 @@
 #'
 #' @examples data(calibrationSample)
 #'
+#' \dontrun{
 #' data(testSample) 
 #' 
 #' this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
@@ -39,6 +40,7 @@
 #' plot(this.ensemble, period="calibration") 
 #' plot(this.ensemble, period="test")
 #'
+#' }
 #' @aliases plot,FDatFitLogit-method plot,FDatFitNormal-method
 #' @export
 setMethod(

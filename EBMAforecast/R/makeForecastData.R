@@ -19,7 +19,10 @@
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
-#' @examples  data(calibrationSample)
+#' @examples
+#'
+#' \dontrun{
+#' data(calibrationSample)
 #' 
 #' 
 #'
@@ -42,7 +45,7 @@
 #' setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
 #' setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 #' setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
-#'
+#' }
 #'
 #' @seealso ensembleBMA
 #' @rdname makeForecastData

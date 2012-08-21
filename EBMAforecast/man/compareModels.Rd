@@ -51,6 +51,7 @@
   (\code{mae}).
 }
 \examples{
+\dontrun{
 data(calibrationSample)
 
 data(testSample)
@@ -64,6 +65,7 @@ this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, 
 compareModels(this.ensemble,"calibration")
 
 compareModels(this.ensemble,"test")
+}
 }
 \author{
   Michael D. Ward <\email{michael.d.ward@duke.edu}> and
