@@ -1,8 +1,8 @@
 Package: EBMAforecast
 Type: Package
 Title: Ensemble BMA Forecasting
-Version: 0.4
-Date: 2012-08-20
+Version: 0.41
+Date: 2012-08-22
 Author: Jacob M. Montgomery, Florian Hollenbach, and Michael D. Ward
 Maintainer: Jacob Montgomery <jacob.montgomery@wustl.edu>
 Description: Ensemble BMA for social science data

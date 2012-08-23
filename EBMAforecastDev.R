@@ -2,7 +2,7 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 
-setwd("~/Documents/GIT/EBMAforecast/")
+#setwd("~/Documents/GIT/EBMAforecast/")
 
 
 setwd("~/GITHUB/EBMAforecast/")
