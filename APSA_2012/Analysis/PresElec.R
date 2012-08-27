@@ -68,3 +68,13 @@ par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.mai
 plot(ensemble, subset=5, main="2008 (In-sample)", xLab="% Two party vote for incumbent")
 plot(ensemble, subset=1, period="test", main="2012 (Out-of-sample)", xLab="% Two party vote for incumbent")
 dev.off()
+
+
+
+setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Presentation/")
+pdf(width=6, height=6, file="presForecast2012.pdf")
+par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.main=.9)
+plot(ensemble, subset=5, main="2008 (In-sample)", xLab="% Two party vote for incumbent")
+plot(ensemble, subset=1, period="test", main="2012 (Out-of-sample)", xLab="% Two party vote for incumbent")
+dev.off()
+
