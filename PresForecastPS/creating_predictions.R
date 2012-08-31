@@ -167,10 +167,10 @@ data_2012["2012","Erikson.Wlezien"]<-52.6
 data_2012["2012","Holbrook"]<-47.9
 data_2012["2012","berry"]<-47.14
 data_2012["2012","Hibbs"]<-47.5
-data_2012["2012","Lockerbie"]<-54.00
+data_2012["2012","Lockerbie"]<-53.8
 data_2012["2012","Campbell.trialheat"]<-50.6
 data_2012["2012","Campbell.bump"]<-50.4
-data_2012["2012","Abramowitz"]<-50.5
+data_2012["2012","Abramowitz"]<-50.6
 data_2012["2012","Lewis.Beck_Tien_Jobs"]<-48.2
 data_2012["2012","Lewis.Beck_Tien_Proxy"]<-52.7
 data_2012["2012","Cuzan1.short"]<-45.5
