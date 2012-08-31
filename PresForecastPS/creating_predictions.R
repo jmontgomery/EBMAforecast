@@ -171,8 +171,8 @@ data_2012["2012","Lockerbie"]<-54.00
 data_2012["2012","Campbell.trialheat"]<-50.6
 data_2012["2012","Campbell.bump"]<-50.4
 data_2012["2012","Abramowitz"]<-50.5
-data_2012["2012","Lewis.Beck_Tien_Jobs"]<-47.6
-data_2012["2012","Lewis.Beck_Tien_Proxy"]<-51.4
+data_2012["2012","Lewis.Beck_Tien_Jobs"]<-48.2
+data_2012["2012","Lewis.Beck_Tien_Proxy"]<-52.7
 data_2012["2012","Cuzan1.short"]<-45.5
 data_2012["2012","Cuzan2.short"]<-46.9
 data_2012["2012","Norpoth_inc"]<-53.2
