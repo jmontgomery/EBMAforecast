@@ -119,7 +119,7 @@ ensembleBMA:::quantBMAnormal(.95, ensemble05@modelWeights, modelPreds, rep(sqrt(
 
 
 # Prob that Obama wins
-1-ensembleBMA:::cdfBMAnormal(50, ensemble@modelWeights, modelPreds, rep(sqrt(ensemble@variance), length(modelPreds)), 0)
+1-ensembleBMA:::cdfBMAnormal(50, ensemble05@modelWeights, modelPreds, rep(sqrt(ensemble05@variance), length(modelPreds)), 0)
 
 
 ## sweep by hand with norpoth data

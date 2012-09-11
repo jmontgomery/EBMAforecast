@@ -168,8 +168,8 @@ data_2012["2012","Holbrook"]<-47.9
 data_2012["2012","berry"]<-47.14
 data_2012["2012","Hibbs"]<-47.5
 data_2012["2012","Lockerbie"]<-53.8
-data_2012["2012","Campbell.trialheat"]<-50.6
-data_2012["2012","Campbell.bump"]<-50.4
+data_2012["2012","Campbell.trialheat"]<-52.0
+data_2012["2012","Campbell.bump"]<-51.3
 data_2012["2012","Abramowitz"]<-50.6
 data_2012["2012","Lewis.Beck_Tien_Jobs"]<-48.2
 data_2012["2012","Lewis.Beck_Tien_Proxy"]<-52.7
