@@ -95,10 +95,17 @@ setwd("~/Documents/GIT/EBMAforecast/wordisbeautiful/")
 
 pdf(file="Figure1.pdf", width=5, height=6)
 par(mar=c(2,2,2,1), tcl=0, mgp=c(1,0,0), mfrow=c(2,1))
-plot(ensemble, subset=15:16, main=c("2004 Election", "2008 Election"), xLab="% Two Party Vote for Incumbent Party Candidate", col=rep("gray40", 8))
+plot(ensemble05, subset=15:16, main=c("2004 Election", "2008 Election"), xLab="% Two Party Vote for Incumbent Party Candidate", col=rep("gray40",11))
 dev.off()
 
 
+
+## for mike
+#setwd("~/Desktop/")
+#pdf(file="Figure_post.pdf", width=5, height=6)
+#par(mar=c(2,2,2,1), tcl=0, mgp=c(1,0,0), mfrow=c(2,1))
+#plot(ensemble05, subset=1, period="test", main=c("2012 Election Forecast EBMA"), xLab="% Two Party Vote for Incumbent Party Candidate", cols=c("black","blue","red","red","red","blue","red","blue","blue","red","blue" ))
+#dev.off()
 
 ### WARNING: This should be changed before to make sure no missing values
 modelPreds <- ensemble05@predTest[-1]
