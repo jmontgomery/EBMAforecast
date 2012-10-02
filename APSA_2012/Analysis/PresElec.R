@@ -1,23 +1,23 @@
-library("multicore")
-library("foreach")
-library("doMC")
-library(devtools)
-library(roxygen2)
-library(testthat)
+# library("multicore")
+# library("foreach")
+# library("doMC")
+# library(devtools)
+# library(roxygen2)
+# library(testthat)
 
-#setwd("~/Documents/GIT/EBMAforecast/")
-setwd("~/GITHUB/EBMAforecast/")
-
+setwd("~/Documents/GIT/EBMAforecast/")
+#setwd("~/GITHUB/EBMAforecast/")
+library(EBMAforecast)
 
 # Only need to run this portion once
-current.code <- as.package("EBMAforecast")
-load_all(current.code)
-document(current.code)
+#current.code <- as.package("EBMAforecast")
+#load_all(current.code)
+#document(current.code)
 
 
 rm(list=ls())
-#pres <- read.csv("~/Documents/GIT/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
-pres <- read.csv("~/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
+pres <- read.csv("~/Documents/GIT/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
+#pres <- read.csv("~/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
 
 
 colnames(pres)[1] <- "year"
@@ -46,13 +46,15 @@ load("~/Documents/GIT/EBMAforecast/PresForecastPS/data_2012.RData")
 load("~/Github/EBMAforecast/PresForecastPS/data_2012.RData")
 
 
-pred12<-matrix(c(49.5,50.5,50.6,47.5,47.6,54,47.8,52.6,46.9),nrow=1) ### updated with latest numbers
+#pred12<-matrix(c(49.5,50.5,50.6,47.5,47.6,54,47.8,52.6,46.9),nrow=1) ### updated with latest numbers
 #pred12 <- matrix(c(49.5, 50.5, 50.6, 47.5, 47.6, 54, 47.8, 52.2, 46.9), nrow=1) #added the Cuzan short FPRIME pred for 2012
-
+#### using the final forecasts of 2012 models
+pred12<-matrix(ncol=9,nrow=1,c(49.5,50.6,52.0,47.5,48.2,53.8,47.9,52.6,45.5))
 
 .FD <- makeForecastData(.predCalibration=.reduced[,-c(1:3)]
                           ,.outcomeCalibration=.reduced[,2]
-                          ,.predTest=pred12
+                          ,.predTest=pred12 
+                          ,.outcomeTest=1
                           ,.modelNames=colnames(.reduced[,-c(1:3)])
                           )
 
@@ -77,4 +79,26 @@ par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.mai
 plot(ensemble, subset=5, main="2008 (In-sample)", xLab="% Two party vote for incumbent")
 plot(ensemble, subset=1, period="test", main="2012 (Out-of-sample)", xLab="% Two party vote for incumbent")
 dev.off()
+
+
+
+modelPreds <- ensemble@predTest[-1]
+#.miss <- !is.na(modelPreds)
+#modelPreds[!.miss] <- 50.5
+
+#95% Credible interval
+touchyQuantBMANormal <- function (alpha, WEIGHTS, MEAN, SD, up, low) 
+{
+  z <- uniroot(ensembleBMA:::cdfBMAnormal, lower = low, upper = up, 
+               WEIGHTS = WEIGHTS, MEAN = MEAN, SD = SD, offset = alpha)
+  z$root
+}
+
+
+ensembleBMA:::quantBMAnormal(.05, ensemble@modelWeights, modelPreds, rep(sqrt(ensemble@variance), length(modelPreds)))
+ensembleBMA:::quantBMAnormal(.95, ensemble@modelWeights, modelPreds, rep(sqrt(ensemble@variance), length(modelPreds)))
+
+
+# Prob that Obama wins
+1-ensembleBMA:::cdfBMAnormal(50, ensemble@modelWeights, modelPreds, rep(sqrt(ensemble@variance), length(modelPreds)), 0)
 
