@@ -4,27 +4,6 @@ library(MCMCpack)
 set.seed(12345)
 setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Simulations")
 
-### need to simulate some data that gives weights 
-
-###things to set in the beginning, of the function
-#set a number of models (right now only works with 4 because of assignment in loop)
-nmod<-4
-###set wisdom of crowds parameter
-c<-0.1
-#specify share of sample to be insample
-inSampl<-0.8 #1-inSampl will be the outofsample share of the observations
-
-### specify number of iterations
-iter<-2
-
-## want to specify a sequence in the function?
-sequence<-seq(50,2500,50)
-#need to specify alpha's for rdirichlet
-alpha<-c(1,3,6,9)
-
-
-#specify number of observations per model in the calibration period
-
 
 ##function selects observation to be use for DV, by weight and prob per row
 selection<-function(probability, matrix){
