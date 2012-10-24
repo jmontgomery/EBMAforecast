@@ -19,94 +19,83 @@ iter<-2
 
 ## want to specify a sequence in the function?
 sequence<-seq(50,2500,50)
-
+#need to specify alpha's for rdirichlet
+alpha<-c(1,3,6,9)
 
 
 #specify number of observations per model in the calibration period
-error<-array(NA,dim=c(iter,nmod,length(sequence)))
-mae.predictions<-array(NA,dim=c(iter,nmod+1,length(sequence)))
-rmse.predictions<-array(NA,dim=c(iter,nmod+1,length(sequence)))
+
+
+##function selects observation to be use for DV, by weight and prob per row
+selection<-function(probability, matrix){
+			models<-dim(matrix)[2]
+			obs<-dim(matrix)[1]
+			interval<-matrix
+			for(i in 2:models){
+			interval[,1]<-matrix[,1]
+			interval[,i]<-rowSums(matrix[,1:i])
+			}
+			position<-matrix(as.numeric(((probability<=interval))),ncol=models,nrow=obs)
+			pos<-rowSums(position)
+			pos.1<-(pos*(-1))+(models+1)
+			W.indicator<-pos.1
+			return(W.indicator)
+}##works
 
 
 
-for(i in 1:length(sequence)){
-	nobs<-sequence[i]
-x1<-rnorm(nobs,mean=4,sd=3)
-x2<-rnorm(nobs,mean=-2,sd=3)
-x3<-rnorm(nobs,mean=7,sd=3)
-x4<-rnorm(nobs,mean=14,sd=3)
-
-
-### dependent variable 
-DV<- as.matrix(nrow=nobs,NA)
-prob<-rep(NA,nobs)
-## trying to think here.....
-X<-cbind(x1,x2,x3,x4)
-
-er<-matrix(NA,nrow=iter,ncol=nmod)
+tester<-function(nob,nmod,alpha,iter,inSampl,c,...){	
+error<-matrix(NA,nrow=iter,ncol=nmod)
 pred.mae<-matrix(NA,nrow=iter,ncol=nmod+1)
 pred.rmse<-matrix(NA,nrow=iter,ncol=nmod+1)
 
-for(k in 1:iter){
-	W.matrix<-matrix(NA,nrow=nobs,ncol=nmod)
-	alpha<-c(2,1,6,1)#rep(1,nmod)
-	W.matrix<-rdirichlet(nobs, alpha)
-	
-for(j in 1:nobs){
-	prob[j]<-runif(1)
-	
-	if(prob[j]<=W.matrix[j,1]){
-	DV[j]<-rnorm(1,x1[i],sd=.1)	
-	}
-	if(prob[j]>W.matrix[j,1] & prob[j]<=W.matrix[j,1]+W.matrix[j,2]){
-	DV[j]<-rnorm(1,x2[j],sd=.1)	
-	}
-	if(prob[j]>W.matrix[j,1]+W.matrix[j,2] & prob[j]<=W.matrix[j,1]+W.matrix[j,2]+W.matrix[j,3]){
-	DV[j]<-rnorm(1,x3[j],sd=.1)	
-	}
-	if(prob[j]>W.matrix[j,1]+W.matrix[j,2]+W.matrix[j,3]){
-	DV[j]<-rnorm(1,x4[j],sd=.1)	
-	}
+####create weights matrix
+for(j in 1:iter){
+W.matrix<-matrix(NA,nrow=nob,ncol=nmod)
+al<-alpha
+W.matrix<-rdirichlet(nob, al)
 
+#vector to select obs from different models	
+prob<-rep(NA,nob)
+prob<-runif(nob)
+
+select.vec<-selection(prob,W.matrix)
+#creation of observations
+Dependent<-matrix(ncol=nmod,nrow=nob,NA)
+for(i in 1:nmod){
+	Dependent[,i]<-rnorm(nob,runif(1,min=-10,max=10),runif(1,min=0,max=25))
 }
-inSam<-ceiling(inSampl*nobs)
 
-test<-list()
-test[[k]]<- makeForecastData(.predCalibration=X[1:inSam-1,],.outcomeCalibration=DV[1:inSam-1],.predTest=X[inSam:nobs,],.outcomeTest=DV[inSam:nobs], .modelNames=c("X1","X2","X3","X4"))
-thisEnsemble<-list()
-thisEnsemble[[k]]<-calibrateEnsemble(test[[k]], model="normal", useModelParams=F)
+#creation of DV with use of selection vector
+DV<-means<-matrix(NA,nrow=nob)
+for(i in 1:nob){
+means[i,]<-Dependent[i,select.vec[i]]
+}
 
-
-
-
+DV<-rnorm(nob,mean=means,sd=1)
+inSam<-ceiling(inSampl*nob)
+test<-makeForecastData(.predCalibration=Dependent[1:inSam-1,],.outcomeCalibration=DV[1:inSam-1],.predTest=Dependent[inSam:nob,],.outcomeTest=DV[inSam:nob])
+thisEnsemble<-calibrateEnsemble(test, model="normal", useModelParams=F)
 weights<-apply(W.matrix,2,mean)
-er1<-(thisEnsemble[[k]]@modelWeights[1]-weights[1])
-er2<-(thisEnsemble[[k]]@modelWeights[2]-weights[2])
-er3<-(thisEnsemble[[k]]@modelWeights[3]-weights[3])
-er4<-(thisEnsemble[[k]]@modelWeights[4]-weights[4])
-er[k,]<-c(er1,er2,er3,er4)
-
-pred.mae[k,]<-compareModels(thisEnsemble[[k]],"test",.fitStatistics=c("mae"))@fitStatistics[,1]
-pred.rmse[k,]<-compareModels(thisEnsemble[[k]],"test",.fitStatistics=c("rmse"))@fitStatistics[,1]
-colnames(pred.mae)<-rownames(compareModels(thisEnsemble[[k]],"test",.fitStatistics=c("mae"))@fitStatistics)
-colnames(pred.rmse)<-rownames(compareModels(thisEnsemble[[k]],"test",.fitStatistics=c("mae"))@fitStatistics)
-
+error[j,]<-(thisEnsemble@modelWeights-weights)
+pred.mae[j,]<-compareModels(thisEnsemble,"test",.fitStatistics=c("mae"))@fitStatistics
+pred.rmse[j,]<-compareModels(thisEnsemble,"test",.fitStatistics=c("rmse"))@fitStatistics
+colnames(pred.mae)<-rownames(compareModels(thisEnsemble,"test",.fitStatistics=c("mae"))@fitStatistics)
+colnames(pred.rmse)<-rownames(compareModels(thisEnsemble,"test",.fitStatistics=c("rmse"))@fitStatistics)
 }
-
-error[,,i]<-er
-mae.predictions[,,i]<-pred.mae
-rmse.predictions[,,i]<-pred.rmse
-dimnames(rmse.predictions)=list(NULL,colnames(pred.rmse),NULL)
-dimnames(mae.predictions)=list(NULL,colnames(pred.mae),NULL)
+test.stats<-list(error,pred.mae,pred.rmse)
+return(test.stats)
 }
-
-test.stats<-list(error,mae.predictions,rmse.predictions)
 save(test.stats,file=test.stats.RData)
 
 
+sequence<-seq(50,2500,50)
+blub<-list()
 
+for(k in 1:length(sequence)){
 
-
+blub[[k]]<-tester(nob=sequence[k],nmod=5,alpha=c(1,4,3,9,2),iter=50,inSampl=0.8,c=1)
+}
 
 
 
