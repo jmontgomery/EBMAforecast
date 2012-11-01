@@ -50,7 +50,7 @@ for(j in 1:nobs){
 	if(prob[j]>W[1]+W[2]+W[3]){
 	DV[j]<-rnorm(1,x4[j],sd=.1)	
 	}
-
+>>>>>>> Blah
 
 ##function selects observation to be use for DV, by weight and prob per row
 selection<-function(probability, matrix){
