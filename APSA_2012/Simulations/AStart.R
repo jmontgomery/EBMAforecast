@@ -4,6 +4,53 @@ library(MCMCpack)
 set.seed(12345)
 setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Simulations")
 
+<<<<<<< HEAD
+=======
+### need to simulate some data that gives weights 
+
+
+#set a number of models
+nmod<-4
+
+# specify weights, have to some to 1
+W<-c(0.55,0.273,0.040,0.137)
+
+sequence<-seq(10, 200, 10)
+#specify number of observations per model in the calibration period
+
+error<-matrix(NA,ncol=nmod,nrow=length(sequence))
+for(i in 1:length(sequence)){
+	nobs<-sequence[i]
+x1<-rnorm(nobs,mean=4,sd=2)
+x2<-rnorm(nobs,mean=-2,sd=5)
+x3<-rnorm(nobs,mean=7,sd=3)
+x4<-rnorm(nobs,mean=14,sd=10)
+
+### dependent variable 
+DV<- as.matrix(nrow=nobs,NA)
+prob<-rep(NA,nobs)
+## trying to think here.....
+X<-cbind(x1,x2,x3,x4)
+iter<-50
+er<-matrix(NA,nrow=iter,ncol=4)
+
+for(k in 1:iter){
+for(j in 1:nobs){
+	prob[j]<-runif(1)
+	
+	if(prob[j]<=W[1]){
+	DV[j]<-rnorm(1,x1[i],sd=.1)	
+	}
+	if(prob[j]>W[1] & prob[j]<=W[1]+W[2]){
+	DV[j]<-rnorm(1,x2[j],sd=.1)	
+	}
+	if(prob[j]>W[1]+W[2] & prob[j]<=W[1]+W[2]+W[3]){
+	DV[j]<-rnorm(1,x3[j],sd=.1)	
+	}
+	if(prob[j]>W[1]+W[2]+W[3]){
+	DV[j]<-rnorm(1,x4[j],sd=.1)	
+	}
+>>>>>>> Blah
 
 ##function selects observation to be use for DV, by weight and prob per row
 selection<-function(probability, matrix){
