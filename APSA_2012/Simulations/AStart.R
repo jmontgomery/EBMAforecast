@@ -84,4 +84,3 @@ plot(sequence, error[,1])
 plot(sequence, error[,2])
 plot(sequence, error[,3])
 plot(sequence, error[,4])
-
