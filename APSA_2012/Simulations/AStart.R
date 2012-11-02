@@ -4,6 +4,7 @@ library(devtools)
 library(roxygen2)
 library(testthat)
 library(MCMCpack)
+library(doMC)
 
 
 #setwd("~/Documents/GIT/EBMAforecast/")
@@ -23,7 +24,7 @@ library(EBMAforecast)
 
 
 set.seed(12345)
-setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Simulations")
+setwd("~/Github/EBMAforecast/APSA_2012/Simulations")
 
 
 
@@ -46,20 +47,19 @@ selection<-function(probability, matrix){
 }##works
 
 
-#sample.size<-c(5,10,15,20,50,100)
-#n.mod<-seq(2,10, by=2)
-#c<-c(0,.01, .025, .05, .1, .2)
-#expand.grid(sample.size, n.mod, c)
-#iter<-100
-#inSampl<-.8
 
-
-
-tester<-function(nob,nmod,alpha,iter,inSampl,c,...){	
+tester<-function(nTrain,nmod,iter,outSample,constant,...){	
   error<-matrix(NA,nrow=iter,ncol=nmod)
   pred.mae<-matrix(NA,nrow=iter,ncol=nmod+1)
   pred.rmse<-matrix(NA,nrow=iter,ncol=nmod+1)
 
+  ##set the alpha for below
+  alpha<-c(10,5,3)
+  if (nmod>3){alpha<-c(alpha, rep(1, nmod-3))}
+
+
+  nob <- nTrain+outSample
+  
   ##create weights matrix
   for(j in 1:iter){
     W.matrix<-matrix(NA,nrow=nob,ncol=nmod)
@@ -78,6 +78,8 @@ tester<-function(nob,nmod,alpha,iter,inSampl,c,...){
       Dependent[,i]<-rnorm(nob,runif(1,min=-10,max=10),runif(1,min=0,max=25))
     }
 
+    
+    
     ##creation of DV with use of selection vector
     DV<-means<-matrix(NA,nrow=nob)
     for(i in 1:nob){
@@ -85,9 +87,8 @@ tester<-function(nob,nmod,alpha,iter,inSampl,c,...){
     }
 
     DV<-rnorm(nob,mean=means,sd=1)
-    inSam<-ceiling(inSampl*nob)
-    test<-makeForecastData(.predCalibration=Dependent[1:inSam-1,],.outcomeCalibration=DV[1:inSam-1],.predTest=Dependent[inSam:nob,],.outcomeTest=DV[inSam:nob])
-    thisEnsemble<-calibrateEnsemble(test, model="normal", useModelParams=F, const=.05)
+    test<-makeForecastData(.predCalibration=Dependent[1:nTrain,],.outcomeCalibration=DV[1:nTrain],.predTest=Dependent[(nTrain+1):nob,],.outcomeTest=DV[(nTrain+1):nob])
+    thisEnsemble<-calibrateEnsemble(test, model="normal", useModelParams=F, const=constant)
     weights<-apply(W.matrix,2,mean)
     error[j,]<-(thisEnsemble@modelWeights-weights)
     pred.mae[j,]<-compareModels(thisEnsemble,"test",.fitStatistics=c("mae"))@fitStatistics
@@ -95,28 +96,30 @@ tester<-function(nob,nmod,alpha,iter,inSampl,c,...){
     colnames(pred.mae)<-rownames(compareModels(thisEnsemble,"test",.fitStatistics=c("mae"))@fitStatistics)
     colnames(pred.rmse)<-rownames(compareModels(thisEnsemble,"test",.fitStatistics=c("rmse"))@fitStatistics)
   }
-  test.stats<-list(error,pred.mae,pred.rmse)
+  theseParams=c(nTrain,nmod,iter,outSample,constant)
+  test.stats<-list(theseParams=theseParams, error=error,pred.mae=pred.mae,pred.rmse=pred.rmse)
   return(test.stats)
 }
-#save(test.stats,file=test.stats.RData)
-
-   jj <- tester(nob=5,nmod=5,alpha=c(1,4,3,9,2),iter=50,inSampl=0.8,c=1)
-# Just make sure this works
-
-#sequence<-seq(50,2500,50)
-#blub<-list()
-
-#for(k in 1:length(sequence)){
-#  blub[[k]]<-
- 
-#}
 
 
+nTrain<-c(5,10,15,20,50,100)
+nmod<-seq(3,15, by=2)
+constant<-c(0,.01, .025, .05, .1, .2, .5)
+iter<-1000
+outSample<-100
+params <- expand.grid(nTrain, nmod, constant, outSample, iter)
+colnames(params) <- c("nTrain", "nmod", "constant", "outSample", "iter")
+
+masterFun <- function(x){
+   tester(nTrain=params[x, "nTrain"], nmod=params[x, "nmod"], iter=params[x, "iter"], outSample=params[x, "outSample"], constant=params[x, "constant"])
+}
+
+# This is how we will run it, excpt it wil be 1:xxx where xxx is the number of rows of the params matrix
+registerDoMC(cores=4)
+output <- alply(1:4,1, masterFun,  .parallel=TRUE)
 
 
-#mean.error<-apply(error,1,mean)
-#plot(sequence, mean.error)
-#plot(sequence, error[,1])
-#plot(sequence, error[,2])
-#plot(sequence, error[,3])
-#plot(sequence, error[,4])
+
+
+
+
