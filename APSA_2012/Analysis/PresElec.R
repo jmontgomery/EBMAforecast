@@ -1,18 +1,18 @@
 # library("multicore")
 # library("foreach")
 # library("doMC")
-# library(devtools)
-# library(roxygen2)
-# library(testthat)
+ library(devtools)
+ library(roxygen2)
+ library(testthat)
 
 setwd("~/Documents/GIT/EBMAforecast/")
 #setwd("~/GITHUB/EBMAforecast/")
 library(EBMAforecast)
 
 # Only need to run this portion once
-#current.code <- as.package("EBMAforecast")
-#load_all(current.code)
-#document(current.code)
+current.code <- as.package("EBMAforecast")
+load_all(current.code)
+document(current.code)
 
 
 rm(list=ls())
