@@ -102,21 +102,24 @@ tester<-function(nTrain,nmod,iter,outSample,constant,...){
 }
 
 
-nTrain<-c(5,10,15,20,50,100)
+nTrain<-c(3:15,20,50,57,100)
 nmod<-seq(3,15, by=2)
 constant<-c(0,.01, .025, .05, .1, .2, .5)
-iter<-1000
+iter<-100
 outSample<-100
 params <- expand.grid(nTrain, nmod, constant, outSample, iter)
 colnames(params) <- c("nTrain", "nmod", "constant", "outSample", "iter")
 
 masterFun <- function(x){
+   print(x)
    tester(nTrain=params[x, "nTrain"], nmod=params[x, "nmod"], iter=params[x, "iter"], outSample=params[x, "outSample"], constant=params[x, "constant"])
 }
 
 # This is how we will run it, excpt it wil be 1:xxx where xxx is the number of rows of the params matrix
-registerDoMC(cores=4)
-output <- alply(1:4,1, masterFun,  .parallel=TRUE)
+
+registerDoMC(cores=16)
+
+output <- alply(1:833,1, masterFun,  .parallel=TRUE)
 
 
 
