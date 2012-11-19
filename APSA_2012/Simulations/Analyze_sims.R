@@ -121,7 +121,7 @@ help(RColorBrewer)
 colors<-brewer.pal(7,"Set1")
 
 
-<<<<<<< HEAD
+
 #subsetting data to 4 obs in training set and different numbers of models
 nmod3<-subset(error, nmod==3 & nTrain==4)
 nmod5<-subset(error, nmod==5 & nTrain==4)
@@ -151,17 +151,5 @@ points(nmod15$const,nmod15$median,pch=15,col=colors[7])
 lines(lowess(nmod15$const,nmod15$median),col=colors[7])
 legend("topleft",legend=c(3,5,7,9,11,13,15),fill=colors,title="Number of Models")
 
-=======
-#this is a stupid plot, for just for shits and giggles
-plot(error[,2,1],error[,1,1],xlab="Error",ylab="Size of Calibration Period",col=colors[1],pch=15, ylim=c(0, 110))
-points(error[,2,2],error[,1,2],col=colors[2],pch=15)
-points(error[,2,3],error[,1,3],col=colors[3],pch=15)
-points(error[,2,4],error[,1,4],col=colors[4],pch=15)
-points(error[,2,5],error[,1,5],col=colors[5],pch=15)
-points(error[,2,6],error[,1,6],col=colors[6],pch=15)
-points(error[,2,7],error[,1,7],col=colors[7],pch=15)
-legend("topleft",legend=c(3,5,7,9,11,13,15),fill=colors,title="Number of Models")
-2+2
-str(error)
->>>>>>> One tiny change
+
 
