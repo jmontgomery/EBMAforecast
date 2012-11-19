@@ -1,6 +1,7 @@
 rm(list=ls(all=TRUE))
 
-setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Simulations")
+#setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Simulations")
+setwd("~/Github/EBMAforecast/APSA_2012/Simulations")
 
 load("~/Dropbox/EBMA/ResultsOfSims")
 objects()
@@ -30,65 +31,40 @@ for(i in slots){
 }
 
 if(func=="med"){
-	error.all<-apply(abs(error.mat),1,FUN=median)
-	error<-abs(apply(error.mat,1,FUN=median))
-	rmse<-abs(apply(rmse.mat,1,FUN=median))
-	mae<-abs(apply(mae.mat,1,FUN=median))
+	error.all<-apply(abs(error.mat),1,FUN=median,na.rm=TRUE)
+	error<-(apply(error.mat,1,FUN=median, na.rm=TRUE))
+	rmse<-abs(apply(rmse.mat,1,FUN=median, na.rm=TRUE))
+	mae<-abs(apply(mae.mat,1,FUN=median, na.rm=TRUE))
 }
 
 if(func=="mea"){
 	error.all<-apply(abs(error.mat),1,FUN=mean)
-	error<-apply(abs(error.mat),1,FUN=mean)
+	error<-apply((error.mat),1,FUN=mean)
 	rmse<-apply(rmse.mat,1,FUN=mean)
 	mae<-apply(mae.mat,1,FUN=mean)
 }
 par(mfrow=c(2,2))
-plot(c,error.all,pch=15,main="Abs Error (all models)")
-lines(lowess(c,error.all))
-plot(c,error,pch=15,main="Abs Error (largest weight model)")
-lines(lowess(c,error))
+plot(c,error.all,pch=15,main="Mean Abs Weight Error (all models)")
+lines(loess(error.all~c))
+plot(c,error,pch=15,main="Weight Error (largest weight model)")
+abline(h=0)
+lines(loess(error~c))
 plot(c,mae,pch=15,main="MAE")
-lines(lowess(c,mae))
+lines(loess(mae~c))
 plot(c,rmse,pch=15,main="RMSE")
-lines(lowess(c,rmse))
+lines(loess(rmse~c))
+mae
 }
 
 
 
+nTrain<-c(3:15,20,50,57,100)
+nmod<-seq(3,15, by=2)
+constant<-c(0,.01, .025, .05, .1, .2, .5)
+iter<-100
+outSample<-100
 #to plot, specify the number of models and number of training observation in the sim data that one wants to plot and where the mean (command "mea") or median (command "med") of the 1000 iteration for each statistic, abs error all models is the difference in weights to true weights for all models, abs error largest weight model is only the difference in weight to true weight for the largest model
-plot.fn(models=7,train=7,func="med")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+j <- plot.fn(models=5,train=5,func="mea")
 
 #this creates a three dataframes with one row per parameter combination, the columns are number of training set obs, number of models, mean statistic (over iterations), median statistic (over iterations), variance of statistic (over iterations) and value of the constant
 
