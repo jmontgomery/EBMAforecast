@@ -8,7 +8,7 @@ objects()
 summary(output)
 
 
-
+##### here is the function that plots seven points with a lowes line for each statistic
 plot.fn<-function(models, train, func){
 
 c<-c(0,0.01,0.025,0.05,0.1,0.2,0.5)
@@ -54,6 +54,8 @@ lines(lowess(c,rmse))
 }
 
 
+
+#to plot, specify the number of models and number of training observation in the sim data that one wants to plot and where the mean (command "mea") or median (command "med") of the 1000 iteration for each statistic, abs error all models is the difference in weights to true weights for all models, abs error largest weight model is only the difference in weight to true weight for the largest model
 plot.fn(models=7,train=7,func="med")
 
 
@@ -88,163 +90,26 @@ plot.fn(models=7,train=7,func="med")
 
 
 
+#this creates a three dataframes with one row per parameter combination, the columns are number of training set obs, number of models, mean statistic (over iterations), median statistic (over iterations), variance of statistic (over iterations) and value of the constant
 
-colnames(output[[1]]$pred.rmse)
+# the three dataframes are pred.mae for MAE of the EBMA model out of sample, error for the absolute error in weight to the highest weight model and pred.rmse for RMSE of the EBMA model out of sample
+
 counter<-0
-error<-pred.mae<-pred.rmse<-matrix(NA,nrow=833,ncol=5)
-colnames(error)<-colnames(pred.rmse)<-colnames(pred.mae)<-c("nTrain","nmod","mean","median","var","const")
+error<-pred.mae<-pred.rmse<-matrix(NA,nrow=833,ncol=6)
+colnames(error)<-colnames(pred.rmse)<-colnames(pred.mae)<-c("nTrain","nmod","const","mean","median","var")
 for(i in 1:833){	
-error[i,]<-c(output[[i]]$theseParams[1],output[[i]]$theseParams[2],output[[i]]$theseParams[5],mean(abs(output[[i]]$error[,1])),median(abs(output[[i]]$error[,1])),var(output[[i]]$error[,1]))	
+error[i,]<-c(output[[i]]$theseParams[1],output[[i]]$theseParams[2],output[[i]]$theseParams[5],mean(abs(output[[i]]$error[,1])),median(abs(output[[i]]$error[,1])),var(abs(output[[i]]$error[,1])))
 pred.mae[i,]<-c(output[[i]]$theseParams[1],output[[i]]$theseParams[2],output[[i]]$theseParams[5],mean(output[[i]]$pred.mae[,"EBMA"]),median(output[[i]]$pred.mae[,"EBMA"]),var(output[[i]]$pred.mae[,"EBMA"]))	
 pred.rmse[i,]<-c(output[[i]]$theseParams[1],output[[i]]$theseParams[2],output[[i]]$theseParams[5],mean(output[[i]]$pred.rmse[,"EBMA"]),median(output[[i]]$pred.rmse[,"EBMA"]),var(output[[i]]$pred.rmse[,"EBMA"]))
 }	
 error<-as.data.frame(error)
-names(error)<-c("nTrain","nmod","const","mean","var")
+names(error)<-c("nTrain","nmod","const","mean","median","var")
 
 pred.rmse<-as.data.frame(pred.rmse)
-names(pred.rmse)<-c("nTrain","nmod","const","mean","var")
+names(pred.rmse)<-c("nTrain","nmod","const","mean","median","var")
 
 pred.mae<-as.data.frame(pred.mae)
-names(pred.mae)<-c("nTrain","nmod","const","mean","var")
-
-
-
-plot.fn<-function(models, train, func){
-	if(func==mean){
-		
-		 }
-	
-	
-	
-}
-
-
-#####nmod=4, ntrain=5
-
-error45<-subset(error, nmod==5 & nTrain==10)
-plot(error45$const,error45$mean,)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### some plots based on regression, this is complete crap
-
-error$const2<-(error$const)^2
-giggles<-lm(mean~ nTrain + nmod + const+ const2 , data=(error))
-summary(giggles)
-
-
-train<-4
-mod<-5
-c<-seq(0.00,0.5,0.01)
-c2<-c^2
-betas<-as.matrix(giggles$coef)
-cov<-as.matrix(vcov(giggles))
-
-yhat<-matrix(NA,length(c),length(giggles$coef))
-med1<-cbind(1,4,5,c,c2)
-reps <- 10000
-yhat <- matrix(NA, length(c), reps)
-
-for (i in 1:reps){
-	xbeta <- med1 %*% mvrnorm(1, betas, cov)
-	yhat[,i] <- xbeta
-	}
-predvalues <- apply(yhat, 1, quantile, probs = c(0.025,0.5,0.975),na.rm=TRUE)
-plotlines1<- cbind(c, t(predvalues1))
-plot(plotlines1[,1],plotlines1[,4],type="l",ylim=c(1,1.5),xlim=c(0,.5),lty=2,lwd=2,col="red",axes=FALSE,xlab="constant",ylab="Predicted Mean Absolute Error for highest Weight model",main="")
-axis(2,las= HORIZONTAL<-1)
-axis(1)
-lines(plotlines1[,1],plotlines1[,3], lwd=2, col="red")
-lines(plotlines1[,1],plotlines1[,2], lwd=2, lty=2,col="red")
-
-
-
-pred.rmse<-as.data.frame(pred.rmse)
-names(pred.rmse)<-c("nTrain","nmod","mean","var","const")
-pred.rmse$const2<-(pred.rmse$const)^2
-giggles_rmse<-lm(mean~ nTrain + nmod + const+ const2 , data=(pred.rmse))
-summary(giggles_rmse)
-
-
-train<-4
-mod<-5
-c<-seq(0.00,0.5,0.01)
-c2<-c^2
-betas1<-as.matrix(giggles_rmse$coef)
-cov1<-as.matrix(vcov(giggles_rmse))
-
-yhat1<-matrix(NA,length(c),length(giggles_rmse$coef))
-med1<-cbind(1,4,5,c,c2)
-reps <- 10000
-yhat1<- matrix(NA, length(c), reps)
-
-for (i in 1:reps){
-	xbeta <- med1 %*% mvrnorm(1, betas1, cov1)
-	yhat1[,i] <- xbeta
-	}
-predvalues1 <- apply(yhat1, 1, quantile, probs = c(0.025,0.5,0.975),na.rm=TRUE)
-plotlines1<- cbind(c, t(predvalues1))
-plot(plotlines1[,1],plotlines1[,4],type="l",ylim=c(1,1.5),xlim=c(0,1),lty=2,lwd=2,col="red",axes=FALSE,xlab="constant",ylab="Predicted Mean RMSE for EBMA model",main="")
-axis(2,las= HORIZONTAL<-1)
-axis(1)
-lines(plotlines1[,1],plotlines1[,3], lwd=2, col="red")
-lines(plotlines1[,1],plotlines1[,2], lwd=2, lty=2,col="red")
-
-
-
-
-pred.mae$const2<-(pred.rmse$const)^2
-pred.mae$const3<-(pred.rmse$const)^3
-
-giggles_mae<-lm(mean~ nTrain + nmod + const+ const2 , data=(pred.mae))
-summary(giggles_mae)
-
-
-train<-4
-mod<-5
-c<-seq(0.00,0.5,0.01)
-c2<-c^2
-c3<-c^3
-betas2<-as.matrix(giggles_mae$coef)
-cov2<-as.matrix(vcov(giggles_mae))
-
-yhat2<-matrix(NA,length(c),length(giggles_mae$coef))
-med1<-cbind(1,4,5,c,c2)
-reps <- 10000
-yhat2<- matrix(NA, length(c), reps)
-
-for (i in 1:reps){
-	xbeta <- med1 %*% mvrnorm(1, betas2, cov2)
-	yhat2[,i] <- xbeta
-	}
-predvalues2 <- apply(yhat2, 1, quantile, probs = c(0.025,0.5,0.975),na.rm=TRUE)
-plotlines2<- cbind(c, t(predvalues2))
-plot(plotlines2[,1],plotlines2[,4],type="l",ylim=c(0,1),xlim=c(0,1),lty=2,lwd=2,col="red",axes=FALSE,xlab="constant",ylab="Predicted Mean MAE for EBMA model",main="")
-axis(2,las= HORIZONTAL<-1)
-axis(1)
-lines(plotlines2[,1],plotlines2[,3], lwd=2, col="red")
-lines(plotlines2[,1],plotlines2[,2], lwd=2, lty=2,col="red")
-
-
-
+names(pred.mae)<-c("nTrain","nmod","const","mean","median","var")
 
 
 
@@ -256,12 +121,33 @@ help(RColorBrewer)
 colors<-brewer.pal(7,"Set1")
 
 
-#this is a stupid plot, for just for shits and giggles
-plot(error[,2,1],error[,1,1],xlab="Error",ylab="Size of Calibration Period",col=colors[1],pch=15)
-points(error[,2,2],error[,1,2],col=colors[2],pch=15)
-points(error[,2,3],error[,1,3],col=colors[3],pch=15)
-points(error[,2,4],error[,1,4],col=colors[4],pch=15)
-points(error[,2,5],error[,1,5],col=colors[5],pch=15)
-points(error[,2,6],error[,1,6],col=colors[6],pch=15)
-points(error[,2,7],error[,1,7],col=colors[7],pch=15)
+#subsetting data to 4 obs in training set and different numbers of models
+nmod3<-subset(error, nmod==3 & nTrain==4)
+nmod5<-subset(error, nmod==5 & nTrain==4)
+nmod7<-subset(error, nmod==7 & nTrain==4)
+nmod9<-subset(error, nmod==9 & nTrain==4)
+nmod11<-subset(error, nmod==11 & nTrain==4)
+nmod13<-subset(error, nmod==13& nTrain==4)
+nmod15<-subset(error, nmod==15 & nTrain==4)
+
+
+
+
+# a plot for 4 obs in training set varying over c and the number of models
+plot(nmod3$const,nmod3$median,pch=15,col=colors[1],ylim=c(0,0.6), main="Mean Absolute Error for highest Weight Model",xlab="Constant",ylab="Mean Error")
+lines(lowess(nmod3$const,nmod3$median),col=colors[1])
+points(nmod5$const,nmod5$median,pch=15,col=colors[2])
+lines(lowess(nmod5$const,nmod5$median),col=colors[2])
+points(nmod7$const,nmod7$median,pch=15,col=colors[3])
+lines(lowess(nmod7$const,nmod7$median),col=colors[3])
+points(nmod9$const,nmod9$median,pch=15,col=colors[4])
+lines(lowess(nmod9$const,nmod9$median),col=colors[4])
+points(nmod11$const,nmod11$median,pch=15,col=colors[5])
+lines(lowess(nmod11$const,nmod11$median),col=colors[5])
+points(nmod13$const,nmod13$median,pch=15,col=colors[6])
+lines(lowess(nmod13$const,nmod13$median),col=colors[6])
+points(nmod15$const,nmod15$median,pch=15,col=colors[7])
+lines(lowess(nmod15$const,nmod15$median),col=colors[7])
 legend("topleft",legend=c(3,5,7,9,11,13,15),fill=colors,title="Number of Models")
+
+
