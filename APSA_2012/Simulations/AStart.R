@@ -154,6 +154,8 @@ tester<-function(nTrain,nmod,iter,outSample,constant,...){
   return(test.stats)
 }
 
+#for testing the tester
+#tester(nTrain=4,nmod=3,outSample=20,constant=0.05,iter=2)
 
 nTrain<-c(3:15,20,25,35,45,55,65,85,100)
 nmod<-seq(3,15, by=2)
