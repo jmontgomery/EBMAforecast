@@ -6,8 +6,8 @@ library(testthat)
 library(MCMCpack)
 library(doMC)
 
-setwd("~/Documents/GIT/EBMAforecast/")
-#setwd("~/GITHUB/EBMAforecast/")
+#setwd("~/Documents/GIT/EBMAforecast/")
+setwd("~/GITHUB/EBMAforecast/")
 
 ## Only need to run this portion once
 current.code <- as.package("EBMAforecast")
@@ -89,12 +89,15 @@ selection<-function(probability, matrix){
   return(W.indicator)
 }##works
 
+
+tester<-function(nTrain,nmod,iter,outSample,constant,...){
+
 nTrain=4
 nmod=3
 outSample=20
 constant=0.05
 iter=1
-tester<-function(nTrain,nmod,iter,outSample,constant,...){	
+  
   error<-matrix(NA,nrow=iter,ncol=nmod)
   pred.rmse<-pred.mae<-pred.mad<-pred.rmsle<-pred.mape<-pred.meape<-pred.mrae<-pred.pw<-matrix(NA,nrow=iter,ncol=nmod+1)
   
@@ -145,11 +148,23 @@ tester<-function(nTrain,nmod,iter,outSample,constant,...){
     pred.mrae[j,]<-modelFits(DV[(nTrain+1):nob],thisEnsemble@predTest, rowMeans(thisEnsemble@predTest))[,7]
     pred.pw[j,]<-modelFits(DV[(nTrain+1):nob],thisEnsemble@predTest, rowMeans(thisEnsemble@predTest))[,8]
 
+  forecasts<-as.data.frame(thisEnsemble@predTest)
+    forecasts
+  outcomes<-as.data.frame(thisEnsemble@outcomeTest)
+  sd<-sqrt(thisEnsemble@variance)
+  biasCoefs<-t(as.data.frame(thisEnsemble@modelParams))
+  weights<-thisEnsemble@modelWeights
+  crps(sd,weights,biasCoefs,forecasts,outcomes)
+
+
     
      	colnames(pred.mae)<-colnames(pred.rmse)<-colnames(pred.mad)<-colnames(pred.rmsle)<-colnames(pred.mape)<-colnames(pred.meape)<-colnames(pred.mrae)<-colnames(pred.pw)<-rownames(modelFits(DV[(nTrain+1):nob],thisEnsemble@predTest, rowMeans(thisEnsemble@predTest)))
 
   }
   theseParams=c(nTrain,nmod,iter,outSample,constant)
+
+
+  
   test.stats<-list(theseParams=theseParams, error=error,pred.mae=pred.mae,pred.rmse=pred.rmse,pred.mad=pred.mad,pred.rmsle=pred.rmsle,pred.mape=pred.mape,pred.meape=pred.meape,pred.mrae=pred.mrae,pred.pw=pred.pw)
   return(test.stats)
 }
@@ -186,8 +201,6 @@ output <- alply(1:833,1, masterFun,  .parallel=TRUE)
 ####################################################
 ####################################################
 ####################################################
-
-
 
 
 modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
@@ -242,8 +255,20 @@ biasCoefs<-as.data.frame(thisEnsemble@modelParams)
 weights<-thisEnsemble@modelWeights
 crps(sd,weights,biasCoefs,forecasts,outcomes)
 
+
+  forecasts<-(thisEnsemble@predTest)[,-1,1]
+  outcomes<-(thisEnsemble@outcomeTest)
+  sd<-sqrt(thisEnsemble@variance)
+  biasCoefs<-((thisEnsemble@modelParams))[,,1]
+  weights<-thisEnsemble@modelWeights
+crps(sd,weights,biasCoefs,forecasts,outcomes)
+
+
+
 crps<-function(sd, weights, biasCoefs, forecasts,outcomes)
 {
+
+  
 #
 # copyright 2006-present, University of Washington. All rights reserved.
 # for terms of use, see the LICENSE file
@@ -273,11 +298,11 @@ crps<-function(sd, weights, biasCoefs, forecasts,outcomes)
     if (length(sd) == 1) sd <- rep(sd, nForecasts)
     VAR <- sd*sd
 
-    MEAN <- sweep(forecasts, MARGIN = 1, FUN = "*", 
+    MEAN <- sweep(forecasts, MARGIN = 2, FUN = "*", 
                  STATS = biasCoefs[2,])
    MEAN <- sweep(MEAN, MARGIN = 2, FUN = "+", STATS = biasCoefs[1,])
     obs <- outcomes
-    nObs <- dim(obs)[1]
+    nObs <- length(obs)
 
     crpsTP <- numeric(nObs)
 
@@ -316,7 +341,7 @@ crps<-function(sd, weights, biasCoefs, forecasts,outcomes)
      crpsTP[l]  <- crps2 - crps1/2     
     }
 
-  mean(crpsTP)
+  crpsTP
 }
 
 
