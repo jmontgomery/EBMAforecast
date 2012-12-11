@@ -92,15 +92,12 @@ selection<-function(probability, matrix){
 
 tester<-function(nTrain,nmod,iter,outSample,constant,...){
 
-nTrain=4
-nmod=3
-outSample=20
-constant=0.05
-iter=1
   
   error<-matrix(NA,nrow=iter,ncol=nmod)
-  pred.rmse<-pred.mae<-pred.mad<-pred.rmsle<-pred.mape<-pred.meape<-pred.mrae<-pred.pw<-matrix(NA,nrow=iter,ncol=nmod+1)
-  
+ pred.rmse<-pred.mae<-pred.mad<-pred.rmsle<-pred.mape<-pred.meape<-pred.mrae<-pred.pw<-matrix(NA,nrow=iter,ncol=nmod+1)
+
+model.crps <- matrix(NA, nrow=iter, ncol=1)
+
   ##set the alpha for below
   alpha<-c(10,5,3)
   if (nmod>3){alpha<-c(alpha, rep(1, nmod-3))}
@@ -148,59 +145,33 @@ iter=1
     pred.mrae[j,]<-modelFits(DV[(nTrain+1):nob],thisEnsemble@predTest, rowMeans(thisEnsemble@predTest))[,7]
     pred.pw[j,]<-modelFits(DV[(nTrain+1):nob],thisEnsemble@predTest, rowMeans(thisEnsemble@predTest))[,8]
 
-  forecasts<-as.data.frame(thisEnsemble@predTest)
-    forecasts
-  outcomes<-as.data.frame(thisEnsemble@outcomeTest)
-  sd<-sqrt(thisEnsemble@variance)
-  biasCoefs<-t(as.data.frame(thisEnsemble@modelParams))
-  weights<-thisEnsemble@modelWeights
-  crps(sd,weights,biasCoefs,forecasts,outcomes)
+
+    forecasts<-(thisEnsemble@predTest)[,-1,1]
+outcomes<-(thisEnsemble@outcomeTest)
+sd<-sqrt(thisEnsemble@variance)
+biasCoefs<-((thisEnsemble@modelParams))[,,1]
+weights<-thisEnsemble@modelWeights
+model.crps[j]<-crps(sd,weights,biasCoefs,forecasts,outcomes)
 
 
     
-     	colnames(pred.mae)<-colnames(pred.rmse)<-colnames(pred.mad)<-colnames(pred.rmsle)<-colnames(pred.mape)<-colnames(pred.meape)<-colnames(pred.mrae)<-colnames(pred.pw)<-rownames(modelFits(DV[(nTrain+1):nob],thisEnsemble@predTest, rowMeans(thisEnsemble@predTest)))
 
+    
   }
-  theseParams=c(nTrain,nmod,iter,outSample,constant)
+    colnames(pred.mae)<-colnames(pred.rmse)<-colnames(pred.mad)<-colnames(pred.rmsle)<-colnames(pred.mape)<-colnames(pred.meape)<-colnames(pred.mrae)<-colnames(pred.pw)<-rownames(modelFits(DV[(nTrain+1):nob],thisEnsemble@predTest, rowMeans(thisEnsemble@predTest)))
+
+
+
+theseParams=c(nTrain,nmod,iter,outSample,constant)
+
+
 
 
   
-  test.stats<-list(theseParams=theseParams, error=error,pred.mae=pred.mae,pred.rmse=pred.rmse,pred.mad=pred.mad,pred.rmsle=pred.rmsle,pred.mape=pred.mape,pred.meape=pred.meape,pred.mrae=pred.mrae,pred.pw=pred.pw)
+  test.stats<-list(theseParams=theseParams, error=error,model.crps=model.crps, pred.mae=pred.mae,pred.rmse=pred.rmse,pred.mad=pred.mad,pred.rmsle=pred.rmsle,pred.mape=pred.mape,pred.meape=pred.meape,pred.mrae=pred.mrae,pred.pw=pred.pw)
   return(test.stats)
 }
 
-#for testing the tester
-#tester(nTrain=4,nmod=3,outSample=20,constant=0.05,iter=2)
-
-nTrain<-c(3:15,20,25,35,45,55,65,85,100)
-nmod<-seq(3,15, by=2)
-constant<-c(0,.01, 0.02,.025, 0.03,0.4, .05, 0.075, .1, 0.15,.2, 0.3, .5)
-iter<-100
-outSample<-100
-params <- expand.grid(nTrain, nmod, constant, outSample, iter)
-colnames(params) <- c("nTrain", "nmod", "constant", "outSample", "iter")
-
-masterFun <- function(x){
-   print(x)
-   tester(nTrain=params[x, "nTrain"], nmod=params[x, "nmod"], iter=params[x, "iter"], outSample=params[x, "outSample"], constant=params[x, "constant"])
-}
-
-# This is how we will run it, excpt it wil be 1:xxx where xxx is the number of rows of the params matrix
-
-registerDoMC(cores=16)
-
-output <- alply(1:833,1, masterFun,  .parallel=TRUE)
-
-
-
-
-########################################################################################################
-####################################################
-####################################################
-####################################################
-####################################################
-####################################################
-####################################################
 
 
 modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
@@ -245,23 +216,6 @@ modelFits <- function(.thisOutcome, .thisForecastMatrix, .thisBaseline){
 
 out
 }
-
-### but it doesn't work yet.
-### cprs code from raftery with copyright! crpsNormal <-
-forecasts<-as.data.frame(thisEnsemble@predTest)
-outcomes<-as.data.frame(thisEnsemble@outcomeTest)
-sd<-sqrt(thisEnsemble@variance)
-biasCoefs<-as.data.frame(thisEnsemble@modelParams)
-weights<-thisEnsemble@modelWeights
-crps(sd,weights,biasCoefs,forecasts,outcomes)
-
-
-  forecasts<-(thisEnsemble@predTest)[,-1,1]
-  outcomes<-(thisEnsemble@outcomeTest)
-  sd<-sqrt(thisEnsemble@variance)
-  biasCoefs<-((thisEnsemble@modelParams))[,,1]
-  weights<-thisEnsemble@modelWeights
-crps(sd,weights,biasCoefs,forecasts,outcomes)
 
 
 
@@ -341,8 +295,38 @@ crps<-function(sd, weights, biasCoefs, forecasts,outcomes)
      crpsTP[l]  <- crps2 - crps1/2     
     }
 
-  crpsTP
+  mean(crpsTP)
 }
+
+
+
+
+#for testing the tester
+#tester(nTrain=4,nmod=3,outSample=20,constant=0.05,iter=2)
+
+nTrain<-c(3:15,20,25,35,45,55,65,85,100)
+nmod<-seq(3,15, by=2)
+constant<-c(0,.01, 0.02,.025, 0.03, 0.04, .05, 0.075, 0.1, 0.15, 0.2, 0.3, .5)
+iter<-100
+outSample<-250
+params <- expand.grid(nTrain, nmod, constant, outSample, iter)
+colnames(params) <- c("nTrain", "nmod", "constant", "outSample", "iter")
+
+masterFun <- function(x){
+   print(x)
+   tester(nTrain=params[x, "nTrain"], nmod=params[x, "nmod"], iter=params[x, "iter"], outSample=params[x, "outSample"], constant=params[x, "constant"])
+}
+
+# This is how we will run it, excpt it wil be 1:xxx where xxx is the number of rows of the params matrix
+
+registerDoMC(cores=24)
+
+output <- alply(1:1911,1, masterFun,  .parallel=TRUE)
+
+
+
+
+
 
 
 
