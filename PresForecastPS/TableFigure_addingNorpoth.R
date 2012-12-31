@@ -53,6 +53,28 @@ ensemble05 <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=sqrt(.
 summary(ensemble05, showCoefs=FALSE)
 ensemble05@predTest
 
+##creating data for Graefe, 
+data.for.graefe<-rbind(this.pred,thisFD@predTest)
+write.csv(data.for.graefe,file="~/Desktop/data.for.graefe.csv")
+
+## running the model only with the six models from PA for graefe, 
+#ignore for now
+#load("~/Documents/GIT/EBMAforecast/PresForecastPS/insample.data.RData")
+
+#insample.data <- insample.data[-c(34,35),]
+#rownames(insample.data) <- insample.data$Year
+#my.years <- paste(seq(1948,2008, by=4))
+
+#thisFD.1 <- makeForecastData(.predCalibration=this.pred[,c()], .outcomeCalibration=this.out,  .modelNames=colnames(this.pred))
+#thisFD@predTest <- array(this.test, dim=c(1, 10, 1))
+#thisFD@outcomeTest <- 0
+#this.pred <- insample.data[my.years, c("Campbell.trialheat", "Abramowitz",  "Hibbs", , 7,   15)]
+#ensemble05 <- calibrateEnsemble(.forecastData=thisFD, model="normal", tol=sqrt(.Machine$double.eps), maxIter=1000000, useModelParams=FALSE, #predType="posteriorMedian", const=0.05)
+#summary(ensemble05, showCoefs=FALSE)
+#ensemble05@predTest
+#end ignore
+
+
 
 
 ### Check: Do we get the same answer using the ensembleBMA package.
