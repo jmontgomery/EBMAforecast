@@ -215,6 +215,8 @@ minimum.data[which(nTrain==i)+21*(which(nmod==j)-1),"minC"]=Min.c(j,i,"med")
 }
 }
 
+
+save(minimum.data, file="minimum.data.RData")
 nmod3<-subset(minimum.data,nmod==3)
 names(nmod3)<-c("nmod","nTrain","minC")
 plot(nmod3$nTrain,nmod3$minC)
