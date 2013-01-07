@@ -109,6 +109,198 @@ outSample<-250
 #to plot, specify the number of models and number of training observation in the sim data that one wants to plot and where the mean (command "mea") or median (command "med") of the 1000 iteration for each statistic, abs error all models is the difference in weights to true weights for all models, abs error largest weight model is only the difference in weight to true weight for the largest model
 j <- plot.fn(models=11,train=5,func="med")
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##############################################################################################
+##############################################################################################
+##############################################################################################
+##############################################################################################
+####### florian writing a function to find c at min - crps for all parameter combination
+##############################################################################################
+##############################################################################################
+##############################################################################################
+Min.c<-function(models, train, func){
+
+ alpha<-c(10,5,3)
+  if (models>3){alpha<-c(alpha, rep(1, models-3))}
+ a.mean <- alpha/mean(alpha)
+  
+c<-c(0,.01, 0.02,.025, 0.03, 0.04, .05, 0.075, 0.1, 0.15, 0.2, 0.3, .5)
+slots<-rep(NA,13)
+count<-0
+for(i in 1:1911){
+	if(output[[i]]$theseParams[1]==train & output[[i]]$theseParams[2]==models){
+	count<-count+1
+	slots[count]<-i} 
+	}
+error.mat<-mae.mat<-rmse.mat<-mad.mat<-rmsle.mat <- mape.mat <- meape.mat <- mrae.mat <- pw.mat <- crps.mat <- matrix(NA,nrow=13,ncol=100)
+
+for(i in slots){
+	count<-which(slots==i)
+        errror.all.mat<-abs(output[[i]]$error)%*%a.mean
+	#error.all.mat<-rowSums(abs(output[[i]]$error))
+	error.mat[count,]<-output[[i]]$error[,1]
+	rmse.mat[count,]<-output[[i]]$pred.rmse[,"EBMA"]
+	mae.mat[count,]<-output[[i]]$pred.mae[,"EBMA"]
+        mad.mat[count,]<-output[[i]]$pred.mad[,"EBMA"]
+        rmsle.mat[count,] <- output[[i]]$pred.rmsle[,"EBMA"]
+        mape.mat[count,] <- output[[i]]$pred.mape[,"EBMA"]
+        meape.mat[count,] <- output[[i]]$pred.meape[,"EBMA"]
+        mrae.mat[count,] <- output[[i]]$pred.mrae[,"EBMA"]
+        pw.mat[count,] <- output[[i]]$pred.pw[,"EBMA"]
+        crps.mat[count,] <- output[[i]]$model.crps
+}
+
+if(func=="med"){
+	error.all<-apply(abs(error.mat),1,FUN=median,na.rm=TRUE)
+	error<-(apply(error.mat,1,FUN=median, na.rm=TRUE))
+	rmse<-abs(apply(rmse.mat,1,FUN=median, na.rm=TRUE))
+	mae<-abs(apply(mae.mat,1,FUN=median, na.rm=TRUE))
+      	mad<-abs(apply(mad.mat,1,FUN=median, na.rm=TRUE))
+        rmsle<-abs(apply(rmsle.mat,1,FUN=median, na.rm=TRUE))
+        mape<-abs(apply(mape.mat,1,FUN=median, na.rm=TRUE))
+        meape<-abs(apply(meape.mat,1,FUN=median, na.rm=TRUE))
+        mrae<-abs(apply(mrae.mat,1,FUN=median, na.rm=TRUE))
+        pw<-abs(apply(pw.mat,1,FUN=median, na.rm=TRUE))
+        crps<-abs(apply(crps.mat,1,FUN=median, na.rm=TRUE))
+      }
+
+if(func=="mea"){
+	error.all<-apply(abs(error.mat),1,FUN=mean,na.rm=TRUE)
+	error<-(apply(error.mat,1,FUN=mean, na.rm=TRUE))
+	rmse<-abs(apply(rmse.mat,1,FUN=mean, na.rm=TRUE))
+	mae<-abs(apply(mae.mat,1,FUN=mean, na.rm=TRUE))
+      	mad<-abs(apply(mad.mat,1,FUN=mean, na.rm=TRUE))
+        rmsle<-abs(apply(rmsle.mat,1,FUN=mean, na.rm=TRUE))
+        mape<-abs(apply(mape.mat,1,FUN=mean, na.rm=TRUE))
+        meape<-abs(apply(meape.mat,1,FUN=mean, na.rm=TRUE))
+        mrae<-abs(apply(mrae.mat,1,FUN=mean, na.rm=TRUE))
+        pw<-abs(apply(pw.mat,1,FUN=mean, na.rm=TRUE))
+        crps<-abs(apply(crps.mat,1,FUN=mean, na.rm=TRUE))
+      }
+
+c[crps==min(crps)]
+}
+
+
+
+
+nTrain<-c(3:15,20,25,35,45,55,65,85,100)
+nmod<-seq(3,15, by=2)
+minimum.data<-as.data.frame(matrix(NA,nrow=length(nTrain)*length(nmod),ncol=3))
+names(minimum.data)<-c("nmod","nTrain","minC")
+
+for(i in nTrain){
+	for(j in nmod){	
+minimum.data[which(nTrain==i)+21*(which(nmod==j)-1),"nmod"]=j
+minimum.data[which(nTrain==i)+21*(which(nmod==j)-1),"nTrain"]=i
+minimum.data[which(nTrain==i)+21*(which(nmod==j)-1),"minC"]=Min.c(j,i,"med")
+}
+}
+
+nmod3<-subset(minimum.data,nmod==3)
+names(nmod3)<-c("nmod","nTrain","minC")
+plot(nmod3$nTrain,nmod3$minC)
+### this is just weird, there seems to be no clear relationship
+
+
+
+
+
+
+
+
+
+
+##############################################################################################
+##############################################################################################
+##############################################################################################
+##############################################################################################
+####### florian looking at plots for parameter combinations
+##############################################################################################
+##############################################################################################
+#### trying some 
+j <- plot.fn(models=3,train=3,func="med") #0.05
+j <- plot.fn(models=3,train=4,func="med") #0.08
+j <- plot.fn(models=3,train=5,func="med") #0.04
+j <- plot.fn(models=3,train=6,func="med") #0.08
+j <- plot.fn(models=3,train=7,func="med") #0.01
+j <- plot.fn(models=3,train=8,func="med") #0.00
+j <- plot.fn(models=3,train=9,func="med") #0.01
+j <- plot.fn(models=3,train=10,func="med") #0.01
+j <- plot.fn(models=3,train=11,func="med") #0.02
+j <- plot.fn(models=3,train=15,func="med") #0.00
+j <- plot.fn(models=3,train=20,func="med") #0.00
+j <- plot.fn(models=3,train=25,func="med") #0.00
+j <- plot.fn(models=3,train=35,func="med") #0.04
+j <- plot.fn(models=3,train=45,func="med") #0.03
+j <- plot.fn(models=3,train=55,func="med") #0.01
+j <- plot.fn(models=3,train=85,func="med") #0.00
+j <- plot.fn(models=3,train=100,func="med") #0.04
+
+
+
+k <- plot.fn(models=7,train=3,func="med") #0.02
+k <- plot.fn(models=7,train=4,func="med") #0.15
+k <- plot.fn(models=7,train=5,func="med") #0.02
+k <- plot.fn(models=7,train=6,func="med") #0.00
+k <- plot.fn(models=7,train=7,func="med") #0.05
+k <- plot.fn(models=7,train=8,func="med") #0.04
+k <- plot.fn(models=7,train=9,func="med") #0.00
+k <- plot.fn(models=7,train=10,func="med") #0.05
+k <- plot.fn(models=7,train=11,func="med") #0.03
+k <- plot.fn(models=7,train=15,func="med") #0.02
+k <- plot.fn(models=7,train=20,func="med") #0.06
+k <- plot.fn(models=7,train=25,func="med") #0.08
+k <- plot.fn(models=7,train=35,func="med") #0.02
+k <- plot.fn(models=7,train=45,func="med") #0.03
+k <- plot.fn(models=7,train=55,func="med") #0.03
+k <- plot.fn(models=7,train=85,func="med") #0.02
+k <- plot.fn(models=7,train=100,func="med") #0.00
+	
+
+h <- plot.fn(models=15,train=3,func="med") #0.3
+h <- plot.fn(models=15,train=4,func="med") #0.3
+h <- plot.fn(models=15,train=5,func="med") #0.2
+h <- plot.fn(models=15,train=6,func="med") #0.5
+h <- plot.fn(models=15,train=7,func="med") #0.1
+h <- plot.fn(models=15,train=8,func="med") #0.3
+h <- plot.fn(models=15,train=9,func="med") #0.1
+h <- plot.fn(models=15,train=10,func="med") #0.15
+h <- plot.fn(models=15,train=11,func="med") #0.00
+h <- plot.fn(models=15,train=15,func="med") #0.03
+h <- plot.fn(models=15,train=20,func="med") #0.02
+h <- plot.fn(models=15,train=25,func="med") #0.01
+h <- plot.fn(models=15,train=35,func="med") #0.08
+h <- plot.fn(models=15,train=45,func="med") #0.03
+h <- plot.fn(models=15,train=55,func="med") #0.01
+h <- plot.fn(models=15,train=85,func="med") #0.02
+h <- plot.fn(models=15,train=100,func="med") #0.04
+
+
+
+
+
+
+
+
 #this creates a three dataframes with one row per parameter combination, the columns are number of training set obs, number of models, mean statistic (over iterations), median statistic (over iterations), variance of statistic (over iterations) and value of the constant
 
 # the three dataframes are pred.mae for MAE of the EBMA model out of sample, error for the absolute error in weight to the highest weight model and pred.rmse for RMSE of the EBMA model out of sample
