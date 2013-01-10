@@ -1,6 +1,6 @@
 rm(list=ls(all=TRUE))
 
-#setwd("~/Documents/GIT/EBMAforecast/APSA_2012/Simulations")
+#setwd("~/Documents/GitHub/EBMAforecast/APSA_2012/Simulations")
 setwd("~/Github/EBMAforecast/APSA_2012/Simulations")
 
 load("SecondRound")
@@ -204,6 +204,8 @@ c[crps==min(crps)]
 
 nTrain<-c(3:15,20,25,35,45,55,65,85,100)
 nmod<-seq(3,15, by=2)
+
+
 minimum.data<-as.data.frame(matrix(NA,nrow=length(nTrain)*length(nmod),ncol=3))
 names(minimum.data)<-c("nmod","nTrain","minC")
 
@@ -217,6 +219,21 @@ minimum.data[which(nTrain==i)+21*(which(nmod==j)-1),"minC"]=Min.c(j,i,"med")
 
 
 save(minimum.data, file="minimum.data.RData")
+
+
+## create a matrix for mike with nmod in columns, nTrain in rows
+min.matrix<-matrix(NA, nrow=21,ncol=7)
+for(i in 1:7){
+	min.matrix[,i]=minimum.data[((i-1)*21+1):((i-1)*21+21),"minC"]
+}
+
+colnames(min.matrix)=c(nmod)
+rownames(min.matrix)=c(nTrain)
+
+save(min.matrix,file="min.matrix.rda")
+
+
+
 nmod3<-subset(minimum.data,nmod==3)
 names(nmod3)<-c("nmod","nTrain","minC")
 plot(nmod3$nTrain,nmod3$minC)
