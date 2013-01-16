@@ -1,0 +1,69 @@
+\begin{table}[h]
+\caption{Comparing adjusted EBMA models with Green Book, median, and mean forecasts of U.S. Unemployment (1981-2007)}
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & MAE & RMSE & MAD & RMSLE & MAPE & MEAPE & MRAE & PW \\
+\midrule
+ EBMA (c=0)& 0.54 & 0.74 & 0.37 & 0.093 & 8.37 & 6.49 & \textbf{0.73} & \textbf{27.36} \\
+  EBMA (c=0.05)& \textbf{0.54} & 0.74 &\textbf{ 0.37} & \textbf{0.093} & \textbf{8.33} & \textbf{6.30} & 0.75 & \textbf{27.36} \\
+ EBMA (c=0.1)& 0.54 & 0.74 & 0.35 & 0.093 & 8.40 & 6.44 & 0.76 & 28.30 \\
+EBMA (c=1) & 0.61 & 0.80 & 0.46 & 0.102 & 9.72 & 8.92 & 0.95 & 46.23 \\
+ Green Book& 0.57 & \textbf{0.73} & 0.43 & 0.093 & 9.37 & 8.81 & 1.00 & 45.28 \\
+ Forecast Median& 0.62 & 0.81 & 0.47 & 0.103 & 9.83 & 8.87 & 0.98 & 47.17 \\
+Forecast Mean& 0.61 & 0.80 & 0.46 & 0.102 & 9.71 & 9.06 & 0.93 & 46.23 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\label{compareTable1}
+Definitions of model fit statistics are provided in the Appendix. The model with the lowest score for each metric are shown in bold.  Differences between model performance may not be obvious due to rounding.
+\end{table}
+\efloatseparator
+ 
+\begin{table}[ht]
+\caption{Pre-election forecasts of the percent of the two-party vote going to the incumbent party in U.S. Presidential elections}
+\label{tab:one}
+\footnotesize
+\begin{center}
+\begin{tabular}{rlrrrrrrrrr}
+  \toprule
+  & F & A & C & H & LBRT & L & Hol & EW & Cuz \\
+  \midrule
+  1992 & 55.7 & 46.3 & 49.7 & 48.9 & 47.3 &  &  &  &  \\
+  1996 & 49.5 & 57.0 & 55.5 & 53.5 & 53.3 &  & 57.2 & 55.6 &  \\
+  2000 & 50.8 & 53.2 & 52.8 & 54.8 & 55.4 & 60.3 & 60.3 & 55.2 &  \\
+  2004 & 57.5 & 53.7 & 52.8 & 53.2 & 49.9 & 57.6 & 55.8 & 52.9 & 51.1 \\
+  2008 & 48.1 & 45.7 & 52.7 & 48.5 & 43.4 & 41.8 & 44.3 & 47.8 & 48.1 \\
+  \bottomrule
+
+\end{tabular}
+\end{center}
+Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}\`an and Bundrick.  Data were taken from the collation presented at \url{http://fivethirtyeight.blogs.nytimes.com/2012/03/26/models-based-on-fundamentals-have-failed-at-predicting-presidential-elections/}. FLORIAN: WE NEED TO VERIFY ALL OF THESE NUMBERS AND ADD CITATIONS TO THE RELEVANT WORK ... FOOTNOTE?
+\end{table}
+\efloatseparator
+ 
+\begin{table}[ht]
+\caption{Model weights and in-sample fit statistics for EBMA model of U.S. Presidential Elections (1992-2008)}
+\label{presModel}
+\begin{center}
+\begin{tabular}{lrrrr}
+  \toprule
+ & \shortstack{EBMA\\ Weight}&RMSE &MAE \\
+  \midrule
+EBMA &  & 1.92 & 1.56 \\
+  Fair & 0.02 & 5.53 & 4.58 \\
+  Abramowitz & 0.78 & 2.02 & 1.72 \\
+  Campbell  & 0.07 & 3.46 & 2.88 \\
+  Hibbs  & 0.04 & 2.68 & 2.44 \\
+  Lewis-Beck, Rice, and Tien & 0.06 & 2.78 & 2.28 \\
+  Lockerbie  & 0.00 & 7.33 & 6.97 \\
+ Holbrook & 0.01 & 5.73 & 4.77 \\
+  Erikson and Wlezien & 0.02 & 2.74 & 2.25 \\
+  Cuz\`an & 0.00 & 1.27 & 0.95 \\
+   \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 

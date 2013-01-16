@@ -17,10 +17,27 @@ Baghestani, Hamid. 2008.
   unemployment rate predictor?'' {\em Journal of Policy Modeling}
   30(1):101--110.
 
+\harvarditem{Bartels}{1997}{Bartels:1997}
+Bartels, Larry~M. 1997.
+\newblock ``Specification Uncertainty and Model Averaging.'' {\em American
+  Journal of Political Science} 41(2):641--674.
+
+\harvarditem{Bartels \harvardand\ Zaller}{2001}{Bartels:2001}
+Bartels, Larry~M. \harvardand\ John Zaller. 2001.
+\newblock ``Presidential Vote Models: A Recount.'' {\em PS: Political Science
+  and Politics} 34(1):9--20.
+
 \harvarditem{Bates \harvardand\ Granger}{1969}{Bates:1969}
 Bates, J.M. \harvardand\ Clive~W.J. Granger. 1969.
 \newblock ``The Combination of Forecasts.'' {\em Operations Research}
   20(4):451--468.
+
+\harvarditem[Berrocal et~al.]{Berrocal, Raftery, Gneiting \harvardand\
+  Steed}{2010}{Berrocal:2010}
+Berrocal, Veronica~J., Arian~E. Raftery, Tilmann Gneiting \harvardand\
+  Richard~C. Steed. 2010.
+\newblock ``Probabilistic Weather Forecasting for Winter Road Maintenance.''
+  {\em Journal of the American Statistical Association} 105(490):522--537.
 
 \harvarditem[Billio et~al.]{Billio, Casarin, Ravazzolo \harvardand\
   Van~Dijk}{2010}{Billio:2010}
@@ -49,11 +66,46 @@ Brandt, Patrick~T., John~R. Freeman \harvardand\ Philip~A. Schrodt. 2011.
   \url{http://polmeth.wustl.edu/media/Paper/RHMethods20110721small_1.pdf}
   (accessed August 20, 2011).
 
+\harvarditem{Breiman}{1996}{Breiman:1996}
+Breiman, L. 1996.
+\newblock ``Bagging predictors.'' {\em Machine Learning} 26:123--140.
+
+\harvarditem{Breiman}{2001}{Breiman:2001}
+Breiman, L. 2001.
+\newblock ``Random forests.'' {\em Machine Learning} 45:5--32.
+
+\harvarditem[Brock, Durlauf \harvardand\ West]{Brock, Durlauf \harvardand\
+  West}{2007}{Brock:2007}
+Brock, William~A., Steven~N. Durlauf \harvardand\ Kenneth~D. West. 2007.
+\newblock ``Model Uncertainty and Policy Evaluation: Some Theory and
+  Empirics.'' {\em Journal of Econometrics} 136(2):629--664.
+
 \harvarditem{Campbell}{2008}{Campbell:2008}
 Campbell, James~E. 2008.
 \newblock ``The Trial-heat Forecast of the 2008 Presidential Vote: Performance
   and Value Considerations in an Open-Seat Election.'' {\em PS: Political
   Science \& Politics} 41(4):697--701.
+
+\harvarditem[Chipman, George \harvardand\ McCulloch]{Chipman, George
+  \harvardand\ McCulloch}{2010}{Chipman:2010}
+Chipman, Hugh~A., Edward~I. George \harvardand\ Robert~E. McCulloch. 2010.
+\newblock ``BART: Bayesian Additive Regression Trees.'' {\em The Annals of
+  Applied Statistics} 4(1):266--298.
+
+\harvarditem{Chmielecki \harvardand\ Raftery}{2010}{Chmielecki:2010}
+Chmielecki, Richard~M. \harvardand\ Arian~E. Raftery. 2010.
+\newblock ``Probabilistic Visibility Forecasting Using {B}ayesian Model
+  Averaging.'' {\em Monthly Weather Review} 139(5):1626--1636.
+
+\harvarditem{Clyde}{2003}{Clyde:2003}
+Clyde, Merlise. 2003.
+\newblock Model Averaging.  In {\em Subjective and Objective Bayesian
+  Statistics: Principles, Models and Applications}, ed. S.~James Press.
+\newblock Hoboken, NJ:  Wiley-Interscience pp.~320--335.
+
+\harvarditem{Clyde \harvardand\ George}{2004}{Clyde:2004}
+Clyde, Merlise \harvardand\ Edward~I. George. 2004.
+\newblock ``Model Uncertainty.'' {\em Statistical Science} 19(1):81--94.
 
 \harvarditem{Croushore \harvardand\ Stark}{2001}{Croushore:Stark:2001}
 Croushore, Dean \harvardand\ Tom Stark. 2001.
@@ -98,12 +150,51 @@ Fair, Ray~C. 2011.
   University. \url{http://fairmodel.econ.yale.edu/vote2012/index2.htm}
   (accessed March 07, 2011).
 
+\harvarditem{Feldkircher}{2011}{Feldkircher:2010}
+Feldkircher, Martin. 2011.
+\newblock ``Forecast Combination and {B}ayesian Model Averaging: A Prior
+  Sensitivity Analysis.'' {\em Journal of Forecasting} p.~{in press}.
+\newline\harvardurl{http://dx.doi.org/10.1002/for.1228}
+
 \harvarditem[Fraley, Raftery \harvardand\ Gneiting]{Fraley, Raftery
   \harvardand\ Gneiting}{2010}{Fraley:2010}
 Fraley, Chris, Adrian~E. Raftery \harvardand\ Tilmann Gneiting. 2010.
 \newblock ``Calibrating Multimodel Forecast Ensembles with Exchangeable and
   Missing Members Using {B}ayesian Model Averaging.'' {\em Monthly Weather
   Review} 138(1):190--202.
+
+\harvarditem{Freund \harvardand\ Schapire}{1997}{Freund:1997}
+Freund, Y. \harvardand\ R.E. Schapire. 1997.
+\newblock ``A decision-theoretic generalization of online learning and an
+  application to boosting.'' {\em J. Comput. System Sci.} 55:119--139.
+
+\harvarditem{Friedman}{2001}{Friedman:2001}
+Friedman, J.H. 2001.
+\newblock ``Greedy function approximation: A gradient boosing machine.'' {\em
+  Ann. Statist} 29:1189--1232.
+
+\harvarditem{Galton}{1907}{Galton:1907}
+Galton, Francis. 1907.
+\newblock ``Vox populi.'' {\em Nature} 75(1949):450--451.
+
+\harvarditem{Gill}{2004}{Gill:2004}
+Gill, Jeff. 2004.
+\newblock ``Introduction to the Special Issue.'' {\em Political Analysis}
+  12(4):647--674.
+
+\harvarditem{Gneiting \harvardand\ Thorarinsdottir}{2010}{Gneiting:2010}
+Gneiting, Tilmann \harvardand\ Thordis~L. Thorarinsdottir. 2010.
+\newblock ``Predicting Inflation: Professional Experts Versus No-Change
+  Forecasts.'' Working Paper. \url{http://arxiv.org/abs/1010.2318v1} (accessed
+  June 15, 2011).
+
+\harvarditem[Goldstone et~al.]{Goldstone, Bates, Epstein, Gurr, Lustik,
+  Marshall, Ulfelder \harvardand\ Woodward}{2010}{Goldstone:etal:2010}
+Goldstone, Jack~A., Robert~H. Bates, David~L. Epstein, Ted~Robert Gurr,
+  Michael~B. Lustik, Monty~G. Marshall, Jay Ulfelder \harvardand\ Mark
+  Woodward. 2010.
+\newblock ``A Global Model for Forecasting Political Instability.'' {\em
+  American Journal of Political Science} 54(1):190--208.
 
 \harvarditem[Graefe et~al.]{Graefe, Cuzan, Jones \harvardand\
   Armstrong}{2010}{Graefe:2010}
@@ -127,15 +218,39 @@ Hibbs, Douglas~A. 2012.
   2012 US Presidential Election.''
   \url{http://www.douglas-hibbs.com/HibbsArticles/HIBBS_OBAMA-REELECT-31July2012r1.pdf}.
 
+\harvarditem[Hoeting et~al.]{Hoeting, Madigan, Raftery \harvardand\
+  Volinsky}{1999}{Hoeting:1999}
+Hoeting, Jennifer~A., David Madigan, Adrian~E. Raftery \harvardand\
+  Christopher~T. Volinsky. 1999.
+\newblock ``Bayesian Model Averaging: A Tutorial.'' {\em Statistical Science}
+  14(4):382--417.
+
 \harvarditem{Holbrook}{2008}{Holbrook:2008}
 Holbrook, Thomas~M. 2008.
 \newblock ``Incumbency, National Conditions, and the 2008 Presidential
   Election.'' {\em PS: Political Science \& Politics} 41(4):709--712.
 
+\harvarditem[Huisman et~al.]{Huisman, Breuer, Bormann, Bronstert, Croke, Frede,
+  Gr{\"a}ff, Hubrechts, Jakeman, Kite, Lanini, Leavesley, Lettenmaier,
+  Lindstr{\"o}m, Seibert, Sivapalan, Viney \harvardand\
+  Willems}{2009}{Viney:2009}
+Huisman, J.A., L. Breuer, H. Bormann, A. Bronstert, B.F.W. Croke, H.-G. Frede,
+  T. Gr{\"a}ff, L. Hubrechts, A.J. Jakeman, G. Kite, J. Lanini, G. Leavesley,
+  D.P. Lettenmaier, G. Lindstr{\"o}m, J. Seibert, M. Sivapalan, N.R. Viney
+  \harvardand\ P. Willems. 2009.
+\newblock ``Assessing the Impact of Land Use Change on Hydrology by Ensemble
+  Modelling {(LUCHEM) II}: Ensemble Combinations and Predictions.'' {\em
+  Advances in Water Resources} 32(2):147--158.
+
 \harvarditem{Imai \harvardand\ Tingley}{2012}{imai:tingley:2012}
 Imai, Kosuke \harvardand\ Dustin Tingley. 2012.
 \newblock ``A Statistical Method for Empirical Testing of Competing Theories.''
   {\em American Journal of Political Science} 56(1):218--236.
+
+\harvarditem{Imai \harvardand\ King}{2004}{Imai:2004}
+Imai, Kosuke \harvardand\ Gary King. 2004.
+\newblock ``Did Illegal Overseas Absentee Ballots Decide the 2000 {US}
+  Presidential Election?'' {\em Perspectives on Politics} 2(3):537--549.
 
 \harvarditem{Koop \harvardand\ Korobilis}{2009}{Koop:2010}
 Koop, Gary \harvardand\ Dimitris Korobilis. 2009.
@@ -144,15 +259,46 @@ Koop, Gary \harvardand\ Dimitris Korobilis. 2009.
   \url{http://personal.strath.ac.uk/gary.koop/koop_korobilis_forecasting_inflation_using_DMA.pdf}
   (accessed May 25, 2011).
 
+\harvarditem{Linzer}{Forthcoming}{Linzer:2013}
+Linzer, Drew. Forthcoming.
+\newblock ``Dynamic Bayesian Forecasting of Presidential Elections in the
+  States.'' {\em Journal of the American Statistical Association} .
+
 \harvarditem{Lockerbie}{2008}{Lockerbie:2008}
 Lockerbie, Brad. 2008.
 \newblock ``Election Forecasting: The Future of the Presidency and the House.''
   {\em PS: Political Science \& Politics} 41(4):713--716.
 
+\harvarditem{Madigan \harvardand\ Raftery}{1994}{Madigan:1994}
+Madigan, David \harvardand\ Adrian~E. Raftery. 1994.
+\newblock ``Model Selection and Accounting for Model Uncertainty in Graphical
+  Models Using {O}ccam's Window.'' {\em Journal of the American Statistical
+  Association} 89(428):1535--1546.
+
+\harvarditem[McCandless, Haupt \harvardand\ Young]{McCandless, Haupt
+  \harvardand\ Young}{2011}{Mccandless:2011}
+McCandless, Tyler~C., Sue~Ellen Haupt \harvardand\ George~S. Young. 2011.
+\newblock ``The Effects of Imputing Missing Data on Ensemble Temperature
+  Forecasts.'' {\em Journal of Computers} 6(2):162--171.
+
 \harvarditem{McLachlan \harvardand\ Peel}{2000}{mclachlan:peel:2000}
 McLachlan, Geoffrey \harvardand\ David Peel. 2000.
 \newblock {\em Finite Mixture Models}.
 \newblock New York, NY:  John Wiley \& Sons, Ltd.
+
+\harvarditem{Min \harvardand\ Hense}{2006}{Min:2006}
+Min, Seung-Ki \harvardand\ Andreas Hense. 2006.
+\newblock ``A {B}ayesian Approach to Climate Model Evaluation and Multi-Model
+  Averaging with an Application to Global Mean Surface Temperatures from {IPCC
+  AR4} Coupled Climate Models.'' {\em Geophysical Research Letters}
+  33(8):L08708.
+
+\harvarditem[Min, Simonis \harvardand\ Hense]{Min, Simonis \harvardand\
+  Hense}{2007}{Min:2007}
+Min, Seung-Ki, Daniel Simonis \harvardand\ Andreas Hense. 2007.
+\newblock ``Probabilistic Climate Change Predictions Applying {B}ayesian Model
+  Averaging.'' {\em Philosophical Transactions of the Royal Society A:
+  Mathematical, Physical and Engineering Sciences} 365(1857):2103--2116.
 
 \harvarditem[Montgomery et~al.]{Montgomery, Zarnowitz, Tsay \harvardand\
   George}{1998}{Montgomery:etal:1998}
@@ -161,16 +307,39 @@ Montgomery, Alan~L., Victor Zarnowitz, Ruey Tsay \harvardand\ Tiaom George.
 \newblock ``Forecasting the U.S. Unemployement Rate.'' {\em Journal of the
   American Statistical Association} 93(442):478--493.
 
+\harvarditem{Montgomery \harvardand\ Nyhan}{2010}{Montgomery:2010c}
+Montgomery, Jacob~M. \harvardand\ Brendan Nyhan. 2010.
+\newblock ``Bayesian Model Averaging: Theoretical Developments and Practical
+  Applications.'' {\em Political Analysis} 18(2):245--270.
+
 \harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
-  \harvardand\ Ward}{2012}{mhw:2012}
-Montgomery, Jacob~M., Florian Hollenbach \harvardand\ Michael~D. Ward. 2012.
+  \harvardand\ Ward}{2012{\em a}}{Montgomery:2012c}
+Montgomery, Jacob~M., Florian Hollenbach \harvardand\ Michael~D. Ward. 2012{\em
+  a}.
+\newblock ``Ensemble Predictions of the 2012 US Presidential Election.'' {\em
+  PS: Political Science \& Politics} 45(4):651--654.
+
+\harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
+  \harvardand\ Ward}{2012{\em b}}{mhw:2012}
+Montgomery, Jacob~M., Florian Hollenbach \harvardand\ Michael~D. Ward. 2012{\em
+  b}.
 \newblock ``Improving Predictions Using Ensemble Bayesian Model Averaging.''
   {\em Political Analysis} 20(3):271--291.
+
+\harvarditem{Page}{2011}{Page:2011}
+Page, Scott~E. 2011.
+\newblock {\em Diversity and Complexity}.
+\newblock Princeton,N.J.:  Princeton University Press.
 
 \harvarditem{Palm \harvardand\ Zellner}{1992}{Palm:Zellner:1992}
 Palm, Franz~C. \harvardand\ Arnold Zellner. 1992.
 \newblock ``To Combine of Not to Combine? Issues of Combining Forecasts.'' {\em
   Journal of Forecasting} 11(8):687--701.
+
+\harvarditem{Raftery}{1995}{Raftery:1995}
+Raftery, Adrian~E. 1995.
+\newblock ``Bayesian Model Selection in Social Research.'' {\em Sociological
+  Methodology} 25(1):111--163.
 
 \harvarditem[Raftery et~al.]{Raftery, Gneiting, Balabdaoui \harvardand\
   Polakowski}{2005}{Raftery:2005}
@@ -179,11 +348,29 @@ Raftery, Adrian~E., Tilmann Gneiting, Fadoua Balabdaoui \harvardand\ Michael
 \newblock ``Using {B}ayesian Model Averaging to Calibrate Forecast Ensembles.''
   {\em Monthly Weather Review} 133(5):1155--1174.
 
-\harvarditem[Vrugt, Diks \harvardand\ Clark]{Vrugt, Diks \harvardand\
-  Clark}{2008}{Vrugt:2008}
-Vrugt, Jasper~A., Cees~G.H. Diks \harvardand\ Martyn~P. Clark. 2008.
-\newblock ``Ensemble {B}ayesian Model Averaging Using {M}arkov Chain {M}onte
-  {C}arlo Sampling.'' {\em Environmental Fluid Mechanics} 8(5):579--595.
+\harvarditem[Smith et~al.]{Smith, Tebaldi, Nychka \harvardand\
+  Mearns}{2009}{Smith:2009}
+Smith, Richard~L., Claudia Tebaldi, Doug Nychka \harvardand\ Linda~O. Mearns.
+  2009.
+\newblock ``Bayesian Modeling of Uncertainty in Ensembles of Climate Models.''
+  {\em Journal of the American Statistical Association} 104(485):97--116.
+
+\harvarditem{Surowiecki}{2004}{Surowiecki:2004}
+Surowiecki, J. 2004.
+\newblock ``The Wisdom of Crowds: Why the Many Are Smarter Than the Few and How
+  Collective Wisdom Shapes Business.'' {\em Economies, Societies and Nations} .
+
+\harvarditem{Ulfelder}{2012}{Ulfelder:2012}
+Ulfelder, Jay. 2012.
+\newblock ``Forecasting Onset of Mass Killings.'' Paper presented at the annual
+  Northeast Political Methodology Meeting at New York University .
+
+\harvarditem[Vrugt et~al.]{Vrugt, Clark, Diks, Duan \harvardand\
+  Robinson}{2006}{Vrugt:2006}
+Vrugt, Jasper~A., Martyn~P. Clark, Cees~G.H. Diks, Qinyun Duan \harvardand\
+  Bruce~A. Robinson. 2006.
+\newblock ``Multi-Objective Calibration of Forecast Ensembles Using {B}ayesian
+  Model Averaging.'' {\em Geophysical Research Letters} 33:L19817.
 
 \harvarditem{Wright}{2008}{Wright:2008}
 Wright, Jonathan~H. 2008.
@@ -194,5 +381,12 @@ Wright, Jonathan~H. 2008.
 Wright, Jonathan~H. 2009.
 \newblock ``Forecasting {US} Inflation by {B}ayesian Model Averaging.'' {\em
   Journal of Forecasting} 28(2):131--144.
+
+\harvarditem[Zhang, Srinivasan \harvardand\ Bosch]{Zhang, Srinivasan
+  \harvardand\ Bosch}{2009}{Zhang:2009}
+Zhang, Xuesong, Raghavan Srinivasan \harvardand\ David Bosch. 2009.
+\newblock ``Calibration and Uncertainty Analysis of the {SWAT} Model Using
+  Genetic Algorithms and {B}ayesian Model Averaging.'' {\em Journal of
+  Hydrology} 374(3-4):307--317.
 
 \end{thebibliography}
