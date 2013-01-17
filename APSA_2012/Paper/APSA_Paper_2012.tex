@@ -39,7 +39,7 @@
 
 
 \title{Say Yes to the Guess: \\ Tailoring Elegant Ensembles on a Tight
-  (Data) Budget\thanks{Presented at the 2012 Annual Meeting of the American Political Science Association, August 30 - September 2, New Orleans, Louisiana. 
+  (Data) Budget\thanks{Prepared for the 2012 Annual Meeting of the American Political Science Association, August 30 - September 2, New Orleans, Louisiana. 
 This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
     }}
 \author{
@@ -176,6 +176,7 @@ U.S. unemployment rate and the 2012 U.S. presidential election.
 
 
 \section{Ensemble prediction with sparse data and multiple forecasts }
+\label{theproblem}
 
 The concept of ensemble forecasting builds on the basic notion that
 combining multiple points of view leads to a more accurate picture of
@@ -452,47 +453,49 @@ $t$ represents a special case of EBMA where $c=1$.\footnote{The mean
 EBMA discussed in \citet{mhw:2012} represents a special case of this
 more general model where $c=0$.
 
-\section{Simulations and Applications}
+\section{Simulations and applications}
 \label{empirics}
 
-The introduction of the ``wisdom of crowds'' parameter to the baseline
+The introduction of the ``wisdom of crowds'' parameter to the base
 EBMA model is designed to improve out-of-sample predictive performance
 in the context of data-quality challenges common to social science
 applications.  In particular, it is designed to address poor weight
 calibrations that are common when the size of the calibration sample
 is small, there are missing components in the calibration sample, and
-the number of component forecasts is large.  We stated above that
-these circumstances increase the miss-estimation of component model
-weights and decrease the predictive performance of EBMA.
+the number of component forecasts for which weights must be estimated
+is large.  Above, we claim that this increases the miss-estimation of
+component model weights and decrease the predictive performance of
+EBMA.
 
 To justify these claims, in this section we present the results of a
 simulation study of our modified EBMA algorithm and two empirical
-applications of the method.  We begin with a simulation that
+applications of the modified method.  We begin with a simulation that
 illustrates the reduced predictive performance of the baseline EBMA
 model in the circumstances described above and illustrates the
 improvements that result from our proposed modification.  We then
-apply our method to, first, the prediction of the US unemployment rate
-using the forecasts from the Survey of Professional Forecasters, and,
-second, to the prediction of the 2012 US presidential election.
+apply our method to, first, the prediction of the US unemployment
+rate, and, second, to the prediction of the 2012 US presidential
+election.
 
 \subsection{Simulation study} 
 
-In this section, we conduct a simulated study of our small-sample EBMA
-model.  These simulations serve three purposes.  First, they
-demonstrate the challenges presented to ensemble forecasting when
+In this section, we conduct a simulated study of the adjusted EBMA
+model proposed above.  These simulations serve two purposes.  First,
+they demonstrate the challenges presented to ensemble forecasting when
 calibration samples are small and the number of forecasting models are
 large.\footnote{To reduce the parameter space for these simulations,
   we limit ourselves here to exploring the roll of calibration sample
   sizes and number of component forecasts.  We do not consider issues
   of missingness.}  Second, it explores the extent to which our
-modified EBMA algorithm ameliorates these difficulties.  Third, this
-exercise provides some guidance regarding the selection of $c$ for the
-applied examples below.
+modified EBMA algorithm ameliorates these difficulties.  In addition,
+we provide some guidance regarding the selection of $c$.
 
-The simulations are designed to reflect the ``best possible''
-situation for EBMA.  The distribution of outcomes is drawn precisely
-from the mixture distribution shown in Equation~(\ref{pdf}) where
-$\sigma^2 = 1$.  Moreover, we assume that the true data generating
+The simulations are designed to reflect the ``best possible'' world
+for the baseline EBMA model.  The distribution of outcomes is drawn
+precisely from the mixture distribution shown in Equation~(\ref{pdf})
+where $\sigma^2 = 1$ and the individual component forecasts are drawn
+from the multivariate normal distribution $N(\mathbf{0}_K,
+\mathbf{I}_K)$.  Moreover, we assume that the true data generating
 process, both in-sample and out-of sample, involves \textit{only} the
 $K$ forecasting models which are themselves estimated with perfect
 precision.  The ``true'' model weight for each simulation are drawn
@@ -535,7 +538,7 @@ predictions for the 250 observations in the test period using the
 fitted model and compare then them to the true values from the
 simulated data.  
 
-Our goal is to compare the accuracy of the baseline EBMA ($c=0$)
+We begin by examining the accuracy of the baseline EBMA ($c=0$)
 predictive PDF shown in Equation~\ref{pdf} for different values of $K$
 (the number of components) and $n_{T}$ (the calibration sample size) .
 We focus here on the CRPS measure because it is awesome.  FLORIAN:
@@ -555,9 +558,9 @@ EBMA method, as measured by CRPS, depends significantly on the number
 of forecast models included as well as the calibration sample size.
 First, note the upward slope of each line, indicating that the
 predictive power of the model decreases as the number of components in
-the true data generating process increase.  That is, as the number of
+the true data generating process increases.  That is, as the number of
 model parameters that \textit{must} be correctly estimated to make
-accurate predictions increase, the quality of the forecast goes down.
+accurate predictions increases, the quality of the forecast goes down.
 Second, Figure~\ref{simplot1} shows out-of-sample CRPS when $n_T=5$
 (black), $n_T=11$ (blue), and $n_T=100$ (red).  For all values of $k$,
 the CRPS is a decreasing function of $N_T$.  This illustrates that the
@@ -574,20 +577,32 @@ sample grows.
 The remaining question, then, is to what degree adding the ``wisdom of
 crowds'' parameter to the baseline model improves performance.  To
 answer, we examined the out-of-sample predictive performance of EBMA
-for differing values of $c$. The results are shown in
-Figure~\ref{simplot2}. For the purposes of clarity, we focus on only
-three subsets from the simulations: $n_T=3, K=15$, $n_T=5, K=9$,
-$n_T=35, K=5$.  While this is far from a complete analysis of the
-simulated data, it does serve the limited purposes of demonstrating
-that, in some circumstances, the ``wisdom of crowds'' parameter aids
-prediction.
+for differing values of $c$. Figure~\ref{simplot2} shows the median
+CRPS recorded for differing values of $N_T$, $K$, and $c$.  For the
+purposes of clarity, we focus on only three subsets from the
+simulations: $n_T=3, K=15$, $n_T=5, K=9$, $n_T=35, K=5$.  While this
+is far from a complete analysis of the simulated data, it does serve
+the limited purposes of demonstrating that, in some circumstances, the
+``wisdom of crowds'' parameter aids prediction under some
+circumstances.
 
+There are two aspects of Figure~\ref{SimTemp2} that are particularly
+salient.  First, note that the addition of $c$ to the base EBMA
+modeldoes not uniformly aid in out-of-sample performance.  When the
+calibration sample is modestly large ($N_T=35$) and there are few
+models to calibrate, the addition of $c$ uniformly decreases model
+performance.  However, with small calibration samples and modestly
+large numbers of component models, the addition of $c$ appears to aid
+predictive performance.  Second, the relationship between $c$ and CRPS
+is non-monotonic.  CRPS decreases for small to modest values of $c$,
+but eventually begins to rise.  Based on our examination of the
+broader set of simulations, we therefore recommend the selection of
+values of $c \in [0, 0.1]$.  The simulations favor smaller values of
+$c$ as the ratio of $N_T$ to $K$ increases.  As a default choice, we
+recommend $c=0.05$.  Researchers may also choose the value of $c$
+based on a k-fold cross-validation study of the calibration sample.
 
-
-
-
-
-Bearing these results in mind, we now turn to examining how these
+ Bearing these results in mind, we now turn to examining how these
 methods work in two areas that exemplify forecasting in the social
 sciences. The first is the prediction of unemployment in the United
 States, and the second in the area of predicting the vote for the
@@ -643,13 +658,12 @@ forecasters and is returned by the middle of the second month of the
 quarter. Forecasts are made for the current quarter as well as several
 quarters into the future.
 
-This plethora of predictions seems ideal for applying EBMA.  Nonetheless,
-it is plagued by the same issues as discussed for the presidential
-election forecasts shown in Table 1.  Even for quarterly measures,
-there are relatively few observations, many forecasting teams, and a
-significant number of missing observations.  This setting, therefore,
-provides a test bed for the adjusted EBMA model discussed
-above.
+This plethora of predictions seems ideal for applying EBMA.
+Nonetheless, it is plagued by the same issues as discussed in
+Section~\ref{theproblem}.  Even with quarterly measures, there are
+relatively few observations, many forecasting teams, and a significant
+number of missing observations.  This setting, therefore, provides a
+test bed for the adjusted EBMA model discussed above.
 
 Here we focus on forecasting the civilian unemployment rate (UNEMP) as
 published by the \textit{SPF}. For this application, we selected the
@@ -699,90 +713,6 @@ quarter of 2007.
 
 
 
-% \begin{figure}[!htb]
-%   \caption{Ensemble weights for SPF forecasts of U.S. unemployment
-%     with a rolling calibration window}
-% \label{modelWeights}
-% \begin{center}
-% \includegraphics[scale=.70]{awesome}
-% \end{center}
-
-% \footnotesize This graphic illustrates the component weights for each EBMA
-% model estimated between 1983 and 2007. Ensembles are calibrated on the
-% past ten quarters. The colors range from blue to red to indicate
-% increasing weights for components in a given ensemble model. Those
-% components excluded in a given model are missing.
-
-% \end{figure}
-
-Figure~\ref{modelWeights} provides a visual representation of EBMA
-model calibrations throughout this period.  In this figure, the wisdom
-of crowds tuning parameter is set to a modest $c=0.05$.  The colors
-indicate the model weight assigned to each component on a red-blue
-color ramp (components not included in the ensemble are blank).
-Models assigned no weight are shown in dark blue while models that are
-heavily weighted are shown in red. Figure~\ref{modelWeights} also illustrates
-the difficulties inherent in
-forecasting with this type of data.  For any given year, only a subset
-of forecasting teams offer a prediction.  Further, an even smaller
-subset contains models that both offer a prediction and have made a
-sufficiently large number of prior forecasts to facilitate model
-calibration.  Finally, the very sparseness of the data encourages the
-ensemble model to place a very large amount of weight on the best
-performing models.  
-
-We now turn to evaluating the performance of the ensemble relative to
-its 163 component forecasts.  To do this, we focus on eight model fit
-indices available in the literature.  The eight metrics we use are
-mean absolute error (MAE), root mean squared error (RMSE), median
-absolute deviation (MAD), root mean squared logarithmic error (RMSLE),
-mean absolute percentage error (MAPE), median absolute percentage
-error (MEAPE), median relative absolute error (MRAE) and percent worse
-(PW).  The latter two metrics are measured relative to a naive model,
-simply predicting the future rate of unemployment as being the same as
-the current rate of unemployment.  Further details for these metrics
-are shown in the Appendix \citep{brandt:freeman:schrodt:2011}.
-
-
-\begin{figure}[!htb]
-\caption{Comparing predictive accuracy of EBMA and component models with eight metrics}
-\label{compare2Components}
-\begin{center}
-\includegraphics{compare2Components}
-\end{center}
-
-The top panel plots EBMA's relative performance, as measured by eight
-forecasting metrics, to each of its components against the number of
-forecasts generated by the component models.  The bottom panel shows
-the percentage of component models that EBMA matches or outperforms as
-measured by each metric.  Details on the eight forecasting metrics are
-shown in the Appendix.
-
-
-\end{figure}
-
-It is important to note that many of these forecasters make
-predictions in a relatively small subset of cases.  That is, each
-model $k$ offers forecasts for only a subset of cases $n_k \subset n$.
-To create a fair comparison, therefore, we calculate these fit indices
-only for $n_k \forall k \in [1,K]$.  By this measure, the EBMA model
-performs very well.  Figure~\ref{compare2Components} provides a
-summary of these results.  The top panel shows the percentage of
-metrics by which EBMA outperforms each component. The bottom panel
-shows the percentage of component models that EBMA ``beats'' as
-measured by each metric.
-
-Notably, the relative superiority of EBMA to its components is
-somewhat less for components that provide few forecasts.  This
-reflects the fact that with so many forecasts, some are likely to be
-more accurate than the ensemble by chance alone. Additionally, when
-the number of forecasts is low it is likely that a given model
-received less weight than it ``deserves'' given the model's
-performance.  However, across a large number of forecasts, EBMA
-significantly outperforms any of its components, including the Green
-Book (GB).  It is also worth noting that only 6 out of the total 163
-components outperforms EBMA on every metric.
-
 \begin{figure}[h]
 \caption{Observed and forecasted U.S. unemployment (1981-2007)}
 \label{timeSeries}
@@ -792,17 +722,16 @@ components outperforms EBMA on every metric.
 \end{figure}
 
 
-Another approach to evaluating the performance of EBMA is to compare
-its predictive accuracy to that made by other systematic forecasting
+One approach to evaluating the performance of EBMA is to compare its
+predictive accuracy to that made by other systematic forecasting
 efforts and methods of generating ensemble predictions.  Specifically,
-we compare EBMA's predictive accuracy to (1) the Green Book, (2) the
-median forecaster prediction and (3) the mean forecaster
-prediction.\footnote{Note that the EBMA model is calculated on only a the
-  subset of forecasts that have made a sufficiently large number of
-  recent predictions to calibrate model weights.  Thus, the median
+we compare EBMA's ($c=0.05$) predictive accuracy to (1) the Green
+Book, (2) the median forecaster prediction and (3) the mean forecaster
+prediction.\footnote{Note that the EBMA model is calculated on only a
+  the subset of forecasts that have made a sufficiently large number
+  of recent predictions to calibrate model weights.  Thus, the median
   forecast and the ensemble forecast will not be the same even when
-  $c=1$.  }  The first three of these forecasts and the true level of
-unemployment are shown in Figure~\ref{timeSeries}.
+  $c=1$.  } 
 
 Figure~\ref{timeSeries} shows a visual representation of the
 Greenbook, median SPF and the EBMA (with $c=0.05$) forecasts over
@@ -812,11 +741,9 @@ similar. \citet{Baghestani:2008} noted that the Greenbook forecast is
 slightly biased to over predict the unemployment rate. In some periods
 EBMA is able to correct this bias, however given the similarity of
 component models, the improvement in that direction is rather
-small. In general, however, it is easily visible that the EBMA forecast
-is closer to the actual rate than the median SPF or the Green Book
-forecast.
-
-
+small. In general, however, it is easily visible that the EBMA
+forecast is closer to the actual rate than the median SPF or the Green
+Book forecast.
 
 \begin{table}[h]
 \caption{Comparing adjusted EBMA models with Green Book, median, and mean forecasts of U.S. Unemployment (1981-2007)}
@@ -843,26 +770,123 @@ Definitions of model fit statistics are provided in the Appendix. The model with
 
 Table~\ref{compareTable1} formally compares these baseline models
 using all eight of the metrics to EBMA models with $c=$0, 0.05, 0.1,
-and 1 respectively.  The bolded cells in each column indicate the
-model that performed ``best'' as measured by each metric.  With one
-exception, (the Green Book outperforms the ensemble by 0.01 on RMSE),
-the EBMA model outperforms both the Green Book forecast and the
+and 1 respectively.  To do this, we focus on eight model fit indices
+available in the literature.  The eight metrics we use are mean
+absolute error (MAE), root mean squared error (RMSE), median absolute
+deviation (MAD), root mean squared logarithmic error (RMSLE), mean
+absolute percentage error (MAPE), median absolute percentage error
+(MEAPE), median relative absolute error (MRAE) and percent worse (PW).
+The latter two metrics are measured relative to a naive model, simply
+predicting the future rate of unemployment as being the same as the
+current rate of unemployment.  Further details for these metrics are
+shown in the Appendix \citep{brandt:freeman:schrodt:2011}.
+
+
+The bolded cells in each column of Table~\ref{compareTable1} indicate
+the model that performed ``best'' as measured by each metric.  With
+one exception, (the Green Book outperforms the ensemble by 0.01 on
+RMSE), the EBMA model outperforms both the Green Book forecast and the
 unweighted mean and median forecast on every metric.  Moreover, these
-results indicate that the $c$ parameter is best set to a small number.
+results confirms that the $c$ parameter is best set to a small number.
 In general, the model with $c=0.05$ performs best (or is tied for
 best) on six out of eight of these metrics.
+
+
+% \begin{figure}[!htb]
+%   \caption{Ensemble weights for SPF forecasts of U.S. unemployment
+%     with a rolling calibration window}
+% \label{modelWeights}
+% \begin{center}
+% \includegraphics[scale=.70]{awesome}
+% \end{center}
+
+% \footnotesize This graphic illustrates the component weights for each EBMA
+% model estimated between 1983 and 2007. Ensembles are calibrated on the
+% past ten quarters. The colors range from blue to red to indicate
+% increasing weights for components in a given ensemble model. Those
+% components excluded in a given model are missing.
+
+% \end{figure}
+
+% Figure~\ref{modelWeights} provides a visual representation of EBMA
+% model calibrations throughout this period.  In this figure, the wisdom
+% of crowds tuning parameter is set to a modest $c=0.05$.  The colors
+% indicate the model weight assigned to each component on a red-blue
+% color ramp (components not included in the ensemble are blank).
+% Models assigned no weight are shown in dark blue while models that are
+% heavily weighted are shown in red. Figure~\ref{modelWeights} also
+% illustrates the difficulties inherent in forecasting with this type of
+% data.  For any given year, only a subset of forecasting teams offer a
+% prediction.  Further, an even smaller subset contains models that both
+% offer a prediction and have made a sufficiently large number of prior
+% forecasts to facilitate model calibration.  Finally, the very
+% sparseness of the data encourages the ensemble model to place a very
+% large amount of weight on the best performing models.
+
+
+
+\begin{figure}[!htb]
+\caption{Comparing predictive accuracy of EBMA and component models with eight metrics}
+\label{compare2Components}
+\begin{center}
+\includegraphics{compare2Components}
+\end{center}
+
+\footnotesize
+The top panel plots EBMA's relative performance, as measured by eight
+forecasting metrics, to each of its components against the number of
+forecasts generated by the component models.  The bottom panel shows
+the percentage of component models that EBMA matches or outperforms as
+measured by each metric.  Details on the eight forecasting metrics are
+shown in the Appendix.  The Green Book forecast is labeled (GB) and is
+located in the upper left portion of the top panel).
+
+
+\end{figure}
+
+We now turn to evaluating the performance of the ensemble relative to
+its 163 component forecasts.  It is important to note that many of
+these forecasters make predictions in a relatively small subset of
+cases.  That is, each model $k$ offers forecasts for only a subset of
+cases $n_k \subset n$.  To create a fair comparison, therefore, we
+calculate these fit indices only for $n_k \forall k \in [1,K]$.  By
+this measure, the EBMA model performs very well.
+Figure~\ref{compare2Components} provides a summary of these results.
+The top panel shows the percentage of metrics by which EBMA
+outperforms each component. The bottom panel shows the percentage of
+component models that EBMA ``beats'' as measured by each metric.
+
+Notably, the relative superiority of EBMA to its components is
+somewhat less for components that provide few forecasts.  This
+reflects the fact that with so many forecasts, some are likely to be
+more accurate than the ensemble by chance alone. Additionally, when
+the number of forecasts is low it is likely that a given model
+received less weight than it ``deserves'' given the model's
+performance.\footnote{See the Appendix for a discussion of how EBMA
+  handles missing component forecasts.}  However, across a large
+  number of forecasts, EBMA significantly outperforms any of its
+  components, including the Green Book (GB).  It is also worth noting
+  that only 6 out of the total 163 components outperforms EBMA on
+  every metric.
 
 
 
 
 \subsection{U.S. presidential elections}
 
+We now turn to the task of combining expert predictions of
+U.S. presidential election.\footnote{See also \citep{Montgomery:2012c}.}
+This example provides a clear illustration of the difficulties of
+creating ensemble forecasts in the social sciences and allows us to
+further illustrate the advantages of generating predictive PDFs when
+focusing on a limited number of important events.
 
-One prominent example of forecasting that combines all of these issues
-is the prediction of U.S. Presidential elections.  Table 1 represents
-nearly the entirety of scholarly forecasts which produced more than
-one out-of-sample forecast for elections in the 20th century prior to
-the 2012 election.\footnote{ See, for example \citet[][]{Fair:2009,
+Predicting U.S. presidential elections is, perhaps, the quintissential
+forecasting task that combines all of the issues discussed in
+Section~\ref{theproblem}.  Table~\ref{tab:one} represents nearly the
+entirety of scholarly forecasts which produced more than one
+out-of-sample forecast for elections in the 20th century prior to the
+2012 election.\footnote{ See, for example \citet[][]{Fair:2009,
     Fair2011, Abramowitz:2008, Campbell:2008,
     Cuzan:2004,Cuzan:Bundrick:2008,hibbs:2012, Lockerbie:2008,
     Erikson:Wlezien:2008, Graefe:2010, Holbrook:2008}.  A recent
@@ -906,12 +930,16 @@ Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bram
 \end{table}
 
 
-Informed by the above discussion, we now turn to our second
-application and return briefly to the example with which we began --
-predicting U.S. presidential elections.  Using the forecasts shown in
-Table 1, we fit an EBMA model with $c=0.05$.  The model weights and
-in-sample fit statistics for the ensemble and its components are shown
-in Table~\ref{presModel}.
+Using the forecasts shown in Table 1, we fit an EBMA model with
+$c=0.05$.  The model weights and in-sample fit statistics for the
+ensemble and its components are shown in Table~\ref{presModel}.  As
+can be seen, the EBMA model assigns the majority of weight to the
+Abramowitz model with the model by Campbell receiving the second
+largest weight. These weights are based on the performance of each
+model in forecasting the incumbent vote share in the presidential
+elections between 1992 and 2008. The Cuz\`an and Bundrick model is
+weighted to such a small degree because only out-of-sample predictions
+for 2004 and 2008 were available here.
 
 
 % latex table generated in R 2.15.1 by xtable 1.7-0 package
@@ -939,27 +967,15 @@ EBMA &  & 1.92 & 1.56 \\
 \end{center}
 \end{table}
 
-As can be seen in Table~\ref{presModel}, the EBMA model assigns the
-majority of weight to the Abramowitz model with the model by Campbell
-receiving the second largest weight. These weights are based on the
-performance of each model in forecasting the incumbent vote share in
-the presidential elections between 1992 and 2008. The Cuz\`an and
-Bundrick model is weighted to such a small degree because only
-out-of-sample predictions for 2004 and 2008 were available here.
-
-
-
 
 Figure~\ref{pres} shows the posterior predictive distribution for the
-2008 election (top) and, based on current forecasts from each of the
-component models, the 2012 election.  We predict that Obama is going to
-win by very little, however the credible intervals are quite wide,
-indicating a lot of uncertainty. Component models predictive
-distributions are shown in color (scaled by their respective weight),
-while the EBMA predictive distribution is shown in black. Vertical
-dashes indicate the point prediction of each model (bold dash for the
-EBMA model). The vertical dashed line in the top panel depicts the
-actual election result in 2008.
+2008 election (top) and, based on the forecasts from each of the
+component models, the 2012 election.  Component models
+predictive distributions are shown in color (scaled by their
+respective weight), while the EBMA predictive distribution is shown in
+black. Vertical dashes indicate the point prediction of each model
+(bold dash for the EBMA model). The vertical dashed line in the top
+panel depicts the actual election result in 2008.
 
 \begin{figure}[h]
 \caption{Predictive ensemble PDFs of incumbent-part vote share in U.S. Presidential Elections}
@@ -976,9 +992,16 @@ prediction. For 2008 the vertical dashed line shows the actual result.
 \end{figure}
 
 
+FLORIAN: WE NEED TO UPDATE THIS TO SHOW THE ACTUAL RESULTS.  TRY TO
+ADD A DISCUSSION HERE OF HOW GOOD THE METHOD IS.  I SUPPOSE WE SHOULD
+RUN THE REGULAR EBMA WITHOUT C AND SEE HOW WE DO IN COMPARISON.  TRY
+AND PUT SOME LIPSTICK ON THAT PIG, AND THEN WE'LL SEE WHERE WE ARE AT.
+
+
+
 \section{Discussion} 
 
-Why don't we estimate c?
+FLORIAN: CAN YOU ADD SOMETHING IN HERE ABOUT WHY WE DON'T ESTIMATE C AND HOW WE MIGHT DO THAT IN THE FUTURE?
 
 
 Ensemble Bayesian model averaging is a principled way of combining
@@ -998,34 +1021,31 @@ different models. In the standard EBMA model introduced in
 \citet{mhw:2012} missing observations in component model predictions
 are not allowed.
 
+In this article, we address both of these issues to make EBMA more
+applicable for researchers and predictioneers in the social
+sciences. After reviewing the standard EBMA framework, we proceed
+introduce a ``wisdom of the crowds'' parameter into the model, which
+forces EBMA to put some minimal weight on all component models. Adding
+this constant aids the calibration of EBMA when the number of
+observations in the calibration period is small.
 
-In this manuscript, we address both of these issues to make
-EBMA more applicable for researchers and so-called predictioneers in the social
-sciences. After reviewing the standard EBMA framework, we proceed to
-introduce an adjustment to the EBMA estimation that allows for missing
-observations in the calibration period. As a further adjustment, we
-then propose to introduce a ``wisdom of the crowds'' parameter into
-the model, which forces EBMA to put some minimal weight on all
-component models. Adding this constant aids the calibration of EBMA
-when the number of observations in the calibration period is small.
-
-After explaining our adjustments, we apply the adjusted EBMA model in
-two prediction exercises. In Section \ref{econ}, we use ensemble
-Bayesian model averaging to combine predictions of the unemployment
-rate in the US from the Survey of Professional Forecasters as well as
-the Green Book. As we show, even when a large number of forecasts is
-missing for any given quarter, EBMA generally outperforms the
-Green Book, SPF component models, as well as the median and mean SPF
-forecast. 
+After explaining our adjustments, we illustrated its advantages via
+simulation.  We then applied the adjusted EBMA model in two prediction
+exercises. We use ensemble Bayesian model averaging to combine
+predictions of the unemployment rate in the US from the Survey of
+Professional Forecasters as well as the Green Book. As we show, even
+when a large number of forecasts is missing for any given quarter,
+EBMA generally outperforms the Green Book, SPF component models, as
+well as the median and mean SPF forecast.
 
 In a second example, we use the out-of-sample forecasts of nine
 prediction models of presidential elections from 1992 to 2008 to
 calibrate an ensemble model. We use the model calibrated to make an
 informed prediction for the 2012 elections based on a weighted
-combination of the component model predictions for 2012. According to
-the EBMA model, we expect President Obama to win the popular vote in
-the 2012 election by a small margin (the uncertainty estimated around
-the prediction is quite large).
+combination of the component model predictions for 2012. This example
+neatly illustrates the common difficulties facing forecasters in the
+social science, and provides an illustrative example for applied
+researchers going forward.
 
 % Missing data is always a conundrum, and a pain. This is especially
 % true when creating ensemble predictions. The combination of missing
@@ -1037,12 +1057,8 @@ the prediction is quite large).
 % spreads the weights out over the ensemble components in a way that
 % helps to preserve the advantages of the ensemble.
 
-Finally, we note that in future research, we intend to (1)
-compare alternative methods of handling missing data (2) discuss how
-to select window of time for calibration, (3) conduct
-simulation studies to explore settings for $c$ parameter, and (4) test
-the numerical stability of our results.
-
+FLORIAN ... FUTURE WORK ?  MAYBE FOCUS ON BETTER WAYS OF HANDLING
+MISSING DATA.
 
 
 %%Bib 
