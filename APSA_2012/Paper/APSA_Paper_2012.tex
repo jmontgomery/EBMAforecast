@@ -126,21 +126,20 @@ systematic forecasting from more traditional topics such as GDP growth
 and unemployment to many new domains including elections
 \citep[e.g.,][]{Linzer:2013}, political instability
 \citep[e.g.,][]{Goldstone:etal:2010}, and mass killings
-\citep{Ulfelder:2012}.  Several factors motivate this trend.  To begin
+\citep{Ulfelder:2012}. Several factors motivate this trend. To begin
 with, testing predictions about future events against observed
 outcomes is seen as a stringent validity check of statistical and
-theoretical models.  In addition, forecasting of important political,
+theoretical models. In addition, forecasting of important political,
 economic, and social events is of great interest to policymakers and
 the public.
 
 
 With the proliferation of forecasting efforts, however, comes a need
 for sensible methods to aggregate and utilize the various scholarly
-efforts.  One attractive solutions to this problem is to combine
-prediction models and create an ensemble forecast.  Combining
+efforts. One attractive solutions to this problem is to combine
+prediction models and create an ensemble forecast. Combining
 forecasts reduces reliance on any single data source or methodology,
-and allows for the incorporation of more information than any model in
-isolation can provide.  Across subject domains, scholars have shown
+and allows for the incorporation of more information than any one model can provide in isolation. Across subject domains, scholars have shown
 ensemble predictions to be more accurate than any individual component
 model and less likely to make dramatically incorrect predictions
 \citep{Bates:1969,Armstrong:2001,Raftery:2005}.
@@ -150,11 +149,10 @@ Bayesian model averaging (EBMA). This method was first proposed by
 \citet{Raftery:2005} to combine weather forecasts and was introduced
 to the social sciences by \citet{mhw:2012}. EBMA combines multiple
 forecasts using a finite mixture model that generates a weighted
-predictive probability density function (PDF).  EBMA mixture models
+predictive probability density function (PDF). EBMA mixture models
 seek to collate the good parts of existing forecasting models, while
-avoiding over-fitting to past observations or over-estimating our
-certainty about the future.  The hope is for greater accuracy as both
-the knowledge and implied uncertainty of a variety of approaches are
+avoiding over-fitting to past observations and over-estimating our
+certainty about forecasts of future events. The hope is for greater accuracy as both the knowledge and implied uncertainty of a variety of approaches are
 integrated into a combined predictive PDF.
 
 In this article, we present several adjustments to the basic EBMA
@@ -188,7 +186,7 @@ while individual entrants were often wildly inaccurate, aggregating
 the ``wisdom of crowds'' by using the average guess resulted in a
 remarkably accurate estimate.  This observation is related to
 Condorcet's jury theorem that calculates the probability of a jury
-reaching a correct verdict will be greater than even the most accurate
+reaching a correct verdict, based on independent juror opinions, will always be greater than even the most accurate
 of judges.
 
 In recent years, the advantages of ensembles have come to play a
@@ -200,7 +198,7 @@ particular relevance is the success of boosting \citep{Freund:1997,
   Friedman:2001}, bagging \citep{Breiman:1996}, random forests
 \citep{Breiman:2001}, and related techniques
 \citep[e.g.,][]{Chipman:2010} to aggregate so-called ``weak
-learners.''  These approaches to classification and prediction have
+learners''.  These approaches to classification and prediction have
 been advertised as the ``best off-the-shelf classifier[s] in the
 world'' \citep{Breiman:1996}, and are equally powerful in prediction
 tasks.
@@ -219,21 +217,20 @@ distribution functions (PDFs).  Rather that selection some ``best
 model,'' EBMA collects \textit{all} of the insights from multiple
 forecasting efforts in a coherent manner via statistical post
 processing.  The weight assigned to each component forecast, reflects
-two aspects its past predictive accuracy and uniqueness.   
+two aspects its past predictive accuracy and uniqueness. 
 
-FLORIAN: THIS PARAGRAPH NEEDS AN UPDATE.  FIND RECENT WORK, AND TRY TO
-ILLUSTRATE THAT EBMA IS A BURGEONING AREA OF RESEARCH.  In recent
-years, variants of the EBMA method have been applied to subjects as
-diverse as inflation \citep{Wright:2009, Koop:2010, Gneiting:2010},
+In recent years, variants of ensemble Bayesian model averaging or other methods of combining predictions have been at the forefront of research on forecasting. In recent years, variants of the EBMA method have been applied to subjects as diverse as inflation \citep{Wright:2009, Koop:2010, Gneiting:2010},
 stock prices \citep{Billio:2011}, economic growth and policymaking
 \citep{Brock:2007, Billio:2010}, exchange rates \citep{Wright:2008},
 industrial production \citep{Feldkircher:2010}, ice formation
 \citep{Berrocal:2010}, visibility \citep{Chmielecki:2010}, water
 catchment streamflow \citep{Viney:2009}, climatology \citep{Min:2006,
-  Min:2007, Smith:2009}, and hydrology \citep{Zhang:2009}.  Indeed,
-research is underway to extend the method to handle missing data
-\citep{Fraley:2010, Mccandless:2011} as well as calibrate model
+  Min:2007, Smith:2009}, and hydrology \citep{Zhang:2009}. 
+
+  Indeed, while EBMA methods have been applied to predictions on a number of different topics, research is underway to extend the method in a variety of ways. EBMA has been adjusted to handle missing data
+\citep{Fraley:2010, Mccandless:2011}, to incorporate spatial information \citep{Feldman:2012} as well as calibrate model
 weights on non-likelihood criteria \citep[e.g.,][]{Vrugt:2006}.
+\citet{MoellerEtAl:2012} introduce statistical postprocessing of EBMA models for univariate forecasts into jont predictive distributions using Gaussian copulas. This can be especially valuable when prediction different processes that are correlated with each other. \citet{RingsEtAl:2012} have tweaked EBMA in a different direction, allowing for time-specific variances and utilizing particle filtering methods. All in all, while EBMA allows for improvements in forecasts over single models, various avenues for further improvements exist.  
 
 Although there are clear advantages to combining forecasts via EBMA,
 several challenges common to the social sciences pose a particular
@@ -544,7 +541,11 @@ predictive PDF shown in Equation~\ref{pdf} for different values of $K$
 We focus here on the CRPS measure because it is awesome.  FLORIAN:
 BRIEF DESCRIPTION OF CRPSIN MAIN TEXT HERE. MATHEMATICAL DETAILS IN
 THE APPENDIX.  CITE RELEVANT WORK.  EXPLAIN INTUITION OF WHY IT IS
-BEST.
+BEST. "Another candidate statistic that can be used to derive model weights is the continuous ranked probability score (CRPS). In an ideal world perfect forecasters would correctly anticipate all future events,
+and probability mass of one would be centred on the soon-to-be realised outcomes. The corresponding cumulative density functions would be step functions, with the steps also located at the realised
+outcomes. The CRPS can be conceptualised as a measure of the deviation from this step-function ideal. Two forecast densities may have the same score – the same slope of the CDF evaluated at the
+realisation – but one density may be considered better than another because it has more probability
+mass ‘near’ the realisation." this is from 
 
 \begin{figure}[ht]
 \caption{A plot to show that error is a function of $K$ and $N_T$}
