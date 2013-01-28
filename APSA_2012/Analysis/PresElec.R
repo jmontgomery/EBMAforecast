@@ -18,11 +18,22 @@ document(current.code)
 rm(list=ls())
 pres <- read.csv("~/Documents/GIT/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
 pres <- read.csv("~/Documents/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
-pres$Hibbs=ifelse(X==2000,53.8,pres$Hibbs) # correction of silver from Hibbs website,
+#1992 not sure about campbell, others verified
 pres$Lewis.Beck.Tien=ifelse(X==1996,54.8,pres$Lewis.Beck.Tien)
 pres$Erikson.Wlezien=ifelse(X==1996,54.5,pres$Erikson.Wlezien)
+#1996 Holbrook correct, unsure about Abramowitz, Campbell
+#2000 all okay, aside from hibbs
+pres$Hibbs=ifelse(X==2000,53.8,pres$Hibbs) # correction of silver from Hibbs website,
+pres$Campbell=ifelse(X==2004,53.8,pres$Campbell) # correction of silver from Hibbs website,
+pres$Erikson.Wlezien=ifelse(X==2004,52.3,pres$Erikson.Wlezien) # correction of silver from Hibbs website,
+pres$Holbrook=ifelse(X==2004,54.5,pres$Holbrook) # correction of silver from Hibbs website,
+pres$Cuzan=ifelse(X==2004,52.8,pres$Cuzan) # correction of silver from Hibbs website,
+#2008
+pres$Cuzan=ifelse(X==2008,48.0,pres$Cuzan) # correction of silver from Hibbs website,
+pres$Lewis.Beck.Tien=ifelse(X==2008,49.9,pres$Lewis.Beck.Tien) #depends if we want to stick with this model or use their prefered model 
+pres$Hibbs=ifelse(X==2008,48.2,pres$Hibbs) #depends if we want to stick with this model or use their prefered model 
 
-
+#rest okay
 
 
 colnames(pres)[1] <- "year"

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2013 19:26
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2013 22:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -632,43 +632,49 @@ Package pdftex.def Info: presForecast.pdf used on input line 952.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21] [22 <./presForecast.pdf>] [23] (./APSA_Paper_2012.bbl [24]
-Underfull \hbox (badness 3108) in paragraph at lines 153--157
+[21] [22 <./presForecast.pdf>] [23] (./APSA_Paper_2012.bbl [24] [25]
+Underfull \hbox (badness 3108) in paragraph at lines 173--177
 \OT1/ptm/m/n/12 ver-sity. $\OT1/pcr/m/n/12 http : / / fairmodel . econ . yale .
  edu / vote2012 / index2 . htm$ \OT1/ptm/m/n/12 (ac-cessed
  []
 
-[25]
-Underfull \hbox (badness 1418) in paragraph at lines 223--229
+[26]
+Underfull \hbox (badness 1418) in paragraph at lines 248--254
 \OT1/pcr/m/n/12 dl . dropbox . com / u / 3662406 / Articles / Graefe _ et _ al 
 _ Combining . pdf$ \OT1/ptm/m/n/12 (ac-
  []
 
 
-Underfull \hbox (badness 3068) in paragraph at lines 243--247
+Underfull \hbox (badness 10000) in paragraph at lines 268--273
+\OT1/pcr/m/n/12 / / www . douglas-[]hibbs . com / Elections2004-[]00-[]96-[]92 
+/ forecast92 . pdf$
+ []
+
+
+Underfull \hbox (badness 3068) in paragraph at lines 287--291
 []\OT1/ptm/m/n/12 Hibbs, Dou-glas A. 2012.  ``Obama's Re-election Prospects un-
 der `Bread and Peace/
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 243--247
+Underfull \hbox (badness 1147) in paragraph at lines 287--291
 \OT1/ptm/m/n/12 Vot-ing in the 2012 US Pres-i-den-tial Elec-tion.'' $\OT1/pcr/m
 /n/12 http : / / www . douglas-[]hibbs . com /
  []
 
-[26] [27]) [28] [29] [30] [31] (./APSA_Paper_2012.aux)
+[27] [28]) [29] [30] [31] [32] (./APSA_Paper_2012.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5555 strings out of 493488
- 80058 string characters out of 3141326
- 181747 words of memory out of 3000000
- 8673 multiletter control sequences out of 15000+200000
+ 5585 strings out of 493488
+ 80685 string characters out of 3141326
+ 181044 words of memory out of 3000000
+ 8703 multiletter control sequences out of 15000+200000
  42558 words of font info for 100 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,12n,26p,919b,348s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,26p,919b,364s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/tex
@@ -690,10 +696,10 @@ ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts
 rw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
 </usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on APSA_Paper_2012.pdf (32 pages, 481534 bytes).
+Output written on APSA_Paper_2012.pdf (33 pages, 483730 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
+ 233 PDF objects out of 1000 (max. 8388607)
+ 165 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
