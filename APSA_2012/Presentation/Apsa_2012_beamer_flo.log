@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  17 JAN 2013 09:48
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  23 JAN 2013 16:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1205,7 +1205,7 @@ local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr
 local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/loc
 al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb>
-Output written on Apsa_2012_beamer_flo.pdf (20 pages, 337280 bytes).
+Output written on Apsa_2012_beamer_flo.pdf (20 pages, 337195 bytes).
 PDF statistics:
  707 PDF objects out of 1000 (max. 8388607)
  637 compressed objects within 7 object streams

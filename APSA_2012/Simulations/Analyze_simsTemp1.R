@@ -118,15 +118,15 @@ lines(loess(c(crps)~c(x.axis-my.adj)), col=my.col2)
 }
 
 
-
+pdf("~/Documents/GitHub/EBMAforecast/APSA_2012/Paper/SimTemp1.pdf",height=7,width=7)
 par(mfrow=c(1,1), mar=c(3,2,2,1), mgp=c(1,0,0), tcl=.001)
 plot.fn(pos1=5, value1=0, pos2=1, value2=5, pos3=2, func="med", my.col="gray90")
 plot.fn(pos1=5, value1=0, pos2=1, value2=11, pos3=2, func="med", my.col="skyblue", my.line=TRUE, my.col2="blue", my.adj=.25)
 plot.fn(pos1=5, value1=0, pos2=1, value2=100, pos3=2, func="med", my.col="pink", my.line=TRUE, my.col2="red", my.adj=.5)
-legend(16, 10, c("N_T=5", "N_T=11","N_T=100"), col=c("black", "red", "blue"), lty=c(1,1,1), cex=.7) 
+legend(16, 10, c("N_T=5", "N_T=11","N_T=100"), col=c("black", "blue", "red"), lty=c(1,1,1), cex=.7) 
 #plot.fn(pos1=5, value1=0, pos2=2, value2=9, pos3=1)
 #plot.fn(pos1=5, value1=0, pos2=2, value2=15, pos3=1)
-
+dev.off()
 
 #nTrain<-c(3:15,20,25,35,45,55,65,85,100)
 #nmod<-seq(3,15, by=2)

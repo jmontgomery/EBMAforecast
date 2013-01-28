@@ -1,12 +1,12 @@
-# library("multicore")
-# library("foreach")
-# library("doMC")
+ library("multicore")
+library("foreach")
+library("doMC")
  library(devtools)
  library(roxygen2)
  library(testthat)
 
 setwd("~/Documents/GIT/EBMAforecast/")
-#setwd("~/GITHUB/EBMAforecast/")
+setwd("~/Documents/GITHUB/EBMAforecast/")
 library(EBMAforecast)
 
 # Only need to run this portion once
@@ -17,7 +17,12 @@ document(current.code)
 
 rm(list=ls())
 pres <- read.csv("~/Documents/GIT/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
-#pres <- read.csv("~/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
+pres <- read.csv("~/Documents/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
+pres$Hibbs=ifelse(X==2000,53.8,pres$Hibbs) # correction of silver from Hibbs website,
+pres$Lewis.Beck.Tien=ifelse(X==1996,54.8,pres$Lewis.Beck.Tien)
+pres$Erikson.Wlezien=ifelse(X==1996,54.5,pres$Erikson.Wlezien)
+
+
 
 
 colnames(pres)[1] <- "year"
@@ -43,7 +48,7 @@ data=myPres
 
 load("~/Documents/GIT/EBMAforecast/PresForecastPS/data_2012.RData")
 
-load("~/Github/EBMAforecast/PresForecastPS/data_2012.RData")
+load("~/Documents/Github/EBMAforecast/PresForecastPS/data_2012.RData")
 
 
 #pred12<-matrix(c(49.5,50.5,50.6,47.5,47.6,54,47.8,52.6,46.9),nrow=1) ### updated with latest numbers

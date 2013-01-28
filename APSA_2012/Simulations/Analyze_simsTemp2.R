@@ -118,13 +118,13 @@ lines(loess(c(crps)~c(x.axis-my.adj), span=2), col=my.col2) # why the hell isn't
 }
 
 
-
+pdf("~/Documents/GitHub/EBMAforecast/APSA_2012/Paper/SimTemp2.pdf",height=7,width=7)
 par(mfrow=c(1,1), mar=c(3,2,2,1), mgp=c(1,0,0), tcl=.001)
 plot.fn(pos1=1, value1=3, pos2=2, value2=15, pos3=5, func="med", my.col="gray70")
 plot.fn(pos1=1, value1=5, pos2=2, value2=9, pos3=5, func="med", my.col="skyblue", my.adj=0,my.line=TRUE, my.col2="blue")
 plot.fn(pos1=1, value1=35, pos2=2, value2=5, pos3=5, func="med", my.col="pink", my.adj=0,my.line=TRUE, my.col2="red")
-legend(.25, 12, c("N_T=3, K=15", "N_T=5, K=9","N_T=35, K=5"), col=c("black", "red", "blue"), lty=c(1,1,1), cex=.7)
-
+legend(.25, 12, c("N_T=3, K=15", "N_T=5, K=9","N_T=35, K=5"), col=c("black", "blue", "red"), lty=c(1,1,1), cex=.7)
+dev.off()
 #plot.fn(pos1=5, value1=0, pos2=1, value2=100, pos3=2, func="med", my.col="pink", my.line=TRUE, my.col2="red", my.adj=.5)
 
 #plot.fn(pos1=5, value1=0, pos2=2, value2=9, pos3=1)

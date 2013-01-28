@@ -74,6 +74,11 @@ Breiman, L. 1996.
 Breiman, L. 2001.
 \newblock ``Random forests.'' {\em Machine Learning} 45:5--32.
 
+\harvarditem{Brier}{1950}{Brier:1950}
+Brier, Glenn~W. 1950.
+\newblock ``Verification of Forecasts Expressed in Terms of Probability.'' {\em
+  Monthly Weather Review} 78(1):1--3.
+
 \harvarditem[Brock, Durlauf \harvardand\ West]{Brock, Durlauf \harvardand\
   West}{2007}{Brock:2007}
 Brock, William~A., Steven~N. Durlauf \harvardand\ Kenneth~D. West. 2007.
@@ -156,6 +161,12 @@ Feldkircher, Martin. 2011.
   Sensitivity Analysis.'' {\em Journal of Forecasting} p.~{in press}.
 \newline\harvardurl{http://dx.doi.org/10.1002/for.1228}
 
+\harvarditem{Feldman}{2012}{Feldman:2012}
+Feldman, Kira. 2012.
+\newblock Statistical Postprocessing of Ensemble Forecasts for Temperature: The
+  Importance of Spatial Modeling. Master's thesis Ruprecht-Karls-Universitat
+  Heidelberg.
+
 \harvarditem[Fraley, Raftery \harvardand\ Gneiting]{Fraley, Raftery
   \harvardand\ Gneiting}{2010}{Fraley:2010}
 Fraley, Chris, Adrian~E. Raftery \harvardand\ Tilmann Gneiting. 2010.
@@ -181,6 +192,17 @@ Galton, Francis. 1907.
 Gill, Jeff. 2004.
 \newblock ``Introduction to the Special Issue.'' {\em Political Analysis}
   12(4):647--674.
+
+\harvarditem{Gneiting \harvardand\ Raftery}{2007}{Gneiting_Raftery_2007}
+Gneiting, Tilmann \harvardand\ Adrian~E. Raftery. 2007.
+\newblock ``Strictly Proper Scoring Rules, Prediction, and Estimation.'' {\em
+  Journal of the American Statistical Association} 102(477):359--378.
+
+\harvarditem[Gneiting, Balabdaoui \harvardand\ Raftery]{Gneiting, Balabdaoui
+  \harvardand\ Raftery}{2007}{GneitingEtAl:2007}
+Gneiting, Tilmann, Fadoua Balabdaoui \harvardand\ Adrian~E. Raftery. 2007.
+\newblock ``Probabilistic Forecasts, Calibration and Sharpness.'' {\em Journal
+  of the Royal Statistical Society. Series B (Methodological)} 69(2):243--268.
 
 \harvarditem{Gneiting \harvardand\ Thorarinsdottir}{2010}{Gneiting:2010}
 Gneiting, Tilmann \harvardand\ Thordis~L. Thorarinsdottir. 2010.
@@ -211,6 +233,11 @@ Hastie, Trevor, Robert Tibshirani \harvardand\ Jerome Friedman. 2009.
 \newblock {\em The Elements of Statistical Learning: Data Mining, Inference,
   and Prediction}.
 \newblock New York, NY:  Springer.
+
+\harvarditem{Hersbach}{2000}{Hersbach:2000}
+Hersbach, Hans. 2000.
+\newblock ``Decomposition of the Continuous Ranked Probability Score for
+  Ensemble Prediction Systems.'' {\em Weather and Forecasting} 15(5):559--570.
 
 \harvarditem{Hibbs}{2012}{hibbs:2012}
 Hibbs, Douglas~A. 2012.
@@ -300,6 +327,13 @@ Min, Seung-Ki, Daniel Simonis \harvardand\ Andreas Hense. 2007.
   Averaging.'' {\em Philosophical Transactions of the Royal Society A:
   Mathematical, Physical and Engineering Sciences} 365(1857):2103--2116.
 
+\harvarditem[M\"oller, Lenkoski \harvardand\ Thorarinsdottir]{M\"oller,
+  Lenkoski \harvardand\ Thorarinsdottir}{2013}{MoellerEtAl:2012}
+M\"oller, Anette, Alex Lenkoski \harvardand\ Thordis~L. Thorarinsdottir. 2013.
+\newblock ``Multivariate Probabilistic Forecasting Using Ensemble {B}ayesian
+  Model Averaging and Copulas.'' {\em Quarterly Journal of the Royal
+  Meteorological Society} Forthcoming.
+
 \harvarditem[Montgomery et~al.]{Montgomery, Zarnowitz, Tsay \harvardand\
   George}{1998}{Montgomery:etal:1998}
 Montgomery, Alan~L., Victor Zarnowitz, Ruey Tsay \harvardand\ Tiaom George.
@@ -347,6 +381,14 @@ Raftery, Adrian~E., Tilmann Gneiting, Fadoua Balabdaoui \harvardand\ Michael
   Polakowski. 2005.
 \newblock ``Using {B}ayesian Model Averaging to Calibrate Forecast Ensembles.''
   {\em Monthly Weather Review} 133(5):1155--1174.
+
+\harvarditem[Rings et~al.]{Rings, Vrugt, Schoups, Huisman \harvardand\
+  Vereecken}{2012}{RingsEtAl:2012}
+Rings, Joerg, Jasper~A. Vrugt, Gerrit Schoups, Johan~A. Huisman \harvardand\
+  Harry Vereecken. 2012.
+\newblock ``{B}ayesian Model Averaging Using Particle Filtering and {G}aussian
+  Mixture Modeling: Theory, Concepts, and Simulation Experiments.'' {\em Water
+  Resources Research} 48(5):1--12.
 
 \harvarditem[Smith et~al.]{Smith, Tebaldi, Nychka \harvardand\
   Mearns}{2009}{Smith:2009}
