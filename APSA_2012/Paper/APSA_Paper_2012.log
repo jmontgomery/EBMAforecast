@@ -1,22 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2013 22:05
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.8.22)  28 JAN 2013 09:07
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**APSA_Paper_2012.tex
+**\input APSA_Paper_2012.tex
 (./APSA_Paper_2012.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
-ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
-rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
-kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
- polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
-lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
-welsh, loaded.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/size12.clo
@@ -544,81 +531,68 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 94.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 120.
  [1
 
-] [2] [3] [4]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 253.
+] [2] [3]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 267.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [5]
-Overfull \hbox (40.07936pt too wide) in paragraph at lines 288--298
-\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 (\OT1/cmr/bx/n/12 y[]\OMS/cmsy/m/n/12 j\OML/c
-mm/m/it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ^^Y\OT1/cmr/m/n/12 (\OML/cmm/m/
-it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 =[]p\OT1/cmr/m/n/12 (\OT1/cmr/bx/n/1
-2 y[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ^^
-Y\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 )$\OT1/ptm/m/n/12 , and t
-he marginal pre-dic-tive PDF is $\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 (\OT1/cmr/bx
-/n/12 y[]\OT1/cmr/m/n/12 ) = []\OML/cmm/m/it/12 p\OT1/cmr/m/n/12 (\OT1/cmr/bx/n
-/12 y[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 
-p\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 M[]\OMS/cmsy/m/n/12 j\OT1/cmr/bx/n/12 y[]\OT
-1/cmr/m/n/12 )$\OT1/ptm/m/n/12 . 
- []
+) [4]
 
-[6] [7] [8] [9] [10] <SimTemp1.pdf, id=57, 505.89pt x 505.89pt>
+Package natbib Warning: Citation `Montgomery:2010' on page 5 undefined on input
+ line 300.
+
+[5] [6] [7] [8] [9] [10] <SimTemp1.pdf, id=57, 505.89pt x 505.89pt>
 File: SimTemp1.pdf Graphic file (type pdf)
 
 <use SimTemp1.pdf>
-Package pdftex.def Info: SimTemp1.pdf used on input line 524.
+Package pdftex.def Info: SimTemp1.pdf used on input line 563.
 (pdftex.def)             Requested size: 404.71254pt x 404.71254pt.
  <SimTemp2.pdf, id=58, 505.89pt x 505.89pt>
 File: SimTemp2.pdf Graphic file (type pdf)
 
 <use SimTemp2.pdf>
-Package pdftex.def Info: SimTemp2.pdf used on input line 543.
+Package pdftex.def Info: SimTemp2.pdf used on input line 582.
 (pdftex.def)             Requested size: 404.71254pt x 404.71254pt.
- [11]
-
-LaTeX Warning: Reference `SimTemp2' on page 12 undefined on input line 558.
-
-[12 <./SimTemp1.pdf>] [13 <./SimTemp2.pdf>] [14]
-Underfull \hbox (badness 6220) in paragraph at lines 622--622
+ [11] [12 <./SimTemp1.pdf>] [13 <./SimTemp2.pdf>]
+Underfull \hbox (badness 6220) in paragraph at lines 666--666
 [][]\OT1/ptm/m/n/10 The \OT1/ptm/m/it/10 SPF \OT1/ptm/m/n/10 was first ad-min-i
 s-tered in 1968 by the Amer-i-can Sta-tis-ti-cal As-so-ci-a-tion and the Na-
  []
 
 
-Underfull \hbox (badness 2582) in paragraph at lines 622--622
+Underfull \hbox (badness 2582) in paragraph at lines 666--666
 \OT1/ptm/m/n/10 tional Bu-reau of Eco-nomic Re-search (NBER). Since 1990, how-e
 ver, it is run by the Fed-eral Re-serve
  []
 
 
-Underfull \hbox (badness 3158) in paragraph at lines 622--622
+Underfull \hbox (badness 3158) in paragraph at lines 666--666
 \OT1/ptm/m/n/10 Bank of Philadel-phia. $\OT1/pcr/m/n/10 http : / / www . phil .
  frb . org / research-[]and-[]data / real-[]time-[]center /
  []
 
-[15] <mdwtimeSeries2.pdf, id=89, 505.89pt x 289.08pt>
+[14] [15] <mdwtimeSeries2.pdf, id=89, 505.89pt x 289.08pt>
 File: mdwtimeSeries2.pdf Graphic file (type pdf)
- <use mdwtimeSeries2.pdf>
-Package pdftex.def Info: mdwtimeSeries2.pdf used on input line 686.
-(pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
 
-[16 <./mdwtimeSeries2.pdf>] [17]
+<use mdwtimeSeries2.pdf>
+Package pdftex.def Info: mdwtimeSeries2.pdf used on input line 730.
+(pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
+ [16 <./mdwtimeSeries2.pdf>] [17]
 <compare2Components.pdf, id=101, 433.62pt x 433.62pt>
 File: compare2Components.pdf Graphic file (type pdf)
 
 <use compare2Components.pdf>
-Package pdftex.def Info: compare2Components.pdf used on input line 800.
+Package pdftex.def Info: compare2Components.pdf used on input line 845.
 (pdftex.def)             Requested size: 433.61894pt x 433.61894pt.
  [18] [19 <./compare2Components.pdf>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 897.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 943.
 
-Overfull \hbox (5.24461pt too wide) in paragraph at lines 897--898
+Overfull \hbox (5.24461pt too wide) in paragraph at lines 943--944
 \OT1/pcr/m/n/10 models-[]based-[]on-[]fundamentals-[]have-[]failed-[]at-[]predi
 cting-[]presidential-[]elections/$\OT1/ptm/m/n/10 .
  []
@@ -626,7 +600,7 @@ cting-[]presidential-[]elections/$\OT1/ptm/m/n/10 .
 [20] <presForecast.pdf, id=119, 433.62pt x 433.62pt>
 File: presForecast.pdf Graphic file (type pdf)
  <use presForecast.pdf>
-Package pdftex.def Info: presForecast.pdf used on input line 952.
+Package pdftex.def Info: presForecast.pdf used on input line 998.
 (pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
 
 
@@ -662,41 +636,42 @@ Underfull \hbox (badness 1147) in paragraph at lines 287--291
 /n/12 http : / / www . douglas-[]hibbs . com /
  []
 
-[27] [28]) [29] [30] [31] [32] (./APSA_Paper_2012.aux)
+[27] [28]) [29] [30] [31]
 
-LaTeX Warning: There were undefined references.
+Package natbib Warning: There were undefined citations.
 
- ) 
+[32] (./APSA_Paper_2012.aux) ) 
 Here is how much of TeX's memory you used:
- 5585 strings out of 493488
- 80685 string characters out of 3141326
- 181044 words of memory out of 3000000
- 8703 multiletter control sequences out of 15000+200000
+ 5588 strings out of 493488
+ 80740 string characters out of 3141326
+ 182114 words of memory out of 3000000
+ 8706 multiletter control sequences out of 15000+200000
  42558 words of font info for 100 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,12n,26p,919b,364s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
-xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/tex
-live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texliv
-e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/
-2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/20
-12/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2012
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2012/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts
-/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/u
-rw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/u
-tmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on APSA_Paper_2012.pdf (33 pages, 483730 bytes).
+ 42i,12n,26p,926b,365s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvi
+ps/base/8r.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmex10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi6.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
+pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
+sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/loc
+al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local
+/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
+exlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-
+dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw
+/times/utmri8a.pfb>
+Output written on APSA_Paper_2012.pdf (33 pages, 483356 bytes).
 PDF statistics:
  233 PDF objects out of 1000 (max. 8388607)
  165 compressed objects within 2 object streams
