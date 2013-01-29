@@ -1003,10 +1003,11 @@ weighted to such a small degree because only out-of-sample predictions for 2004 
 
 Figure~\ref{pres} shows the posterior predictive distribution for the
 2008 election (top) and, based on the forecasts from each of the
-component models, the 2012 election.  Component models
-predictive distributions are shown in color (scaled by their
-respective weight), while the EBMA predictive distribution is shown in
-black, the bold dash displays the point prediction for the EBMA model. The vertical dashed line depicts the actual election results in 2008 and 2012.
+component models, the 2012 election.  Component models predictive
+distributions are shown in color (scaled by their respective weight),
+while the EBMA predictive distribution is shown in black, the bold
+dash displays the point prediction for the EBMA model. The vertical
+dashed line depicts the actual election results in 2008 and 2012.
 
 \begin{figure}[h]
 \caption{Predictive ensemble PDFs of incumbent-part vote share in U.S. Presidential Elections}
@@ -1020,7 +1021,17 @@ prediction, with the bold dash indicating the EBMA point
 prediction. The vertical dashed lines show the actual result of the 2008 and 2012 elections.
 \end{figure}
 
-Based on the models included as components and the calibrated weights the EBMA model prediction for 2012 was 50.3 of the two party vote share for Obama, a reasonably large absolute error of 1.7. However, we believe it is important to note that this is not unexpected as the superiority of EBMA predictions should not be judged based on one individual forecast. Indeed, the EBMA prediction performs better than the majority of forecasts for the 2012 election, but the forecast by \citet{Campbell:2012} was almost perfect. In the EBMA model a large part of the weight was associated with the \citet{Abramowitz:2012} model and the EBMA prediction was influenced by multiple models predicting a Romney victory, especially the predictions by \citet{Hibbs:2012a} and \citet{LewisBeckTien:2012}. 
+
+The EBMA model ($c=0.05$) predicted 50.3\% of the two-party vote share
+for Obama.  This resulted in a reasonably large absolute error of
+1.7\%.\footnote{The EBMA model assigned considerable weight to models
+  predicting a Romney \textit{victory}, especially \citet{Hibbs:2012a}
+  and \citet{LewisBeckTien:2012}.}  Figure~\ref{pres} shows that the
+EBMA prediction performs better than the majority of component
+forecasts for the 2012 election, with only three providing a more
+accurate estimate. However, we believe it is important to note that
+this it is difficult to evaluate EBMA against its components using
+just one out-of-sample observation.
 
 % latex table generated in R 2.15.2 by xtable 1.7-0 package
 % Tue Jan 29 15:05:47 2013
@@ -1030,7 +1041,7 @@ Based on the models included as components and the calibrated weights the EBMA m
 \begin{center}
 \begin{tabular}{rrrrrr}
   \toprule
- & Mean & Median & c=0 & c=0.05 & c=0.1 \\ 
+ & Mean & Median & EBMA ($c=0$) & EBMA ($c=0.05$) & EBMA ($c=0.1$) \\ 
   \midrule
 2012 prediction & 49.9 & 49.5 & 49 & 50.3 & 50.1 \\ 
   Absolute Error & 2 & 2.4 & 2.9 & 1.6 & 1.8 \\ 
@@ -1039,8 +1050,24 @@ Based on the models included as components and the calibrated weights the EBMA m
 \end{center}
 \end{table}
 
+A more important comparison is to examine how EBMA performs versus
+other methods of aggregating forecasts for the 2012 election.
+Table~\ref{presModel12} shows the point predictions and absolute
+errors associated with the simple arithmetic mean, the median, and
+EBMA models fit with $c=0$, $c=0.05$, and $c=0.1$with $c=0$.  While
+the differences in model weights are relatively small, the EBMA
+prediction for 2012 was 49\% and 50.1\% for and EBMA model with $c=0$
+and $c=0.1$ respectively -- both considerably worse than the
+prediction with $c=0.05$. 
 
-For comparison, we also calibrated the EBMA prediction model for the 2012 election with $c=0$, i.e. no ``widow of crowds" parameter and $c=0.1$. While the differences in weights are relatively small, the EBMA prediction for 2012 with $c=0$ would have been equal to $49$ \% and with $c=0.1$ the prediction would have been 50.1\%, both considerably worse. In addition, the simple arithmetic average of all models' predictions would have been 49.9\% and the median prediction was 49.5\%. The results of this comparison as well as the absolute error for each model are displayed in Table \ref{presModel12}. EBMA with a ``wisdom of crowds'' parameter of $0.05$ did considerably better than both. In essence, while we believe EBMA and predictions should be evaluated on more than one observation, this example again signifies the utility of EBMA in forecasting tasks and the ``wisdom of crowds'' parameter when calibration periods are particularly short. 
+EBMA with a ``wisdom of crowds'' parameter of $0.05$ also did
+considerably better relative to naive approaches to aggregation. The simple
+arithmetic average of the component models' predictions was 49.9\% and
+the median prediction was 49.5\%. In essence, while we believe
+prediction methods should be evaluated on more than one observation,
+this example again signifies the utility of EBMA in forecasting tasks
+and in particular the improvements the ``wisdom of crowds'' parameter
+offers to out-of-sample predictions in the context of sparse data.
 
 
 \section{Discussion} 
