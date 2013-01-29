@@ -105,7 +105,7 @@ ensemble1@predTest
 
 ##### for paper run EBMA model with c=1.00
 
-.const2=1.00
+.const2=0.1
 
 ensemble2 <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const2)
 summary(ensemble2, showCoefs=FALSE)
@@ -115,8 +115,21 @@ ensemble2@predTest
 
 
 
+### table for paper 
+mean_pred2012=mean(pred12)
+median_pred2012=median(pred12)
+ensemble1@predTest[1]
+ensemble@predTest[1]
+ensemble2@predTest[1]
 
+table_12_pred=c(mean_pred2012,median_pred2012,ensemble1@predTest[1],ensemble@predTest[1],ensemble2@predTest[1])
+table_12_pred=round(table_12_pred,1)
+table_12_error=abs(table_12_pred-51.9)
 
+table_12=as.data.frame(rbind(table_12_pred, table_12_error))
+names(table_12)=c("Mean","Median","c=0","c=0.05","c=0.1")
+rownames(table_12)=c("2012 prediction","Absolute Error")
+xtable(table_12)
 
 
 
