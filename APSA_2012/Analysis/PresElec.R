@@ -22,7 +22,9 @@ pres <- read.csv("~/Documents/Github/EBMAforecast/APSA_2012/Data/OutSample_Silve
 #1992 not sure about campbell, others verified
 pres$Lewis.Beck.Tien=ifelse(pres$X==1996,54.8,pres$Lewis.Beck.Tien)
 pres$Erikson.Wlezien=ifelse(pres$X==1996,54.5,pres$Erikson.Wlezien)
-#1996 Holbrook correct, unsure about Abramowitz, Campbell
+pres$Lewis.Beck.Tien=ifelse(pres$X==1996,47.1,pres$Campbell) #
+
+#1996 Holbrook correct, unsure about Abramowitz, Campbell, need to verify those
 #2000 all okay, aside from hibbs
 pres$Hibbs=ifelse(pres$X==2000,53.8,pres$Hibbs) # correction of silver from Hibbs website,
 pres$Campbell=ifelse(pres$X==2004,53.8,pres$Campbell) # correction of silver from Hibbs website,
