@@ -1,9 +1,22 @@
 \begin{thebibliography}{xx}
 
+\harvarditem{Abramowitz}{2000}{Abramowitz:2000}
+Abramowitz, Alan~I. 2000.
+\newblock Bill and Al's Excellent Adventure: Forecasting the 1996 Presidential
+  Election.  In {\em Before the Vote: {F}orecasting American National
+  Elections}, ed. James~E. Campbell \harvardand\ James~C. Garand.
+\newblock Thousand Oaks:  Sage Publications chapter~2, pp.~47--56.
+
 \harvarditem{Abramowitz}{2008}{Abramowitz:2008}
 Abramowitz, Alan~I. 2008.
 \newblock ``Forecasting the 2008 Presidential Election with the Time-for-Change
   Model.'' {\em PS: Political Science \& Politics} 41(4):691--695.
+
+\harvarditem{Abramowitz}{2012}{Abramowitz:2012}
+Abramowitz, Alan~I. 2012.
+\newblock ``Forecasting in a Polarized Era: The Time for Change Model and the
+  2012 Presidential Election.'' {\em PS: Political Science \& Politics}
+  45(4):618--619.
 
 \harvarditem{Armstrong}{2001}{Armstrong:2001}
 Armstrong, J.~Scott. 2001.
@@ -85,6 +98,14 @@ Brock, William~A., Steven~N. Durlauf \harvardand\ Kenneth~D. West. 2007.
 \newblock ``Model Uncertainty and Policy Evaluation: Some Theory and
   Empirics.'' {\em Journal of Econometrics} 136(2):629--664.
 
+\harvarditem{Campbell}{2000}{Campbell:2000}
+Campbell, James~E. 2000.
+\newblock Polls and Votes: {T}he Trial-Heat Presidential Election Forecasting
+  Model, Certainty, and Political Campaigns.  In {\em Before the Vote:
+  {F}orecasting American National Elections}, ed. James~E. Campbell
+  \harvardand\ James~C. Garand.
+\newblock Thousand Oaks:  Sage Publications chapter~1, pp.~17--46.
+
 \harvarditem{Campbell}{2001}{Campbell:2001}
 Campbell, James~E. 2001.
 \newblock ``Taking Stock of the Forecasts of the 2000 Presidential Election.''
@@ -111,6 +132,17 @@ Campbell, James~E. 2008{\em b}.
   and Value Considerations in an Open-Seat Election.'' {\em PS: Political
   Science \& Politics} 41(4):697--701.
 
+\harvarditem{Campbell}{2012}{Campbell:2012}
+Campbell, James~E. 2012.
+\newblock ``Forecasting the Presidential and Congressional Elections of 2012:
+  The Trial-Heat and the Seats-in-Trouble Models.'' {\em PS: Political Science
+  \& Politics} 45(4):630--634.
+
+\harvarditem{Campbell \harvardand\ Garand}{2000}{CampbellGarand:2000}
+Campbell, James~E. \harvardand\ James~C. Garand. 2000.
+\newblock {\em Before the Vote: {F}orecasting American National Elections}.
+\newblock Thousand Oaks:  Sage Publications.
+
 \harvarditem[Chipman, George \harvardand\ McCulloch]{Chipman, George
   \harvardand\ McCulloch}{2010}{Chipman:2010}
 Chipman, Hugh~A., Edward~I. George \harvardand\ Robert~E. McCulloch. 2010.
@@ -136,6 +168,11 @@ Clyde, Merlise \harvardand\ Edward~I. George. 2004.
 Croushore, Dean \harvardand\ Tom Stark. 2001.
 \newblock ``A Real-Time Data Set for Macroeconomists.'' {\em Journal of
   Econometrics} 105(1):111--130.
+
+\harvarditem{Cuz\`an}{2012}{Cuzan:2012}
+Cuz\`an, Alfred~G. 2012.
+\newblock ``Forecasting the 2012 Presidential Election with the Fiscal Model.''
+  {\em PS: Political Science \& Politics} 45(4):648--650.
 
 \harvarditem{Cuz\`an \harvardand\ Bundrick}{2004}{Cuzan:2004}
 Cuz\`an, Alfred~G. \harvardand\ Charles~M. Bundrick. 2004.
@@ -164,6 +201,11 @@ Erikson, Robert~S. \harvardand\ Christopher Wlezien. 2008.
 \newblock ``Leading Economic Indicators, the Polls, and the Presidential
   Vote.'' {\em PS: Political Science \& Politics} 41(4):703--707.
 
+\harvarditem{Erikson \harvardand\ Wlezien}{2012}{EriksonWlezien:2012}
+Erikson, Robert~S. \harvardand\ Christopher Wlezien. 2012.
+\newblock ``The Objective and Subjective Economy and the Presidential Vote.''
+  {\em PS: Political Science \& Politics} 45(4):620--624.
+
 \harvarditem{Fair}{2009}{Fair:2009}
 Fair, Ray~C. 2009.
 \newblock ``Presidential and Congressional Vote-Share Equations.'' {\em
@@ -175,8 +217,8 @@ Fair, Ray~C. 2011.
   University. \url{http://fairmodel.econ.yale.edu/vote2012/index2.htm}
   (accessed March 07, 2011).
 
-\harvarditem{Fair}{N.d.}{Fair:2012}
-Fair, Ray~C. N.d.
+\harvarditem{Fair}{2012}{Fair:2012}
+Fair, Ray~C. 2012.
 \newblock ``Personal Website.'' \url{http://fairmodel.econ.yale.edu/} (accessed
   january 27, 2013).
 
@@ -283,11 +325,17 @@ Hibbs, Douglas~A. 2004.
   http://www.douglas-hibbs.com/Elections2004-00-96-92/election2004.pdf
   (accessed Jan. 27, 2013).
 
-\harvarditem{Hibbs}{2012}{hibbs:2012}
-Hibbs, Douglas~A. 2012.
+\harvarditem{Hibbs}{2012{\em a}}{hibbs:2012}
+Hibbs, Douglas~A. 2012{\em a}.
 \newblock ``Obama's Re-election Prospects under `Bread and Peace/ Voting in the
   2012 US Presidential Election.''
   \url{http://www.douglas-hibbs.com/HibbsArticles/HIBBS_OBAMA-REELECT-31July2012r1.pdf}.
+
+\harvarditem{Hibbs}{2012{\em b}}{Hibbs:2012a}
+Hibbs, Douglas~A. 2012{\em b}.
+\newblock ``Obama's Reelection Prospects under ``Bread and Peace'' Voting in
+  the 2012 US Presidential Election.'' {\em PS: Political Science \& Politics}
+  45(4):635--639.
 
 \harvarditem[Hoeting et~al.]{Hoeting, Madigan, Raftery \harvardand\
   Volinsky}{1999}{Hoeting:1999}
@@ -296,10 +344,21 @@ Hoeting, Jennifer~A., David Madigan, Adrian~E. Raftery \harvardand\
 \newblock ``Bayesian Model Averaging: A Tutorial.'' {\em Statistical Science}
   14(4):382--417.
 
+\harvarditem{Holbrook}{1996}{Holbrook:1996}
+Holbrook, Thomas~M. 1996.
+\newblock ``Reading the Political Tea Leaves : {A} Forecasting Model of
+  Contemporary Presidential Elections.'' {\em American Politics Research}
+  24(4):506--519.
+
 \harvarditem{Holbrook}{2008}{Holbrook:2008}
 Holbrook, Thomas~M. 2008.
 \newblock ``Incumbency, National Conditions, and the 2008 Presidential
   Election.'' {\em PS: Political Science \& Politics} 41(4):709--712.
+
+\harvarditem{Holbrook}{2012}{Holbrook:2012}
+Holbrook, Thomas~M. 2012.
+\newblock ``Incumbency, National Conditions, and the 2012 Presidential
+  Election.'' {\em PS: Political Science \& Politics} 45(4):640--643.
 
 \harvarditem[Huisman et~al.]{Huisman, Breuer, Bormann, Bronstert, Croke, Frede,
   Gr{\"a}ff, Hubrechts, Jakeman, Kite, Lanini, Leavesley, Lettenmaier,
@@ -335,6 +394,11 @@ Lewis-Beck, Michael~S. \harvardand\ Charles Tien. 1996.
 \newblock ``The Future in Forecasting : Prospective Presidential Models.'' {\em
   American Politics Research} 24(4):468--491.
 
+\harvarditem{Lewis-Beck \harvardand\ Tien}{2012}{LewisBeckTien:2012}
+Lewis-Beck, Michael~S. \harvardand\ Charles Tien. 2012.
+\newblock ``Election Forecasting for Turbulent Times.'' {\em PS: Political
+  Science \& Politics} 45(4):625--629.
+
 \harvarditem{Linzer}{Forthcoming}{Linzer:2013}
 Linzer, Drew. Forthcoming.
 \newblock ``Dynamic Bayesian Forecasting of Presidential Elections in the
@@ -344,6 +408,11 @@ Linzer, Drew. Forthcoming.
 Lockerbie, Brad. 2008.
 \newblock ``Election Forecasting: The Future of the Presidency and the House.''
   {\em PS: Political Science \& Politics} 41(4):713--716.
+
+\harvarditem{Lockerbie}{2012}{Lockerbie:2012}
+Lockerbie, Brad. 2012.
+\newblock ``Economic Expectations and Election Outcomes: The Presidency and the
+  House in 2012.'' {\em PS: Political Science \& Politics} 45(4):644--647.
 
 \harvarditem{Madigan \harvardand\ Raftery}{1994}{Madigan:1994}
 Madigan, David \harvardand\ Adrian~E. Raftery. 1994.
@@ -389,11 +458,6 @@ Montgomery, Alan~L., Victor Zarnowitz, Ruey Tsay \harvardand\ Tiaom George.
   1998.
 \newblock ``Forecasting the U.S. Unemployement Rate.'' {\em Journal of the
   American Statistical Association} 93(442):478--493.
-
-\harvarditem{Montgomery \harvardand\ Nyhan}{2010}{Montgomery:2010c}
-Montgomery, Jacob~M. \harvardand\ Brendan Nyhan. 2010.
-\newblock ``Bayesian Model Averaging: Theoretical Developments and Practical
-  Applications.'' {\em Political Analysis} 18(2):245--270.
 
 \harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
   \harvardand\ Ward}{2012{\em a}}{Montgomery:2012c}

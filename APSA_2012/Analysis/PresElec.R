@@ -9,6 +9,8 @@ library(abind)
 setwd("~/Documents/GIT/EBMAforecast/")
 setwd("~/Documents/GITHUB/EBMAforecast/")
 library(EBMAforecast)
+library(xtable)
+
 
 # Only need to run this portion once
 current.code <- as.package("EBMAforecast")
@@ -19,12 +21,13 @@ document(current.code)
 rm(list=ls())
 pres <- read.csv("~/Documents/GIT/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
 pres <- read.csv("~/Documents/Github/EBMAforecast/APSA_2012/Data/OutSample_Silver2.csv", as.is=TRUE, header=TRUE)
-#1992 not sure about campbell, others verified
+pres$Campbell =ifelse(pres$X==1992,47.1,pres$Campbell) ##others verified
 pres$Lewis.Beck.Tien=ifelse(pres$X==1996,54.8,pres$Lewis.Beck.Tien)
-pres$Erikson.Wlezien=ifelse(pres$X==1996,54.5,pres$Erikson.Wlezien)
-pres$Lewis.Beck.Tien=ifelse(pres$X==1996,47.1,pres$Campbell) #
-
+pres$Erikson.Wlezien=ifelse(pres$X==1996,57.2,pres$Erikson.Wlezien)
 #1996 Holbrook correct, unsure about Abramowitz, Campbell, need to verify those
+pres$Abramowitz=ifelse(pres$X==1996,56.8,pres$Abramowitz)
+pres$Campbell =ifelse(pres$X==1996,58.1,pres$Campbell)
+
 #2000 all okay, aside from hibbs
 pres$Hibbs=ifelse(pres$X==2000,53.8,pres$Hibbs) # correction of silver from Hibbs website,
 pres$Campbell=ifelse(pres$X==2004,53.8,pres$Campbell) # correction of silver from Hibbs website,
@@ -54,7 +57,7 @@ myPres
 data=myPres
 .minCal=2
 .theseRows <- c(1:5)
-.const=.05
+.const=0.05
 
 .selector <- c(rep(TRUE, 11), TRUE)
 .reduced <- data[.theseRows, .selector]
@@ -64,31 +67,56 @@ load("~/Documents/GIT/EBMAforecast/PresForecastPS/data_2012.RData")
 
 load("~/Documents/Github/EBMAforecast/PresForecastPS/data_2012.RData")
 
-
+xtable(pres)
 #pred12<-matrix(c(49.5,50.5,50.6,47.5,47.6,54,47.8,52.6,46.9),nrow=1) ### updated with latest numbers
 #pred12 <- matrix(c(49.5, 50.5, 50.6, 47.5, 47.6, 54, 47.8, 52.2, 46.9), nrow=1) #added the Cuzan short FPRIME pred for 2012
 #### using the final forecasts of 2012 models
-pred12<-matrix(ncol=9,nrow=1,c(49.5,50.6,52.0,47.5,48.2,53.8,47.9,52.6,45.5))
+pred12<-matrix(ncol=9,nrow=1,c(49.5,50.6,52.0,47.5,48.2,53.8,47.9,52.6,46.9)) # changed cuzan to their preferred forecast
 
 .FD <- makeForecastData(.predCalibration=.reduced[,-c(1:3)]
                           ,.outcomeCalibration=.reduced[,2]
                           ,.predTest=pred12 
-                          ,.outcomeTest=1
+                          ,.outcomeTest=51.9
                           ,.modelNames=colnames(.reduced[,-c(1:3)])
                           )
 
 ensemble <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const)
 summary(ensemble, showCoefs=FALSE)
-library(xtable)
 xtable(summary(ensemble, showCoefs=FALSE)@summaryData)
 ensemble@predTest
 
+setwd("~/Documents/GitHub/EBMAforecast/APSA_2012/Paper/")
 setwd("~/GitHub/EBMAforecast/APSA_2012/Paper/")
 pdf(width=6, height=6, file="presForecast.pdf")
 par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.main=.9)
 plot(ensemble, subset=5, main="2008 (In-sample)", xLab="% Two party vote for incumbent")
 plot(ensemble, subset=1, period="test", main="2012 (Out-of-sample)", xLab="% Two party vote for incumbent")
 dev.off()
+
+
+
+##### for paper run EBMA model with c=0.00
+
+.const1=0.00
+
+ensemble1 <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const1)
+summary(ensemble, showCoefs=FALSE)
+ensemble1@predTest
+
+##### for paper run EBMA model with c=1.00
+
+.const2=1.00
+
+ensemble2 <- calibrateEnsemble(.forecastData=.FD, model="normal", useModelParams=FALSE, const=.const2)
+summary(ensemble2, showCoefs=FALSE)
+ensemble2@predTest
+
+
+
+
+
+
+
 
 
 
