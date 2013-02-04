@@ -13,8 +13,10 @@ load("SecondRound")
 plot.fn<-function(pos1=1, value1=5, pos2=2,value2=5,pos3=5,func="med", my.col="gray90", my.line=FALSE, my.adj=0, my.col2="black"){
 
 
-#pos1=5; value1=0; pos2=2; value2=5; pos3=2
-
+#pos1=1; value1=3; pos2=2; value2=5; pos3=5; my.adj=0
+#my.col="gray90"
+#my.col2="black"
+#func="med"
 # alpha<-c(10,5,3)
 #  if (models>3){alpha<-c(alpha, rep(1, models-3))}
 # a.mean <- alpha/sum(alpha) # ?
@@ -82,16 +84,16 @@ if(func=="mea"){
       }
 
 x.axis <- x.axis+my.adj
-x.axis.new <- matrix(x.axis, nrow=length(slots), ncol=100, byrow=FALSE)
+x.axis.new <- t(matrix(x.axis, nrow=length(slots), ncol=100, byrow=FALSE))
 
 if(!my.line){
-plot(x.axis, crps, ylab="Median CRPS", xlab="C", main="Median CRPS by C", col=my.col, ylim=c(5, 12))
+plot(x.axis.new, crps.mat, ylab="", xlab="", main=paste("K=", value2, ", N_T=", value1), col=my.col, ylim=c(5, 11), xlim=c(0, .3), pch="-", cex=.8)
 }
 if(my.line){
 points(x.axis, crps, ylim=c(3, 12), ylab="CRPS", xlab="K", main=paste("N_=", value2), col=my.col)
 }
-lines(loess(c(crps)~c(x.axis-my.adj), span=2), col=my.col2) # why the hell isn't this working right?
-
+#lines(loess(c(crps.mat)~c(x.axis.new-my.adj), span=1), col=my.col2) # why the hell isn't this working right?
+lines(x.axis.new, predict(loess(c(crps.mat)~c(x.axis.new), span=.7)))
 #par(mfrow=c(3,3))
 #plot(c,error.all,pch=15,main="Weighted Weight Error (all)")
 #lines(loess(error.all~c))
@@ -118,13 +120,60 @@ lines(loess(c(crps)~c(x.axis-my.adj), span=2), col=my.col2) # why the hell isn't
 }
 
 
-pdf("~/Documents/GitHub/EBMAforecast/APSA_2012/Paper/SimTemp2.pdf",height=7,width=7)
-par(mfrow=c(1,1), mar=c(3,2,2,1), mgp=c(1,0,0), tcl=.001)
-plot.fn(pos1=1, value1=3, pos2=2, value2=15, pos3=5, func="med", my.col="gray70")
-plot.fn(pos1=1, value1=5, pos2=2, value2=9, pos3=5, func="med", my.col="skyblue", my.adj=0,my.line=TRUE, my.col2="blue")
-plot.fn(pos1=1, value1=35, pos2=2, value2=5, pos3=5, func="med", my.col="pink", my.adj=0,my.line=TRUE, my.col2="red")
-legend(.25, 12, c("N_T=3, K=15", "N_T=5, K=9","N_T=35, K=5"), col=c("black", "blue", "red"), lty=c(1,1,1), cex=.7)
-dev.off()
+
+
+
+
+#pdf("~/Documents/GitHub/EBMAforecast/APSA_2012/Paper/SimTemp2.pdf",height=7,width=7)
+#par(mfrow=c(1,1), mar=c(3,2,2,1), mgp=c(1,0,0), tcl=.001, cex.main=.5)
+#plot.fn(pos1=1, value1=3, pos2=2, value2=15, pos3=5, func="med", my.col="gray70")
+#plot.fn(pos1=1, value1=5, pos2=2, value2=9, pos3=5, func="med", my.col="skyblue", my.adj=0,my.line=TRUE, my.col2="blue")
+#plot.fn(pos1=1, value1=35, pos2=2, value2=5, pos3=5, func="med", my.col="pink", my.adj=0,my.line=TRUE, my.col2="red")
+#legend(.25, 12, c("N_T=3, K=15", "N_T=5, K=9","N_T=35, K=5"), col=c("black", "blue", "red"), lty=c(1,1,1), cex=.7)
+#dev.off()
+
+## Grid version for Mike
+par(mfrow=c(5,5), mar=c(1,1,1,1), mgp=c(1,0,0), tcl=.001, cex.main=.9)
+plot.fn(pos1=1, value1=3, pos2=2, value2=5, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=3, pos2=2, value2=7, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=3, pos2=2, value2=9, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=3, pos2=2, value2=11, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=3, pos2=2, value2=15, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=5, pos2=2, value2=5, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=5, pos2=2, value2=7, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=5, pos2=2, value2=9, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=5, pos2=2, value2=11, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=5, pos2=2, value2=15, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=9, pos2=2, value2=5, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=9, pos2=2, value2=7, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=9, pos2=2, value2=9, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=9, pos2=2, value2=11, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=9, pos2=2, value2=15, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=15, pos2=2, value2=5, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=15, pos2=2, value2=7, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=15, pos2=2, value2=9, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=15, pos2=2, value2=11, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=15, pos2=2, value2=15, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=35, pos2=2, value2=5, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=35, pos2=2, value2=7, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=35, pos2=2, value2=9, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=35, pos2=2, value2=11, pos3=5, func="med", my.col="gray60")
+plot.fn(pos1=1, value1=35, pos2=2, value2=15, pos3=5, func="med", my.col="gray60")
+
+
+
+
+
+#plot.fn(pos1=1, value1=5, pos2=2, value2=9, pos3=5, func="med", my.col="skyblue", my.adj=0,my.line=TRUE, my.col2="blue")
+#plot.fn(pos1=1, value1=35, pos2=2, value2=5, pos3=5, func="med", my.col="pink", my.adj=0,my.line=TRUE, my.col2="red")
+#legend(.25, 12, c("N_T=3, K=15", "N_T=5, K=9","N_T=35, K=5"), col=c("black", "blue", "red"), lty=c(1,1,1), cex=.7)
+#dev.off()
+
+
+
+
+
+
 #plot.fn(pos1=5, value1=0, pos2=1, value2=100, pos3=2, func="med", my.col="pink", my.line=TRUE, my.col2="red", my.adj=.5)
 
 #plot.fn(pos1=5, value1=0, pos2=2, value2=9, pos3=1)
