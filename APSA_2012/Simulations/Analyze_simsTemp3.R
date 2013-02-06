@@ -1,5 +1,5 @@
 rm(list=ls(all=TRUE))
-
+library(RColorBrewer)
 #setwd("~/Documents/GitHub/EBMAforecast/APSA_2012/Simulations")
 setwd("~/Github/EBMAforecast/APSA_2012/Simulations")
 
@@ -53,10 +53,12 @@ for(i in slots){
 
 tryThis <- predict(loess(crps~x.axis+y.axis))
 
+col=gray(1000000:0/1000000)
 library(lattice)
-wireframe(tryThis~x.axis+y.axis,xlab="k/n_t", ylab="c", zlab="crps", drape=TRUE)
-
-
+pdf("3D.pdf")
+wireframe(tryThis~x.axis+y.axis,xlab="k/n_t", ylab="c", zlab="crps", drape=TRUE,lwd=0,col.regions=col)
+dev.off()
+help(lattice.getOption)
 
 
 
