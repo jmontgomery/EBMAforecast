@@ -166,7 +166,36 @@ ensembleOut <- modelFits(.outcome, .ensemblePredMatrix, .lag)
 ## Total number of forecasts for models we are comparing ourselves with
 count <- colSums(!is.na(.modelPreds))
 
+pct_better<-rowMeans((modelOut-ensembleOut)>=0)*100
+rownames<-seq(1,length(count))
+for_table<-as.data.frame(cbind(count,pct_better))
 
+cell_025_010<-sum(ifelse(for_table$count <11 & for_table$pct_better<26,1,0))
+cell_2650_010<-sum(ifelse(for_table$count <11 & for_table$pct_better>25 &for_table$pct_better<51,1,0))
+cell_5175_010<-sum(ifelse(for_table$count <11 & for_table$pct_better>50 &for_table$pct_better<76,1,0))
+cell_76100_010<-sum(ifelse(for_table$count <11 & for_table$pct_better>75 &for_table$pct_better<101,1,0))
+
+cell_025_1130<-sum(ifelse(for_table$count >10 &for_table$count<31 & for_table$pct_better<26,1,0))
+cell_2650_1130<-sum(ifelse(for_table$count >10 &for_table$count<31 & for_table$pct_better>25 &for_table$pct_better<51,1,0))
+cell_5175_1130<-sum(ifelse(for_table$count >10 & for_table$count<31 &for_table$pct_better>50 &for_table$pct_better<76,1,0))
+cell_76100_1130<-sum(ifelse(for_table$count >10 &for_table$count<31 & for_table$pct_better>75 &for_table$pct_better<101,1,0))
+
+
+cell_025_3160<-sum(ifelse(for_table$count >30 &for_table$count<61 & for_table$pct_better<26,1,0))
+cell_2650_3160<-sum(ifelse(for_table$count >30 &for_table$count<61 & for_table$pct_better>25 &for_table$pct_better<51,1,0))
+cell_5175_3160<-sum(ifelse(for_table$count >30 &for_table$count<61  & for_table$pct_better>50 &for_table$pct_better<76,1,0))
+cell_76100_3160<-sum(ifelse(for_table$count >30 &for_table$count<61 & for_table$pct_better>75 &for_table$pct_better<101,1,0))
+
+cell_025_61<-sum(ifelse(for_table$count >60 & for_table$pct_better<26,1,0))
+cell_2650_61<-sum(ifelse(for_table$count >60 & for_table$pct_better>25 &for_table$pct_better<51,1,0))
+cell_5175_61<-sum(ifelse(for_table$count >60 & for_table$pct_better>50 &for_table$pct_better<76,1,0))
+cell_76100_61<-sum(ifelse(for_table$count >60 & for_table$pct_better>75 &for_table$pct_better<101,1,0))
+
+mat<-matrix(ncol=4,nrow=4,c(cell_76100_010, cell_5175_010, cell_2650_010, cell_025_010, cell_76100_1130, cell_5175_1130, cell_2650_1130, cell_025_1130, cell_76100_3160, cell_5175_3160, cell_2650_3160, cell_025_3160, cell_76100_61, cell_5175_61, cell_2650_61, cell_025_61),byrow=F)
+all<-sum(mat)
+matrix<-mat/all
+
+##################### old plot, instead we now have the table created above
 par(mfrow=c(2,1), mar=c(2,2.5,2,.5), tcl=0, mgp=c(1.1,.1,0), cex.lab=.8, cex.main=.9)
 # Compare with components by # forecasts
 plot(NULL, xlim=c(0, 100), ylim=c(0,100), xlab="# of forecasts made", ylab="% Metrics EBMA >= Components")

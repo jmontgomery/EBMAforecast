@@ -1,6 +1,6 @@
 rm(list=ls(all=TRUE))
-library(RColorBrewer)
-#setwd("~/Documents/GitHub/EBMAforecast/APSA_2012/Simulations")
+#library(RColorBrewer)
+setwd("~/Documents/GitHub/EBMAforecast/APSA_2012/Simulations")
 setwd("~/Github/EBMAforecast/APSA_2012/Simulations")
 
 load("SecondRound")
@@ -28,8 +28,11 @@ for(i in slots){
             count <- count+1
 }
     crps<-abs(apply(crps.mat,1,FUN=mean, na.rm=TRUE))
-plot(x.axis, crps, ylim=c(5, 10.5), xlab="k/n_t")
 
+
+pdf("2D.pdf")    
+plot(x.axis, crps, ylim=c(5, 10.5), xlab=expression(frac("N Models",N[T])),ylab="CRPS",las=1,cex=0.5,pch=20)
+dev.off()
 
 
 
@@ -51,13 +54,22 @@ for(i in slots){
 }
     crps<-abs(apply(crps.mat,1,FUN=mean, na.rm=TRUE))
 
-tryThis <- predict(loess(crps~x.axis+y.axis))
+lo<-	loess(crps~x.axis+y.axis)
+help(expand.grid)
+lo<-	loess(crps~x.axis+y.axis)
+
+xpred=seq(0,5,length.out=25)
+ypred=seq(0,0.5,length.out=25)
+for_pred=as.matrix(expand.grid(x=xpred,y=ypred))
+tryThis <- predict(lo,newdata=for_pred)
 
 col=gray(1000000:0/1000000)
 library(lattice)
 pdf("3D.pdf")
-wireframe(tryThis~x.axis+y.axis,xlab="k/n_t", ylab="c", zlab="crps", drape=TRUE,lwd=0,col.regions=col)
+wireframe(tryThis~for_pred[,1]+for_pred[,2],xlab=expression(frac("N Models",N[T])), ylab="C", zlab="CRPS", drape=TRUE,lwd=0,col.regions=col,scales = list(arrows=FALSE, cex= 0.6, col = "black",font = 1, tck = 1))
 dev.off()
+
+
 help(lattice.getOption)
 
 
