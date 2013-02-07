@@ -1,9 +1,22 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.8.22)  29 JAN 2013 14:35
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  7 FEB 2013 15:37
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**\input APSA_Paper_2012.tex
+**APSA_Paper_2012.tex
 (./APSA_Paper_2012.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
+ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
+rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
+kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
+ polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
+lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
+welsh, loaded.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/size12.clo
@@ -581,33 +594,22 @@ File: mdwtimeSeries2.pdf Graphic file (type pdf)
 <use mdwtimeSeries2.pdf>
 Package pdftex.def Info: mdwtimeSeries2.pdf used on input line 730.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
- [16 <./mdwtimeSeries2.pdf>] [17]
-<compare2Components.pdf, id=101, 433.62pt x 433.62pt>
-File: compare2Components.pdf Graphic file (type pdf)
-
-<use compare2Components.pdf>
-Package pdftex.def Info: compare2Components.pdf used on input line 845.
-(pdftex.def)             Requested size: 433.61894pt x 433.61894pt.
- [18] [19 <./compare2Components.pdf>]
+ [16 <./mdwtimeSeries2.pdf>] [17] [18]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 956.
- [20]
-<presForecast.pdf, id=119, 433.62pt x 433.62pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 979.
+ [19] [20]
+<presForecast.pdf, id=111, 433.62pt x 433.62pt>
 File: presForecast.pdf Graphic file (type pdf)
  <use presForecast.pdf>
-Package pdftex.def Info: presForecast.pdf used on input line 1016.
+Package pdftex.def Info: presForecast.pdf used on input line 1039.
 (pdftex.def)             Requested size: 346.89647pt x 346.89647pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[21] [22 <./presForecast.pdf>] [23] (./APSA_Paper_2012.bbl [24] [25] [26]
+ [21 <./presForecast.pdf>] [22] [23] (./APSA_Paper_2012.bbl [24] [25]
 Underfull \hbox (badness 3108) in paragraph at lines 215--219
 \OT1/ptm/m/n/12 ver-sity. $\OT1/pcr/m/n/12 http : / / fairmodel . econ . yale .
  edu / vote2012 / index2 . htm$ \OT1/ptm/m/n/12 (ac-cessed
  []
 
-[27]
+[26]
 Underfull \hbox (badness 1418) in paragraph at lines 290--296
 \OT1/pcr/m/n/12 dl . dropbox . com / u / 3662406 / Articles / Graefe _ et _ al 
 _ Combining . pdf$ \OT1/ptm/m/n/12 (ac-
@@ -619,7 +621,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 310--315
 / forecast92 . pdf$
  []
 
-
+[27]
 Underfull \hbox (badness 2343) in paragraph at lines 329--333
 []\OT1/ptm/m/n/12 Hibbs, Dou-glas A. 2012\OT1/ptm/m/it/12 a\OT1/ptm/m/n/12 .  `
 `Obama's Re-election Prospects un-der `Bread and Peace/
@@ -631,19 +633,19 @@ Underfull \hbox (badness 1147) in paragraph at lines 329--333
 /n/12 http : / / www . douglas-[]hibbs . com /
  []
 
-[28] [29] [30]) [31] [32] [33]
+[28] [29]) [30] [31] [32]
 
 Package natbib Warning: There were undefined citations.
 
-[34] (./APSA_Paper_2012.aux) ) 
+[33] (./APSA_Paper_2012.aux) ) 
 Here is how much of TeX's memory you used:
- 5622 strings out of 493488
- 81488 string characters out of 3141326
- 181460 words of memory out of 3000000
- 8740 multiletter control sequences out of 15000+200000
+ 5617 strings out of 493488
+ 81354 string characters out of 3141326
+ 180462 words of memory out of 3000000
+ 8736 multiletter control sequences out of 15000+200000
  42558 words of font info for 100 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,12n,26p,926b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,26p,919b,389s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvi
 ps/base/8r.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
@@ -666,10 +668,10 @@ exlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on APSA_Paper_2012.pdf (35 pages, 489159 bytes).
+Output written on APSA_Paper_2012.pdf (34 pages, 483511 bytes).
 PDF statistics:
- 239 PDF objects out of 1000 (max. 8388607)
- 169 compressed objects within 2 object streams
+ 228 PDF objects out of 1000 (max. 8388607)
+ 161 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
