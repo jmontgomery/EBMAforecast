@@ -547,7 +547,7 @@ To evaluate the forecasts we focus here on the continuous rank
 probability score (CRPS) for several reasons. The CRPS has been widely
 used to evaluate forecasts of continuos outcomes and its many
 advantages as a proper scoring rule have been discussed
-elsewhere\citep{Hersbach:2000,Gneiting_Raftery_2007,GneitingEtAl:2007,brandt:freeman:schrodt:2011}. One
+elsewhere~\citep{Hersbach:2000,Gneiting_Raftery_2007,GneitingEtAl:2007,brandt:freeman:schrodt:2011}. One
 of the main advantages of the CRPS over other scoring rules is that it
 can be interpreted as the integral over all possible Brier scores
 \citep{Brier:1950} and takes into account the uncertainty of forecasts
@@ -564,10 +564,10 @@ indicating a better forecast performance.\footnote{The mathematical
 \end{figure}
 
 Figure~\ref{simplot1} shows how the out-of-sample performance of the
-EBMA method, as measured by CRPS against the ratio of the number of component models included and the size of the calibration period. As one can see, the performance of the EBMA model depends significantly on this ratio. As the number of forecast models included as components increases, or the calibration sample size decreases CRPS rises. The predictive power of the EBMA model decreases as the number of components in
+EBMA method, as measured by CRPS against the ratio of the number of component models included and the size of the calibration period. As one can see, the performance of the EBMA model depends significantly on this ratio. As the number of forecast models included as components increases, or the calibration sample size decreases, CRPS rises. The predictive power of the EBMA model decreases as the number of components in
 the true data generating process increases. That is, as the number of
 model parameters that \textit{must} be correctly estimated to make
-accurate predictions increases, the quality of the forecast goes down. Second, CRPS is a decreasing function of $N_{T}$, i.e. the performance of the baseline EBMA model improves as the calibration sample grows.
+accurate predictions increases, the quality of the forecast goes down. Second, CRPS is a decreasing function of $n_{T}$, i.e. the performance of the baseline EBMA model improves as the calibration sample grows.
 
 %Second, Figure~\ref{simplot1} shows out-of-sample CRPS when $n_T=5$
 %(black), $n_T=11$ (blue), and $n_T=100$ (red).  For all values of $k$,
@@ -586,7 +586,7 @@ accurate predictions increases, the quality of the forecast goes down. Second, C
 \caption{CRPS with ``Wisdom of Crowds'' Parameter}
 \label{3d}
 \centering
-\includegraphics[scale=.8]{3D}
+\includegraphics[scale=.6]{3D}
 \end{figure}
 
 The remaining question, then, is to what degree adding the ``wisdom of
@@ -596,7 +596,7 @@ for differing values of $c$.
 
 
 
-Figure~\ref{3d} shows the median CRPS recorded for differing values of the ratio $\frac{K}{N_T}$, and $c$. The 3D plot clearly shows that while CRPS generally still increases with higher values of $\frac{K}{N_T}$, including $c$ within the EBMA algorithm can help. 
+Figure~\ref{3d} shows the median CRPS recorded for differing values of the ratio $\frac{K}{n_T}$, and $c$ in our simulation. Darker gray tones depict higher CRPS levels. The 3D plot clearly shows that while CRPS generally still increases with higher values of $\frac{K}{n_T}$, including a ``wisdom of crowds'' parameter within the EBMA algorithm can help. 
 
 % For the
 %purposes of clarity, we focus on only three subsets from the
@@ -612,17 +612,17 @@ does not uniformly aid in out-of-sample performance.  When the
 calibration sample is modestly large and there are few
 models to calibrate, the addition of $c$ uniformly decreases model
 performance.  However, with small calibration samples and modestly
-large numbers of component models, the addition of $c$ appears to aid
+large numbers of component models, the addition of $c$ aids
 predictive performance. 
 
- Second, the relationship between $c$ and CRPS
+Second, the relationship between $c$ and CRPS
 is non-monotonic.  CRPS decreases for small to modest values of $c$,
 but eventually begins to rise.
 
 Based on our examination of the broader set of simulations, we generally recommend the selection of
 values of $c \in [0, 0.1]$. The simulations favor small values of
-$c$ as the ratio of $n_T$ to $K$ increases. As a starting value, we
-recommend $c=0.05$, however the correct value of $c$ may value from application to application. In our experience based on the simulation, as well as cross-validation studies during the applications presented below we feel a $c$ value at $0.05$ was the best choice. Generally speaking in choosing $c$ the researcher has to trade-off between possible overweighting certain model based on the performance in short calibration periods, or moving too far into the direction of a simple average. A relatively small $c$ to us seems the most values. It may be preferable to many researchers to choose the value of $c$
+$c$ as the ratio of $K$ to $n_T$ increases. As a starting value, we
+recommend $c=0.05$, however the ``best'' value of $c$ may value from application to application. In our experience based on the simulations, as well as cross-validation studies during the applications presented below, we feel a $c$ value at $0.05$ is the best choice. Generally speaking, in choosing $c$ the researcher faces a trade-off between possible overweighting certain models based on the performance in short calibration periods and moving too far into the direction of a simple average. A relatively small $c$ seems to generally aid performance. It may be preferable to many researchers to choose the value of $c$
 based on a k-fold cross-validation study of the calibration sample.
 
 Bearing these results in mind, we now turn to examining how these
@@ -902,8 +902,7 @@ cases $n_k \subset n$.  To create a fair comparison, therefore, we
 calculate these fit indices only for $n_k \forall k \in [1,K]$.  By
 this measure, the EBMA model performs very well.
 Table~\ref{compareTable2} provides a summary of these results.
-The rows of the table show the number of metrics by which EBMA outperforms components in each column, while columns show the number of forecasts made by these models. The table is filled with the share of the total number of models 
-falling in this cell. Thus for the top left cell EBMA was better on at least 7 out of eight metrics for models making between 1 and 10 predictions, approximately 20\% of models belong in this category. 
+The rows of the table show the number of metrics by which EBMA outperforms components in each column, while columns show the number of forecasts made by these models. The table is filled with the share of the total number of component models falling into this cell. Thus for the top left cell EBMA was better on at least 7 out of eight metrics for models making between 1 and 10 predictions, approximately 20\% of models belong in this category. 
 
 Notably, the relative superiority of EBMA to its components is
 somewhat less for components that provide few forecasts.  This
