@@ -176,6 +176,9 @@ pct_better<-rowMeans((modelOut-ensembleOut)>=0)*100
 rownames<-seq(1,length(count))
 for_table<-as.data.frame(cbind(count,pct_better))
 save(for_table, file="for_table.RData")
+
+
+load("for_table.RData")
 cell_025_010<-sum(ifelse(for_table$count <11 & for_table$pct_better<26,1,0))
 cell_2650_010<-sum(ifelse(for_table$count <11 & for_table$pct_better>25 &for_table$pct_better<51,1,0))
 cell_5175_010<-sum(ifelse(for_table$count <11 & for_table$pct_better>50 &for_table$pct_better<76,1,0))
@@ -201,6 +204,11 @@ mat<-matrix(ncol=4,nrow=4,c(cell_76100_010, cell_5175_010, cell_2650_010, cell_0
 all<-sum(mat)
 matrix<-mat/all
 
+
+
+image(matrix,col= gray(seq(0,1,0.1)))
+points(c(0.))
+filled.contour(matrix, col=gray(seq(0,17,1)/20))
 
 
 ##################### old plot, instead we now have the table created above

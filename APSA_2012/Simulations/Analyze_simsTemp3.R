@@ -31,7 +31,7 @@ for(i in slots){
 
 
 pdf("2D.pdf")    
-plot(x.axis, crps, ylim=c(5, 10.5), xlab=expression(frac("N Models",N[T])),ylab="CRPS",las=1,cex=0.5,pch=20)
+plot(x.axis, crps, ylim=c(5, 10.5), xlab=expression(frac("N Models",N[T])),ylab="CRPS",las=1,cex=0.5,pch=20,frame=F)
 dev.off()
 
 
@@ -66,11 +66,12 @@ tryThis <- predict(lo,newdata=for_pred)
 col=gray(1000000:0/1000000)
 library(lattice)
 pdf("3D.pdf")
-wireframe(tryThis~for_pred[,1]+for_pred[,2],xlab=expression(frac("N Models",N[T])), ylab="C", zlab="CRPS", drape=TRUE,lwd=0,col.regions=col,scales = list(arrows=FALSE, cex= 0.6, col = "black",font = 1, tck = 1))
+trellis.par.set("axis.line",list(col=NA,lty=1,lwd=1))
+
+wireframe(tryThis~for_pred[,1]+for_pred[,2],xlab=expression(frac("N Models",N[T])), ylab="C", zlab="CRPS", drape=TRUE,lwd=0,col.regions=col,scales = list(arrows=FALSE, cex= 0.6, col = "black",font = 1, tck = 0.5),colorkey=F)
 dev.off()
 
 
-help(lattice.getOption)
 
 
 
