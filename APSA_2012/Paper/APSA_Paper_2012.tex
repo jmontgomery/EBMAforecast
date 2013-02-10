@@ -670,7 +670,8 @@ variety of statistical models, however often professional forecast are
 based only on expert knowledge.\footnote{For a more comprehensive
   overview on foresting of economic variables and time-series
   forecasting see \citet{Elliott:Timmermann:2008} and
-  \citet{Goijer:Hyndman:2006}.}  The majority of scholars employ
+  \citet{Goijer:Hyndman:2006}. See also \citet{brandt:williams:2007} and \citet{brandt:cran:2012} for
+work on forecasting multiple time series.}  The majority of scholars employ
 time-series models, most commonly applying autoregressive integrated
 moving average (ARIMA) and vector autoregressive (VAR) models. The
 sophistication and complexity of forecasting models has increased
@@ -1203,7 +1204,7 @@ application. So far we have refrained from doing this as we are
 concerned with the number of parameters being estimated on relatively
 small numbers of observations (i.e. limited degrees of freedom). In
 addition, simple solutions have so far failed because of issues of
-identifiability. In future work we plan to rewrite the EBMA algorithm
+identifiability. We leave that to future work in which we plan to rewrite the EBMA algorithm
 further to make estimation of the $c$ possible.
 % Missing data is always a conundrum, and a pain. This is especially
 % true when creating ensemble predictions. The combination of missing
@@ -1224,7 +1225,13 @@ sciences, where weather stations may fail to report observations
 randomly. In the social sciences, however, different approaches may be
 more appropriate. In the future, therefore, we thus plan to implement
 imputation of missing observations via copula methods within the EBMA
-framework.
+framework. This too merits further investigation which we leave to future research.
+
+Ensembles are a useful approach to aggregation of predictive information. Even a decade ago
+there was not a lot of predictive information in need of aggregation in the social sciences. With the 
+advent of newer approaches, more widely available data, and predictive heuristics the arena of 
+predictive forecasts is expanded considerably. Using the EBMA approach not only is now feasible
+in the social sciences, but is increasingly useful.
 
 %%Bib 
 \singlespacing

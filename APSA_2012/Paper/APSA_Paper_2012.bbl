@@ -70,6 +70,11 @@ Billio, Monica, Roberto Casarin, Francesco Ravazzolo \harvardand\ Herman~K.
   \url{http://www.tinbergen.nl/discussionpapers/11082.pdf} (accessed June 1,
   2011).
 
+\harvarditem{Brandt}{2012}{brandt:cran:2012}
+Brandt, Patrick~T. 2012.
+\newblock ``MSBVAR: Bayesian Estimators and Inferences for VAR Models.''
+  Comprehensive R-Archive Network.
+
 \harvarditem[Brandt, Freeman \harvardand\ Schrodt]{Brandt, Freeman \harvardand\
   Schrodt}{2011}{brandt:freeman:schrodt:2011}
 Brandt, Patrick~T., John~R. Freeman \harvardand\ Philip~A. Schrodt. 2011.
@@ -78,6 +83,11 @@ Brandt, Patrick~T., John~R. Freeman \harvardand\ Philip~A. Schrodt. 2011.
   for Political Methodology.
   \url{http://polmeth.wustl.edu/media/Paper/RHMethods20110721small_1.pdf}
   (accessed August 20, 2011).
+
+\harvarditem{Brandt \harvardand\ Williams}{2007}{brandt:williams:2007}
+Brandt, Patrick~T. \harvardand\ John~T. Williams. 2007.
+\newblock {\em Modeling Multiple Time Series}.
+\newblock Thousand Oaks: CA:  Sage Publications.
 
 \harvarditem{Breiman}{1996}{Breiman:1996}
 Breiman, L. 1996.
