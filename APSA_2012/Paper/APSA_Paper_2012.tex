@@ -1,4 +1,5 @@
-% EBMA paper for Political Analysis: As Accepted for Publication.
+% Say Yes to the Guess:
+% Finalish revisions 10.Feb. 2013
 
 
 
@@ -40,7 +41,7 @@
 
 \title{Say Yes to the Guess: \\ Tailoring Elegant Ensembles on a Tight
   (Data) Budget\thanks{Prepared for the 2012 Annual Meeting of the American Political Science Association, August 30 - September 2, New Orleans, Louisiana. 
-This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
+%This work was partially supported by the Information Processing Technology Office of the Defense Advanced Research Projects Agency via a holding grant to the Lockheed Martin Corporation, Contract FA8650-07-C-7749. The current support is partially from the Office of Naval Research via ONR contract N00014-12-C-0066 to Lockheed Martin's Advanced Technology Laboratories.
     }}
 \author{
 Jacob M. Montgomery\\
@@ -181,7 +182,7 @@ The concept of ensemble forecasting builds on the basic notion that
 combining multiple points of view leads to a more accurate picture of
 reality \citep[c.f.,][]{Surowiecki:2004}.  Among the more famous
 demonstrations of this phenomenon was a competition to guess the
-weight of an ox at the West Of England Fat Stock and Poultry
+weight of an ox at the West of England Fat Stock and Poultry
 Exhibition.  \citet{Galton:1907} famously demonstrated that, while
 individual entrants were often wildly inaccurate, aggregating the
 ``wisdom of crowds'' by using the average guess resulted in a
@@ -244,7 +245,7 @@ particle filtering methods.  All in all, the promise of ensemble
 forecasting via EBMA has lead to multiple efforts to refine the method
 in fields outside of the social sciences.
 
-In this paper, however, we focus on difficulties in calibrating
+In this article, however, we focus on difficulties in calibrating
 accurate EBMA forecasting models in the context of data-quality
 challenges especially common (although not limited to) social science
 applications.  To begin with, the amount and quality of data for
@@ -281,7 +282,7 @@ While particularly egregious for specific applications (c.f.,
 presidential election forecasting), these data issues are endemic to
 the social sciences and are far from benign. As we demonstrate below,
 calibrating large ensemble models on sparse (and even incomplete) data
-leads to miss-specification of EBMA model weights and decreased
+leads to misspecification of EBMA model weights and decreased
 out-of-sample predictive performance. In light of these difficulties,
 below we introduce several extensions to the baseline EBMA algorithm
 introduced in
@@ -324,7 +325,7 @@ PDFs and the weight for each model is based on its predictive performance
 on past observations in period $T$.
 
 The general EBMA procedure assumes $K$ forecasting models throughout
-the training ($T^{\prime}$) calibration ($T$) and test ($T^\ast$)
+the training ($T^{\prime}$), calibration ($T$), and test ($T^\ast$)
 periods. Each component model is fitted based on data from the
 training period $T^\prime$. The parameter estimation based on training
 period $T^{\prime}$ allows us to then generate out-of-sample
@@ -427,7 +428,7 @@ $\sigma^2=1$.
 \subsection{Adjustments for sparse data}
 
 When ensembles are calibrated on very few observations, there is an
-increased chance that EBMA may miss-weight component models in a way
+increased chance that EBMA may incorrectly weight component models in a way
 that reduces out-of-sample performance due to unusually poor or strong
 predictive performance in the limited calibration sample. This is
 especially true when the short calibration period is combined with
@@ -517,7 +518,7 @@ model estimation, and plays no role in the creation of the simulated
 data itself.
 
 \begin{table}
-  \caption{Parameters for simulation}
+  \caption{Parameters for Simulation}
 \label{params}
 \small
 \centering
@@ -819,7 +820,7 @@ Forecast Mean& 0.61 & 0.80 & 0.46 & 0.102 & 9.71 & 9.06 & 0.93 & 46.23 \\
 %JMM: WE CANNOT CALCULATE FOR GREEEN BOOK, MEDIAN, AND MEAN
 
 \label{compareTable1}
-Definitions of model fit statistics are provided in the Appendix. The model with the lowest score for each metric are shown in bold.  Differences between model performance may not be obvious due to rounding.
+Note: Definitions of model fit statistics are provided in the Appendix. The model with the lowest score for each metric are shown in bold.  Differences between model performance may not be obvious due to rounding.
 \end{table}
 
 
@@ -919,8 +920,8 @@ best) on six out of eight of these metrics.
 \end{tabular}
 \end{center}
 \label{compareTable2}
-The table shows EBMA's relative performance, as measured by eight forecasting metrics, to each of its components against the number of forecasts generated by the individual component models.  
-Rows show the number of metrics EBMA scores better on than the respective component models, while the columns show the number of predictions made by these models. 
+%Note: The table shows EBMA's relative performance, as measured by eight forecasting metrics, to each of its components against the number of forecasts generated by the individual component models.  
+%Rows show the number of metrics EBMA scores better on than the respective component models, while the columns show the number of predictions made by these models. 
 \end{table}
 
 
@@ -1027,7 +1028,7 @@ elections in this dataset.\footnote{The predictions by Cuz\`an for
 %
 \end{tabular}
 \end{center}
-Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}\`an and Bundrick. 
+Note: Forecasts were published prior to each election by \textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs, \textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992), Lewis-Beck and \textbf{T}ien  (1996-2008),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}\`an and Bundrick. 
 \end{table}
 
 
