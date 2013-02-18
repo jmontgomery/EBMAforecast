@@ -23,12 +23,31 @@
 \usepackage{lscape}
 \usepackage{array}
 \usepackage{booktabs}
-%\usepackage{endnotes}
+\usepackage{endnotes}
 \usepackage{rotating}
-\usepackage[top=2.54cm, bottom=2.54cm, left=2.54cm, right=2.54cm]{geometry} 
+
 %\usepackage[nolist]{endfloat}
 
-\newcommand{\note}[1]{\footnote{ #1 \vspace{4 mm}}}
+
+\usepackage{footmisc}
+
+
+
+
+%%Bib 
+
+
+
+
+\usepackage[nolists]{endfloat}
+\renewcommand*{\footnotelayout}{\normalsize}
+\setlength{\footnotesep}{0.1cm}
+\usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry} 
+
+
+
+
+%\newcommand{\note}[1]{\footnote{ #1 \vspace{4 mm}}}
 
 \usepackage{natbib}
 \bibpunct{(}{)}{;}{a}{}{,}
@@ -36,7 +55,11 @@
 %\bibliographystyle{chicago}
 
 \newboolean{blind}
-\setboolean{blind}{false}
+\setboolean{blind}{true}
+
+
+\newboolean{titlepage}
+\setboolean{titlepage}{false}
 
 
 \title{Say Yes to the Guess: \\ Tailoring Elegant Ensembles on a Tight
@@ -72,11 +95,22 @@ Michael D. Ward\\
 
 \begin{document}
 
+
+\ifthenelse{\boolean{blind}}{}{
+
+
 \maketitle
+
+\ifthenelse{\boolean{titlepage}}{}{
+
 \thispagestyle{empty}
 \clearpage
+
 \pagestyle{myheadings}
-\markright{Montgomery, Hollenbach and Ward\hfill Ensemble BMA\hfill}
+
+\ifthenelse{\boolean{blind}}{}{\markright{Montgomery, Hollenbach and Ward\hfill Ensemble BMA\hfill}}
+
+
 \newpage
 \singlespacing
 
@@ -85,6 +119,8 @@ Michael D. Ward\\
 {\centering \bf \large Say Yes to the Guess: \\ Tailoring Elegant Ensembles on a Tight (Data) Budget \\}
 
 
+\ifthenelse{\boolean{blind}}{}{
+
 \begin{center}
 \begin{tabular}{c@{ }c@{ }c}
 
@@ -92,28 +128,44 @@ Jacob M. Montgomery, & Florian M. Hollenbach & and Michael D. Ward\\
 \end{tabular}
 \end{center}
 
+}
+}
+}
+
 \begin{abstract}
   \noindent We consider ensemble Bayesian model averaging (EBMA) in
   the context of small-n prediction tasks in the presence of a large
   number of component models.  With a large number of observations to
   calibrate ensembles, relatively small numbers of component
   forecasts, and low rates of missingness, the standard approach to
-  calibrating forecasting ensembles introduced by \cite{Raftery:2005}
-  performs well. However, data in the social sciences generally do not
-  fulfill these requirements. The number of predicted outcomes tends
-  to be small, the number of forecasting models in the literature can
-  be large, and missing predictions for component models are not
-  uncommon. In these circumstances, EBMA models may miss-weight
-  components, undermining the advantages of the ensemble approach to
-  prediction.  In this article, we explore these issues and introduce
-  a ``wisdom of the crowds'' parameter to the standard EBMA framework,
-  which improves its performance. Specifically, we show that this
-  solution improves predictive accuracy of EBMA forecasts in both
-  political and economic applications.
+  calibrating forecasting ensembles introduced by
+  \ifthenelse{\boolean{titlepage}}{Raftery et
+      al. (2005)}{\cite{Raftery:2005}} performs well. However, data in
+    the social sciences generally do not fulfill these
+    requirements. The number of predicted outcomes tends to be small,
+    the number of forecasting models in the literature can be large,
+    and missing predictions for component models are not uncommon. In
+    these circumstances, EBMA models may miss-weight components,
+    undermining the advantages of the ensemble approach to prediction.
+    In this article, we explore these issues and introduce a ``wisdom
+    of the crowds'' parameter to the standard EBMA framework, which
+    improves its performance. Specifically, we show that this solution
+    improves predictive accuracy of EBMA forecasts in both political
+    and economic applications.
 \end{abstract}
+
+
+
+\ifthenelse{\boolean{titlepage}}{
+\end{document}
+
+
+}{}
 
 \doublespacing
 %\newpage
+
+
 
 
 \setcounter{page}{1}
@@ -122,16 +174,19 @@ Jacob M. Montgomery, & Florian M. Hollenbach & and Michael D. Ward\\
 
 Although accurate prediction of future events is not the primary goal
 for most social sciences, recent years have witnessed the spreading of
-systematic forecasting from more traditional topics, such as GDP growth
-and unemployment, to many new domains, including elections
+systematic forecasting from more traditional topics, such as GDP
+growth and unemployment, to many new domains, including elections
 \citep[e.g.,][]{Linzer:2013}, political instability
 \citep[e.g.,][]{Goldstone:etal:2010}, and mass killings
-\citep{Ulfelder:2012}. Several factors have motivated this trend. To begin
-with, testing predictions about future events against observed
+\citep{Ulfelder:2012}. Several factors have motivated this trend. To
+begin with, testing predictions about future events against observed
 outcomes is seen as a stringent validity check of statistical and
-theoretical models \citep{wgb:2010}. In addition, the forecasting of
-important political, economic, and social events is of great interest
-to policymakers and the public.
+theoretical models
+\ifthenelse{\boolean{blind}}{\citep{Author:2020b}}{\citep{wgb:2010}}. In
+addition, the forecasting of important political, economic, and social
+events is of great interest to policymakers and the public.
+
+
 
 
 With the proliferation of forecasting efforts, however, comes a need
@@ -147,7 +202,7 @@ model \citep{Bates:1969,Armstrong:2001,Raftery:2005}.
 One promising approach to combining multiple forecasts is ensemble
 Bayesian model averaging (EBMA). This method was first proposed by
 \citet{Raftery:2005} to combine weather forecasts and was introduced
-to political sciences in \citet{mhw:2012}. EBMA combines multiple
+to political sciences in \ifthenelse{\boolean{blind}}{\citet{Author:2020b}}{\citet{mhw:2012}}. EBMA combines multiple
 forecasts using a finite mixture model that generates a weighted
 predictive probability density function (PDF). EBMA mixture models
 collate the good parts of existing forecasting models, while
@@ -158,7 +213,7 @@ approaches into a combined predictive PDF will result in greater
 accuracy.
 
 In this article, we present several adjustments to the basic EBMA
-model as specified in \citet{mhw:2012} that can aid applied
+model as specified in \ifthenelse{\boolean{blind}}{\citet{Author:2020b}}{\citet{mhw:2012}} that can aid applied
 researchers in creating ensemble forecasts in the presence of
 data-quality challenges common to real-world social science settings.
 Specifically, we show EBMA can be adjusted to accommodate small
@@ -225,11 +280,9 @@ In recent years, variants of the EBMA method have been applied to
 subjects as diverse as inflation \citep{Wright:2009, Koop:2010,
   Gneiting:2010}, stock prices \citep{Billio:2011}, economic growth
 and policymaking \citep{Brock:2007, Billio:2010}, exchange rates
-\citep{Wright:2008}, industrial production \citep{Feldkircher:2010},
-ice formation \citep{Berrocal:2010}, visibility
-\citep{Chmielecki:2010}, water catchment streamflow
-\citep{Viney:2009}, climatology \citep{Min:2006, Min:2007,
-  Smith:2009}, and hydrology \citep{Zhang:2009}.  
+\citep{Wright:2008}, ice formation \citep{Berrocal:2010}, visibility
+\citep{Chmielecki:2010}, climatology \citep{Min:2007, Smith:2009}, and
+hydrology \citep{Zhang:2009}.
 
 Though EBMA is already in wide use, research to improve upon the basic
 model is ongoing. It has been adjusted to handle missing data
@@ -297,8 +350,9 @@ As its name suggests, EBMA descends from the Bayesian model averaging
 (BMA) methodology \citep[c.f.,][]{Madigan:1994, Raftery:1995,
   Hoeting:1999, Clyde:2003, Clyde:2004}, which was first introduced to
 political science by \citet{Bartels:1997} and has been applied in a
-number of contexts \citep[e.g.,][]{Bartels:2001, Gill:2004, Imai:2004,
-  Montgomery:2010}. A more detailed discussion of the basic EBMA
+number of contexts \ifthenelse{\boolean{blind}}{\citep[e.g.,][]{Bartels:2001, Gill:2004, Imai:2004,
+ Author:2020b}}{\citep[e.g.,][]{Bartels:2001, Gill:2004, Imai:2004,
+  Montgomery:2010}}. A more detailed discussion of the basic EBMA
 model extended here is provided in
 \ifthenelse{\boolean{blind}}{\citet{Author:2020b}}{\citet{mhw:2012}}.
 
@@ -316,9 +370,9 @@ predictive PDF for the quantity of interest is
 $p(\mathbf{y}^{t^*}|M_k$), the conditional probability for each model
 is $p(M_k|\mathbf{y}^t) =
 p(\mathbf{y}^t|M_k)\pi(M_k)/\underset{k=1}{\overset{K}{\sum}}p(\mathbf{y}^t|M_k)\pi(M_k)$,
-and the marginal predictive PDF is $$p(\mathbf{y}^{t^*}) =
+and the marginal predictive PDF is $p(\mathbf{y}^{t^*}) =
 \underset{k=1}{\overset{K}{\sum}}
-p(\mathbf{y}^{t^*}|M_k)p(M_k|\mathbf{y}^{t}).$$
+p(\mathbf{y}^{t^*}|M_k)p(M_k|\mathbf{y}^{t}).$
 \noindent The prediction via EBMA is thus a weighted average of the component
 PDFs, and the weight for each model is based on its predictive performance
 on past observations in period $T$.
@@ -457,7 +511,7 @@ the arithmetic mean or median of component forecasts for time period
 $t$ represents a special case where $c=1$.\footnote{The mean
   or median would be equivalent depending on if the posterior mean or
   median is used to make a point prediction.}  Likewise, the EBMA
-discussed in \citet{mhw:2012} represents a special case of this more
+discussed in \ifthenelse{\boolean{blind}}{\citet{Author:2020b}}{\citet{mhw:2012}} represents a special case of this more
 general model where $c=0$.
 
 \section{Simulations and Applications}
@@ -474,15 +528,23 @@ is large.  We argue that these issues increases the miss-estimation of
 component model weights and decrease the predictive performance of
 EBMA.
 
-To justify these claims, we present the results of a
-simulation study of our modified EBMA algorithm and two empirical
-applications of the adjusted method. We begin with a simulation that
-illustrates the reduced predictive performance of the baseline EBMA
-model in the circumstances described above and illustrates the
-improvements that result from our proposed modification.  We then
-apply our method to, first, the prediction of the US unemployment
-rate, and, second, to the prediction of the 2012 US presidential
-election.
+To justify these claims, we present the results of a simulation study
+of our modified EBMA algorithm and two empirical applications of the
+adjusted method. We begin with a simulation that illustrates the
+reduced predictive performance of the baseline EBMA model in the
+circumstances described above and illustrates the improvements that
+result from our proposed modification.  We then apply our method to,
+first, the prediction of the US unemployment rate, and, second, to the
+prediction of the 2012 US presidential
+election.\footnote{\ifthenelse{\boolean{blind}}{All files needed for
+    these analyses will be made available online at the time of
+    publication.  Our modified EBMA algorithm will be released as part
+    of the R package REDACTED, which is hosted online with the
+    Comprehensive R Archiving Network (CRAN).}{All files needed for
+    these analyses will be made available online at the time of
+    publication.  Our modified EBMA algorithm will be released as part
+    of the R package `EBMAforecast', which is hosted online with the
+    Comprehensive R Archiving Network (CRAN) \citep{Montgomery:2012d}.}}
 
 \subsection{Simulation study} 
 
@@ -566,7 +628,7 @@ mathematical details behind the CRPS can be found in Appendix B.)
 \caption{CRPS with varying number of models and observations in calibration period}
 \label{simplot1}
 \centering
-\includegraphics[scale=.5]{2D}
+\includegraphics[scale=.8]{2D}
 \end{figure}
 
 Figure~\ref{simplot1} shows the out-of-sample performance of the
@@ -975,12 +1037,12 @@ cells decrease. It is also worth noting that only six out of the total
 \subsection{United States presidential elections}
 
 We now turn to the task of combining expert predictions of
- presidential elections.\footnote{See also
-  \citet{Montgomery:2012c}.}  This example provides a clear
-illustration of the difficulties of creating ensemble forecasts in the
-social sciences and allows us to further illustrate the advantages of
-generating predictive PDFs when focusing on a limited number of
-important events.
+presidential elections.\footnote{See also
+  \ifthenelse{\boolean{blind}}{\citet{Author:2020b}}{\citet{Montgomery:2012c}.}}
+This example provides a clear illustration of the difficulties of
+creating ensemble forecasts in the social sciences and allows us to
+further illustrate the advantages of generating predictive PDFs when
+focusing on a limited number of important events.
 
 Predicting US presidential elections is, perhaps, the quintessential
 forecasting task that combines all of the issues discussed in
@@ -992,17 +1054,18 @@ out-of-sample forecast for elections in the 20th century prior to the
     Cuzan:2004,Cuzan:Bundrick:2008,hibbs:2012, Lockerbie:2008,
     Erikson:Wlezien:2008, Graefe:2010, Holbrook:2008}.  A recent
   symposium in {\em PS: Political Science \& Politics} presents and
-  summarizes attempts by a variety of scholars to predict the 2012
-  US presidential election. In a symposium contribution, we use the
-  in-sample fitted values of the election forecasting models to
-  calibrate the EBMA model \citep{Montgomery:2012c}. However, the
-  strength of EBMA is greatest when the model is calibrated on true
-  out-of-sample forecasts as we do here.}  In this instance, we have
-only five observations on which to calibrate an ensemble model, while
-we have nine forecasting models.  Moreover, several of the individual
-forecasts are missing for a significant portion of this period.  The
-forecast of Cuz\`an, for instance, is missing for 60\% of the
-elections in this dataset.\footnote{The prediction by Cuz\`an for
+  summarizes attempts by a variety of scholars to predict the 2012 US
+  presidential election. \ifthenelse{\boolean{blind}}{Remainder
+    redacted for blind review.}{In a symposium contribution, we use
+    the in-sample fitted values of the election forecasting models to
+    calibrate the EBMA model \citep{Montgomery:2012c}. However, the
+    strength of EBMA is greatest when the model is calibrated on true
+    out-of-sample forecasts as we do here.}}  In this instance, we
+have only five observations on which to calibrate an ensemble model,
+while we have nine forecasting models.  Moreover, several of the
+individual forecasts are missing for a significant portion of this
+period.  The forecast of Cuz\`an, for instance, is missing for 60\% of
+the elections in this dataset.\footnote{The prediction by Cuz\`an for
   2004 stems from the FISCAL model published prior to the 2004
   election by \citet{Cuzan:2004}, while the 2008 prediction comes from
   the FPRIME short model presented in advance of the election
@@ -1184,7 +1247,7 @@ particular period. Second, many predictive models do not provide
 forecasts for all observations in the sample, as some forecasts may be
 missing or the time-periods for which forecasts were made are
 different for different models. In the standard EBMA model introduced
-in \citet{mhw:2012}, missing observations in component model
+in \ifthenelse{\boolean{blind}}{\citet{Author:2020b}}{\citet{mhw:2012}}, missing observations in component model
 predictions are not allowed.
 
 In this article, we address both of these issues to make EBMA more
@@ -1250,9 +1313,11 @@ heuristics, the arena of predictive forecasts has expanded
 considerably. The EBMA approach is now not only feasible in the social
 sciences, but also increasingly advantageous.
 
+
+
 %%Bib 
 \singlespacing
-\bibliographystyle{apsr}
+\bibliographystyle{chicago}
 \bibliography{Bibliography_EBMA}
 
 
@@ -1263,16 +1328,15 @@ sciences, but also increasingly advantageous.
 
  \section*{Appendix A: EM-Algorithm for missing data}
 
-To accommodate missing values in component models prediction within
-the EBMA procedure, we follow \citet{Fraley:2010} and modify the EM
-algorithm as follows.  Define $$\mathcal{A}^t = \{i|\mbox{ensemble
-  member i available at time t}\},$$\noindent which is simply the
-indicators of the list of components that provide forecasts for
-observation $y^t$.  For convenience, define $\tilde{z}_k^{(j+1)t}
-\equiv {{\underset{k \in
-      A^t}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|f_{k}^{t})}/{\underset{k \in
-    A^t}\sum w_k^{(j)}}$.  Equation (\ref{E-step}) above is then
-replaced with
+ To accommodate missing values within the EBMA procedure, we follow
+ \citet{Fraley:2010} and modify the EM algorithm as follows.
+ Define $$\mathcal{A}^t = \{i|\mbox{ensemble member i available at
+   time t}\},$$\noindent which is simply the indicators of the list of
+ components that provide forecasts for observation $y^t$.  For
+ convenience, define $\tilde{z}_k^{(j+1)t} \equiv {{\underset{k \in
+       A^t}{\sum}}\hat{w}^{(j)}_kp^{(j)}(y|f_{k}^{t})}/{\underset{k
+     \in A^t}\sum w_k^{(j)}}$.  Equation (\ref{E-step}) above is then
+ replaced with
 
 \begin{equation}
 \hat{z}^{(j+1)t}_{k} = \Bigg\{ \begin{array}{c} {\hat{w}^{(j)}_k p^{(j)}(y|f_{k}^{t})}/{\tilde{z}_k^{(j+1)t} } \mbox{ if } k \in \mathcal{A}^t\\ 0 \mbox{ if } k \notin \mathcal{A}^t \end{array}
@@ -1320,7 +1384,7 @@ outcome as $y_i$.  We define the \textit{absolute error} as $e_i\equiv
 |f_i - y_i|$ and the \textit{absolute percentage error} as $a_i \equiv
 e_i / |y_i| \times 100$.  Finally, for each observation we have
 predictions from naive forecast, $r_i$, that serves as a baseline for
-comparison.  In the example is the main text, this naive model is
+comparison.  In the example in the main text, this naive model is
 simply the lagged observation.  We can therefore define $b_i \equiv
 |r_i - y_i|$.\footnote{See \citet{brandt:freeman:schrodt:2011} for
   additional discussion of comparative fit metrics.}

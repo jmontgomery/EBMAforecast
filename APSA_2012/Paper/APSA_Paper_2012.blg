@@ -1,46 +1,50 @@
 This is BibTeX, Version 0.99d (TeX Live 2012)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: APSA_Paper_2012.aux
-The style file: apsr.bst
+The style file: chicago.bst
 Database file #1: Bibliography_EBMA.bib
-You've used 97 entries,
-            2874 wiz_defined-function locations,
-            1227 strings with 20696 characters,
-and the built_in function-call counts, 422193 in all, are:
-= -- 69487
-> -- 4680
-< -- 2
-+ -- 32742
-- -- 1673
-* -- 36283
-:= -- 84355
-add.period$ -- 392
-call.type$ -- 97
-change.case$ -- 1261
-chr.to.int$ -- 95
-cite$ -- 97
-duplicate$ -- 1438
-empty$ -- 3213
-format.name$ -- 1799
-if$ -- 75853
-int.to.chr$ -- 7
+Warning--no number and no volume in Linzer:2013
+Warning--page numbers missing in Linzer:2013
+Warning--page numbers missing in MoellerEtAl:2012
+You've used 91 entries,
+            2861 wiz_defined-function locations,
+            1166 strings with 19479 characters,
+and the built_in function-call counts, 59486 in all, are:
+= -- 5029
+> -- 4080
+< -- 5
++ -- 1192
+- -- 1442
+* -- 5207
+:= -- 11011
+add.period$ -- 277
+call.type$ -- 91
+change.case$ -- 625
+chr.to.int$ -- 89
+cite$ -- 94
+duplicate$ -- 1609
+empty$ -- 3716
+format.name$ -- 1630
+if$ -- 10924
+int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 87
-newline$ -- 401
-num.names$ -- 1092
-pop$ -- 302
+missing$ -- 82
+newline$ -- 458
+num.names$ -- 914
+pop$ -- 378
 preamble$ -- 1
-purify$ -- 1455
+purify$ -- 1173
 quote$ -- 0
-skip$ -- 1276
+skip$ -- 1712
 stack$ -- 0
-substring$ -- 98569
-swap$ -- 215
-text.length$ -- 1360
+substring$ -- 3331
+swap$ -- 523
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 378
-warning$ -- 0
-while$ -- 2243
+type$ -- 1752
+warning$ -- 3
+while$ -- 927
 width$ -- 0
-write$ -- 1340
+write$ -- 1203
+(There were 3 warnings)

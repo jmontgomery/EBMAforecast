@@ -1,573 +1,580 @@
-\begin{thebibliography}{xx}
+\begin{thebibliography}{}
 
-\harvarditem{Abramowitz}{2000}{Abramowitz:2000}
-Abramowitz, Alan~I. 2000.
-\newblock Bill and Al's Excellent Adventure: Forecasting the 1996 Presidential
-  Election.  In {\em Before the Vote: {F}orecasting American National
-  Elections}, ed. James~E. Campbell \harvardand\ James~C. Garand.
-\newblock Thousand Oaks:  Sage Publications chapter~2, pp.~47--56.
+\bibitem[\protect\citeauthoryear{Abramowitz}{Abramowitz}{2000}]{Abramowitz:2000}
+Abramowitz, A.~I. (2000).
+\newblock Bill and {A}l's excellent adventure: Forecasting the 1996
+  presidential election.
+\newblock In J.~E. Campbell and J.~C. Garand (Eds.), {\em Before the Vote:
+  {F}orecasting American National Elections}, Chapter~2, pp.\  47--56. Thousand
+  Oaks: Sage Publications.
 
-\harvarditem{Abramowitz}{2008}{Abramowitz:2008}
-Abramowitz, Alan~I. 2008.
-\newblock ``Forecasting the 2008 Presidential Election with the Time-for-Change
-  Model.'' {\em PS: Political Science \& Politics} 41(4):691--695.
+\bibitem[\protect\citeauthoryear{Abramowitz}{Abramowitz}{2008}]{Abramowitz:2008}
+Abramowitz, A.~I. (2008).
+\newblock Forecasting the 2008 presidential election with the time-for-change
+  model.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 41\/}(4), 691--695.
 
-\harvarditem{Abramowitz}{2012}{Abramowitz:2012}
-Abramowitz, Alan~I. 2012.
-\newblock ``Forecasting in a Polarized Era: The Time for Change Model and the
-  2012 Presidential Election.'' {\em PS: Political Science \& Politics}
-  45(4):618--619.
+\bibitem[\protect\citeauthoryear{Abramowitz}{Abramowitz}{2012}]{Abramowitz:2012}
+Abramowitz, A.~I. (2012).
+\newblock Forecasting in a polarized era: The time-for-change model and the
+  2012 presidential election.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 618--619.
 
-\harvarditem{Armstrong}{2001}{Armstrong:2001}
-Armstrong, J.~Scott. 2001.
-\newblock Combining Forecasts.  In {\em Principles of Forecasting: A Handbook
-  for Researchers and Practitioners}, ed. J.~Scott Armstrong.
-\newblock Norwell, MA:  Kluwer Academic Publishers.
+\bibitem[\protect\citeauthoryear{Armstrong}{Armstrong}{2001}]{Armstrong:2001}
+Armstrong, J.~S. (2001).
+\newblock Combining forecasts.
+\newblock In J.~S. Armstrong (Ed.), {\em Principles of Forecasting: A Handbook
+  for Researchers and Practitioners}. Norwell, MA: Kluwer Academic Publishers.
 
-\harvarditem{Baghestani}{2008}{Baghestani:2008}
-Baghestani, Hamid. 2008.
-\newblock ``Federal Reserve versus private information: Who is the best
-  unemployment rate predictor?'' {\em Journal of Policy Modeling}
-  30(1):101--110.
+\bibitem[\protect\citeauthoryear{Author and Author}{Author and
+  Author}{2020}]{Author:2020b}
+Author, A. and A.~C. Author (2020).
+\newblock A redacted publication.
+\newblock {\em Journal of Publications\/}~{\em 1\/}(1), 1--100.
 
-\harvarditem{Bartels}{1997}{Bartels:1997}
-Bartels, Larry~M. 1997.
-\newblock ``Specification Uncertainty and Model Averaging.'' {\em American
-  Journal of Political Science} 41(2):641--674.
+\bibitem[\protect\citeauthoryear{Baghestani}{Baghestani}{2008}]{Baghestani:2008}
+Baghestani, H. (2008).
+\newblock Federal reserve versus private information: Who is the best
+  unemployment rate predictor?
+\newblock {\em Journal of Policy Modeling\/}~{\em 30\/}(1), 101--110.
 
-\harvarditem{Bartels \harvardand\ Zaller}{2001}{Bartels:2001}
-Bartels, Larry~M. \harvardand\ John Zaller. 2001.
-\newblock ``Presidential Vote Models: A Recount.'' {\em PS: Political Science
-  and Politics} 34(1):9--20.
+\bibitem[\protect\citeauthoryear{Bartels}{Bartels}{1997}]{Bartels:1997}
+Bartels, L.~M. (1997).
+\newblock Specification uncertainty and model averaging.
+\newblock {\em American Journal of Political Science\/}~{\em 41\/}(2),
+  641--674.
 
-\harvarditem{Bates \harvardand\ Granger}{1969}{Bates:1969}
-Bates, J.M. \harvardand\ Clive~W.J. Granger. 1969.
-\newblock ``The Combination of Forecasts.'' {\em Operations Research}
-  20(4):451--468.
+\bibitem[\protect\citeauthoryear{Bartels and Zaller}{Bartels and
+  Zaller}{2001}]{Bartels:2001}
+Bartels, L.~M. and J.~Zaller (2001).
+\newblock Presidential vote models: A recount.
+\newblock {\em PS: Political Science and Politics\/}~{\em 34\/}(1), 9--20.
 
-\harvarditem[Berrocal et~al.]{Berrocal, Raftery, Gneiting \harvardand\
-  Steed}{2010}{Berrocal:2010}
-Berrocal, Veronica~J., Arian~E. Raftery, Tilmann Gneiting \harvardand\
-  Richard~C. Steed. 2010.
-\newblock ``Probabilistic Weather Forecasting for Winter Road Maintenance.''
-  {\em Journal of the American Statistical Association} 105(490):522--537.
+\bibitem[\protect\citeauthoryear{Bates and Granger}{Bates and
+  Granger}{1969}]{Bates:1969}
+Bates, J. and C.~W. Granger (1969).
+\newblock The combination of forecasts.
+\newblock {\em Operations Research\/}~{\em 20\/}(4), 451--468.
 
-\harvarditem[Billio et~al.]{Billio, Casarin, Ravazzolo \harvardand\
-  Van~Dijk}{2010}{Billio:2010}
-Billio, Monica, Roberto Casarin, Francesco Ravazzolo \harvardand\ Herman~K.
-  Van~Dijk. 2010.
-\newblock ``Combining Predictive Densities Using {B}ayesian Filtering with
-  Applications to {US} Economics Data.'' Norges Bank Working Paper.
-  \url{http://ssrn.com/abstract=1735421} (accessed June 1, 2011).
+\bibitem[\protect\citeauthoryear{Berrocal, Raftery, Gneiting, and
+  Steed}{Berrocal et~al.}{2010}]{Berrocal:2010}
+Berrocal, V.~J., A.~E. Raftery, T.~Gneiting, and R.~C. Steed (2010).
+\newblock Probabilistic weather forecasting for winter road maintenance.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  105\/}(490), 522--537.
 
-\harvarditem[Billio et~al.]{Billio, Casarin, Ravazzolo \harvardand\
-  Van~Dijk}{2011}{Billio:2011}
-Billio, Monica, Roberto Casarin, Francesco Ravazzolo \harvardand\ Herman~K.
-  Van~Dijk. 2011.
-\newblock ``Bayesian Combinations of Stock Price Predictions with an
-  Application to the {A}msterdam Exchange Index.'' Tinbergen Institute
-  Discussion Paper No. 2011-082/4.
+\bibitem[\protect\citeauthoryear{Billio, Casarin, Ravazzolo, and
+  Van~Dijk}{Billio et~al.}{2010}]{Billio:2010}
+Billio, M., R.~Casarin, F.~Ravazzolo, and H.~K. Van~Dijk (2010).
+\newblock Combining predictive densities using {B}ayesian filtering with
+  applications to {US} economics data.
+\newblock Norges Bank Working Paper. \url{http://ssrn.com/abstract=1735421}
+  (accessed June 1, 2011).
+
+\bibitem[\protect\citeauthoryear{Billio, Casarin, Ravazzolo, and
+  Van~Dijk}{Billio et~al.}{2011}]{Billio:2011}
+Billio, M., R.~Casarin, F.~Ravazzolo, and H.~K. Van~Dijk (2011).
+\newblock Bayesian combinations of stock price predictions with an application
+  to the {A}msterdam exchange index.
+\newblock Tinbergen Institute Discussion Paper No. 2011-082/4.
   \url{http://www.tinbergen.nl/discussionpapers/11082.pdf} (accessed June 1,
   2011).
 
-\harvarditem{Brandt}{2012}{brandt:cran:2012}
-Brandt, Patrick~T. 2012.
-\newblock ``MSBVAR: Bayesian Estimators and Inferences for VAR Models.''
-  Comprehensive R-Archive Network.
+\bibitem[\protect\citeauthoryear{Brandt}{Brandt}{2012}]{brandt:cran:2012}
+Brandt, P.~T. (2012).
+\newblock {MSBVAR}: Bayesian estimators and inferences for {VAR} models.
+\newblock Comprehensive R-Archive Network.
 
-\harvarditem[Brandt, Freeman \harvardand\ Schrodt]{Brandt, Freeman \harvardand\
-  Schrodt}{2011}{brandt:freeman:schrodt:2011}
-Brandt, Patrick~T., John~R. Freeman \harvardand\ Philip~A. Schrodt. 2011.
-\newblock ``Racing Horses: Constructing and Evaluating Forecasts in Political
-  Science.'' Paper prepared for the 28th Annual Summer Meeting of the Society
-  for Political Methodology.
+\bibitem[\protect\citeauthoryear{Brandt, Freeman, and Schrodt}{Brandt
+  et~al.}{2011}]{brandt:freeman:schrodt:2011}
+Brandt, P.~T., J.~R. Freeman, and P.~A. Schrodt (2011).
+\newblock Racing horses: Constructing and evaluating forecasts in political
+  science.
+\newblock Paper prepared for the 28th Annual Summer Meeting of the Society for
+  Political Methodology.
   \url{http://polmeth.wustl.edu/media/Paper/RHMethods20110721small_1.pdf}
   (accessed August 20, 2011).
 
-\harvarditem{Brandt \harvardand\ Williams}{2007}{brandt:williams:2007}
-Brandt, Patrick~T. \harvardand\ John~T. Williams. 2007.
-\newblock {\em Modeling Multiple Time Series}.
-\newblock Thousand Oaks: CA:  Sage Publications.
+\bibitem[\protect\citeauthoryear{Brandt and Williams}{Brandt and
+  Williams}{2007}]{brandt:williams:2007}
+Brandt, P.~T. and J.~T. Williams (2007).
+\newblock {\em Multiple Time Series Models}.
+\newblock Thousand Oaks: CA: Sage Publications.
 
-\harvarditem{Breiman}{1996}{Breiman:1996}
-Breiman, L. 1996.
-\newblock ``Bagging predictors.'' {\em Machine Learning} 26:123--140.
+\bibitem[\protect\citeauthoryear{Breiman}{Breiman}{1996}]{Breiman:1996}
+Breiman, L. (1996).
+\newblock Bagging predictors.
+\newblock {\em Machine Learning\/}~{\em 26}, 123--140.
 
-\harvarditem{Breiman}{2001}{Breiman:2001}
-Breiman, L. 2001.
-\newblock ``Random forests.'' {\em Machine Learning} 45:5--32.
+\bibitem[\protect\citeauthoryear{Breiman}{Breiman}{2001}]{Breiman:2001}
+Breiman, L. (2001).
+\newblock Random forests.
+\newblock {\em Machine Learning\/}~{\em 45}, 5--32.
 
-\harvarditem{Brier}{1950}{Brier:1950}
-Brier, Glenn~W. 1950.
-\newblock ``Verification of Forecasts Expressed in Terms of Probability.'' {\em
-  Monthly Weather Review} 78(1):1--3.
+\bibitem[\protect\citeauthoryear{Brier}{Brier}{1950}]{Brier:1950}
+Brier, G.~W. (1950).
+\newblock Verification of forecasts expressed in terms of probability.
+\newblock {\em Monthly Weather Review\/}~{\em 78\/}(1), 1--3.
 
-\harvarditem[Brock, Durlauf \harvardand\ West]{Brock, Durlauf \harvardand\
-  West}{2007}{Brock:2007}
-Brock, William~A., Steven~N. Durlauf \harvardand\ Kenneth~D. West. 2007.
-\newblock ``Model Uncertainty and Policy Evaluation: Some Theory and
-  Empirics.'' {\em Journal of Econometrics} 136(2):629--664.
+\bibitem[\protect\citeauthoryear{Brock, Durlauf, and West}{Brock
+  et~al.}{2007}]{Brock:2007}
+Brock, W.~A., S.~N. Durlauf, and K.~D. West (2007).
+\newblock Model uncertainty and policy evaluation: Some theory and empirics.
+\newblock {\em Journal of Econometrics\/}~{\em 136\/}(2), 629--664.
 
-\harvarditem{Campbell}{2000}{Campbell:2000}
-Campbell, James~E. 2000.
-\newblock Polls and Votes: {T}he Trial-Heat Presidential Election Forecasting
-  Model, Certainty, and Political Campaigns.  In {\em Before the Vote:
-  {F}orecasting American National Elections}, ed. James~E. Campbell
-  \harvardand\ James~C. Garand.
-\newblock Thousand Oaks:  Sage Publications chapter~1, pp.~17--46.
+\bibitem[\protect\citeauthoryear{Campbell}{Campbell}{2000}]{Campbell:2000}
+Campbell, J.~E. (2000).
+\newblock Polls and votes: {T}he trial-heat presidential election forecasting
+  model, certainty, and political campaigns.
+\newblock In J.~E. Campbell and J.~C. Garand (Eds.), {\em Before the Vote:
+  {F}orecasting American National Elections}, Chapter~1, pp.\  17--46. Thousand
+  Oaks: Sage Publications.
 
-\harvarditem{Campbell}{2001}{Campbell:2001}
-Campbell, James~E. 2001.
-\newblock ``Taking Stock of the Forecasts of the 2000 Presidential Election.''
-  {\em American Politics Research} 29(3):275--278.
+\bibitem[\protect\citeauthoryear{Campbell}{Campbell}{2001}]{Campbell:2001}
+Campbell, J.~E. (2001).
+\newblock Taking stock of the forecasts of the 2000 presidential election.
+\newblock {\em American Politics Research\/}~{\em 29\/}(3), 275--278.
 
-\harvarditem{Campbell}{2004}{Campbell:2004}
-Campbell, James~E. 2004.
-\newblock ``Introduction---The 2004 Presidential Election Forecasts.'' {\em PS:
-  Political Science \& Politics} 37(4):733 -- 735.
+\bibitem[\protect\citeauthoryear{Campbell}{Campbell}{2004}]{Campbell:2004}
+Campbell, J.~E. (2004).
+\newblock Introduction--{T}he 2004 presidential election forecasts.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 37\/}(4), 733 -- 735.
 
-\harvarditem{Campbell}{2005}{Campbell:2005}
-Campbell, James~E. 2005.
-\newblock ``Introduction---Assessments of the 2004 Presidential Vote
-  Forecasts.'' {\em PS: Political Science \& Politics} 38(1):23--24.
+\bibitem[\protect\citeauthoryear{Campbell}{Campbell}{2005}]{Campbell:2005}
+Campbell, J.~E. (2005).
+\newblock Introduction--{A}ssessments of the 2004 presidential vote forecasts.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 38\/}(1), 23--24.
 
-\harvarditem{Campbell}{2008{\em a}}{Campbell:2008a}
-Campbell, James~E. 2008{\em a}.
-\newblock ``Editor's Introduction: Forecasting the 2008 National Elections.''
-  {\em PS: Political Science \& Politics} 41(4):679--81.
+\bibitem[\protect\citeauthoryear{Campbell}{Campbell}{2008a}]{Campbell:2008a}
+Campbell, J.~E. (2008a).
+\newblock Editor's introduction: Forecasting the 2008 national elections.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 41\/}(4), 679--81.
 
-\harvarditem{Campbell}{2008{\em b}}{Campbell:2008}
-Campbell, James~E. 2008{\em b}.
-\newblock ``The Trial-heat Forecast of the 2008 Presidential Vote: Performance
-  and Value Considerations in an Open-Seat Election.'' {\em PS: Political
-  Science \& Politics} 41(4):697--701.
+\bibitem[\protect\citeauthoryear{Campbell}{Campbell}{2008b}]{Campbell:2008}
+Campbell, J.~E. (2008b).
+\newblock The trial-heat forecast of the 2008 presidential vote: Performance
+  and value considerations in an open-seat election.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 41\/}(4), 697--701.
 
-\harvarditem{Campbell}{2012}{Campbell:2012}
-Campbell, James~E. 2012.
-\newblock ``Forecasting the Presidential and Congressional Elections of 2012:
-  The Trial-Heat and the Seats-in-Trouble Models.'' {\em PS: Political Science
-  \& Politics} 45(4):630--634.
+\bibitem[\protect\citeauthoryear{Campbell}{Campbell}{2012}]{Campbell:2012}
+Campbell, J.~E. (2012).
+\newblock Forecasting the presidential and congressional elections of 2012: The
+  trial-heat and the seats-in-trouble models.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 630--634.
 
-\harvarditem{Campbell \harvardand\ Garand}{2000}{CampbellGarand:2000}
-Campbell, James~E. \harvardand\ James~C. Garand. 2000.
+\bibitem[\protect\citeauthoryear{Campbell and Garand}{Campbell and
+  Garand}{2000}]{CampbellGarand:2000}
+Campbell, J.~E. and J.~C. Garand (2000).
 \newblock {\em Before the Vote: {F}orecasting American National Elections}.
-\newblock Thousand Oaks:  Sage Publications.
+\newblock Thousand Oaks: Sage Publications.
 
-\harvarditem[Chipman, George \harvardand\ McCulloch]{Chipman, George
-  \harvardand\ McCulloch}{2010}{Chipman:2010}
-Chipman, Hugh~A., Edward~I. George \harvardand\ Robert~E. McCulloch. 2010.
-\newblock ``BART: Bayesian Additive Regression Trees.'' {\em The Annals of
-  Applied Statistics} 4(1):266--298.
+\bibitem[\protect\citeauthoryear{Chipman, George, and McCulloch}{Chipman
+  et~al.}{2010}]{Chipman:2010}
+Chipman, H.~A., E.~I. George, and R.~E. McCulloch (2010).
+\newblock {BART}: Bayesian additive regression trees.
+\newblock {\em The Annals of Applied Statistics\/}~{\em 4\/}(1), 266--298.
 
-\harvarditem{Chmielecki \harvardand\ Raftery}{2010}{Chmielecki:2010}
-Chmielecki, Richard~M. \harvardand\ Arian~E. Raftery. 2010.
-\newblock ``Probabilistic Visibility Forecasting Using {B}ayesian Model
-  Averaging.'' {\em Monthly Weather Review} 139(5):1626--1636.
+\bibitem[\protect\citeauthoryear{Chmielecki and Raftery}{Chmielecki and
+  Raftery}{2010}]{Chmielecki:2010}
+Chmielecki, R.~M. and A.~E. Raftery (2010).
+\newblock Probabilistic visibility forecasting using {B}ayesian model
+  averaging.
+\newblock {\em Monthly Weather Review\/}~{\em 139\/}(5), 1626--1636.
 
-\harvarditem{Clyde}{2003}{Clyde:2003}
-Clyde, Merlise. 2003.
-\newblock Model Averaging.  In {\em Subjective and Objective Bayesian
-  Statistics: Principles, Models and Applications}, ed. S.~James Press.
-\newblock Hoboken, NJ:  Wiley-Interscience pp.~320--335.
+\bibitem[\protect\citeauthoryear{Clyde}{Clyde}{2003}]{Clyde:2003}
+Clyde, M. (2003).
+\newblock Model averaging.
+\newblock In S.~J. Press (Ed.), {\em Subjective and Objective Bayesian
+  Statistics: Principles, Models and Applications}, pp.\  320--335. Hoboken,
+  NJ: Wiley-Interscience.
 
-\harvarditem{Clyde \harvardand\ George}{2004}{Clyde:2004}
-Clyde, Merlise \harvardand\ Edward~I. George. 2004.
-\newblock ``Model Uncertainty.'' {\em Statistical Science} 19(1):81--94.
+\bibitem[\protect\citeauthoryear{Clyde and George}{Clyde and
+  George}{2004}]{Clyde:2004}
+Clyde, M. and E.~I. George (2004).
+\newblock Model uncertainty.
+\newblock {\em Statistical Science\/}~{\em 19\/}(1), 81--94.
 
-\harvarditem{Croushore \harvardand\ Stark}{2001}{Croushore:Stark:2001}
-Croushore, Dean \harvardand\ Tom Stark. 2001.
-\newblock ``A Real-Time Data Set for Macroeconomists.'' {\em Journal of
-  Econometrics} 105(1):111--130.
+\bibitem[\protect\citeauthoryear{Croushore and Stark}{Croushore and
+  Stark}{2001}]{Croushore:Stark:2001}
+Croushore, D. and T.~Stark (2001).
+\newblock A real-time data set for macroeconomists.
+\newblock {\em Journal of Econometrics\/}~{\em 105\/}(1), 111--130.
 
-\harvarditem{Cuz\`an}{2012}{Cuzan:2012}
-Cuz\`an, Alfred~G. 2012.
-\newblock ``Forecasting the 2012 Presidential Election with the Fiscal Model.''
-  {\em PS: Political Science \& Politics} 45(4):648--650.
+\bibitem[\protect\citeauthoryear{Cuz\'an}{Cuz\'an}{2012}]{Cuzan:2012}
+Cuz\'an, A.~G. (2012).
+\newblock Forecasting the 2012 presidential election with the fiscal model.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 648--650.
 
-\harvarditem{Cuz\`an \harvardand\ Bundrick}{2004}{Cuzan:2004}
-Cuz\`an, Alfred~G. \harvardand\ Charles~M. Bundrick. 2004.
-\newblock ``Fiscal Effects on Presidential Elections: A Forecast for 2004.''
-  Paper prepared for presentation at the American Political Science
+\bibitem[\protect\citeauthoryear{Cuz\'an and Bundrick}{Cuz\'an and
+  Bundrick}{2004}]{Cuzan:2004}
+Cuz\'an, A.~G. and C.~M. Bundrick (2004).
+\newblock Fiscal effects on presidential elections: A forecast for 2004.
+\newblock Paper prepared for presentation at the American Political Science
   Association, Chicago
   \url{http://uwf.edu/govt/facultyforums/documents/fiscaleffectsprselect2004.pdf}.
 
-\harvarditem{Cuz\`an \harvardand\ Bundrick}{2008}{Cuzan:Bundrick:2008}
-Cuz\`an, Alfred~G. \harvardand\ Charles~M. Bundrick. 2008.
-\newblock ``Forecasting the 2008 Presidential Election: A Challenge for the
-  Fiscal Model.'' {\em PS: Political Science \& Politics} 41(4):717--722.
+\bibitem[\protect\citeauthoryear{Cuz\'an and Bundrick}{Cuz\'an and
+  Bundrick}{2008}]{Cuzan:Bundrick:2008}
+Cuz\'an, A.~G. and C.~M. Bundrick (2008).
+\newblock Forecasting the 2008 presidential election: A challenge for the
+  fiscal model.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 41\/}(4), 717--722.
 
-\harvarditem{{De Goijer} \harvardand\ Hyndman}{2006}{Goijer:Hyndman:2006}
-{De Goijer}, Jan~G. \harvardand\ Rob~J. Hyndman. 2006.
-\newblock ``25 years of time series forecasting.'' {\em International Journal
-  of Forecasting} 22(3):443--473.
+\bibitem[\protect\citeauthoryear{{De Gooijer} and Hyndman}{{De Gooijer} and
+  Hyndman}{2006}]{Goijer:Hyndman:2006}
+{De Gooijer}, J.~G. and R.~J. Hyndman (2006).
+\newblock 25 years of time series forecasting.
+\newblock {\em International Journal of Forecasting\/}~{\em 22\/}(3), 443--473.
 
-\harvarditem{Elliott \harvardand\ Timmermann}{2008}{Elliott:Timmermann:2008}
-Elliott, Graham \harvardand\ Allan Timmermann. 2008.
-\newblock ``Economic Forecasting.'' {\em Journal of Economic Literature}
-  46(1):3--56.
+\bibitem[\protect\citeauthoryear{Elliott and Timmermann}{Elliott and
+  Timmermann}{2008}]{Elliott:Timmermann:2008}
+Elliott, G. and A.~Timmermann (2008).
+\newblock Economic forecasting.
+\newblock {\em Journal of Economic Literature\/}~{\em 46\/}(1), 3--56.
 
-\harvarditem{Erikson \harvardand\ Wlezien}{2008}{Erikson:Wlezien:2008}
-Erikson, Robert~S. \harvardand\ Christopher Wlezien. 2008.
-\newblock ``Leading Economic Indicators, the Polls, and the Presidential
-  Vote.'' {\em PS: Political Science \& Politics} 41(4):703--707.
+\bibitem[\protect\citeauthoryear{Erikson and Wlezien}{Erikson and
+  Wlezien}{2008}]{Erikson:Wlezien:2008}
+Erikson, R.~S. and C.~Wlezien (2008).
+\newblock Leading economic indicators, the polls, and the presidential vote.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 41\/}(4), 703--707.
 
-\harvarditem{Erikson \harvardand\ Wlezien}{2012}{EriksonWlezien:2012}
-Erikson, Robert~S. \harvardand\ Christopher Wlezien. 2012.
-\newblock ``The Objective and Subjective Economy and the Presidential Vote.''
-  {\em PS: Political Science \& Politics} 45(4):620--624.
+\bibitem[\protect\citeauthoryear{Erikson and Wlezien}{Erikson and
+  Wlezien}{2012}]{EriksonWlezien:2012}
+Erikson, R.~S. and C.~Wlezien (2012).
+\newblock The objective and subjective economy and the presidential vote.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 620--624.
 
-\harvarditem{Fair}{2009}{Fair:2009}
-Fair, Ray~C. 2009.
-\newblock ``Presidential and Congressional Vote-Share Equations.'' {\em
-  American Journal of Political Science} 53(1):55--72.
+\bibitem[\protect\citeauthoryear{Fair}{Fair}{2009}]{Fair:2009}
+Fair, R.~C. (2009).
+\newblock Presidential and congressional vote-share equations.
+\newblock {\em American Journal of Political Science\/}~{\em 53\/}(1), 55--72.
 
-\harvarditem{Fair}{2011}{Fair2011}
-Fair, Ray~C. 2011.
-\newblock ``Vote-Share Equations: November 2010 Update.'' Working Paper, Yale
-  University. \url{http://fairmodel.econ.yale.edu/vote2012/index2.htm}
-  (accessed March 07, 2011).
+\bibitem[\protect\citeauthoryear{Fair}{Fair}{2011}]{Fair2011}
+Fair, R.~C. (2011).
+\newblock Vote-share equations: November 2010 update.
+\newblock Working Paper, Yale University.
+  \url{http://fairmodel.econ.yale.edu/vote2012/index2.htm} (accessed March 07,
+  2011).
 
-\harvarditem{Fair}{2012}{Fair:2012}
-Fair, Ray~C. 2012.
-\newblock ``Personal Website.'' \url{http://fairmodel.econ.yale.edu/} (accessed
-  january 27, 2013).
+\bibitem[\protect\citeauthoryear{Fair}{Fair}{2012}]{Fair:2012}
+Fair, R.~C. (2012).
+\newblock Personal website.
+\newblock \url{http://fairmodel.econ.yale.edu/} (accessed January 27, 2013).
 
-\harvarditem{Feldkircher}{2011}{Feldkircher:2010}
-Feldkircher, Martin. 2011.
-\newblock ``Forecast Combination and {B}ayesian Model Averaging: A Prior
-  Sensitivity Analysis.'' {\em Journal of Forecasting} p.~{in press}.
-\newline\harvardurl{http://dx.doi.org/10.1002/for.1228}
+\bibitem[\protect\citeauthoryear{Feldman}{Feldman}{2012}]{Feldman:2012}
+Feldman, K. (2012).
+\newblock Statistical postprocessing of ensemble forecasts for temperature: The
+  importance of spatial modeling.
+\newblock Master's thesis, Ruprecht-Karls-Universitat Heidelberg.
 
-\harvarditem{Feldman}{2012}{Feldman:2012}
-Feldman, Kira. 2012.
-\newblock Statistical Postprocessing of Ensemble Forecasts for Temperature: The
-  Importance of Spatial Modeling. Master's thesis Ruprecht-Karls-Universitat
-  Heidelberg.
+\bibitem[\protect\citeauthoryear{Fraley, Raftery, and Gneiting}{Fraley
+  et~al.}{2010}]{Fraley:2010}
+Fraley, C., A.~E. Raftery, and T.~Gneiting (2010).
+\newblock Calibrating multimodel forecast ensembles with exchangeable and
+  missing members using {B}ayesian model averaging.
+\newblock {\em Monthly Weather Review\/}~{\em 138\/}(1), 190--202.
 
-\harvarditem[Fraley, Raftery \harvardand\ Gneiting]{Fraley, Raftery
-  \harvardand\ Gneiting}{2010}{Fraley:2010}
-Fraley, Chris, Adrian~E. Raftery \harvardand\ Tilmann Gneiting. 2010.
-\newblock ``Calibrating Multimodel Forecast Ensembles with Exchangeable and
-  Missing Members Using {B}ayesian Model Averaging.'' {\em Monthly Weather
-  Review} 138(1):190--202.
+\bibitem[\protect\citeauthoryear{Freund and Schapire}{Freund and
+  Schapire}{1997}]{Freund:1997}
+Freund, Y. and R.~Schapire (1997).
+\newblock A decision-theoretic generalization of online learning and an
+  application to boosting.
+\newblock {\em J. Comput. System Sci.\/}~{\em 55}, 119--139.
 
-\harvarditem{Freund \harvardand\ Schapire}{1997}{Freund:1997}
-Freund, Y. \harvardand\ R.E. Schapire. 1997.
-\newblock ``A decision-theoretic generalization of online learning and an
-  application to boosting.'' {\em J. Comput. System Sci.} 55:119--139.
+\bibitem[\protect\citeauthoryear{Friedman}{Friedman}{2001}]{Friedman:2001}
+Friedman, J. (2001).
+\newblock Greedy function approximation: A gradient boosing machine.
+\newblock {\em Ann. Statist\/}~{\em 29}, 1189--1232.
 
-\harvarditem{Friedman}{2001}{Friedman:2001}
-Friedman, J.H. 2001.
-\newblock ``Greedy function approximation: A gradient boosing machine.'' {\em
-  Ann. Statist} 29:1189--1232.
+\bibitem[\protect\citeauthoryear{Galton}{Galton}{1907}]{Galton:1907}
+Galton, F. (1907).
+\newblock Vox populi.
+\newblock {\em Nature\/}~{\em 75\/}(1949), 450--451.
 
-\harvarditem{Galton}{1907}{Galton:1907}
-Galton, Francis. 1907.
-\newblock ``Vox populi.'' {\em Nature} 75(1949):450--451.
+\bibitem[\protect\citeauthoryear{Gill}{Gill}{2004}]{Gill:2004}
+Gill, J. (2004).
+\newblock Introduction to the special issue.
+\newblock {\em Political Analysis\/}~{\em 12\/}(4), 647--674.
 
-\harvarditem{Gill}{2004}{Gill:2004}
-Gill, Jeff. 2004.
-\newblock ``Introduction to the Special Issue.'' {\em Political Analysis}
-  12(4):647--674.
+\bibitem[\protect\citeauthoryear{Gneiting, Balabdaoui, and Raftery}{Gneiting
+  et~al.}{2007}]{GneitingEtAl:2007}
+Gneiting, T., F.~Balabdaoui, and A.~E. Raftery (2007).
+\newblock Probabilistic forecasts, calibration and sharpness.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)\/}~{\em 69\/}(2), 243--268.
 
-\harvarditem{Gneiting \harvardand\ Raftery}{2007}{Gneiting_Raftery_2007}
-Gneiting, Tilmann \harvardand\ Adrian~E. Raftery. 2007.
-\newblock ``Strictly Proper Scoring Rules, Prediction, and Estimation.'' {\em
-  Journal of the American Statistical Association} 102(477):359--378.
+\bibitem[\protect\citeauthoryear{Gneiting and Raftery}{Gneiting and
+  Raftery}{2007}]{Gneiting_Raftery_2007}
+Gneiting, T. and A.~E. Raftery (2007).
+\newblock Strictly proper scoring rules, prediction, and estimation.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  102\/}(477), 359--378.
 
-\harvarditem[Gneiting, Balabdaoui \harvardand\ Raftery]{Gneiting, Balabdaoui
-  \harvardand\ Raftery}{2007}{GneitingEtAl:2007}
-Gneiting, Tilmann, Fadoua Balabdaoui \harvardand\ Adrian~E. Raftery. 2007.
-\newblock ``Probabilistic Forecasts, Calibration and Sharpness.'' {\em Journal
-  of the Royal Statistical Society. Series B (Methodological)} 69(2):243--268.
+\bibitem[\protect\citeauthoryear{Gneiting and Thorarinsdottir}{Gneiting and
+  Thorarinsdottir}{2010}]{Gneiting:2010}
+Gneiting, T. and T.~L. Thorarinsdottir (2010).
+\newblock Predicting inflation: Professional experts versus no-change
+  forecasts.
+\newblock Working Paper. \url{http://arxiv.org/abs/1010.2318v1} (accessed June
+  15, 2011).
 
-\harvarditem{Gneiting \harvardand\ Thorarinsdottir}{2010}{Gneiting:2010}
-Gneiting, Tilmann \harvardand\ Thordis~L. Thorarinsdottir. 2010.
-\newblock ``Predicting Inflation: Professional Experts Versus No-Change
-  Forecasts.'' Working Paper. \url{http://arxiv.org/abs/1010.2318v1} (accessed
-  June 15, 2011).
+\bibitem[\protect\citeauthoryear{Goldstone, Bates, Epstein, Gurr, Lustik,
+  Marshall, Ulfelder, and Woodward}{Goldstone
+  et~al.}{2010}]{Goldstone:etal:2010}
+Goldstone, J.~A., R.~H. Bates, D.~L. Epstein, T.~R. Gurr, M.~B. Lustik, M.~G.
+  Marshall, J.~Ulfelder, and M.~Woodward (2010).
+\newblock A global model for forecasting political instability.
+\newblock {\em American Journal of Political Science\/}~{\em 54\/}(1),
+  190--208.
 
-\harvarditem[Goldstone et~al.]{Goldstone, Bates, Epstein, Gurr, Lustik,
-  Marshall, Ulfelder \harvardand\ Woodward}{2010}{Goldstone:etal:2010}
-Goldstone, Jack~A., Robert~H. Bates, David~L. Epstein, Ted~Robert Gurr,
-  Michael~B. Lustik, Monty~G. Marshall, Jay Ulfelder \harvardand\ Mark
-  Woodward. 2010.
-\newblock ``A Global Model for Forecasting Political Instability.'' {\em
-  American Journal of Political Science} 54(1):190--208.
-
-\harvarditem[Graefe et~al.]{Graefe, Cuzan, Jones \harvardand\
-  Armstrong}{2010}{Graefe:2010}
-Graefe, Andreas, Aldfred~G. Cuzan, Randal~J. Jones \harvardand\ J.~Scott
-  Armstrong. 2010.
-\newblock ``Combining Forecasts for {U.S.} Presidential Elections: {The
-  PollyVote}.'' Working Paper.
+\bibitem[\protect\citeauthoryear{Graefe, Cuz\'an, Jones, and Armstrong}{Graefe
+  et~al.}{2010}]{Graefe:2010}
+Graefe, A., A.~G. Cuz\'an, R.~J. Jones, and J.~S. Armstrong (2010).
+\newblock Combining forecasts for {U.S.} presidential elections: {The
+  PollyVote}.
+\newblock Working Paper.
   \url{http://dl.dropbox.com/u/3662406/Articles/Graefe_et_al_Combining.pdf}
   (accessed May 15, 2011).
 
-\harvarditem[Hastie, Tibshirani \harvardand\ Friedman]{Hastie, Tibshirani
-  \harvardand\ Friedman}{2009}{Hastie:2009}
-Hastie, Trevor, Robert Tibshirani \harvardand\ Jerome Friedman. 2009.
+\bibitem[\protect\citeauthoryear{Hastie, Tibshirani, and Friedman}{Hastie
+  et~al.}{2009}]{Hastie:2009}
+Hastie, T., R.~Tibshirani, and J.~Friedman (2009).
 \newblock {\em The Elements of Statistical Learning: Data Mining, Inference,
   and Prediction}.
-\newblock New York, NY:  Springer.
+\newblock New York, NY: Springer.
 
-\harvarditem{Hersbach}{2000}{Hersbach:2000}
-Hersbach, Hans. 2000.
-\newblock ``Decomposition of the Continuous Ranked Probability Score for
-  Ensemble Prediction Systems.'' {\em Weather and Forecasting} 15(5):559--570.
+\bibitem[\protect\citeauthoryear{Hersbach}{Hersbach}{2000}]{Hersbach:2000}
+Hersbach, H. (2000).
+\newblock Decomposition of the continuous ranked probability score for ensemble
+  prediction systems.
+\newblock {\em Weather and Forecasting\/}~{\em 15\/}(5), 559--570.
 
-\harvarditem{Hibbs}{1992}{Hibbs:1992}
-Hibbs, Douglas~A. 1992.
-\newblock ``THE 1992 PRESIDENTIAL ELECTION: Clinton is the Probable Winner, but
-  Only Narrowly, Getting Just over 51 Percent of the Two-Party Vote.''
+\bibitem[\protect\citeauthoryear{Hibbs}{Hibbs}{1992}]{Hibbs:1992}
+Hibbs, D.~A. (1992).
+\newblock The 1992 presidential election: Clinton is the probable winner, but
+  only narrowly, getting just over 51 percent of the two-party vote.
+\newblock
   \url{http://www.douglas-hibbs.com/Elections2004-00-96-92/forecast92.pdf}
   (accessed Jan. 27, 2013).
 
-\harvarditem{Hibbs}{2000}{Hibbs:2000}
-Hibbs, Douglas~A. 2000.
-\newblock ``Bread and Peace Voting in {U.S.} Presidential Elections.'' {\em
-  Public Choice} 104(1):149--180.
+\bibitem[\protect\citeauthoryear{Hibbs}{Hibbs}{2000}]{Hibbs:2000}
+Hibbs, D.~A. (2000).
+\newblock Bread and peace voting in {U.S.} presidential elections.
+\newblock {\em Public Choice\/}~{\em 104\/}(1), 149--180.
 
-\harvarditem{Hibbs}{2004}{Hibbs:2004}
-Hibbs, Douglas~A. 2004.
-\newblock ``Implications of the `Bread and Peace Model' of US Presidential
-  Voting for the 2004 Election Outcome.''
-  http://www.douglas-hibbs.com/Elections2004-00-96-92/election2004.pdf
+\bibitem[\protect\citeauthoryear{Hibbs}{Hibbs}{2004}]{Hibbs:2004}
+Hibbs, D.~A. (2004).
+\newblock Implications of the `bread and peace model' of {US} presidential
+  voting for the 2004 election outcome.
+\newblock http://www.douglas-hibbs.com/Elections2004-00-96-92/election2004.pdf
   (accessed Jan. 27, 2013).
 
-\harvarditem{Hibbs}{2012{\em a}}{hibbs:2012}
-Hibbs, Douglas~A. 2012{\em a}.
-\newblock ``Obama's Re-election Prospects under `Bread and Peace/ Voting in the
-  2012 US Presidential Election.''
+\bibitem[\protect\citeauthoryear{Hibbs}{Hibbs}{2012a}]{hibbs:2012}
+Hibbs, D.~A. (2012a).
+\newblock Obama's re-election prospects under `bread and peace/ voting in the
+  2012 {US} presidential election.
+\newblock
   \url{http://www.douglas-hibbs.com/HibbsArticles/HIBBS_OBAMA-REELECT-31July2012r1.pdf}.
 
-\harvarditem{Hibbs}{2012{\em b}}{Hibbs:2012a}
-Hibbs, Douglas~A. 2012{\em b}.
-\newblock ``Obama's Reelection Prospects under ``Bread and Peace'' Voting in
-  the 2012 US Presidential Election.'' {\em PS: Political Science \& Politics}
-  45(4):635--639.
+\bibitem[\protect\citeauthoryear{Hibbs}{Hibbs}{2012b}]{Hibbs:2012a}
+Hibbs, D.~A. (2012b).
+\newblock Obama's reelection prospects under ``bread and peace'' voting in the
+  2012 {US} presidential election.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 635--639.
 
-\harvarditem[Hoeting et~al.]{Hoeting, Madigan, Raftery \harvardand\
-  Volinsky}{1999}{Hoeting:1999}
-Hoeting, Jennifer~A., David Madigan, Adrian~E. Raftery \harvardand\
-  Christopher~T. Volinsky. 1999.
-\newblock ``Bayesian Model Averaging: A Tutorial.'' {\em Statistical Science}
-  14(4):382--417.
+\bibitem[\protect\citeauthoryear{Hoeting, Madigan, Raftery, and
+  Volinsky}{Hoeting et~al.}{1999}]{Hoeting:1999}
+Hoeting, J.~A., D.~Madigan, A.~E. Raftery, and C.~T. Volinsky (1999).
+\newblock Bayesian model averaging: A tutorial.
+\newblock {\em Statistical Science\/}~{\em 14\/}(4), 382--417.
 
-\harvarditem{Holbrook}{1996}{Holbrook:1996}
-Holbrook, Thomas~M. 1996.
-\newblock ``Reading the Political Tea Leaves : {A} Forecasting Model of
-  Contemporary Presidential Elections.'' {\em American Politics Research}
-  24(4):506--519.
+\bibitem[\protect\citeauthoryear{Holbrook}{Holbrook}{1996}]{Holbrook:1996}
+Holbrook, T.~M. (1996).
+\newblock Reading the political tea leaves : {A} forecasting model of
+  contemporary presidential elections.
+\newblock {\em American Politics Research\/}~{\em 24\/}(4), 506--519.
 
-\harvarditem{Holbrook}{2008}{Holbrook:2008}
-Holbrook, Thomas~M. 2008.
-\newblock ``Incumbency, National Conditions, and the 2008 Presidential
-  Election.'' {\em PS: Political Science \& Politics} 41(4):709--712.
+\bibitem[\protect\citeauthoryear{Holbrook}{Holbrook}{2008}]{Holbrook:2008}
+Holbrook, T.~M. (2008).
+\newblock Incumbency, national conditions, and the 2008 presidential election.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 41\/}(4), 709--712.
 
-\harvarditem{Holbrook}{2012}{Holbrook:2012}
-Holbrook, Thomas~M. 2012.
-\newblock ``Incumbency, National Conditions, and the 2012 Presidential
-  Election.'' {\em PS: Political Science \& Politics} 45(4):640--643.
+\bibitem[\protect\citeauthoryear{Holbrook}{Holbrook}{2012}]{Holbrook:2012}
+Holbrook, T.~M. (2012).
+\newblock Incumbency, national conditions, and the 2012 presidential election.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 640--643.
 
-\harvarditem[Huisman et~al.]{Huisman, Breuer, Bormann, Bronstert, Croke, Frede,
-  Gr{\"a}ff, Hubrechts, Jakeman, Kite, Lanini, Leavesley, Lettenmaier,
-  Lindstr{\"o}m, Seibert, Sivapalan, Viney \harvardand\
-  Willems}{2009}{Viney:2009}
-Huisman, J.A., L. Breuer, H. Bormann, A. Bronstert, B.F.W. Croke, H.-G. Frede,
-  T. Gr{\"a}ff, L. Hubrechts, A.J. Jakeman, G. Kite, J. Lanini, G. Leavesley,
-  D.P. Lettenmaier, G. Lindstr{\"o}m, J. Seibert, M. Sivapalan, N.R. Viney
-  \harvardand\ P. Willems. 2009.
-\newblock ``Assessing the Impact of Land Use Change on Hydrology by Ensemble
-  Modelling {(LUCHEM) II}: Ensemble Combinations and Predictions.'' {\em
-  Advances in Water Resources} 32(2):147--158.
+\bibitem[\protect\citeauthoryear{Imai and King}{Imai and
+  King}{2004}]{Imai:2004}
+Imai, K. and G.~King (2004).
+\newblock Did illegal overseas absentee ballots decide the 2000 {US}
+  presidential election?
+\newblock {\em Perspectives on Politics\/}~{\em 2\/}(3), 537--549.
 
-\harvarditem{Imai \harvardand\ Tingley}{2012}{imai:tingley:2012}
-Imai, Kosuke \harvardand\ Dustin Tingley. 2012.
-\newblock ``A Statistical Method for Empirical Testing of Competing Theories.''
-  {\em American Journal of Political Science} 56(1):218--236.
+\bibitem[\protect\citeauthoryear{Imai and Tingley}{Imai and
+  Tingley}{2012}]{imai:tingley:2012}
+Imai, K. and D.~Tingley (2012).
+\newblock A statistical method for empirical testing of competing theories.
+\newblock {\em American Journal of Political Science\/}~{\em 56\/}(1),
+  218--236.
 
-\harvarditem{Imai \harvardand\ King}{2004}{Imai:2004}
-Imai, Kosuke \harvardand\ Gary King. 2004.
-\newblock ``Did Illegal Overseas Absentee Ballots Decide the 2000 {US}
-  Presidential Election?'' {\em Perspectives on Politics} 2(3):537--549.
-
-\harvarditem{Koop \harvardand\ Korobilis}{2009}{Koop:2010}
-Koop, Gary \harvardand\ Dimitris Korobilis. 2009.
-\newblock ``Forecasting Inflation Using Dynamic Model Averaging.'' Working
-  Paper.
+\bibitem[\protect\citeauthoryear{Koop and Korobilis}{Koop and
+  Korobilis}{2009}]{Koop:2010}
+Koop, G. and D.~Korobilis (2009).
+\newblock Forecasting inflation using dynamic model averaging.
+\newblock Working Paper.
   \url{http://personal.strath.ac.uk/gary.koop/koop_korobilis_forecasting_inflation_using_DMA.pdf}
   (accessed May 25, 2011).
 
-\harvarditem{Lewis-Beck \harvardand\ Tien}{1996}{LewisBeckTien:1996}
-Lewis-Beck, Michael~S. \harvardand\ Charles Tien. 1996.
-\newblock ``The Future in Forecasting : Prospective Presidential Models.'' {\em
-  American Politics Research} 24(4):468--491.
+\bibitem[\protect\citeauthoryear{Lewis-Beck and Tien}{Lewis-Beck and
+  Tien}{1996}]{LewisBeckTien:1996}
+Lewis-Beck, M.~S. and C.~Tien (1996).
+\newblock The future in forecasting : Prospective presidential models.
+\newblock {\em American Politics Research\/}~{\em 24\/}(4), 468--491.
 
-\harvarditem{Lewis-Beck \harvardand\ Tien}{2012}{LewisBeckTien:2012}
-Lewis-Beck, Michael~S. \harvardand\ Charles Tien. 2012.
-\newblock ``Election Forecasting for Turbulent Times.'' {\em PS: Political
-  Science \& Politics} 45(4):625--629.
+\bibitem[\protect\citeauthoryear{Lewis-Beck and Tien}{Lewis-Beck and
+  Tien}{2012}]{LewisBeckTien:2012}
+Lewis-Beck, M.~S. and C.~Tien (2012).
+\newblock Election forecasting for turbulent times.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 625--629.
 
-\harvarditem{Linzer}{Forthcoming}{Linzer:2013}
-Linzer, Drew. Forthcoming.
-\newblock ``Dynamic Bayesian Forecasting of Presidential Elections in the
-  States.'' {\em Journal of the American Statistical Association} .
+\bibitem[\protect\citeauthoryear{Linzer}{Linzer}{ming}]{Linzer:2013}
+Linzer, D. (Forthcoming).
+\newblock Dynamic {B}ayesian forecasting of presidential elections in the
+  states.
+\newblock {\em Journal of the American Statistical Association\/}.
 
-\harvarditem{Lockerbie}{2008}{Lockerbie:2008}
-Lockerbie, Brad. 2008.
-\newblock ``Election Forecasting: The Future of the Presidency and the House.''
-  {\em PS: Political Science \& Politics} 41(4):713--716.
+\bibitem[\protect\citeauthoryear{Lockerbie}{Lockerbie}{2008}]{Lockerbie:2008}
+Lockerbie, B. (2008).
+\newblock Election forecasting: The future of the presidency and the house.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 41\/}(4), 713--716.
 
-\harvarditem{Lockerbie}{2012}{Lockerbie:2012}
-Lockerbie, Brad. 2012.
-\newblock ``Economic Expectations and Election Outcomes: The Presidency and the
-  House in 2012.'' {\em PS: Political Science \& Politics} 45(4):644--647.
+\bibitem[\protect\citeauthoryear{Lockerbie}{Lockerbie}{2012}]{Lockerbie:2012}
+Lockerbie, B. (2012).
+\newblock Economic expectations and election outcomes: The presidency and the
+  house in 2012.
+\newblock {\em PS: Political Science \& Politics\/}~{\em 45\/}(4), 644--647.
 
-\harvarditem{Madigan \harvardand\ Raftery}{1994}{Madigan:1994}
-Madigan, David \harvardand\ Adrian~E. Raftery. 1994.
-\newblock ``Model Selection and Accounting for Model Uncertainty in Graphical
-  Models Using {O}ccam's Window.'' {\em Journal of the American Statistical
-  Association} 89(428):1535--1546.
+\bibitem[\protect\citeauthoryear{Madigan and Raftery}{Madigan and
+  Raftery}{1994}]{Madigan:1994}
+Madigan, D. and A.~E. Raftery (1994).
+\newblock Model selection and accounting for model uncertainty in graphical
+  models using {O}ccam's window.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  89\/}(428), 1535--1546.
 
-\harvarditem[McCandless, Haupt \harvardand\ Young]{McCandless, Haupt
-  \harvardand\ Young}{2011}{Mccandless:2011}
-McCandless, Tyler~C., Sue~Ellen Haupt \harvardand\ George~S. Young. 2011.
-\newblock ``The Effects of Imputing Missing Data on Ensemble Temperature
-  Forecasts.'' {\em Journal of Computers} 6(2):162--171.
+\bibitem[\protect\citeauthoryear{McCandless, Haupt, and Young}{McCandless
+  et~al.}{2011}]{Mccandless:2011}
+McCandless, T.~C., S.~E. Haupt, and G.~S. Young (2011).
+\newblock The effects of imputing missing data on ensemble temperature
+  forecasts.
+\newblock {\em Journal of Computers\/}~{\em 6\/}(2), 162--171.
 
-\harvarditem{McLachlan \harvardand\ Peel}{2000}{mclachlan:peel:2000}
-McLachlan, Geoffrey \harvardand\ David Peel. 2000.
+\bibitem[\protect\citeauthoryear{McLachlan and Peel}{McLachlan and
+  Peel}{2000}]{mclachlan:peel:2000}
+McLachlan, G. and D.~Peel (2000).
 \newblock {\em Finite Mixture Models}.
-\newblock New York, NY:  John Wiley \& Sons, Ltd.
+\newblock New York, NY: John Wiley \& Sons, Ltd.
 
-\harvarditem{Min \harvardand\ Hense}{2006}{Min:2006}
-Min, Seung-Ki \harvardand\ Andreas Hense. 2006.
-\newblock ``A {B}ayesian Approach to Climate Model Evaluation and Multi-Model
-  Averaging with an Application to Global Mean Surface Temperatures from {IPCC
-  AR4} Coupled Climate Models.'' {\em Geophysical Research Letters}
-  33(8):L08708.
+\bibitem[\protect\citeauthoryear{Min, Simonis, and Hense}{Min
+  et~al.}{2007}]{Min:2007}
+Min, S.-K., D.~Simonis, and A.~Hense (2007).
+\newblock Probabilistic climate change predictions applying {B}ayesian model
+  averaging.
+\newblock {\em Philosophical Transactions of the Royal Society A: Mathematical,
+  Physical and Engineering Sciences\/}~{\em 365\/}(1857), 2103--2116.
 
-\harvarditem[Min, Simonis \harvardand\ Hense]{Min, Simonis \harvardand\
-  Hense}{2007}{Min:2007}
-Min, Seung-Ki, Daniel Simonis \harvardand\ Andreas Hense. 2007.
-\newblock ``Probabilistic Climate Change Predictions Applying {B}ayesian Model
-  Averaging.'' {\em Philosophical Transactions of the Royal Society A:
-  Mathematical, Physical and Engineering Sciences} 365(1857):2103--2116.
+\bibitem[\protect\citeauthoryear{M\"oller, Lenkoski, and
+  Thorarinsdottir}{M\"oller et~al.}{2013}]{MoellerEtAl:2012}
+M\"oller, A., A.~Lenkoski, and T.~L. Thorarinsdottir (2013).
+\newblock Multivariate probabilistic forecasting using ensemble {B}ayesian
+  model averaging and copulas.
+\newblock {\em Quarterly Journal of the Royal Meteorological Society\/}~{\em
+  Forthcoming}.
 
-\harvarditem[M\"oller, Lenkoski \harvardand\ Thorarinsdottir]{M\"oller,
-  Lenkoski \harvardand\ Thorarinsdottir}{2013}{MoellerEtAl:2012}
-M\"oller, Anette, Alex Lenkoski \harvardand\ Thordis~L. Thorarinsdottir. 2013.
-\newblock ``Multivariate Probabilistic Forecasting Using Ensemble {B}ayesian
-  Model Averaging and Copulas.'' {\em Quarterly Journal of the Royal
-  Meteorological Society} Forthcoming.
+\bibitem[\protect\citeauthoryear{Montgomery, Zarnowitz, Tsay, and
+  George}{Montgomery et~al.}{1998}]{Montgomery:etal:1998}
+Montgomery, A.~L., V.~Zarnowitz, R.~Tsay, and T.~George (1998).
+\newblock Forecasting the {U.S.} unemployement rate.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  93\/}(442), 478--493.
 
-\harvarditem[Montgomery et~al.]{Montgomery, Zarnowitz, Tsay \harvardand\
-  George}{1998}{Montgomery:etal:1998}
-Montgomery, Alan~L., Victor Zarnowitz, Ruey Tsay \harvardand\ Tiaom George.
-  1998.
-\newblock ``Forecasting the U.S. Unemployement Rate.'' {\em Journal of the
-  American Statistical Association} 93(442):478--493.
-
-\harvarditem{Montgomery \harvardand\ Nyhan}{2010}{Montgomery:2010}
-Montgomery, Jacob~M. \harvardand\ Brendan Nyhan. 2010.
-\newblock ``Bayesian Model Averaging: Theoretical Developments and Practical
-  Applications.'' {\em Political Analysis} 18(2):245--270.
-
-\harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
-  \harvardand\ Ward}{2012\emph{a}}{mhw:2012}
-Montgomery, Jacob~M., Florian Hollenbach \harvardand\ Michael~D. Ward.
-  2012\emph{a}.
-\newblock ``Improving Predictions Using Ensemble Bayesian Model Averaging.''
-  {\em Political Analysis} 20(3):271--291.
-
-\harvarditem[Montgomery, Hollenbach \harvardand\ Ward]{Montgomery, Hollenbach
-  \harvardand\ Ward}{2012\emph{b}}{Montgomery:2012c}
-Montgomery, Jacob~M., Florian Hollenbach \harvardand\ Michael~D. Ward.
-  2012\emph{b}.
-\newblock ``Ensemble Predictions of the 2012 US Presidential Election.'' {\em
-  PS: Political Science \& Politics} 45(4):651--654.
-
-\harvarditem{Page}{2011}{Page:2011}
-Page, Scott~E. 2011.
+\bibitem[\protect\citeauthoryear{Page}{Page}{2011}]{Page:2011}
+Page, S.~E. (2011).
 \newblock {\em Diversity and Complexity}.
-\newblock Princeton,N.J.:  Princeton University Press.
+\newblock Princeton,N.J.: Princeton University Press.
 
-\harvarditem{Palm \harvardand\ Zellner}{1992}{Palm:Zellner:1992}
-Palm, Franz~C. \harvardand\ Arnold Zellner. 1992.
-\newblock ``To Combine of Not to Combine? Issues of Combining Forecasts.'' {\em
-  Journal of Forecasting} 11(8):687--701.
+\bibitem[\protect\citeauthoryear{Palm and Zellner}{Palm and
+  Zellner}{1992}]{Palm:Zellner:1992}
+Palm, F.~C. and A.~Zellner (1992).
+\newblock To combine of not to combine? {I}ssues of combining forecasts.
+\newblock {\em Journal of Forecasting\/}~{\em 11\/}(8), 687--701.
 
-\harvarditem{Raftery}{1995}{Raftery:1995}
-Raftery, Adrian~E. 1995.
-\newblock ``Bayesian Model Selection in Social Research.'' {\em Sociological
-  Methodology} 25(1):111--163.
+\bibitem[\protect\citeauthoryear{Raftery}{Raftery}{1995}]{Raftery:1995}
+Raftery, A.~E. (1995).
+\newblock Bayesian model selection in social research.
+\newblock {\em Sociological Methodology\/}~{\em 25\/}(1), 111--163.
 
-\harvarditem[Raftery et~al.]{Raftery, Gneiting, Balabdaoui \harvardand\
-  Polakowski}{2005}{Raftery:2005}
-Raftery, Adrian~E., Tilmann Gneiting, Fadoua Balabdaoui \harvardand\ Michael
-  Polakowski. 2005.
-\newblock ``Using {B}ayesian Model Averaging to Calibrate Forecast Ensembles.''
-  {\em Monthly Weather Review} 133(5):1155--1174.
+\bibitem[\protect\citeauthoryear{Raftery, Gneiting, Balabdaoui, and
+  Polakowski}{Raftery et~al.}{2005}]{Raftery:2005}
+Raftery, A.~E., T.~Gneiting, F.~Balabdaoui, and M.~Polakowski (2005).
+\newblock Using {B}ayesian model averaging to calibrate forecast ensembles.
+\newblock {\em Monthly Weather Review\/}~{\em 133\/}(5), 1155--1174.
 
-\harvarditem[Rings et~al.]{Rings, Vrugt, Schoups, Huisman \harvardand\
-  Vereecken}{2012}{RingsEtAl:2012}
-Rings, Joerg, Jasper~A. Vrugt, Gerrit Schoups, Johan~A. Huisman \harvardand\
-  Harry Vereecken. 2012.
-\newblock ``{B}ayesian Model Averaging Using Particle Filtering and {G}aussian
-  Mixture Modeling: Theory, Concepts, and Simulation Experiments.'' {\em Water
-  Resources Research} 48(5):1--12.
+\bibitem[\protect\citeauthoryear{Rings, Vrugt, Schoups, Huisman, and
+  Vereecken}{Rings et~al.}{2012}]{RingsEtAl:2012}
+Rings, J., J.~A. Vrugt, G.~Schoups, J.~A. Huisman, and H.~Vereecken (2012).
+\newblock {B}ayesian model averaging using particle filtering and {G}aussian
+  mixture modeling: Theory, concepts, and simulation experiments.
+\newblock {\em Water Resources Research\/}~{\em 48\/}(5), 1--12.
 
-\harvarditem[Smith et~al.]{Smith, Tebaldi, Nychka \harvardand\
-  Mearns}{2009}{Smith:2009}
-Smith, Richard~L., Claudia Tebaldi, Doug Nychka \harvardand\ Linda~O. Mearns.
-  2009.
-\newblock ``Bayesian Modeling of Uncertainty in Ensembles of Climate Models.''
-  {\em Journal of the American Statistical Association} 104(485):97--116.
+\bibitem[\protect\citeauthoryear{Smith, Tebaldi, Nychka, and Mearns}{Smith
+  et~al.}{2009}]{Smith:2009}
+Smith, R.~L., C.~Tebaldi, D.~Nychka, and L.~O. Mearns (2009).
+\newblock Bayesian modeling of uncertainty in ensembles of climate models.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  104\/}(485), 97--116.
 
-\harvarditem{Surowiecki}{2004}{Surowiecki:2004}
-Surowiecki, J. 2004.
-\newblock ``The Wisdom of Crowds: Why the Many Are Smarter Than the Few and How
-  Collective Wisdom Shapes Business.'' {\em Economies, Societies and Nations} .
+\bibitem[\protect\citeauthoryear{Surowiecki}{Surowiecki}{2004}]{Surowiecki:2004}
+Surowiecki, J. (2004).
+\newblock {\em The Wisdom of Crowds: Why the Many Are Smarter Than the Few and
+  How Collective Wisdom Shapes Business, Economies, Society, and Nations}.
+\newblock New York: Doubleday.
 
-\harvarditem{Ulfelder}{2012}{Ulfelder:2012}
-Ulfelder, Jay. 2012.
-\newblock ``Forecasting Onset of Mass Killings.'' Paper presented at the annual
-  Northeast Political Methodology Meeting at New York University .
+\bibitem[\protect\citeauthoryear{Ulfelder}{Ulfelder}{2012}]{Ulfelder:2012}
+Ulfelder, J. (2012).
+\newblock Forecasting onset of mass killings.
+\newblock Paper presented at the annual Northeast Political Methodology Meeting
+  at New York University .
 
-\harvarditem[Vrugt et~al.]{Vrugt, Clark, Diks, Duan \harvardand\
-  Robinson}{2006}{Vrugt:2006}
-Vrugt, Jasper~A., Martyn~P. Clark, Cees~G.H. Diks, Qinyun Duan \harvardand\
-  Bruce~A. Robinson. 2006.
-\newblock ``Multi-Objective Calibration of Forecast Ensembles Using {B}ayesian
-  Model Averaging.'' {\em Geophysical Research Letters} 33:L19817.
+\bibitem[\protect\citeauthoryear{Vrugt, Clark, Diks, Duan, and Robinson}{Vrugt
+  et~al.}{2006}]{Vrugt:2006}
+Vrugt, J.~A., M.~P. Clark, C.~G. Diks, Q.~Duan, and B.~A. Robinson (2006).
+\newblock Multi-objective calibration of forecast ensembles using {B}ayesian
+  model averaging.
+\newblock {\em Geophysical Research Letters\/}~{\em 33}, L19817.
 
-\harvarditem[Ward, Greenhill \harvardand\ Bakke]{Ward, Greenhill \harvardand\
-  Bakke}{2010}{wgb:2010}
-Ward, Michael~D., Brian~D. Greenhill \harvardand\ Kristin~M. Bakke. 2010.
-\newblock ``The Perils of Policy by p-value: Predicting Civil Conflict.'' {\em
-  Journal of Peace Research} 47(4):363--375.
+\bibitem[\protect\citeauthoryear{Wlezien and Erikson}{Wlezien and
+  Erikson}{1996}]{EriksonWlezien:1996}
+Wlezien, C. and R.~S. Erikson (1996).
+\newblock Temporal horizons and presidential election forecasts.
+\newblock {\em American Politics Research\/}~{\em 24\/}(4), 492--505.
 
-\harvarditem{Wlezien \harvardand\ Erikson}{1996}{EriksonWlezien:1996}
-Wlezien, Christopher \harvardand\ Robert~S. Erikson. 1996.
-\newblock ``Temporal Horizons and Presidential Election Forecasts.'' {\em
-  American Politics Research} 24(4):492--505.
+\bibitem[\protect\citeauthoryear{Wright}{Wright}{2008}]{Wright:2008}
+Wright, J.~H. (2008).
+\newblock Bayesian model averaging and exchange rate forecasts.
+\newblock {\em Journal of Econometrics\/}~{\em 146\/}(2), 329--341.
 
-\harvarditem{Wright}{2008}{Wright:2008}
-Wright, Jonathan~H. 2008.
-\newblock ``Bayesian Model Averaging and Exchange Rate Forecasts.'' {\em
-  Journal of Econometrics} 146(2):329--341.
+\bibitem[\protect\citeauthoryear{Wright}{Wright}{2009}]{Wright:2009}
+Wright, J.~H. (2009).
+\newblock Forecasting {US} inflation by {B}ayesian model averaging.
+\newblock {\em Journal of Forecasting\/}~{\em 28\/}(2), 131--144.
 
-\harvarditem{Wright}{2009}{Wright:2009}
-Wright, Jonathan~H. 2009.
-\newblock ``Forecasting {US} Inflation by {B}ayesian Model Averaging.'' {\em
-  Journal of Forecasting} 28(2):131--144.
-
-\harvarditem[Zhang, Srinivasan \harvardand\ Bosch]{Zhang, Srinivasan
-  \harvardand\ Bosch}{2009}{Zhang:2009}
-Zhang, Xuesong, Raghavan Srinivasan \harvardand\ David Bosch. 2009.
-\newblock ``Calibration and Uncertainty Analysis of the {SWAT} Model Using
-  Genetic Algorithms and {B}ayesian Model Averaging.'' {\em Journal of
-  Hydrology} 374(3-4):307--317.
+\bibitem[\protect\citeauthoryear{Zhang, Srinivasan, and Bosch}{Zhang
+  et~al.}{2009}]{Zhang:2009}
+Zhang, X., R.~Srinivasan, and D.~Bosch (2009).
+\newblock Calibration and uncertainty analysis of the {SWAT} model using
+  genetic algorithms and {B}ayesian model averaging.
+\newblock {\em Journal of Hydrology\/}~{\em 374\/}(3-4), 307--317.
 
 \end{thebibliography}

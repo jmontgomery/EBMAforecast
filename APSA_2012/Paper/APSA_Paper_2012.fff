@@ -1,0 +1,47 @@
+\begin{figure}[ht]
+\caption{CRPS with varying number of models and observations in calibration period}
+\label{simplot1}
+\centering
+\includegraphics[scale=.8]{2D}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
+\caption{CRPS with ``wisdom of crowds'' parameter}
+\label{3d}
+\begin{center}
+\includegraphics[scale=.6]{3D}
+\end{center}
+
+The figure shows a smoothed relationship between the median CRPS for
+differing values of the ratio $\frac{K}{n_T}$ and $c$. Darker gray
+tones depict higher CRPS levels. Not that while CRPS generally still
+increases with higher values of $\frac{K}{n_T}$, including a ``wisdom
+of crowds'' parameter within the EBMA algorithm can help when
+$\frac{K}{n_T}$ is large.
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[h]
+\caption{Observed and forecasted US unemployment (1981-2007)}
+\label{timeSeries}
+\begin{center}
+\includegraphics[scale=.8]{mdwtimeSeries2}
+\end{center}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
+\caption{Predictive ensemble PDFs of incumbent-part vote share in US Presidential Elections}
+\label{pres}
+\begin{center}
+\includegraphics[scale=.8]{presForecast}
+\end{center}
+The figure shows the density functions for each of the component
+models in different colors and scaled by their respective weight. The black curve is the density of the EBMA
+prediction, with the bold dash indicating the EBMA point
+prediction. The vertical dashed lines show the actual result of the 2008 and 2012 elections.
+\end{figure}
+\efloatseparator
+ 

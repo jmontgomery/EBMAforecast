@@ -1,0 +1,165 @@
+\begin{table}
+  \caption{Parameters for simulation}
+\label{params}
+\small
+\centering
+
+\vspace{.2cm}
+\begin{tabular}{lll}
+  \toprule
+  Parameter & Meaning & Values \\
+  \midrule
+  $n_{T}$ & Sample size in calibration period $T$  & 3-15,20,25,35,45,55,65,85,100 \\
+  $n_{T^\ast}$ &  Sample size in test period $T^\ast$&$250$\\
+  $K$ & \# of component forecasts & 3,5,7,9,11,13,15\\
+  $\sigma^2$ & Common variance component & 1 \\
+  $\alpha$ & Weight concentration parameter  &$ (10, 5, 3, \frac{1}{K-3})$ \\
+ $c$ & Wisdom of crowds parameter & 0,0.01,0.02,0.03,0.04,0.05,0.075,0.1 0.15,0.2,0.3,0.5\\
+  $M$ & Simulations at each setting & 100 \\
+  \bottomrule
+\end{tabular}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[h]
+\caption{Comparing adjusted EBMA models with Green Book, median, and mean forecasts of US unemployment (1981--2007)}
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & MAE & RMSE & MAD & RMSLE & MAPE & MEAPE & MRAE & PW \\
+\midrule
+ EBMA (c=0)& 0.54 & 0.74 & 0.37 & 0.093 & 8.37 & 6.49 & \textbf{0.73} & \textbf{27.36} \\
+  EBMA (c=0.05)& \textbf{0.54} & 0.74 &\textbf{ 0.37} & \textbf{0.093} & \textbf{8.33} & \textbf{6.30} & 0.75 & \textbf{27.36} \\
+ EBMA (c=0.1)& 0.54 & 0.74 & 0.35 & 0.093 & 8.40 & 6.44 & 0.76 & 28.30 \\
+EBMA (c=1) & 0.61 & 0.80 & 0.46 & 0.102 & 9.72 & 8.92 & 0.95 & 46.23 \\
+ Green Book& 0.57 & \textbf{0.73} & 0.43 & 0.093 & 9.37 & 8.81 & 1.00 & 45.28 \\
+ Forecast Median& 0.62 & 0.81 & 0.47 & 0.103 & 9.83 & 8.87 & 0.98 & 47.17 \\
+Forecast Mean& 0.61 & 0.80 & 0.46 & 0.102 & 9.71 & 9.06 & 0.93 & 46.23 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%FH: WE SHOULD ADD CRPS HERE? SINCE WE ADVOCATE IT SO STRONGLY ABOVE
+%JMM: WE CANNOT CALCULATE FOR GREEEN BOOK, MEDIAN, AND MEAN
+
+\label{compareTable1}
+Note: Definitions of model fit statistics are provided in the Appendix. The model(s) with the lowest score for each metric are shown in bold.  Differences between model performance may not be obvious due to rounding.
+\end{table}
+\efloatseparator
+ 
+\begin{table}[ht]
+\begin{center}
+\caption{Comparing predictive accuracy of EBMA and component models with eight metrics}
+\label{compareTable3}
+\begin{tabular}{rrrrr}
+\\
+  \toprule
+
+   &\multicolumn{4}{c}{Number of Predictions Made}\\
+ & 5 --10& 11-30 & 31--60 & $>60$ \\
+  \midrule
+7 -- 8 & 0.20 & 0.33 & 0.10 & 0.04 \\
+ 5 -- 6  & 0.04 & 0.04 & 0.03 & 0.01 \\
+ 2 -- 4 & 0.02 & 0.03 & 0.01 & 0.00 \\
+ 0 -- 1 & 0.08 & 0.04 & 0.01 & 0.00 \\
+   \bottomrule
+\end{tabular}
+\end{center}
+The rows of the table show the number of metrics by which EBMA outperforms
+components, while columns show the number of forecasts
+made by these models. The values in each cell of the table are the
+proportion of component models falling into that category. Note that EBMA
+performs very well against its components, especially those that make
+many predictions.
+\end{table}
+\efloatseparator
+ 
+\begin{table}[ht]
+\caption{Pre-election forecasts of the percent of the two-party vote going to the incumbent party in US presidential elections}
+\label{tab:one}
+\footnotesize
+% latex table generated in R 2.15.2 by xtable 1.7-0 package
+% Tue Jan 29 13:42:53 2013
+\begin{center}
+\begin{tabular}{rrrrrrrrrrrr}
+  \toprule
+ & Year & F & A & C & H & LBRT & L & Hol & EW & Cuz  \\
+  \midrule
+1 & 1992 & 55.70 & 46.30 & 47.10 & 48.90 &  &  &  &  &   \\
+  2 & 1996 & 49.50 & 56.80 & 58.10 & 53.50 & 54.80 &  & 57.20 & 57.20 &   \\
+  3 & 2000 & 50.80 & 53.20 & 52.80 & 53.80 & 55.40 & 60.30 & 60.30 & 55.20 &   \\
+  4 & 2004 & 57.50 & 53.70 & 53.80 & 53.20 & 49.90 & 57.60 & 54.50 & 52.30 & 52.80  \\
+  5 & 2008 & 48.10 & 45.70 & 52.70 & 48.20 & 49.90 & 41.80 & 44.30 & 47.80 & 48.00  \\
+   \bottomrule
+%\begin{center}
+%\begin{tabular}{rlrrrrrrrrr}
+%  \toprule
+%  & F & A & C & H & LBRT & L & Hol & EW & Cuz \\
+%  \midrule
+%  1992 & 55.7 & 46.3 & 49.7 & 48.9 & 47.3 &  &  &  &  \\
+%  1996 & 49.5 & 57.0 & 55.5 & 53.5 & 53.3 &  & 57.2 & 55.6 &  \\
+%  2000 & 50.8 & 53.2 & 52.8 & 53.8 & 55.4 & 60.3 & 60.3 & 55.2 &  \\
+%  2004 & 57.5 & 53.7 & 52.8 & 53.2 & 49.9 & 57.6 & 55.8 & 52.9 & 51.1 \\
+%  2008 & 48.1 & 45.7 & 52.7 & 48.5 & 43.4 & 41.8 & 44.3 & 47.8 & 48.1 \\
+%  \bottomrule
+%
+\end{tabular}
+\end{center}
+Note: Forecasts were published prior to each election by
+\textbf{F}air, \textbf{A}bramowitz, \textbf{C}ampbell, \textbf{H}ibbs,
+\textbf{L}ewis-\textbf{B}eck and \textbf{R}ice (1992) and Lewis-Beck and \textbf{T}ien  (1996-2008)),   \textbf{L}ockerbie, \textbf{Hol}brook, \textbf{E}rikson and \textbf{W}lezien and \textbf{Cuz}\`an and Bundrick.
+\end{table}
+\efloatseparator
+ 
+\begin{table}[ht]
+\caption{Model weights and in-sample fit statistics for EBMA model of US presidential elections (1992--2008)}
+\label{presModel}
+\begin{center}
+\begin{tabular}{lrrrr}
+  \toprule
+ & \shortstack{EBMA\\ Weight}&RMSE &MAE \\
+  \midrule
+  EBMA &  & 1.92 & 1.49 \\
+  Fair & 0.02 & 5.53 & 4.58 \\
+  Abramowitz & 0.80 & 1.98 & 1.68 \\
+  Campbell & 0.02 & 3.63 & 3.08 \\
+  Hibbs & 0.06 & 2.31 & 2.18 \\
+  Lewis-Beck, Rice, and Tien  & 0.06 & 2.87 & 2.16 \\
+  Lockerbie & 0.00 & 7.33 & 6.97 \\
+  Holbrook & 0.01 & 5.50 & 4.45 \\
+  Erikson and Wlezien  & 0.02 & 2.90 & 2.50 \\
+  Cuz\`an  & 0.00 & 1.65 & 1.65 \\
+
+%EBMA &  & 1.92 & 1.56 \\
+%  Fair & 0.02 & 5.53 & 4.58 \\
+%  Abramowitz & 0.78 & 2.02 & 1.72 \\
+%  Campbell  & 0.07 & 3.46 & 2.88 \\
+%  Hibbs  & 0.04 & 2.68 & 2.44 \\
+%  Lewis-Beck, Rice, and Tien & 0.06 & 2.78 & 2.28 \\
+%  Lockerbie  & 0.00 & 7.33 & 6.97 \\
+% Holbrook & 0.01 & 5.73 & 4.77 \\
+%  Erikson and Wlezien & 0.02 & 2.74 & 2.25 \\
+%  Cuz\`an & 0.00 & 1.27 & 0.95 \\
+   \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[ht]
+\caption{Comparing Model Results for US Presidential Elections 2012}
+\label{presModel12}
+\begin{center}
+\begin{tabular}{rrrrrr}
+
+  \toprule
+ & Mean & Median & EBMA ($c=0$) & EBMA ($c=0.05$) & EBMA ($c=0.1$) \\
+  \midrule
+2012 prediction & 49.9 & 49.5 & 49 & 50.3 & 50.1 \\
+  Absolute Error & 2 & 2.4 & 2.9 & 1.6 & 1.8 \\
+   \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
