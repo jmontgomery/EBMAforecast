@@ -3,7 +3,7 @@
 #' @export
 setGeneric(name="fitEnsemble",
            def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", ...)
-           {standardGeneric("fitEnsemble")}
+           {standardGeneric("fitEnsemble")}  #Add in starting vals (weights)
            )
 
 #' @rdname calibrateEnsemble
@@ -16,6 +16,7 @@ setMethod(f="fitEnsemble",
             method="EM",
             exp=1,
             useModelParams=TRUE,
+	    weight = 0, #I think I don't want to pass by val here...need to doublecheck
             predType="posteriorMedian")
           {
             
@@ -42,14 +43,14 @@ setMethod(f="fitEnsemble",
 
                 out <- list(LL=LL, W=W)
                 return(out)
-              }
+              } #end of .em bracket
 
             .predictCal <- function(x){
               .rawPred <- predict(x, type="response")
               .outPred <- rep(NA, nObsCal)
               .outPred[as.numeric(names(.rawPred))] <- .rawPred
               return(.outPred)
-            }
+            } #end of .predictCal bracket
 
             .makeAdj <- function(x){
               .adjPred <- qlogis(x)
@@ -62,7 +63,7 @@ setMethod(f="fitEnsemble",
               #.adjPred[.pos] <- NA
               .adjPred[.miss] <- NA
               .adjPred
-            }
+            }  #end of .makeAdj bracket
             
             .modelFitter <- function(preds){
               .adjPred <- .makeAdj(preds)
@@ -86,7 +87,7 @@ setMethod(f="fitEnsemble",
             modelNames <- getModelNames(.forecastData)
             
              ## Set constants
-            nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]
+            nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3] #Here's tha variable for weight
             nObsCal <- nrow(predCalibration); nObsTest <- nrow(predTest)
             ZERO<-1e-4
             
@@ -114,7 +115,11 @@ setMethod(f="fitEnsemble",
             dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
 
             ## Set initial values for parameters
-            W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
+            if (weight == 0){
+            	W <- rep(1/(nMod), nMod) ; names(W) <- modelNames   #MAKE THIS W THE DEFAULT, BUT ALLOW THIS TO CHANGE
+	    } else {
+		W <- rep(weight, nMod) ; names(W) <- modelNames
+	    }  #optional val, if value of weight not given will give value of 0 and default occurs - should it be vector or does that make it too messy?
 
             ## Run EM
             .done <- FALSE

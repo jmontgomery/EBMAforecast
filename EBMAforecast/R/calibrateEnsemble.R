@@ -9,6 +9,9 @@
 #' @param model The model type that should be used given the type of data that is being predicted (i.e., normal, binary, etc.).
 #' @param method The estimation method used.  Currently only implements "EM".
 #' @param predType The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.
+#' @param wisdom The wisdom of the crowds parameter for normal models. The default value is 0. ##I ADDED THIS##
+#' @param weight The default weight given to each model, default is 1 / number of models when weight == 0 ##I ADDED THIS##
+#' @param sigma2 The default variance for the EM algorithm, default is 1 ##I ADDED THIS##
 #' @param ... Not implemented
 #'
 #' @return Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots
@@ -17,7 +20,7 @@
 #' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
 #' \item{outcomeTest}{An optional vector containing the true values of the dependent variable for all observations in the test period.}
 #' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
-#' \item{modelWeights}{A vector containing the model weights assigned to each model.}
+#' \item{modelWeights}{A vector containing the model weights assigned to each model.} ## DO I NEED TO CHANGE THIS? - I Don't think so....##
 #' \item{modelParams}{The parameters for the individual logit models that transform the component models.}
 #' \item{logLik}{The final log-likelihood for the calibrated EBMA model.}
 #' \item{exp}{The exponential shrinkage term.}
@@ -61,6 +64,9 @@ setGeneric(name="calibrateEnsemble",
              maxIter=1e6,
              model="logit",
              method="EM",
+	     wisdom=0,  # There is no wisdom
+	     weight = 0, # Treating this like a boolean since the function gets value from Forecastdata, and wouldn't choose 0
+	     sigma2<-1,  # Variance is standard
              ...)
            {standardGeneric("calibrateEnsemble")}
            )
@@ -77,9 +83,12 @@ setMethod(f="calibrateEnsemble",
             maxIter=1e6,
             model="logit",
             method="EM",
+	    wisdom=0,  # I added
+	    weight = 0, # I added; should this be a vector instead or would that be confusing?
+	    sigma2<-1  # I added, though I don't always follow why vals are passed instead of varis (think I follow in this script)
             ...)
           {
-            switch(model,
+            switch(model,  # This part defines the type of forecast data so fitEnsemble chooses Logit or Normal
                    logit ={.forecastData <- as(.forecastData, "ForecastDataLogit")},
                    logistic ={.forecastData <- as(.forecastData, "ForecastDataLogit")},
                    normal={.forecastData <- as(.forecastData, "ForecastDataNormal")}
@@ -89,6 +98,9 @@ setMethod(f="calibrateEnsemble",
                              tol=tol,
                              maxIter=maxIter,
                              method="EM",
+			     wisdom=wisdom,  # I added
+			     weight=weight, # I added
+			     sigma2=sigma2,  # I added
                              ...), parent.frame())
           }
           )

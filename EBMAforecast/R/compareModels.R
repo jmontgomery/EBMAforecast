@@ -26,7 +26,7 @@ setClass(Class="CompareModels",
 #'
 #' @param .forecastData An object of class 'ForecastData'. 
 #' @param .period Can take value of "calibration" or "test" and indicates the period for which the test statistics should be calculated.
-#' @param .fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" for logit models and "mae","rsme" for normal models.
+#' @param .fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" for logit models and "mae","rsme" for normal models.  ### WANTS TO ADD MORE FIT STATS ###, and the new script sent includes cbind(mae, rmse, mad, rmsle, mape, meape, mrae, pw)
 #' @param .threshold The threshold used to calculate when a "positive" prediction is made by the model for binary dependent variables.
 #' @param .baseModel Vector containing predictions used to calculate proportional reduction of error ("pre").
 #' @param ... Not implemented
@@ -63,10 +63,10 @@ setClass(Class="CompareModels",
 setGeneric(name="compareModels",
            def=function(.forecastData,
              .period="calibration",
-             .fitStatistics=c("brier", "auc", "perCorrect", "pre"),
+             .fitStatistics=c("brier", "auc", "perCorrect", "pre"), #Normal tests here or default logit?
              .threshold=.5,
-            .baseModel=0
-             , ...)
+             .baseModel=0, #Does this need to be included for mrae and pw?
+             ...)
            {standardGeneric("compareModels")}
            )
 
@@ -80,10 +80,10 @@ setMethod(f="compareModels",
           {
             if(.period == "calibration")
               {
-                preds <- aaply(.forecastData@predCalibration,c(1:2),mean)
-                y <- .forecastData@outcomeCalibration
+                preds <- aaply(.forecastData@predCalibration,c(1:2),mean)  #preds A matrix containing the predictions of all component models and the EBMA model for all observations in the calibration period
+                y <- .forecastData@outcomeCalibration #y  A vector containing the true values of the dependent variable for all observations in the calibration period
               }
-            if(.period=="test")
+            if(.period=="test") #Similar to above but for test period instead
               {
                 preds <-  aaply(.forecastData@predTest,c(1:2),mean)
                 y <- .forecastData@outcomeTest
@@ -92,14 +92,39 @@ setMethod(f="compareModels",
 
             num.models <- ncol(preds)
             num.obs <- nrow(preds)
+
+	    #Begin catches for calling normal stat on logit data
+		##IS THERE A BETTER WAY IN R TO DEAL WITH ERRORS THAN IF STATEMENTS?  There should be a way to shorten this a lot...dictionary/list that inserts test name that fails ##
             if(class(.forecastData)[1]=="FDatFitLogit" & "rmse" %in% .fitStatistics){
             	warning("RMSE statistics should not be calculated for models with binary outcomes. Use options brier, auc, pre, or perCorrect.")	
             }
 
-			 if(class(.forecastData)[1]=="FDatFitLogit" & "mae" %in% .fitStatistics){
+	    if(class(.forecastData)[1]=="FDatFitLogit" & "mae" %in% .fitStatistics){
             	warning("MAE statistics should not be calculated for models with binary outcomes.Use options brier, auc, pre, or perCorrect.")	
             }
+
+	    if(class(.forecastData)[1]=="FDatFitLogit" & "mad" %in% .fitStatistics){
+            	warning("MAD statistics should not be calculated for models with binary outcomes.Use options brier, auc, pre, or perCorrect.")	
+            }
+
+	    if(class(.forecastData)[1]=="FDatFitLogit" & "rmsle" %in% .fitStatistics){
+            	warning("RMSLE statistics should not be calculated for models with binary outcomes.Use options brier, auc, pre, or perCorrect.")	
+            }
+
+	    if(class(.forecastData)[1]=="FDatFitLogit" & "meape" %in% .fitStatistics){
+            	warning("MEAPE statistics should not be calculated for models with binary outcomes.Use options brier, auc, pre, or perCorrect.")	
+            }
+
+	    if(class(.forecastData)[1]=="FDatFitLogit" & "mrae" %in% .fitStatistics){
+            	warning("MRAE statistics should not be calculated for models with binary outcomes.Use options brier, auc, pre, or perCorrect.")	
+            }
+
+	    if(class(.forecastData)[1]=="FDatFitLogit" & "pw" %in% .fitStatistics){
+            	warning("PW statistics should not be calculated for models with binary outcomes.Use options brier, auc, pre, or perCorrect.")	
+            }
             
+	#Begin catches for calling logit stat on normal data - ##clean up error message##
+
              if(class(.forecastData)[1]=="FDatFitNormal" & "brier" %in% .fitStatistics){
             	warning("Brier scores should not be calculated for models with continuous dependent variables. Use options mae, or rmse.")	
             }
@@ -116,7 +141,7 @@ setMethod(f="compareModels",
             	warning("Percent Correct should not be calculated for models with continuous dependent variables.  Use options mae, or rmse.")	
             }
             
-            
+            #Error response if less than two observations  
             if(length(y)<=1){
 
               out <- new("CompareModels",
@@ -129,7 +154,7 @@ setMethod(f="compareModels",
                                
             } else {
             
-            
+            #If base has a single value, make it as long as the number of observations
             if(length(.baseModel)==1){baseModel <- rep(.baseModel, num.obs)}
 
 
@@ -143,19 +168,23 @@ setMethod(f="compareModels",
             colnames(outMat) <- .fitStatistics
 
 
-
+	    #Logit vals
             
             if("brier" %in%.fitStatistics & class(.forecastData)[1]=="FDatFitLogit"){
-              my.fun <- function(x){mean((x-y)^2, na.rm=TRUE)}
+              my.fun <- function(x){mean((x-y)^2, na.rm=TRUE)} #What is y here? - True vals of dep vari
               outMat[,"brier"] <-aaply(preds, 2,.fun=my.fun, .expand=TRUE)
-                                             }
+            }
+
             if("auc" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitLogit"){
               my.fun <- function(x){Hmisc::somers2(x, y)[1]}
-              outMat[,"auc"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)}
+              outMat[,"auc"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
+	    }
+
             if("perCorrect" %in% .fitStatistics){
               my.fun <- function(x){mean((x>.threshold)*y + (x<.threshold)*(1-y), na.rm=TRUE)}
               outMat[,"perCorrect"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }
+
             if("pre" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitLogit") {
               my.fun <- function(x){
                 .miss <- is.na(x)
@@ -169,17 +198,85 @@ setMethod(f="compareModels",
               }
               outMat[,"pre"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)
             }
-            if("rmse" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitNormal"){
-              my.fun <- function(x) {sqrt(mean((x-y)^2, na.rm=TRUE))}
-              outMat[,"rmse"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
 
-            }
-            if("mae" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitNormal"){
-              my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}
-              outMat[,"mae"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
 
-            }
+	    # Normal vals  
+
+	    if ( class(.forecastData)[1]=="FDatFitNormal") {
+	   #	  .absErr <- abs(.thisForecastMatrix-.thisOutcome)      preds = .thisForecastMatrix, y = .thisOutcome ? - this is how it was written in AddFitMetrics.R (have later for reference)
+  	   #	  .sqrErr <- .absErr^2
+  	   #	  .ape <- .absErr/abs(.thisOutcome) # absolute percent error
+
+		.absErr <- abs(preds - y)
+		.sqrErr <- .absErr^2
+		.ape <- absErr/abs(y)
+
+
+		  ## Root mean squared error
+            	  if("rmse" %in% .fitStatistics){
+              	     my.fun <- function(x) {sqrt(mean((x-y)^2, na.rm=TRUE))}         #.sqrErr meaned, which is faster?
+                     outMat[,"rmse"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
+                  }
+
+		  ## Mean absolute errror
+                 if("mae" %in% .fitStatistics){
+                     my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}		     #.absErr meaned
+                     outMat[,"mae"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
+                 }
+
+	    #New functions:
+
+  		## Root mean Squared logarithmic error
+
+	        if("rmsle" %in% .fitStatistics){
+              	    my.fun <- function(x, y) { mean((log(abs(x)+1)-log(abs(y)+1))^2, na.rm=TRUE)}
+                    outMat[,"rmsle"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
+                }
+
+		## Median absolute deviation
+		if("mad" %in% .fitStatistics){
+ 		outMat[,"mad"] <- aaply(.absErr, 2, quantile, probs=.5, na.rm=TRUE, .expand=TRUE)  #What is quantile? Is it defined elsewhere?
+              	    #my.fun <- function(x) {mean(abs(x-y), na.rm=TRUE)}
+                    #outMat[,"mad"] <- aaply(preds, 2, .fun=my.fun, .expand=TRUE)
+                }
             
+
+		## mean absolute percentage error
+		  #mape <- colMeans(.ape, na.rm=TRUE)*100
+	        if("mape" %in% .fitStatistics){
+                    outMat[,"mape"] <- colMeans(.ape, na.rm=TRUE)*100
+                }
+
+	 	##median absolute percentage error
+		  #  meape <-  apply(.ape, 2, quantile, prob=.5, na.rm=TRUE)*100
+	        if("meape" %in% .fitStatistics){
+                    outMat[,"meape"] <- apply(.ape, 2, quantile, prob=.5, na.rm=TRUE)*100
+                }
+
+		## THESE NEED a baseModel for comparison - throw an error if these are included but no baseline?
+		if (.baseModel != 0) {
+			#.eStar <- .thisOutcome-.thisBaseline for mrae and pw
+  	   		#.e <- .thisOutcome-.thisForecastMatrix	
+
+  			.eStar <- y-.baseModel    #WHAT is .thisBaseline? .baseModel param?
+  			.e <- preds - y
+
+			##median relative absolute error
+			  #    mrae <- apply(abs(.e/.eStar), 2, quantile, probs=.5, na.rm=TRUE)
+	        	if("mrae" %in% .fitStatistics){
+                	    outMat[,"mrae"] <- apply(abs(.e/.eStar), 2, quantile, probs=.5, na.rm=TRUE)
+                	}
+
+			##percent worse
+			  #    pw <- colMeans(abs(.e)>abs(.eStar), na.rm =TRUE)*100
+	        	if("pw" %in% .fitStatistics){
+                	    outMat[,"pw"] <-   <- colMeans(abs(.e)>abs(.eStar), na.rm =TRUE)*100
+                	}
+
+  		}
+     	    }
+
+
             ### NOTE: Make sure all of the above options work with missing values.  Also, if only work for one kind of data, throw an error
             rownames(outMat) <- colnames(preds)            
           }

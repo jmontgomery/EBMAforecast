@@ -3,15 +3,18 @@
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
-          definition=function(.forecastData, tol = sqrt(.Machine$double.eps),
+          definition=function(.forecastData, tol = sqrt(.Machine$double.eps), #Why is the tol set when it's an argument? - believe this sets the defaults, but only exp has a required value
             maxIter=1e6,
             method="EM",
             exp=numeric(),
             useModelParams = TRUE,
             predType="posteriorMedian",
-            const=0)
+            const= 0, #Wise crowds...
+	    weight = 0, #I think this is NOT when to pass the value...need to doublecheck
+	    sigma2 = 1)
           {
-            .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
+	    # .em method ##Do I need to change these values/variable names? Ws seem confusing##
+            .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2, const) #Added const, add weight?   
               {
 
                 
@@ -28,14 +31,14 @@ setMethod(f="fitEnsemble",
                 Z[Z < ZERO] <- 0
 
                 .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
-                .adjConst <- const*1/.missZ
-                Z <- .adjConst + (1-const)*Z
+                .adjConst <- const*1/.missZ # c comes in here
+                Z <- .adjConst + (1-const)*Z # c comes in here
 
 
                 
                 Z[is.na(Z)] <- 0
 
-                ## Step 2: Calculat the W's
+                ## Step 2: Calculat the W's  # Within the em algorithm so don't tweak
                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
                 W <- .unnormalizedW
                 W <- W/sum(.unnormalizedW)
@@ -51,7 +54,7 @@ setMethod(f="fitEnsemble",
 
                 out <- list(LL=LL, W=W,sigma2=sigma2)
                 return(out)
-              }
+              } # End of .em bracket
           
 
             .predictCal <- function(x){
@@ -59,13 +62,13 @@ setMethod(f="fitEnsemble",
               .outPred <- rep(NA, nObsCal)
               .outPred[as.numeric(names(.rawPred))] <- .rawPred
               return(.outPred)
-            }
+            } # End of .predictCal bracket
 
             
             .modelFitter <- function(preds){
-              thisModel <- lm(outcomeCalibration~preds)
+              thisModel <- lm(outcomeCalibration~preds)  #lm since normal
               return(thisModel)
-            }
+            } # End of .modelFitter bracket
 
 
             .predictTest <- function(x, i){
@@ -73,7 +76,7 @@ setMethod(f="fitEnsemble",
               .outPred <- rep(NA, nObsTest)
               .outPred[as.numeric(names(.rawPred))] <- .rawPred
               return(.outPred)
-            }
+            } # End of .predictTest bracket
             
             
             ##Extract data
@@ -83,7 +86,7 @@ setMethod(f="fitEnsemble",
             modelNames <- getModelNames(.forecastData)
             
             ## Set constants
-            nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]
+            nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]  #vars for weight (if not given)
             nObsCal <- nrow(predCalibration); nObsTest <- nrow(predTest)
             ZERO<-1e-4
             
@@ -104,28 +107,32 @@ setMethod(f="fitEnsemble",
               modelParams <- array(c(0,1), dim=c(2,nMod,nDraws))
             }
             calResiduals <- outcomeCalibration-predCalibrationAdj
-            calResiduals2 <- calResiduals^2
+            calResiduals2 <- calResiduals^2  #Here's RSQ for EM
             
             dimnames(modelParams) <- list(c("Constant", "Predictor"), modelNames, 1:nDraws)
             dimnames(calResiduals) <- dimnames(calResiduals2) <-dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
 
             ## Set initial values for parameters
-            W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
-            sigma2<-1
+             if (weight == 0){
+            	W <- rep(1/(nMod), nMod) ; names(W) <- modelNames   #MAKE THIS W THE DEFAULT, BUT ALLOW THIS TO CHANGE
+	    } else {
+		W <- rep(weight, nMod) ; names(W) <- modelNames
+	    }  #optional val, if value of weight not given will give value of 0 and default occurs
+            sigma2<-sigma2   #DEFAULT VAL IS 1 (which was only option before)
 
             ## Run EM
             .done <- FALSE
             .iter <- 0
             .emOld<-0
             while(.done == FALSE & .iter<maxIter){
-              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2)
+              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2, const=const) #added in wisdom of crowds const
               W <- .thisOut$W
               sigma2<-.thisOut$sigma2
               LL <- .thisOut$LL
-              .done <- abs(.emOld-LL)/(1+abs(LL))<tol
+              .done <- abs(.emOld-LL)/(1+abs(LL))<tol #testing whether the change is less than tol
               .emOld <- LL
               .iter <- .iter+1
-            }
+            } # End of EM loop
             if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
 
@@ -204,6 +211,6 @@ setMethod(f="fitEnsemble",
                 method=method,
                 call=match.call()
                 )
-          }
-          )
+          }  #End of function bracket
+          )  #End of setMethod
 
