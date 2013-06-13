@@ -11,8 +11,6 @@ load_all(current.code)
 document(current.code)
 
 install(current.code)
-
-
 library(EBMAforecast)
 
 ## run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
