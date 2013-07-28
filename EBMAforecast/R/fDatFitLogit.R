@@ -10,6 +10,9 @@ setClass(Class="FDatFitLogit",
            tol="numeric",
            maxIter="numeric",
            method="character",
+	   wisdom= "numeric",  # added functionality
+	   weight = "numeric",  #I may not want - modelWeights does...
+	   sigma2 = "numeric",  # added functionality
            call="call"
            ),
          validity=function(object){

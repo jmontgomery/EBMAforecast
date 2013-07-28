@@ -12,6 +12,9 @@ setClass(Class="FDatFitNormal",
            maxIter="numeric",
            method="character",
            predType="character",
+	   wisdom="numeric",  # Here through call are new
+	   weight = "numeric",
+	   sigma = "numeric",
            call="call"
            )
          )

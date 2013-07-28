@@ -93,7 +93,7 @@ setClass(Class="ForecastDataLogit",
          validity=function(object){
            if(any(object@outcomeCalibration!=1 & object@outcomeCalibration!=0 & !is.na(object@outcomeCalibration))) 
              {stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome calibration set).")}	
-           if(any(object@outcomeTest!=1 & object@outcomeTest!=0 & !is.na(object@outcomeCalibration))) 
+           if(any(object@outcomeTest!=1 & object@outcomeTest!=0 & !is.na(object@outcomeTest)))  ##CRAN version has all 3 outcomeTest, though given error text...delete?
              {stop("The outcomes for the binary model should be either 0 or 1 (Not true for outcome test set).")}	
            if(any(object@predCalibration<0 & !is.na(object@predCalibration)) | (any(object@predCalibration>1 & !is.na(object@predCalibration))))                 {stop("The predictions for the binary model should be between 0 or 1 (Not true for prediction calibration set).")}	
            if(any(object@predTest<0 & !is.na(object@predTest)) |any(object@predTest>1 & !is.na(object@predTest)) )

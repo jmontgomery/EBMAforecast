@@ -270,7 +270,7 @@ setMethod(f="compareModels",
 			##percent worse
 			  #    pw <- colMeans(abs(.e)>abs(.eStar), na.rm =TRUE)*100
 	        	if("pw" %in% .fitStatistics){
-                	    outMat[,"pw"] <-   <- colMeans(abs(.e)>abs(.eStar), na.rm =TRUE)*100
+                	    outMat[,"pw"] <- colMeans(abs(.e)>abs(.eStar), na.rm =TRUE)*100
                 	}
 
   		}

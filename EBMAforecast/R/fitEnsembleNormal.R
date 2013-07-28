@@ -1,20 +1,20 @@
-
 #' @rdname calibrateEnsemble
 #' @export
 setMethod(f="fitEnsemble",
-          signature(.forecastData="ForecastDataNormal"),
-          definition=function(.forecastData, tol = sqrt(.Machine$double.eps), #Why is the tol set when it's an argument? - believe this sets the defaults, but only exp has a required value
+	    signature(.forecastData="ForecastDataNormal"),
+            definition=function(.forecastData, 
+            exp=numeric(), #moved up so in order as calibrate and logit...CRANs out of order and ok
+	    tol = sqrt(.Machine$double.eps), 
             maxIter=1e6,
-            method="EM",
-            exp=numeric(),
-            useModelParams = TRUE,
+            method="EM", 
+            useModelParams = TRUE, ##NOT IN MASTER, in CRAN (also tol above in CRAN)
             predType="posteriorMedian",
-            const= 0, #Wise crowds...
-	    weight = 0, #I think this is NOT when to pass the value...need to doublecheck
-	    sigma2 = 1)
+            wisdom= numeric(), #Wise crowds...
+	    weight = numeric(), #added functionality (optional)
+	    sigma2 = 1) #added functionality (optional)
           {
 	    # .em method ##Do I need to change these values/variable names? Ws seem confusing##
-            .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2, const) #Added const, add weight?   
+            .em <- function(outcomeCalibration, prediction, RSQ, wisdom, W, sigma2) #Added wisdom (replaced const) and trying reorder to fix formal args diff order in method and generic
               {
 
                 
@@ -30,12 +30,12 @@ setMethod(f="fitEnsemble",
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
                 Z[Z < ZERO] <- 0
 
+		#Option for Wisdom of the Crowds
                 .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
-                .adjConst <- const*1/.missZ # c comes in here
-                Z <- .adjConst + (1-const)*Z # c comes in here
-
-
+                .adjConst <- wisdom*1/.missZ # c comes in here
+                Z <- .adjConst + (1-wisdom)*Z # c comes in here
                 
+
                 Z[is.na(Z)] <- 0
 
                 ## Step 2: Calculat the W's  # Within the em algorithm so don't tweak
@@ -90,19 +90,20 @@ setMethod(f="fitEnsemble",
             nObsCal <- nrow(predCalibration); nObsTest <- nrow(predTest)
             ZERO<-1e-4
             
-            ## Fit Models
-            if(useModelParams==TRUE){.models <- aaply(predCalibration, 2:3, .fun=.modelFitter)}
+            ## Fit Models - this was aaply when error, but CRAN version alply 
+            if(useModelParams==TRUE){.models <- alply(predCalibration, 2:3, .fun=.modelFitter)} # useModelParams not in MASTER
+
 
             ## Extract needed info
-            if(nDraws==1 & useModelParams==TRUE){
+            if(nDraws==1 & useModelParams==TRUE){   
               predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
               modelParams <- aperm(array(laply(.models, coefficients), dim=c(nMod, 2, nDraws)), c(2,1,3))
             }
-            if(nDraws>1 & useModelParams==TRUE){ # This code is in development for exchangeability
+            if(nDraws>1 & useModelParams==TRUE){ # This code is in development for exchangeability  
               predCalibrationAdj <- aperm(aaply(.models, 1:2, .predictCal), c(3,1,2))
               modelParams <- aperm(aaply(.models, 1:2, coefficients), c(3,1,2))
             }
-            if(useModelParams==FALSE){
+            if(useModelParams==FALSE){  ##argument not in Master Version!
               predCalibrationAdj <- predCalibration
               modelParams <- array(c(0,1), dim=c(2,nMod,nDraws))
             }
@@ -113,11 +114,16 @@ setMethod(f="fitEnsemble",
             dimnames(calResiduals) <- dimnames(calResiduals2) <-dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
 
             ## Set initial values for parameters
-             if (weight == 0){
-            	W <- rep(1/(nMod), nMod) ; names(W) <- modelNames   #MAKE THIS W THE DEFAULT, BUT ALLOW THIS TO CHANGE
-	    } else {
-		W <- rep(weight, nMod) ; names(W) <- modelNames
-	    }  #optional val, if value of weight not given will give value of 0 and default occurs
+             if (is.numeric(weight) & length(weight) == 0){
+            	W <- rep(1/(nMod), nMod) ; names(W) <- modelNames   #DEFAULT for no val
+	    } 
+	    else {
+		if (length(weight) != nMod || sum(weight) != 1) {
+		    print("ERROR: weight should have a value for each model and sum to 1.") }
+		else {
+		    W <- weight ; names(W) <- modelNames
+		}
+	    }  #entering weight vals optional, so if none given weight 1 / number of models given
             sigma2<-sigma2   #DEFAULT VAL IS 1 (which was only option before)
 
             ## Run EM
@@ -125,7 +131,7 @@ setMethod(f="fitEnsemble",
             .iter <- 0
             .emOld<-0
             while(.done == FALSE & .iter<maxIter){
-              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2, const=const) #added in wisdom of crowds const
+              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2, wisdom=wisdom) ##added in wisdom of crowds constant
               W <- .thisOut$W
               sigma2<-.thisOut$sigma2
               LL <- .thisOut$LL
@@ -209,6 +215,9 @@ setMethod(f="fitEnsemble",
                 maxIter=maxIter,
                 predType=predType,
                 method=method,
+		wisdom= wisdom, #Wise crowds...
+	        weight = weight, #added functionality (optional)
+	        sigma2 = sigma2, #Not sure these should be here...
                 call=match.call()
                 )
           }  #End of function bracket

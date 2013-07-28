@@ -2,8 +2,8 @@
 
 #' @export
 setGeneric(name="fitEnsemble",
-           def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", ...)
-           {standardGeneric("fitEnsemble")}  #Add in starting vals (weights)
+           def=function(.forecastData,  exp=1, tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM",  useModelParams=TRUE, wisdom=numeric(), weight=numeric(), sigma2=1, predType="posteriorMedian", ...)
+           {standardGeneric("fitEnsemble")}  
            )
 
 #' @rdname calibrateEnsemble
@@ -11,12 +11,14 @@ setGeneric(name="fitEnsemble",
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataLogit"),
           definition=function(.forecastData,
+            exp=1, #THIS WAS LOWER BEFORE, now first arg not 4th so like order in calibrateEnsemble
             tol = sqrt(.Machine$double.eps),
             maxIter=1e6,
             method="EM",
-            exp=1,
             useModelParams=TRUE,
-	    weight = 0, #I think I don't want to pass by val here...need to doublecheck
+	    wisdom= numeric(),  # added functionality
+	    weight = numeric(), #added functionality
+	    sigma2 = 1,  # added functionality
             predType="posteriorMedian")
           {
             
@@ -29,6 +31,8 @@ setMethod(f="fitEnsemble",
                 z.numerator[outcomeCalibration==0,] <- z.numerator.zero[outcomeCalibration==0,]
                 z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+ 		Z[Z < ZERO] <- 0  ## ON CRAN, but wasn't in Master - causing the different values in summary
+                Z[is.na(Z)] <- 0  ## ON CRAN, but wasn't in Master - causing the different values in summary
 
                 ## Step 2: Calculat the W's
                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
@@ -91,8 +95,8 @@ setMethod(f="fitEnsemble",
             nObsCal <- nrow(predCalibration); nObsTest <- nrow(predTest)
             ZERO<-1e-4
             
-            ## Fit Models
-            if(useModelParams==TRUE){.models <- aaply(predCalibration, 2:3, .fun=.modelFitter) }
+            ## Fit Models  ##CRAN had alply while master had aaply, changing removed error
+            if(useModelParams==TRUE){.models <- alply(predCalibration, 2:3, .fun=.modelFitter) }
 
             ## Extract needed info
             if(nDraws==1 & useModelParams==TRUE){
@@ -115,11 +119,16 @@ setMethod(f="fitEnsemble",
             dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
 
             ## Set initial values for parameters
-            if (weight == 0){
-            	W <- rep(1/(nMod), nMod) ; names(W) <- modelNames   #MAKE THIS W THE DEFAULT, BUT ALLOW THIS TO CHANGE
-	    } else {
-		W <- rep(weight, nMod) ; names(W) <- modelNames
-	    }  #optional val, if value of weight not given will give value of 0 and default occurs - should it be vector or does that make it too messy?
+            if (is.numeric(weight) & length(weight) == 0){
+            	W <- rep(1/(nMod), nMod) ; names(W) <- modelNames   #DEFAULT for no val
+	    } 
+	    else {
+		if (length(weight) != nMod || sum(weight) != 1) {
+		    print("ERROR: weight should have a value for each model and sum to 1.") }
+		else {
+		    W <- weight ; names(W) <- modelNames
+		}
+	    }  #entering weight vals optional, so if none given weight 1 / number of models
 
             ## Run EM
             .done <- FALSE
@@ -182,6 +191,9 @@ setMethod(f="fitEnsemble",
                 tol=tol,
                 maxIter=maxIter,
                 method=method,
+		wisdom= wisdom, #Wise crowds...
+	    	weight = weight, #added functionality (optional)
+	    	sigma2 = sigma2, #Probably don't want, but trying to see if I'm missing something...
                 call=match.call()
                 )
           }

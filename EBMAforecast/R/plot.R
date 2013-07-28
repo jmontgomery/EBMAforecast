@@ -26,7 +26,7 @@
 #'
 #' @seealso \code{separationplot}
 #'
-#' @examples data(calibrationSample)
+#' @examples \dontrun{ data(calibrationSample)
 #'
 #' data(testSample) 
 #' 
@@ -38,6 +38,7 @@
 #' 
 #' plot(this.ensemble, period="calibration") 
 #' plot(this.ensemble, period="test")
+#' }
 #'
 #' @aliases plot,FDatFitLogit-method plot,FDatFitNormal-method
 #' @export

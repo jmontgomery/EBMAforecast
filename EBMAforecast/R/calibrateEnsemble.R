@@ -1,20 +1,21 @@
 #' Calibrate an ensemble Bayesian Model Averaging model
 #'
-#' This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration set, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
+#' This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration set, the EM algorithm is adjusted and model parameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
 #'
-#' @param .forecastData An object of class 'ForecastData' that will be used to calibrate the model.
+#' @param .forecastData An object of class \code{ForecastData} that will be used to calibrate the model.
 #' @param exp The exponential shrinkage term.  Forecasts are raised to the (1/exp) power on the logit scale for the purposes of bias reduction.  The default value is \code{exp=3}.
-#' @param tol Tolerance for improvements in the log-likelihood before the EM algorithm will stop optimization.  The default is \code{tol= 0.01}, which is somewhat high.  Researchers may wish to reduce this by an order of magnitude for final model estimation. 
-#' @param maxIter The maximum number of iterations the EM algorithm will run before stopping automatically. The default is \code{maxIter=10000}.
+#' @param tol Tolerance for improvements in the log-likelihood before the EM algorithm will stop optimization.  The default is \code{sqrt(.Machine$double.eps)}. 
+#' @param maxIter The maximum number of iterations the EM algorithm will run before stopping automatically. The default is \code{maxIter=1e6}.
 #' @param model The model type that should be used given the type of data that is being predicted (i.e., normal, binary, etc.).
 #' @param method The estimation method used.  Currently only implements "EM".
 #' @param predType The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.
-#' @param wisdom The wisdom of the crowds parameter for normal models. The default value is 0. ##I ADDED THIS##
-#' @param weight The default weight given to each model, default is 1 / number of models when weight == 0 ##I ADDED THIS##
-#' @param sigma2 The default variance for the EM algorithm, default is 1 ##I ADDED THIS##
+#' @param useModelParams A logical that indicates whether the regression parameters should be used to post-process the data.  The default is TRUE.  We recommend setting this to FALSE for sparse datasets or datasets modeling rare events. 
+#' @param wisdom The wisdom of the crowds parameter for normal models. The default value is 0. ##ADDED THIS##
+#' @param weight The default weight given to each model, default is 1 / number of models if no values given ##ADDED THIS##
+#' @param sigma2 The beginning variance for the EM algorithm when fitting a normal ensemble, default is 1 ##ADDED THIS##
 #' @param ... Not implemented
 #'
-#' @return Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots
+#' @return Returns a data of class  \code{FDatFitLogit} or \code{FDatFitNormal}, a subclass of \code{ForecastData}, with the following slots
 #' \item{predCalibration}{A matrix containing the predictions of all component models and the EBMA model for all observations in the calibration period.} 
 #' \item{predTest}{A matrix containing the predictions of all component models and the EBMA model for all observations in the test period.}
 #' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
@@ -27,11 +28,13 @@
 #' \item{tol}{Tolerance for improvements in the log-likelihood before the EM algorithm will stop optimization.}
 #' \item{maxIter}{The maximum number of iterations the EM algorithm will run before stopping automatically.}
 #' \item{method}{The estimation method used. }
-#' \item{call}{The actual call used to create the object.}
+#' \item{wisdom}{The wisdom of the crowds parameter }  ##TRYING, note no separate initial weight
+#' \item{weight}{Optional way to give weights }  ##TRYING
+#' \item{sigma2}{The variance for the EM algorithm }  ##TRYING
+#' \item{call}{The actual call used to create the object.} 
 #'
 #'
 #' @author Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@duke.edu}>
-
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
@@ -46,7 +49,7 @@
 #' data(testSample) 
 #'
 #' this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
-#'.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
+#' .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 #' .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
 #'
 #' this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
@@ -59,14 +62,16 @@
 #' @export
 setGeneric(name="calibrateEnsemble",
            def=function(.forecastData=new("ForecastData"),
-             exp=1,
+             exp=3,
              tol=sqrt(.Machine$double.eps),
              maxIter=1e6,
              model="logit",
              method="EM",
-	     wisdom=0,  # There is no wisdom
-	     weight = 0, # Treating this like a boolean since the function gets value from Forecastdata, and wouldn't choose 0
-	     sigma2<-1,  # Variance is standard
+	     useModelParams=TRUE, #not in Master version? for "sparse data"
+	     predType="posteriorMedian",
+	     wisdom=numeric(),  # default none
+	     weight = numeric(), # default 1 / number of models
+	     sigma2 =1,  # Variance is standard for EM alg in normal
              ...)
            {standardGeneric("calibrateEnsemble")}
            )
@@ -78,14 +83,16 @@ setMethod(f="calibrateEnsemble",
           signature="ForecastData",
           definition=function(
             .forecastData,
-            exp=1,
+            exp=3,
             tol=sqrt(.Machine$double.eps),
             maxIter=1e6,
             model="logit",
             method="EM",
-	    wisdom=0,  # I added
-	    weight = 0, # I added; should this be a vector instead or would that be confusing?
-	    sigma2<-1  # I added, though I don't always follow why vals are passed instead of varis (think I follow in this script)
+	    useModelParams=TRUE, ##Not in master, but in CRAN - I'm adding
+            predType="posteriorMedian",
+	    wisdom= numeric(),  # added functionality - should these be here? Need val?
+	    weight = numeric(), # added functionality
+	    sigma2 = 1,  # added functionality
             ...)
           {
             switch(model,  # This part defines the type of forecast data so fitEnsemble chooses Logit or Normal
@@ -93,14 +100,16 @@ setMethod(f="calibrateEnsemble",
                    logistic ={.forecastData <- as(.forecastData, "ForecastDataLogit")},
                    normal={.forecastData <- as(.forecastData, "ForecastDataNormal")}
                    )
-            eval(fitEnsemble(.forecastData,
+            eval(fitEnsemble(.forecastData,  ##Why does this have fewer arguments (model)? Logit is default/used for switch and thus isn't needed because the forecast data type determines? I think so...
                              exp=exp,
                              tol=tol,
                              maxIter=maxIter,
                              method="EM",
-			     wisdom=wisdom,  # I added
-			     weight=weight, # I added
-			     sigma2=sigma2,  # I added
+			     useModelParams=useModelParams, ##NOT IN MASTER
+                             predType=predType,
+			     wisdom=wisdom,  # added
+			     weight=weight, # added
+			     sigma2=sigma2,  # added
                              ...), parent.frame())
           }
           )
