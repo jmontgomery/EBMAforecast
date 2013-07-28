@@ -29,6 +29,7 @@ setMethod(f="fitEnsemble",
                 z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
                 Z[Z < ZERO] <- 0
+		Z[is.na(Z)] <- 0
 
 		#Option for Wisdom of the Crowds
                 .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
@@ -36,7 +37,7 @@ setMethod(f="fitEnsemble",
                 Z <- .adjConst + (1-wisdom)*Z # c comes in here
                 
 
-                Z[is.na(Z)] <- 0
+
 
                 ## Step 2: Calculat the W's  # Within the em algorithm so don't tweak
                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)

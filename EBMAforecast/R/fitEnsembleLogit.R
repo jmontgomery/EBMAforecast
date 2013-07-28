@@ -2,7 +2,7 @@
 
 #' @export
 setGeneric(name="fitEnsemble",
-           def=function(.forecastData,  exp=1, tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM",  useModelParams=TRUE, wisdom=numeric(), weight=numeric(), sigma2=1, predType="posteriorMedian", ...)
+           def=function(.forecastData,  exp=3, tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM",  useModelParams=TRUE, predType="posteriorMedian", wisdom=numeric(), weight=numeric(), sigma2=1, ...)
            {standardGeneric("fitEnsemble")}  
            )
 
@@ -11,15 +11,16 @@ setGeneric(name="fitEnsemble",
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataLogit"),
           definition=function(.forecastData,
-            exp=1, #THIS WAS LOWER BEFORE, now first arg not 4th so like order in calibrateEnsemble
+            exp=3, #THIS WAS LOWER BEFORE, now first arg not 4th so like order in calibrateEnsemble
             tol = sqrt(.Machine$double.eps),
             maxIter=1e6,
             method="EM",
             useModelParams=TRUE,
+	    predType="posteriorMedian",
 	    wisdom= numeric(),  # added functionality
 	    weight = numeric(), #added functionality
-	    sigma2 = 1,  # added functionality
-            predType="posteriorMedian")
+	    sigma2 = 1  # added functionality
+            )
           {
             
             .em <- function(outcomeCalibration, prediction, W)
@@ -31,7 +32,7 @@ setMethod(f="fitEnsemble",
                 z.numerator[outcomeCalibration==0,] <- z.numerator.zero[outcomeCalibration==0,]
                 z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
- 		Z[Z < ZERO] <- 0  ## ON CRAN, but wasn't in Master - causing the different values in summary
+ 		Z[Z < ZERO] <- 0  ## ON CRAN, but wasn't in Master - causing the different values in summary (though they're back in untested branch 7/28)
                 Z[is.na(Z)] <- 0  ## ON CRAN, but wasn't in Master - causing the different values in summary
 
                 ## Step 2: Calculat the W's
@@ -58,9 +59,9 @@ setMethod(f="fitEnsemble",
 
             .makeAdj <- function(x){
               .adjPred <- qlogis(x)
-              .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .negative <- .adjPred<0
               .pos <- .adjPred>1
+	      .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .miss <- is.na(.adjPred)
               .negative[.miss] <- FALSE
               .adjPred[.negative] <- .adjPred[.negative]*(-1)
@@ -72,7 +73,7 @@ setMethod(f="fitEnsemble",
             .modelFitter <- function(preds){
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
-              if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
+              if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separation or some other problem.  Try the useModelParams=FALSE option.")}
               return(.thisModel)
             }
 

@@ -13,7 +13,9 @@
   \item{.fitStatistics}{A vector naming statistics that
   should be calculated.  Possible values include "auc",
   "brier", "percCorrect", "pre" for logit models and
-  "mae","rsme" for normal models.}
+  "mae","rsme" for normal models.  ### WANTS TO ADD MORE
+  FIT STATS ###, and the new script sent includes
+  cbind(mae, rmse, mad, rmsle, mape, meape, mrae, pw)}
 
   \item{.threshold}{The threshold used to calculate when a
   "positive" prediction is made by the model for binary

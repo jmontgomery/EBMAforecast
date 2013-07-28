@@ -10,8 +10,9 @@
 \alias{fitEnsemble,ForecastDataNormal-method}
 \title{Calibrate an ensemble Bayesian Model Averaging model}
 \arguments{
-  \item{.forecastData}{An object of class 'ForecastData'
-  that will be used to calibrate the model.}
+  \item{.forecastData}{An object of class
+  \code{ForecastData} that will be used to calibrate the
+  model.}
 
   \item{exp}{The exponential shrinkage term.  Forecasts are
   raised to the (1/exp) power on the logit scale for the
@@ -20,13 +21,12 @@
 
   \item{tol}{Tolerance for improvements in the
   log-likelihood before the EM algorithm will stop
-  optimization.  The default is \code{tol= 0.01}, which is
-  somewhat high.  Researchers may wish to reduce this by an
-  order of magnitude for final model estimation.}
+  optimization.  The default is
+  \code{sqrt(.Machine$double.eps)}.}
 
   \item{maxIter}{The maximum number of iterations the EM
   algorithm will run before stopping automatically. The
-  default is \code{maxIter=10000}.}
+  default is \code{maxIter=1e6}.}
 
   \item{model}{The model type that should be used given the
   type of data that is being predicted (i.e., normal,
@@ -40,17 +40,34 @@
   \code{posteriorMedian} or \code{posteriorMean}. Posterior
   median is the default.}
 
+  \item{useModelParams}{A logical that indicates whether
+  the regression parameters should be used to post-process
+  the data.  The default is TRUE.  We recommend setting
+  this to FALSE for sparse datasets or datasets modeling
+  rare events.}
+
+  \item{wisdom}{The wisdom of the crowds parameter for
+  normal models. The default value is 0. ##ADDED THIS##}
+
+  \item{weight}{The default weight given to each model,
+  default is 1 / number of models if no values given
+  ##ADDED THIS##}
+
+  \item{sigma2}{The beginning variance for the EM algorithm
+  when fitting a normal ensemble, default is 1 ##ADDED
+  THIS##}
+
   \item{...}{Not implemented}
 }
 \value{
-  Returns a data of class 'FDatFitLogit' or FDatFitNormal,
-  a subclass of 'ForecastData', with the following slots
-  \item{predCalibration}{A matrix containing the
+  Returns a data of class \code{FDatFitLogit} or
+  \code{FDatFitNormal}, a subclass of \code{ForecastData},
+  with the following slots \item{predCalibration}{A matrix
+  containing the predictions of all component models and
+  the EBMA model for all observations in the calibration
+  period.} \item{predTest}{A matrix containing the
   predictions of all component models and the EBMA model
-  for all observations in the calibration period.}
-  \item{predTest}{A matrix containing the predictions of
-  all component models and the EBMA model for all
-  observations in the test period.}
+  for all observations in the test period.}
   \item{outcomeCalibration}{A vector containing the true
   values of the dependent variable for all observations in
   the calibration period.} \item{outcomeTest}{An optional
@@ -60,17 +77,22 @@
   of all component models.  If no model names are
   specified, names will be assigned automatically.}
   \item{modelWeights}{A vector containing the model weights
-  assigned to each model.} \item{modelParams}{The
-  parameters for the individual logit models that transform
-  the component models.} \item{logLik}{The final
-  log-likelihood for the calibrated EBMA model.}
-  \item{exp}{The exponential shrinkage term.}
-  \item{tol}{Tolerance for improvements in the
-  log-likelihood before the EM algorithm will stop
-  optimization.} \item{maxIter}{The maximum number of
-  iterations the EM algorithm will run before stopping
-  automatically.} \item{method}{The estimation method used.
-  } \item{call}{The actual call used to create the object.}
+  assigned to each model.} ## DO I NEED TO CHANGE THIS? - I
+  Don't think so....## \item{modelParams}{The parameters
+  for the individual logit models that transform the
+  component models.} \item{logLik}{The final log-likelihood
+  for the calibrated EBMA model.} \item{exp}{The
+  exponential shrinkage term.} \item{tol}{Tolerance for
+  improvements in the log-likelihood before the EM
+  algorithm will stop optimization.} \item{maxIter}{The
+  maximum number of iterations the EM algorithm will run
+  before stopping automatically.} \item{method}{The
+  estimation method used. } \item{wisdom}{The wisdom of the
+  crowds parameter } ##TRYING, note no separate initial
+  weight \item{weight}{Optional way to give weights }
+  ##TRYING \item{sigma2}{The variance for the EM algorithm
+  } ##TRYING \item{call}{The actual call used to create the
+  object.}
 }
 \description{
   This function calibrates an EBMA model based on
@@ -85,7 +107,7 @@
   however models with missing observations are penalized.
   When missing observations are prevalent in the
   calibration set, the EM algorithm is adjusted and model
-  paprameters are estimated by maximizing a renormalized
+  parameters are estimated by maximizing a renormalized
   partial expected complete-data log-likelihood (Fraley et
   al. 2010).
 }
