@@ -22,11 +22,11 @@ setClass(Class="CompareModels",
 ##
 #' Function for comparing multiple models based on predictive performance
 #'
-#' This function produces statistics to compare the predictive performance of the different models component models, as well as for the EBMA model itself, for either the calibration or the test period. It currently calculates the area under the ROC (\code{auc}), the \code{brier} score, the percent of observations predicted correctly (\code{percCorrect}), as well as the proportional reduction in error compared to some baseline model (\code{pre}) for binary models. For models with normally distributed outcomes the \code{CompareModels} function can be used to calculate the root mean squared error (\code{rmse}) as well as the mean absolute error (\code{mae}).
+#' This function produces statistics to compare the predictive performance of the different models component models, as well as for the EBMA model itself, for either the calibration or the test period. It currently calculates the area under the ROC (\code{auc}), the \code{brier} score, the percent of observations predicted correctly (\code{percCorrect}), as well as the proportional reduction in error compared to some baseline model (\code{pre}) for binary models. For models with normally distributed outcomes the \code{CompareModels} function can be used to calculate the root mean squared error (\code{rmse}) as well as the mean absolute error (\code{mae}), root mean squared logarithmic error (\code{rmsle}), median absolute deviation (\code{mad}), mean absolute percentage error (\code{mape}),  median absolute percentage error (\code{meape}), median relative absolute error (\code{mrae}), and percent worse (\code{pw}).
 #'
 #' @param .forecastData An object of class 'ForecastData'. 
 #' @param .period Can take value of "calibration" or "test" and indicates the period for which the test statistics should be calculated.
-#' @param .fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" for logit models and "mae","rsme" for normal models.  ### WANTS TO ADD MORE FIT STATS ###, and the new script sent includes cbind(mae, rmse, mad, rmsle, mape, meape, mrae, pw)
+#' @param .fitStatistics A vector naming statistics that should be calculated.  Possible values include "auc", "brier", "percCorrect", "pre" for logit models and "mae","rsme" for normal models.  ### WANTS TO ADD MORE FIT STATS, and the new script sent includes cbind(mae, rmse, mad, rmsle, mape, meape, mrae, pw) for normal ##
 #' @param .threshold The threshold used to calculate when a "positive" prediction is made by the model for binary dependent variables.
 #' @param .baseModel Vector containing predictions used to calculate proportional reduction of error ("pre").
 #' @param ... Not implemented
@@ -63,7 +63,7 @@ setClass(Class="CompareModels",
 setGeneric(name="compareModels",
            def=function(.forecastData,
              .period="calibration",
-             .fitStatistics=c("brier", "auc", "perCorrect", "pre"), #Normal tests here or default logit?
+             .fitStatistics=c("brier", "auc", "perCorrect", "pre"), #Tests here for logit default
              .threshold=.5,
              .baseModel=0, #Does this need to be included for mrae and pw?
              ...)
@@ -94,7 +94,7 @@ setMethod(f="compareModels",
             num.obs <- nrow(preds)
 
 	    #Begin catches for calling normal stat on logit data
-		##IS THERE A BETTER WAY IN R TO DEAL WITH ERRORS THAN IF STATEMENTS?  There should be a way to shorten this a lot...dictionary/list that inserts test name that fails ##
+		##IS THERE A BETTER WAY IN R TO DEAL WITH ERRORS THAN IF STATEMENTS?  There should be a way to shorten this a lot...dictionary/list/switch that inserts test name that fails ##
             if(class(.forecastData)[1]=="FDatFitLogit" & "rmse" %in% .fitStatistics){
             	warning("RMSE statistics should not be calculated for models with binary outcomes. Use options brier, auc, pre, or perCorrect.")	
             }

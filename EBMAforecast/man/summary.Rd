@@ -17,9 +17,9 @@
   should be calculated.  Possible values for objects in the
   \code{FDatFitLogit} subclass include "auc", "brier",
   "percCorrect", "pre". Possible values for objects in the
-  \code{FDatFitNormal} subclass include "rmse" and "mae."
-  Additional metrics will be made available in a future
-  release of this package.  ##ADD METRIC NAMES HERE}
+  \code{FDatFitNormal} subclass include "rmse", "mae",
+  "rmsle", "mad", "mape", "meape", "mrae", and "pw".
+  ##ADDED NEW METRIC NAMES ##}
 
   \item{threshold}{The threshold used to calculate when a
   "positive" prediction is made for a model.  Not used for

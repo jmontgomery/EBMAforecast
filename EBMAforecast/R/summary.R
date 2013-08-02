@@ -1,4 +1,4 @@
-##
+##  ##NOTE: THIS script causes an error in CRAN AND Git versions for ForecastDataLogit Error in (function (class_a, pkg_a, class_b, pkg_b)  :  trying to get slot "subclasses" from an object of a basic class ("NULL") with no slots ##
 
 #' @export
 setClass(Class="SummaryForecastData",
@@ -17,7 +17,7 @@ setClass(Class="SummaryForecastData",
 #'
 #' @param object An object of the subclass \code{FDatFitLogit} or \code{FDatFitNormal}
 #' @param period The period for which the summary should be provided, either "calibration" or "test".
-#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values for objects in the \code{FDatFitLogit} subclass include "auc", "brier", "percCorrect", "pre". Possible values for objects in the \code{FDatFitNormal} subclass include "rmse" and "mae."  Additional metrics will be made available in a future release of this package.  ##ADD METRIC NAMES HERE
+#' @param fitStatistics A vector naming statistics that should be calculated.  Possible values for objects in the \code{FDatFitLogit} subclass include "auc", "brier", "percCorrect", "pre". Possible values for objects in the \code{FDatFitNormal} subclass include "rmse", "mae", "rmsle", "mad", "mape", "meape", "mrae", and "pw".  ##ADDED NEW METRIC NAMES ##
 #' @param threshold The threshold used to calculate when a "positive" prediction is made for a model.  Not used for objects of the \code{FDatFitNormal} subclass.
 #' @param baseModel A vector containing predictions used to calculate proportional reduction of error ("pre"). Not used for objects of the \code{FDatFitNormal} subclass.
 #' @param showCoefs A logical indicating whether model coefficients from the ensemble should be shown.
@@ -79,7 +79,7 @@ setMethod(
           signature="FDatFitNormal",
           definition=function(object,
             period="calibration",
-            fitStatistics=c("rmse", "mae"),
+            fitStatistics=c("rmse", "mae", "rmsle", "mad", "mape", "meape", "mrae", "pw"),
            threshold=.5,
             baseModel=0,
             showCoefs=TRUE,

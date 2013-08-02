@@ -14,8 +14,8 @@
   should be calculated.  Possible values include "auc",
   "brier", "percCorrect", "pre" for logit models and
   "mae","rsme" for normal models.  ### WANTS TO ADD MORE
-  FIT STATS ###, and the new script sent includes
-  cbind(mae, rmse, mad, rmsle, mape, meape, mrae, pw)}
+  FIT STATS, and the new script sent includes cbind(mae,
+  rmse, mad, rmsle, mape, meape, mrae, pw) for normal ##}
 
   \item{.threshold}{The threshold used to calculate when a
   "positive" prediction is made by the model for binary
@@ -50,7 +50,12 @@
   normally distributed outcomes the \code{CompareModels}
   function can be used to calculate the root mean squared
   error (\code{rmse}) as well as the mean absolute error
-  (\code{mae}).
+  (\code{mae}), root mean squared logarithmic error
+  (\code{rmsle}), median absolute deviation (\code{mad}),
+  mean absolute percentage error (\code{mape}), median
+  absolute percentage error (\code{meape}), median relative
+  absolute error (\code{mrae}), and percent worse
+  (\code{pw}).
 }
 \examples{
 \dontrun{data(calibrationSample)
