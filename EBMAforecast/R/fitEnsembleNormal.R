@@ -11,47 +11,47 @@ setMethod(f="fitEnsemble",
             predType="posteriorMedian",
             const=0)
           {
-            .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
-              {
+            # .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
+            #   {
 
                 
-                ## Step 1: Calculate the Z's
-                g<- aperm(array(aaply(.data=1:nMod,.margins=1,
-                           .fun=function(i,y, mu, sd){
-                             dnorm(y,mean=mu[,i,], sd=sd)
-                           },
-                           y=outcomeCalibration,mu=prediction, sd=sqrt(sigma2))
-                          , dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
-                z.numerator<- aaply(.data=g, .margins=1, .fun=function(x){x*W})
-                z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
-                Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
-                Z[Z < ZERO] <- 0
+            #     ## Step 1: Calculate the Z's
+            #     g<- aperm(array(aaply(.data=1:nMod,.margins=1,
+            #                .fun=function(i,y, mu, sd){
+            #                  dnorm(y,mean=mu[,i,], sd=sd)
+            #                },
+            #                y=outcomeCalibration,mu=prediction, sd=sqrt(sigma2))
+            #               , dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+            #     z.numerator<- aaply(.data=g, .margins=1, .fun=function(x){x*W})
+            #     z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
+            #     Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+            #     Z[Z < ZERO] <- 0
 
-                .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
-                .adjConst <- const*1/.missZ
-                Z <- .adjConst + (1-const)*Z
+            #     .missZ <- aaply(Z, 1, .fun=function(x) sum(!is.na(x)*1))
+            #     .adjConst <- const*1/.missZ
+            #     Z <- .adjConst + (1-const)*Z
 
 
                 
-                Z[is.na(Z)] <- 0
+            #     Z[is.na(Z)] <- 0
 
-                ## Step 2: Calculat the W's
-                .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
-                W <- .unnormalizedW
-                W <- W/sum(.unnormalizedW)
-                W[W<ZERO]<-0
-                names(W) <- modelNames
+            #     ## Step 2: Calculat the W's
+            #     .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
+            #     W <- .unnormalizedW
+            #     W <- W/sum(.unnormalizedW)
+            #     W[W<ZERO]<-0
+            #     names(W) <- modelNames
                 
-                ## Step 3: Calculate sigma squared
-                sigma2<-sum(Z * RSQ, na.rm=T)/sum(Z, na.rm=T) 
+            #     ## Step 3: Calculate sigma squared
+            #     sigma2<-sum(Z * RSQ, na.rm=T)/sum(Z, na.rm=T) 
 
 
-                ## Step 4: Calculate the log-likelihood
-                LL <-sum(log(z.denom))
+            #     ## Step 4: Calculate the log-likelihood
+            #     LL <-sum(log(z.denom))
 
-                out <- list(LL=LL, W=W,sigma2=sigma2)
-                return(out)
-              }
+            #     out <- list(LL=LL, W=W,sigma2=sigma2)
+            #     return(out)
+            #   }
           
 
             .predictCal <- function(x){
@@ -114,21 +114,23 @@ setMethod(f="fitEnsemble",
             sigma2<-1
 
             ## Run EM
-            .done <- FALSE
-            .iter <- 0
-            .emOld<-0
-            while(.done == FALSE & .iter<maxIter){
-              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2)
-              W <- .thisOut$W
-              sigma2<-.thisOut$sigma2
-              LL <- .thisOut$LL
-              .done <- abs(.emOld-LL)/(1+abs(LL))<tol
-              .emOld <- LL
-              .iter <- .iter+1
-            }
-            if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
-            W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
-
+            # .done <- FALSE
+            # .iter <- 0
+            # .emOld<-0
+            # while(.done == FALSE & .iter<maxIter){
+            #   .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W, sigma2=sigma2, RSQ=calResiduals2)
+            #   W <- .thisOut$W
+            #   sigma2<-.thisOut$sigma2
+            #   LL <- .thisOut$LL
+            #   .done <- abs(.emOld-LL)/(1+abs(LL))<tol
+            #   .emOld <- LL
+            #   .iter <- .iter+1
+            # }
+            out  = emNorm(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod), matrix(calResiduals2[,,1],ncol=nMod), W, tol, maxIter, const, sigma2)
+            if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
+            W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+            sigma2 = out$Sigma2
+            LL = out$LL
             ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
             .sdVec <- rep(sqrt(sigma2), nMod) 

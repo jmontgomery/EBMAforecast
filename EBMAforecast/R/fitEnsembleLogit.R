@@ -16,33 +16,34 @@ setMethod(f="fitEnsemble",
             method="EM",
             exp=1,
             useModelParams=TRUE,
-            predType="posteriorMedian")
+            predType="posteriorMedian",
+            const=0)
           {
             
-            .em <- function(outcomeCalibration, prediction, W)
-              {
-                
-                ## Step 1: Calculate the Z's
-                z.numerator <- aaply(prediction, 1, function(x){x*W})
-                z.numerator.zero <- aaply(1-prediction, 1, function(x){x*W})
-                z.numerator[outcomeCalibration==0,] <- z.numerator.zero[outcomeCalibration==0,]
-                z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
-                Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
-
-                ## Step 2: Calculat the W's
-                .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
-                W <- .unnormalizedW
-                W <- W/sum(.unnormalizedW)
-                W[W<ZERO]<-0
-                names(W) <- modelNames
-         
-                ## Step 3: Calculate the log-likelihood
-                LL <-sum(log(z.denom))
-                
-
-                out <- list(LL=LL, W=W)
-                return(out)
-              }
+#             .em <- function(outcomeCalibration, prediction, W)
+#               {
+#                 
+#                 ## Step 1: Calculate the Z's
+#                 z.numerator <- aaply(prediction, 1, function(x){x*W})
+#                 z.numerator.zero <- aaply(1-prediction, 1, function(x){x*W})
+#                 z.numerator[outcomeCalibration==0,] <- z.numerator.zero[outcomeCalibration==0,]
+#                 z.denom <- aaply(z.numerator, 1, sum, na.rm=T)
+#                 Z <-aperm(array(aaply(z.numerator, 2, function(x){x/z.denom}), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+# 
+#                 ## Step 2: Calculat the W's
+#                 .unnormalizedW<-aaply(Z, 2, sum, na.rm = TRUE)
+#                 W <- .unnormalizedW
+#                 W <- W/sum(.unnormalizedW)
+#                 W[W<ZERO]<-0
+#                 names(W) <- modelNames
+#          
+#                 ## Step 3: Calculate the log-likelihood
+#                 LL <-sum(log(z.denom))
+#                 
+# 
+#                 out <- list(LL=LL, W=W)
+#                 return(out)
+#               }
 
             .predictCal <- function(x){
               .rawPred <- predict(x, type="response")
@@ -117,20 +118,21 @@ setMethod(f="fitEnsemble",
             W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
 
             ## Run EM
-            .done <- FALSE
-            .iter <- 0
-            .emOld<-0
-            while(.done == FALSE & .iter<maxIter){
-              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W)
-              W <- .thisOut$W
-              LL <- .thisOut$LL
-              .done <- abs(.emOld-LL)/(1+abs(LL))<tol
-              .emOld <- LL
-              .iter <- .iter+1
-            }
-            if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
-            W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
-
+#             .done <- FALSE
+#             .iter <- 0
+#             .emOld<-0
+#             while(.done == FALSE & .iter<maxIter){
+#               .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W)
+#               W <- .thisOut$W
+#               LL <- .thisOut$LL
+#               .done <- abs(.emOld-LL)/(1+abs(LL))<tol
+#               .emOld <- LL
+#               .iter <- .iter+1
+#             }
+            out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod), W, tol, maxIter, const)
+            if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
+            W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+            LL = out$LL
 
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))

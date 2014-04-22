@@ -1,3 +1,7 @@
+useDynLib(test)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+
 exportClasses(CompareModels)
 exportClasses(FDatFitLogit)
 exportClasses(FDatFitNormal)

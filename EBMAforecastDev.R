@@ -3,7 +3,7 @@ library(roxygen2)
 library(testthat)
 
 #setwd("~/Documents/GIT/EBMAforecast/")
-setwd("~/GITHUB/EBMAforecast/")
+setwd("~/Documents/GitHub/EBMAforecast/")
 
 ## Only need to run this portion once
 current.code <- as.package("EBMAforecast")
