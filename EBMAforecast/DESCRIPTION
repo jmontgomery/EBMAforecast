@@ -19,3 +19,15 @@ Depends:
     Rcpp
 LinkingTo: Rcpp
 LazyLoad: yes
+Collate:
+    'forecastData.R'
+    'calibrateEnsemble.R'
+    'fDatFitLogit.R'
+    'compareModels.R'
+    'document-data.R'
+    'summary.R'
+    'FDatFitNormal.R'
+    'fitEnsembleLogit.R'
+    'fitEnsembleNormal.R'
+    'makeForecastData.R'
+    'plot.R'
