@@ -1,6 +1,11 @@
 \name{makeForecastData}
 \alias{makeForecastData}
 \title{Build a ensemble forecasting data object}
+\usage{
+makeForecastData(.predCalibration = array(NA, dim = c(0, 0, 0)),
+  .predTest = array(NA, dim = c(0, 0, 0)), .outcomeCalibration = numeric(),
+  .outcomeTest = numeric(), .modelNames = character(), ...)
+}
 \arguments{
   \item{.predCalibration}{A matrix with the number of rows
   being the number of observations in the calibration
@@ -25,30 +30,30 @@
   \item{...}{Additional arguments not implemented}
 }
 \value{
-  A data object of the class 'ForecastData' with the
-  following slots: \item{predCalibration}{An array
-  containing the predictions of all component models for
-  all observations in the calibration period.}
-  \item{predTest}{An array containing the predictions of
-  all component models for all observations in the test
-  period.} \item{outcomeCalibration}{A vector containing
-  the true values of the dependent variable for all
-  observations in the calibration period.}
-  \item{outcomeTest}{A vector containing the true values of
-  the dependent variable for all observations in the test
-  period.} \item{modelNames}{A character vector containing
-  the names of all component models.  If no model names are
-  specified, names will be assigned automatically.}
+A data object of the class 'ForecastData' with the
+following slots: \item{predCalibration}{An array containing
+the predictions of all component models for all
+observations in the calibration period.} \item{predTest}{An
+array containing the predictions of all component models
+for all observations in the test period.}
+\item{outcomeCalibration}{A vector containing the true
+values of the dependent variable for all observations in
+the calibration period.} \item{outcomeTest}{A vector
+containing the true values of the dependent variable for
+all observations in the test period.} \item{modelNames}{A
+character vector containing the names of all component
+models.  If no model names are specified, names will be
+assigned automatically.}
 }
 \description{
-  This function uses the component model forecasts and
-  dependent variable observations provided by the user to
-  create an object of class \code{ForecastData}, which can
-  then be used to calibrate and fit the ensemble.
-  Individual slots of the \code{ForecastData} object can be
-  accessed and changed using the \code{get} and \code{set}
-  functions respectively. Missing predictions are allowed
-  in the calibration set.
+This function uses the component model forecasts and
+dependent variable observations provided by the user to
+create an object of class \code{ForecastData}, which can
+then be used to calibrate and fit the ensemble. Individual
+slots of the \code{ForecastData} object can be accessed and
+changed using the \code{get} and \code{set} functions
+respectively. Missing predictions are allowed in the
+calibration set.
 }
 \examples{
 data(calibrationSample)
@@ -75,18 +80,17 @@ setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 }
 }
 \author{
-  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
-  and Florian M. Hollenbach
-  <\email{florian.hollenbach@duke.edu}>
+Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob
+M. Montgomery <\email{jacob.montgomery@wustl.edu}> and
+Florian M. Hollenbach <\email{florian.hollenbach@duke.edu}>
 }
 \references{
-  Montgomery, Jacob M., Florian M. Hollenbach and Michael
-  D. Ward. (2012). Improving Predictions Using Ensemble
-  Bayesian Model Averaging. \emph{Political Analysis}.
-  \bold{20}: 271-291.
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D.
+Ward. (2012). Improving Predictions Using Ensemble Bayesian
+Model Averaging. \emph{Political Analysis}. \bold{20}:
+271-291.
 }
 \seealso{
-  ensembleBMA
+ensembleBMA
 }
 

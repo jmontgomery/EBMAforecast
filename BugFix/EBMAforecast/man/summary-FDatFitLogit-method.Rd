@@ -1,11 +1,16 @@
-\name{summary}
+\docType{methods}
+\name{summary,FDatFitLogit-method}
 \alias{SummaryForecastData-class}
 \alias{print,SummaryForecastData-method}
 \alias{show,SummaryForecastData-method}
-\alias{summary}
 \alias{summary,FDatFitLogit-method}
 \alias{summary,FDatFitNormal-method}
 \title{Summary Function}
+\usage{
+\S4method{summary}{FDatFitLogit}(object, period = "calibration",
+  fitStatistics = c("brier", "auc", "perCorrect", "pre"), threshold = 0.5,
+  baseModel = 0, showCoefs = TRUE, ...)
+}
 \arguments{
   \item{object}{An object of the subclass "FDatFitLogit" or
   "FDatFitNormal"}
@@ -35,22 +40,21 @@
   \item{...}{Not implemented}
 }
 \value{
-  A data object of the class 'SummaryForecastData' with the
-  following slots: \item{summaryData}{Under the default,
-  the function produces a matrix containing one row for
-  each model plus one row for the EBMA forecast.  The first
-  column is always the model weights assigned to the
-  component models.  The second and third columns display
-  the model parameters for the transformation of the
-  component models.  The remaining columns are the
-  requested fit statistics for all models, as calculated by
-  the \code{copareModels} function.  If
-  \code{showCoefs=FALSE}, then the model parameters will
-  not be shown.}
+A data object of the class 'SummaryForecastData' with the
+following slots: \item{summaryData}{Under the default, the
+function produces a matrix containing one row for each
+model plus one row for the EBMA forecast.  The first column
+is always the model weights assigned to the component
+models.  The second and third columns display the model
+parameters for the transformation of the component models.
+The remaining columns are the requested fit statistics for
+all models, as calculated by the \code{copareModels}
+function.  If \code{showCoefs=FALSE}, then the model
+parameters will not be shown.}
 }
 \description{
-  This function summarizes the Ensemble models that have
-  been fit previously by the user.
+This function summarizes the Ensemble models that have been
+fit previously by the user.
 }
 \examples{
 \dontrun{ data(calibrationSample)
@@ -69,7 +73,7 @@ summary(this.ensemble, period="test",showCoefs=FALSE)
 }
 }
 \author{
-  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
+Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob
+M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
 

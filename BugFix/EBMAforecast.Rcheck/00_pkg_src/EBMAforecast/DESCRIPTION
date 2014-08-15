@@ -7,11 +7,6 @@ Author: Jacob M. Montgomery, Florian Hollenbach, and Michael D. Ward
 Maintainer: Jacob Montgomery <jacob.montgomery@wustl.edu>
 Description: Ensemble BMA for social science data
 License: GPL (>= 2)
-Depends:
-    separationplot,
-    ensembleBMA,
-    plyr,
-    methods,
-    Hmisc,
-    abind
+Depends: separationplot, ensembleBMA, plyr, methods, Hmisc, abind
 LazyLoad: yes
+Packaged: 2014-05-05 21:01:44 UTC; jmontgomery

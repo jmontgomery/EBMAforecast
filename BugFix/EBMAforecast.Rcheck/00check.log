@@ -1,0 +1,18 @@
+* using log directory ‘/Users/jmontgomery/GitHub/EBMAforecast/BugFix/EBMAforecast.Rcheck’
+* using R version 3.1.0 (2014-04-10)
+* using platform: x86_64-apple-darwin10.8.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘EBMAforecast/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘EBMAforecast’ version ‘0.4’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘EBMAforecast’ can be installed ... ERROR
+Installation failed.
+See ‘/Users/jmontgomery/GitHub/EBMAforecast/BugFix/EBMAforecast.Rcheck/00install.out’ for details.
