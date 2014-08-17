@@ -53,9 +53,9 @@ setMethod(f="fitEnsemble",
 
             .makeAdj <- function(x){
               .adjPred <- qlogis(x)
-              .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .negative <- .adjPred<0
               .pos <- .adjPred>1
+              .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .miss <- is.na(.adjPred)
               .negative[.miss] <- FALSE
               .adjPred[.negative] <- .adjPred[.negative]*(-1)
@@ -97,7 +97,7 @@ setMethod(f="fitEnsemble",
             
             ## Fit Models
             if(useModelParams){
-              print("jacob")
+              #print("jacob")
               .models <- alply(predCalibration, 2:3, .fun=.modelFitter)
             }
 
@@ -134,7 +134,7 @@ setMethod(f="fitEnsemble",
 
 
             while(.done == FALSE & .iter<maxIter){
-              print(.iter)
+              #print(.iter)
               .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W)
               W <- .thisOut$W
               LL <- .thisOut$LL
@@ -152,7 +152,7 @@ setMethod(f="fitEnsemble",
             bmaPred[,,-1] <- NA
             cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
 
-            print("here")
+            #print("here")
             if(.testPeriod){
               if(useModelParams==TRUE){
                 .adjPred <- .makeAdj(predTest)
@@ -169,7 +169,7 @@ setMethod(f="fitEnsemble",
               	.adjPred[outcomeTest==1,,1]<-(plogis(.adjPred[outcomeTest==1,,1]))
                 predTestAdj <- .adjPred
               }
-                          print("here2")
+                          #print("here2")
               .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
               bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
               bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
