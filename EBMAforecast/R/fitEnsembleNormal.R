@@ -77,10 +77,10 @@ setMethod(f="fitEnsemble",
             
             
             ##Extract data
-            predCalibration <- getPredCalibration(.forecastData); outcomeCalibration <- getOutcomeCalibration(.forecastData)
-            predTest <- getPredTest(.forecastData); outcomeTest <- getOutcomeTest(.forecastData)
+            predCalibration <- .forecastData@predCalibration; outcomeCalibration <- .forecastData@outcomeCalibration
+            predTest <- .forecastData@predTest; outcomeTest <- .forecastData@outcomeTest
             .testPeriod <- length(predTest)>0            
-            modelNames <- getModelNames(.forecastData)
+            modelNames <- .forecastData@modelNames
             
             ## Set constants
             nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]
