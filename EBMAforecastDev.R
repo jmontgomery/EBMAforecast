@@ -1,6 +1,6 @@
 library(devtools); library(roxygen2); library(testthat)
 
-setwd("~/Documents/GitHub/EBMAforecast/")
+setwd("~/Documents/GitHub/EBMAforecast1/rcpp_pack")
 #setwd("~/GITHUB/EBMAforecast/")
 
 ## Only need to run this portion once
