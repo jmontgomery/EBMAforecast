@@ -39,7 +39,7 @@ setMethod(f="EBMApredict",
               predTestAdj <- array(NA, dim=c(nObsTest, nMod, nDraws))
                 for (k in 1:nMod){
                  for (j in 1:nDraws){
-                   predTestAdj[,k,j] <- .predictTest(predTest[,k,j], i=k)
+                   predTestAdj[,k,j] <- .predictTest(predictions[,k,j], i=k)
                    }
                 }
               } 

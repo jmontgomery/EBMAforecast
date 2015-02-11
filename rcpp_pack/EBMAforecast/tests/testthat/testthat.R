@@ -271,6 +271,12 @@ check2<-calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, maxIter=2
 expect_false((check1@modelWeights==check2@modelWeights)[[1]])	
 })
 
+test_that("If different initial weights are used, iterations should increase (logit)",{
+  this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
+  check1<-calibrateEnsemble(this.ForecastData, model="logit", maxIter=25000, exp=1)
+  check2<-calibrateEnsemble(this.ForecastData, model="logit", maxIter=25000, exp=1,W=c(0.01,0.19,0.8))
+  expect_false((check1@iter==check2@iter)[[1]])  
+})
 
 test_that("model option = normal changes results (logit - results)",{
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -315,6 +321,13 @@ test_that("exponent changes if option is used (normal)",{
 this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))	
 check1<-calibrateEnsemble(this.ForecastData, model="normal", tol=0.0001, maxIter=25000, exp=15)		
 expect_that(check1@exp,equals(15))
+})
+
+test_that("If different initial weights are used, iterations should increase (normal)",{
+    this.ForecastData <-makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
+    check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1)
+    check2<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1,W=c(0.8,0.1,0.05,0.05))
+    expect_false((check1@iter==check2@iter)[[1]])  
 })
 
 test_that("model parameters are turned of, all parameters are 0,1 (normal)",{
@@ -457,3 +470,109 @@ check2<-as.numeric(round(as.matrix(check13@modelWeights),3))
 expect_that(as.numeric(round(as.matrix(fit.eBMA$weights),3)),equals(check2))
 })
 
+context("Make sure demos actually run")
+test_that("logit EBMA model",{
+  demo(EBMAforecast)})
+  
+test_that("logit EBMA model, with missing obs",{
+  data(calibrationSample)
+  data(testSample)
+  missing = sample(1:nrow(calibrationSample), 300,replace=FALSE)
+  calibrationSample[missing[1:100],c("LMER")] = NA
+  calibrationSample[missing[101:200],c("SAE")] = NA
+  calibrationSample[missing[201:300],c("GLM")] = NA
+
+
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+                                                                 .outcomeCalibration=calibrationSample[,"Insurgency"],
+                                                                .predTest=testSample[,c("LMER", "SAE", "GLM")],
+                                                                 .outcomeTest=testSample[,"Insurgency"],
+                                                                 .modelNames=c("LMER", "SAE", "GLM"))
+  
+this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
+})
+
+
+
+test_that("logit EBMA model",{
+  demo(presForecast)})
+
+test_that("normal EBMA model, with missing obs",{
+  data(presidentialForecast)
+  missing = sample(1:nrow(presidentialForecast), 12,replace=FALSE)
+  full.forecasts<-presidentialForecast[,c(1:6)]
+  full.forecasts[missing[c(1,2)],1] = NA
+  full.forecasts[missing[c(3,4)],1] = NA
+  full.forecasts[missing[c(5,6)],1] = NA
+  full.forecasts[missing[c(7,8)],1] = NA
+  full.forecasts[missing[c(9,10)],1] = NA
+  full.forecasts[missing[c(11,12)],1] = NA
+  full.observed<-presidentialForecast[,7]
+  
+  this.ForecastData<-makeForecastData(.predCalibration=full.forecasts[c(1:14),],.outcomeCalibration=full.observed[c(1:14)],.predTest=full.forecasts[15,], .outcomeTest=full.observed[15], .modelNames=c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
+  thisEnsemble<-calibrateEnsemble(this.ForecastData, model="normal", useModelParams=FALSE, tol=0.000000001)
+  })
+
+
+context("Test function to create predictions without reestimating model")
+set.seed(123)
+predictions<-matrix(NA, nrow=400, ncol=4)
+predictions[,1]<-rnorm(400,mean=2.6,sd=5)
+predictions[,2]<-rnorm(400,mean=6,sd=10)
+predictions[,3]<-rnorm(400,mean=0.4,sd=8)
+predictions[,4]<-rnorm(400,mean=-2,sd=15)
+true<-rep(NA,400)
+true<-rnorm(400,mean=2.2,sd=2)
+
+test.pred<-matrix(NA, nrow=40, ncol=4)
+test.pred[,1]<-rnorm(40,mean=2.3,sd=7)
+test.pred[,2]<-rnorm(40,mean=3.3,sd=12)
+test.pred[,3]<-rnorm(40,mean=1.3,sd=11)
+test.pred[,4]<-rnorm(40,mean=2.2,sd=18)
+test.true<-rnorm(40,mean=2.2,sd=2)
+
+
+new.pred = matrix(rnorm(80,5,7),ncol=4)
+
+test_that("EBMApredict for normal EBMA model,model parameters TRUE",{
+      this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
+      check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=3)
+      newPred = EBMApredict(check1,new.pred)
+})
+
+test_that("EBMApredict for normal EBMA model,model parameters TRUE, pedictionType mean",{
+  this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
+  check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1,useModelParams=TRUE, predType="posteriorMean")
+  newPred = EBMApredict(check1,new.pred)
+})
+
+test_that("EBMApredict for normal EBMA model,model parameters FALSE",{
+  this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
+  check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1,useModelParams=FALSE)
+  newPred = EBMApredict(check1,new.pred)
+})
+  
+
+test_that("EBMApredict for normal EBMA model,model parameters FALSE, pedictionType mean",{
+  this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
+  check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1,useModelParams=FALSE, predType="posteriorMean")
+  newPred = EBMApredict(check1,new.pred)
+})
+
+
+data(calibrationSample)
+data(testSample)
+new.pred = matrix(runif(60,0.02,0.98),ncol=3)
+
+this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
+test_that("EBMApredict for logit EBMA model,model parameters FALSE",{
+  check1 <- calibrateEnsemble(this.ForecastData,model="logit",exp=3,useModelParams=FALSE)
+  newPred = EBMApredict(check1,new.pred)
+})
+
+
+
+test_that("EBMApredict for logit EBMA model,model parameters TRUE",{
+  check1 <- calibrateEnsemble(this.ForecastData,model="logit",exp=3,useModelParams=TRUE)
+  newPred = EBMApredict(check1,new.pred)
+})

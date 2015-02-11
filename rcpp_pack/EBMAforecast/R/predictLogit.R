@@ -73,7 +73,7 @@ setMethod(f="EBMApredict",
                 predTestAdj <- .adjPred
               }
               if(useModelParams==FALSE & is.null(Outcome)==TRUE){
-              .adjPred <- .makeAdj(predictions)
+              .adjPred <- predictions
               predTestAdj <- .adjPred
               }
 
