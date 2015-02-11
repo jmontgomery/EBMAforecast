@@ -1,0 +1,16 @@
+* installing *source* package ‘EBMAforecast’ ...
+** libs
+make: Nothing to be done for `all'.
+installing to /Users/florianhollenbach/Documents/GitHub/EBMAforecast1/rcpp_pack/EBMAforecast.Rcheck/EBMAforecast/libs
+** R
+** data
+** demo
+** preparing package for lazy loading
+Creating a generic function for ‘print’ from package ‘base’ in package ‘EBMAforecast’
+Creating a generic function for ‘plot’ from package ‘graphics’ in package ‘EBMAforecast’
+Creating a generic function for ‘summary’ from package ‘base’ in package ‘EBMAforecast’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (EBMAforecast)

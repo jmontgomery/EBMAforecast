@@ -15,7 +15,7 @@
 #' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
 #' \item{outcomeTest}{A vector containing the true values of the dependent variable for all observations in the test period.}
 #' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
-#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@duke.edu}>
+#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@princeton.edu}>
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'

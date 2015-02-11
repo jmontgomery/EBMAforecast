@@ -52,6 +52,6 @@ summary(this.ensemble, period="test",showCoefs=FALSE)
 }
 }
 \author{
-Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
+Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@princeton.edu}>
 }
 

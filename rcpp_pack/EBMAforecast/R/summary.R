@@ -28,7 +28,7 @@ setClass(Class="SummaryForecastData",
 #' @return A data object of the class 'SummaryForecastData' with the following slots:
 #' \item{summaryData}{Under the default, the function produces a matrix containing one row for each model plus one row for the EBMA forecast.  The first column is always the model weights assigned to the component models.  The second and third columns display the model parameters for the transformation of the component models.  The remaining columns are the requested fit statistics for all models, as calculated by the \code{copareModels} function.  If \code{showCoefs=FALSE}, then the model parameters will not be shown.}
 #'
-#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}>
+#' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@princeton.edu}>
 #'
 #' @examples \dontrun{ data(calibrationSample)
 #'

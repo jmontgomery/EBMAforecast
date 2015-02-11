@@ -1,0 +1,104 @@
+* using log directory ‘/Users/florianhollenbach/Documents/GitHub/EBMAforecast1/rcpp_pack/EBMAforecast.Rcheck’
+* using R version 3.1.2 (2014-10-31)
+* using platform: x86_64-apple-darwin14.0.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘EBMAforecast/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘EBMAforecast’ version ‘0.5’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... WARNING
+Subdirectory ‘EBMAforecast/src’ contains apparent object files/libraries
+  EBMAforecast.so RcppExports.o logitEM.o normalEM.o
+Object files/libraries should not be included in a source package.
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .DS_Store
+  .Rhistory
+  man/.DS_Store
+  tests/.DS_Store
+  .Rproj.user
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘EBMAforecast’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  ‘Hmisc’ ‘abind’ ‘ensembleBMA’ ‘methods’ ‘plyr’ ‘separationplot’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+See the information on DESCRIPTION files in the chapter ‘Creating R
+packages’ of the ‘Writing R Extensions’ manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+plot,FDatFitLogit: no visible binding for global variable ‘y’
+plot,FDatFitNormal: no visible binding for global variable ‘y’
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘emLogit’ ‘emNorm’
+Undocumented S4 methods:
+  generic 'EBMApredict' and siglist 'FDatFitNormal'
+  generic 'EBMApredict' and siglist 'ForecastData'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See the chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'EBMApredict'
+  ‘predictions’ ‘...’
+Documented arguments not in \usage in documentation object 'EBMApredict':
+  ‘Predictions’
+
+Undocumented arguments in documentation object 'ForecastData-class'
+  ‘object’ ‘value’
+
+Undocumented arguments in documentation object 'calibrateEnsemble'
+  ‘useModelParams’
+
+Undocumented arguments in documentation object 'plot,FDatFitLogit-method'
+  ‘y’ ‘...’
+Documented arguments not in \usage in documentation object 'plot,FDatFitLogit-method':
+  ‘subset’ ‘mainLabel’ ‘xLab’ ‘yLab’ ‘cols’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See the chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking compiled code ... OK
+* checking examples ... OK
+* checking PDF version of manual ... OK
+* DONE
+WARNING: There were 3 warnings.
+NOTE: There were 3 notes.
