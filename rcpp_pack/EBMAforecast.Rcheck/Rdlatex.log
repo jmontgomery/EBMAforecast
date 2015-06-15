@@ -4,8 +4,8 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format
  restricted \write18 enabled.
 entering extended mode
 
-(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpHHS4yl/Rd2pdf1e71
-11f0158d/Rd2.tex
+(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpgklLKj/Rd2pdf2a5a
+346a4cb4/Rd2.tex
 LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 
@@ -77,100 +77,100 @@ Overfull \hbox (72.2592pt too wide) in paragraph at lines 104--105
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 127--127
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 129--129
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 128--128
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 130--130
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [3]
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [4]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 203--204
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 205--206
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 220--220
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 224--224
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
-
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 221--221
+[5]
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 225--225
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-[5] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 242--243
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 246--247
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [6]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 307--308
+[6] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 313--314
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [7]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 372--373
+[7] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 380--381
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [8]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 388--388
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 398--398
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 389--389
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 399--399
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [9]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 453--454
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 463--464
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 469--469
+[10]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 481--481
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 470--470
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 482--482
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-[10] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Underfull \hbox (badness 2961) in paragraph at lines 492--492
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Underfull \hbox (badness 2961) in paragraph at lines 504--504
 []\T1/ptm/m/it/10 Plotting func-tion for en-sem-ble mod-els of the class "FDat-
 Fit-
-(/usr/local/texlive/2014/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 530--531
+(/usr/local/texlive/2014/texmf-dist/tex/latex/inconsolata/ts1zi4.fd) [11]
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 542--543
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-[11]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 551--551
+
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 565--565
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 552--552
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 566--566
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [12]
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (0.868pt too wide) in paragraph at lines 638--639
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [13]
+Overfull \hbox (0.868pt too wide) in paragraph at lines 652--653
 \T1/ptm/m/n/10 model weights as-signed to the com-po-nent mod-els. The sec-ond 
 and third columns
-[13]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 643--644
+
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 657--658
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 652--652
+[14]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 666--666
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 653--653
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 667--667
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [14]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
 No file Rd2.ind.
 [15] (./Rd2.aux)
 
@@ -188,7 +188,7 @@ s/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
 /urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times
 /utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pf
 b></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (15 pages, 107092 bytes).
+Output written on Rd2.pdf (15 pages, 107930 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2014] (kpathsea + Thai support).
 Scanning input file ./Rd2.idx....done (55 entries accepted, 0 rejected).
@@ -200,8 +200,8 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format
  restricted \write18 enabled.
 entering extended mode
 
-(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpHHS4yl/Rd2pdf1e71
-11f0158d/Rd2.tex
+(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpgklLKj/Rd2pdf2a5a
+346a4cb4/Rd2.tex
 LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 
@@ -273,101 +273,101 @@ Overfull \hbox (72.2592pt too wide) in paragraph at lines 104--105
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [3]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 127--127
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 129--129
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 128--128
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 130--130
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [4]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 203--204
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 205--206
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [5]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 220--220
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 224--224
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 221--221
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 225--225
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 242--243
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 246--247
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [6] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [7]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 307--308
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 313--314
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [8]
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 380--381
+[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
+tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
+du>\T1/ptm/m/n/10 >
+
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 398--398
+ []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
+tionSample[,c("LMER", "SAE", "GLM")],[] 
+
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 399--399
+ []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
+=testSample[,c("LMER", "SAE", "GLM")],[] 
+[9] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 463--464
+[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
+tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
+du>\T1/ptm/m/n/10 >
+[10]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 481--481
+ []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
+tionSample[,c("LMER", "SAE", "GLM")],[] 
+
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 482--482
+ []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
+=testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 372--373
-[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
-tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
-du>\T1/ptm/m/n/10 >
-[8]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 388--388
- []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
-tionSample[,c("LMER", "SAE", "GLM")],[] 
-
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 389--389
- []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
-=testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [9]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 453--454
-[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
-tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
-du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 469--469
- []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
-tionSample[,c("LMER", "SAE", "GLM")],[] 
-
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 470--470
- []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
-=testSample[,c("LMER", "SAE", "GLM")],[] 
-[10] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Underfull \hbox (badness 2961) in paragraph at lines 492--492
+Underfull \hbox (badness 2961) in paragraph at lines 504--504
 []\T1/ptm/m/it/10 Plotting func-tion for en-sem-ble mod-els of the class "FDat-
 Fit-
 (/usr/local/texlive/2014/texmf-dist/tex/latex/inconsolata/ts1zi4.fd) [11]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 530--531
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 542--543
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 551--551
+[12]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 565--565
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 552--552
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 566--566
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [12]
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [13]
-Overfull \hbox (0.868pt too wide) in paragraph at lines 638--639
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (0.868pt too wide) in paragraph at lines 652--653
 \T1/ptm/m/n/10 model weights as-signed to the com-po-nent mod-els. The sec-ond 
 and third columns
 
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 643--644
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 657--658
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 652--652
+[14]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 666--666
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 653--653
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 667--667
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [14] (./Rd2.ind
-[15]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [15] (./Rd2.ind
+[16]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 (Font)              using `T1/zi4/m/n' instead on input line 11.
@@ -393,7 +393,7 @@ Overfull \hbox (0.8567pt too wide) in paragraph at lines 104--106
 
 Overfull \hbox (10.8567pt too wide) in paragraph at lines 108--110
 []\T1/zi4/m/it/10 setPredCalibration<-,ForecastData-method 
-[16] [17]) (./Rd2.aux)
+[17] [18]) (./Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -413,7 +413,7 @@ s/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts
 urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/
 utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (17 pages, 119763 bytes).
+Output written on Rd2.pdf (18 pages, 121315 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2014] (kpathsea + Thai support).
 Scanning input file ./Rd2.idx....done (55 entries accepted, 0 rejected).
@@ -425,8 +425,8 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format
  restricted \write18 enabled.
 entering extended mode
 
-(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpHHS4yl/Rd2pdf1e71
-11f0158d/Rd2.tex
+(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpgklLKj/Rd2pdf2a5a
+346a4cb4/Rd2.tex
 LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 
@@ -498,101 +498,101 @@ Overfull \hbox (72.2592pt too wide) in paragraph at lines 104--105
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [3]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 127--127
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 129--129
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 128--128
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 130--130
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [4]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 203--204
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [4]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 205--206
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [5]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 220--220
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 224--224
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 221--221
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 225--225
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 242--243
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 246--247
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [6] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [7]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 307--308
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 313--314
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [8]
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 380--381
+[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
+tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
+du>\T1/ptm/m/n/10 >
+
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 398--398
+ []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
+tionSample[,c("LMER", "SAE", "GLM")],[] 
+
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 399--399
+ []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
+=testSample[,c("LMER", "SAE", "GLM")],[] 
+[9] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 463--464
+[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
+tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
+du>\T1/ptm/m/n/10 >
+[10]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 481--481
+ []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
+tionSample[,c("LMER", "SAE", "GLM")],[] 
+
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 482--482
+ []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
+=testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 372--373
-[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
-tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
-du>\T1/ptm/m/n/10 >
-[8]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 388--388
- []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
-tionSample[,c("LMER", "SAE", "GLM")],[] 
-
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 389--389
- []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
-=testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [9]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 453--454
-[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
-tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
-du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 469--469
- []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
-tionSample[,c("LMER", "SAE", "GLM")],[] 
-
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 470--470
- []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
-=testSample[,c("LMER", "SAE", "GLM")],[] 
-[10] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Underfull \hbox (badness 2961) in paragraph at lines 492--492
+Underfull \hbox (badness 2961) in paragraph at lines 504--504
 []\T1/ptm/m/it/10 Plotting func-tion for en-sem-ble mod-els of the class "FDat-
 Fit-
 (/usr/local/texlive/2014/texmf-dist/tex/latex/inconsolata/ts1zi4.fd) [11]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 530--531
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 542--543
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 551--551
+[12]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 565--565
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 552--552
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 566--566
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [12]
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [13]
-Overfull \hbox (0.868pt too wide) in paragraph at lines 638--639
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (0.868pt too wide) in paragraph at lines 652--653
 \T1/ptm/m/n/10 model weights as-signed to the com-po-nent mod-els. The sec-ond 
 and third columns
 
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 643--644
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 657--658
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 652--652
+[14]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 666--666
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 653--653
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 667--667
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [14] (./Rd2.ind
-[15]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [15] (./Rd2.ind
+[16]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 (Font)              using `T1/zi4/m/n' instead on input line 11.
@@ -618,7 +618,7 @@ Overfull \hbox (0.8567pt too wide) in paragraph at lines 104--106
 
 Overfull \hbox (10.8567pt too wide) in paragraph at lines 108--110
 []\T1/zi4/m/it/10 setPredCalibration<-,ForecastData-method 
-[16] [17]) (./Rd2.aux)
+[17] [18]) (./Rd2.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -633,7 +633,7 @@ s/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts
 urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/
 utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (17 pages, 120037 bytes).
+Output written on Rd2.pdf (18 pages, 121571 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2014] (kpathsea + Thai support).
 Scanning input file ./Rd2.idx....done (55 entries accepted, 0 rejected).
@@ -645,8 +645,8 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format
  restricted \write18 enabled.
 entering extended mode
 
-(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpHHS4yl/Rd2pdf1e71
-11f0158d/Rd2.tex
+(/private/var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T/RtmpgklLKj/Rd2pdf2a5a
+346a4cb4/Rd2.tex
 LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 
@@ -718,101 +718,101 @@ Overfull \hbox (72.2592pt too wide) in paragraph at lines 104--105
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [3]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 127--127
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 129--129
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 128--128
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 130--130
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [4]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 203--204
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [4]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 205--206
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [5]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 220--220
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 224--224
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 221--221
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 225--225
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 242--243
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 246--247
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
 [6] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [7]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 307--308
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 313--314
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [8]
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 380--381
+[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
+tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
+du>\T1/ptm/m/n/10 >
+
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 398--398
+ []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
+tionSample[,c("LMER", "SAE", "GLM")],[] 
+
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 399--399
+ []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
+=testSample[,c("LMER", "SAE", "GLM")],[] 
+[9] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 463--464
+[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
+tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
+du>\T1/ptm/m/n/10 >
+[10]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 481--481
+ []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
+tionSample[,c("LMER", "SAE", "GLM")],[] 
+
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 482--482
+ []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
+=testSample[,c("LMER", "SAE", "GLM")],[] 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 372--373
-[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
-tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
-du>\T1/ptm/m/n/10 >
-[8]
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 388--388
- []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
-tionSample[,c("LMER", "SAE", "GLM")],[] 
-
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 389--389
- []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
-=testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [9]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 453--454
-[]\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
-tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
-du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 469--469
- []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
-tionSample[,c("LMER", "SAE", "GLM")],[] 
-
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 470--470
- []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
-=testSample[,c("LMER", "SAE", "GLM")],[] 
-[10] (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
-Underfull \hbox (badness 2961) in paragraph at lines 492--492
+Underfull \hbox (badness 2961) in paragraph at lines 504--504
 []\T1/ptm/m/it/10 Plotting func-tion for en-sem-ble mod-els of the class "FDat-
 Fit-
 (/usr/local/texlive/2014/texmf-dist/tex/latex/inconsolata/ts1zi4.fd) [11]
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 530--531
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 542--543
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 551--551
+[12]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 565--565
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 552--552
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 566--566
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [12]
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [13]
-Overfull \hbox (0.868pt too wide) in paragraph at lines 638--639
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def)
+Overfull \hbox (0.868pt too wide) in paragraph at lines 652--653
 \T1/ptm/m/n/10 model weights as-signed to the com-po-nent mod-els. The sec-ond 
 and third columns
 
-Overfull \hbox (72.2592pt too wide) in paragraph at lines 643--644
+Overfull \hbox (72.2592pt too wide) in paragraph at lines 657--658
 []\T1/ptm/m/n/10 Michael D. Ward <\T1/zi4/m/n/10 <michael.d.ward@duke.edu>\T1/p
 tm/m/n/10 > and Ja-cob M. Mont-gomery <\T1/zi4/m/n/10 <jacob.montgomery@wustl.e
 du>\T1/ptm/m/n/10 >
-
-Overfull \hbox (46.68091pt too wide) in paragraph at lines 652--652
+[14]
+Overfull \hbox (46.68091pt too wide) in paragraph at lines 666--666
  []\T1/zi4/m/n/9 this.ForecastData <- makeForecastData(.predCalibration=calibra
 tionSample[,c("LMER", "SAE", "GLM")],[] 
 
-Overfull \hbox (52.9809pt too wide) in paragraph at lines 653--653
+Overfull \hbox (52.9809pt too wide) in paragraph at lines 667--667
  []\T1/zi4/m/n/9 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest
 =testSample[,c("LMER", "SAE", "GLM")],[] 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [14] (./Rd2.ind
-[15]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def) [15] (./Rd2.ind
+[16]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 (Font)              using `T1/zi4/m/n' instead on input line 11.
@@ -838,7 +838,7 @@ Overfull \hbox (0.8567pt too wide) in paragraph at lines 104--106
 
 Overfull \hbox (10.8567pt too wide) in paragraph at lines 108--110
 []\T1/zi4/m/it/10 setPredCalibration<-,ForecastData-method 
-[16] [17]) (./Rd2.aux)
+[17] [18]) (./Rd2.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -853,8 +853,8 @@ s/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts
 urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/
 utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (17 pages, 120039 bytes).
+Output written on Rd2.pdf (18 pages, 121573 bytes).
 Transcript written on Rd2.log.
 Saving output to 'EBMAforecast-manual.pdf' ...
 Done
-You may want to clean up by 'rm -rf /var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T//RtmpHHS4yl/Rd2pdf1e7111f0158d'
+You may want to clean up by 'rm -rf /var/folders/1_/fz0p5qtn48x1f2y4z2np7tm80000gn/T//RtmpgklLKj/Rd2pdf2a5a346a4cb4'

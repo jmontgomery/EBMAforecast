@@ -18,6 +18,7 @@ Found the following hidden files and directories:
   .DS_Store
   .Rhistory
   man/.DS_Store
+  man/.Rapp.history
   tests/.DS_Store
   .Rproj.user
 These were most likely included in error. See section ‘Package
