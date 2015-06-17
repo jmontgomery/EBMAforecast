@@ -1,40 +1,61 @@
-
 #' @rdname EBMApredict
-#' @export
-setGeneric(name="EBMApredict",
+setGeneric(name="prediction",
            def=function( EBMAmodel, 
-                         predictions,
-                         Outcome=c(),
+                         Predictions,
+                         Outcome,
                          ...)
-           {standardGeneric("EBMApredict")}
+           {standardGeneric("prediction")}
            )
 
-
-#' @export
-setMethod(f="EBMApredict",
-          signature(EBMAmodel="ForecastData"),
+#' @importFrom plyr alply aaply laply
+#' @rdname EBMApredict
+setMethod(f="prediction",
+          signature(EBMAmodel="FDatFitLogit"),
           definition=function(EBMAmodel, 
-                              predictions,
-                              Outcome=c())
+                              Predictions,
+                              Outcome,
+                              ...)
           {
-            nDraws = 1
-            if(is.matrix(predictions)==TRUE){
-              predictions = array(predictions,dim=c(dim(predictions),nDraws))
-            }
-            #extract variables from EBMAmodel
-            modelParams = EBMAmodel@modelParams
+
+          #Outcome <- matrix(Outcome)    
+             nDraws <- dim(predCalibration)[3]
+            if(is.matrix(Predictions)==TRUE){
+              Predictions = array(Predictions,dim=c(dim(Predictions),nDraws))
+          }
+
+
+            
+           
+            
+            #extract variables and observations from EBMAmodel
+            predCalibration <- slot(EBMAmodel, "predCalibration")
+            predCalibration <- predCalibration[,which(names(predCalibration[1,,1])!="EBMA"),1:nDraws,drop=FALSE]
+            outcomeCalibration <- slot(EBMAmodel, "outcomeCalibration")
+           
             W = EBMAmodel@modelWeights
             modelNames = EBMAmodel@modelNames
             nMods = length(W)
             exp = EBMAmodel@exp
-            useModelParams = TRUE
-            nObsTest = dim(predictions)[1]
-            nMod = length(W)
-            .models = EBMAmodel@modelResults
-            if(sum(EBMAmodel@modelParams[1,,])==0 & sum(EBMAmodel@modelParams[2,,])==nMods){
-              useModelParams = FALSE
-            }
+            nObsTest = dim(Predictions)[1]
+            useModelParams = EBMAmodel@useModelParams
+
+
+              ## Set constants
+            nMod <-  ncol(predCalibration)
+            nObsCal <- nrow(predCalibration); nObsTest <- nrow(Predictions)
+            ZERO<-1e-4
             
+            #if(sum(EBMAmodel@modelParams[1,,])==0 & sum(EBMAmodel@modelParams[2,,])==nMods){
+             # useModelParams = FALSE
+            #}
+            
+              .predictCal <- function(x){
+              .rawPred <- predict(x, type="response")
+              .outPred <- rep(NA, nObsCal)
+              .outPred[as.numeric(names(.rawPred))] <- .rawPred
+              return(.outPred)
+            }
+
             .makeAdj <- function(x){
               .adjPred <- qlogis(x)
               .negative <- .adjPred<0
@@ -48,6 +69,13 @@ setMethod(f="EBMApredict",
               .adjPred
             }
             
+            .modelFitter <- function(preds){
+              .adjPred <- .makeAdj(preds)
+              .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
+              if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
+              return(.thisModel)
+            }
+
             .predictTest <- function(x, i){
               .models[[i]]
               temp <- matrix(x,ncol=1)
@@ -56,9 +84,38 @@ setMethod(f="EBMApredict",
               .outPred[as.numeric(names(.rawPred))] <- .rawPred
               return(.outPred)
             }
+
             
+            ## Fit Models
+            if(useModelParams){
+              .models <- alply(predCalibration, 2:3, .fun=.modelFitter)
+            }
+
+             ## Extract needed info
+            if(nDraws==1 & useModelParams==TRUE){
+              predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+              dim(predCalibrationAdj)
+              array(laply(.models, coefficients), dim=c(nMod, 2, nDraws))
+              modelParams <- aperm(array(laply(.models, coefficients), dim=c(nMod, 2, nDraws)), c(2,1,3))
+            }
+
+            if(nDraws>1 & useModelParams==TRUE){ # This code is in development for exchangeability
+              predCalibrationAdj <- aperm(aaply(.models, 1:2, .predictCal), c(3,1,2))
+              modelParams <- aperm(aaply(.models, 1:2, coefficients), c(3,1,2))
+            }
+            if(useModelParams==FALSE){
+              .adjPred <- .makeAdj(predCalibration)
+              .adjPred[outcomeCalibration==0,,1]<-(1-plogis(.adjPred[outcomeCalibration==0,,1]))
+              .adjPred[outcomeCalibration==1,,1]<-(plogis(.adjPred[outcomeCalibration==1,,1]))
+              predCalibrationAdj <- .adjPred
+              modelParams <- array(c(0,1), dim=c(2,nMod,nDraws))
+            }
+
+            dimnames(modelParams) <- list(c("Constant", "Predictor"), modelNames, 1:nDraws)
+            dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
+
             if(useModelParams==TRUE){
-                .adjPred <- .makeAdj(predictions)
+                .adjPred <- .makeAdj(Predictions)
                 predTestAdj <- array(NA, dim=c(nObsTest, nMod, nDraws))
                 for (k in 1:nMod){
                   for (j in 1:nDraws){
@@ -67,14 +124,13 @@ setMethod(f="EBMApredict",
                 }
               } 
               if(useModelParams==FALSE & is.null(Outcome)==FALSE){
-                .adjPred <- .makeAdj(predictions)
+                .adjPred <- .makeAdj(Predictions)
                 .adjPred[Outcome==0,,1]<-(1-plogis(.adjPred[Outcome==0,,1]))
               	.adjPred[Outcome==1,,1]<-(plogis(.adjPred[Outcome==1,,1]))
                 predTestAdj <- .adjPred
               }
               if(useModelParams==FALSE & is.null(Outcome)==TRUE){
-              .adjPred <- predictions
-              predTestAdj <- .adjPred
+              predTestAdj <- Predictions
               }
 
               .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
@@ -82,9 +138,9 @@ setMethod(f="EBMApredict",
               bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
               bmaPredTest[,,-1] <- NA
 
-              test <- abind(bmaPredTest, predictions, along=2);  colnames(test) <- c("EBMA", modelNames)
+              test <- abind(bmaPredTest, Predictions, along=2);  colnames(test) <- c("EBMA", modelNames)
               if(is.null(Outcome)==TRUE){Outcome = rep(numeric(0),nObsTest)}
-            new("FDatFitLogit",
+                new("FDatFitLogit",
                 predTest=test,
                 outcomeTest= Outcome,
                 modelNames=modelNames,

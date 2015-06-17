@@ -5,8 +5,8 @@
 #'
 #' @param EBMAmodel Output of estimated EBMA model 
 #' @param Predictions A matrix with a column for each component model's predictions.
-#' @param Outcome An optional vector containing the true values of the dependent variable for all observations in the test period.
-#'
+#' @param Outcome An optional vector containing the true values of the dependent variable for all observations in the test period. 
+#' @param ... Not implemented
 #'
 #'
 #' @return Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots:
@@ -21,27 +21,26 @@
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. In Press.
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
-#' 
 #' @rdname EBMApredict
-#' @aliases EBMApredict,prediction,ForecastData-method
+#' @aliases prediction, ForecastDataLogit-method prediction, FDatFitNormal-method prediction, FDatFitLogit-method prediction,ForecastDataNormal-method prediction
 #' @export
 setGeneric(name="EBMApredict",
            def=function(EBMAmodel, 
-                        predictions,
-                        Outcome,
+                        Predictions,
+                        Outcome = NULL,
                         ...)
            {standardGeneric("EBMApredict")}
 )
 
 
-
+#' @rdname EBMApredict
 #' @export
 setMethod(f="EBMApredict",
           signature="ForecastData",
           definition=function(
             EBMAmodel, 
-            predictions,
-            Outcome,
+            Predictions,
+            Outcome = NULL,
             ...)
           {
             switch(EBMAmodel@model,
@@ -50,9 +49,9 @@ setMethod(f="EBMApredict",
                    normal={EBMAmodel <- as(EBMAmodel, "FDatFitNormal")}
             )
             eval(
-              EBMApredict(EBMAmodel=EBMAmodel,
-                      predictions=predictions,
-                      Outcome=c(),
+              prediction(EBMAmodel,
+                      Predictions=Predictions,
+                      Outcome=Outcome,
                       ...), parent.frame())
           }
 )

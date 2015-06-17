@@ -13,7 +13,8 @@
 #' @param xLab The label for the x-axis. Only implemented for the subclass "FDatFitNormal"
 #' @param yLab The label for the y-axis.  Only implemented for the subclass "FDatFitNormal"
 #' @param cols A vector containing the color for plotting the predictive pdf of each component model forecast. Only implemented for the subclass "FDatFitNormal" 
-#'
+#' @param ... Not implemented
+#' 
 #' @method plot FDatFitLogit
 #' @method plot FDatFitNormal
 #' @return NULL
@@ -26,6 +27,8 @@
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. In Press.
 #'
 #' @seealso \code{separationplot}
+#'
+#' @import separationplot
 #'
 #' @examples data(calibrationSample)
 #'
@@ -45,7 +48,8 @@
 setMethod(
           f="plot",
           signature="FDatFitLogit",
-          definition=function(x, y=NULL, period="calibration", ...){
+          definition=function(x, period="calibration",  subset=1, 
+          mainLabel="", xLab="", yLab="", cols=1, ...){ #everything behind period, is not used for logit and is a hack so we don't get a warning about unused documented functions
             nDraw=1
             numModels <- length(x@modelWeights)+1
             modelNames <- c("EBMA", x@modelNames)
@@ -70,7 +74,7 @@ setMethod(
 setMethod(
           f="plot",
           signature="FDatFitNormal",
-          definition=function(x, y=NULL, period="calibration",  subset=1,
+          definition=function(x, period="calibration",  subset=1,
             mainLabel=paste("Observation", subset), xLab="Outcome", yLab="Posterior Probability", cols=2:(length(x@modelNames)+1), ... )
           {
 

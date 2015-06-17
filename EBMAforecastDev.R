@@ -14,7 +14,7 @@ document(current.code, clean=FALSE)
 test_file("test_start.R")
 
 # Check that the package is constructed correctly
-check(current.code)
+check(current.code, args="--as-cran")
 
 # Check demo
 demo(EBMAforecast)

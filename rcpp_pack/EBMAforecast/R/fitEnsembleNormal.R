@@ -1,6 +1,10 @@
+#' @useDynLib EBMAforecast
+#' @importFrom Rcpp sourceCpp
 
 
-#' @export
+#' @importFrom plyr alply aaply
+#' @import ensembleBMA
+#' @rdname calibrateEnsemble
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
           definition=function(.forecastData, tol = sqrt(.Machine$double.eps),
@@ -215,6 +219,7 @@ setMethod(f="fitEnsemble",
                 outcomeTest=.forecastData@outcomeTest,
                 modelNames=modelNames,
                 modelWeights=W,
+                useModelParams = useModelParams,
                 modelParams=modelParams,
                 variance=sigma2,
                 logLik=LL,

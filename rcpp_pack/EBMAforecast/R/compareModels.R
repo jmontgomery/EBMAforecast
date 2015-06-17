@@ -58,6 +58,9 @@ setClass(Class="CompareModels",
 #' compareModels(this.ensemble,"test") 
 #'}
 #'
+#' @importFrom plyr aaply
+#' @importFrom Hmisc somers2
+#'
 #' @seealso ensembleBMA, other functions
 #' @aliases compareModels,ForecastData-method CompareModels-class
 #' @export
@@ -151,7 +154,7 @@ setMethod(f="compareModels",
               outMat[,"brier"] <-aaply(preds, 2,.fun=my.fun, .expand=TRUE)
                                              }
             if("auc" %in% .fitStatistics & class(.forecastData)[1]=="FDatFitLogit"){
-              my.fun <- function(x){Hmisc::somers2(x, y)[1]}
+              my.fun <- function(x){somers2(x, y)[1]}
               outMat[,"auc"] <- aaply(preds, 2,.fun=my.fun, .expand=TRUE)}
             if("perCorrect" %in% .fitStatistics){
               my.fun <- function(x){mean((x>.threshold)*y + (x<.threshold)*(1-y), na.rm=TRUE)}

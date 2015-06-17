@@ -538,18 +538,25 @@ test_that("EBMApredict for normal EBMA model,model parameters TRUE",{
       this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
       check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=3)
       newPred = EBMApredict(check1,new.pred)
+      test_pred2 = EBMApredict(check1,test.pred)
+      expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
 })
 
 test_that("EBMApredict for normal EBMA model,model parameters TRUE, pedictionType mean",{
   this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
   check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1,useModelParams=TRUE, predType="posteriorMean")
   newPred = EBMApredict(check1,new.pred)
+  test_pred2 = EBMApredict(check1,test.pred)
+  expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
+  
 })
 
 test_that("EBMApredict for normal EBMA model,model parameters FALSE",{
   this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
   check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1,useModelParams=FALSE)
   newPred = EBMApredict(check1,new.pred)
+  test_pred2 = EBMApredict(check1,test.pred)
+  expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
 })
   
 
@@ -557,17 +564,24 @@ test_that("EBMApredict for normal EBMA model,model parameters FALSE, pedictionTy
   this.ForecastData <- makeForecastData(.predCalibration=predictions,.outcomeCalibration=true,.predTest=test.pred,.outcomeTest=test.true, .modelNames=c("m1", "m2", "m3","m4"))
   check1<-calibrateEnsemble(this.ForecastData, model="normal", maxIter=25000, exp=1,useModelParams=FALSE, predType="posteriorMean")
   newPred = EBMApredict(check1,new.pred)
+  test_pred2 = EBMApredict(check1,test.pred)
+  expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
 })
 
 
 data(calibrationSample)
 data(testSample)
 new.pred = matrix(runif(60,0.02,0.98),ncol=3)
-
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],.outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],.outcomeTest=testSample[,"Insurgency"],.modelNames=c("LMER", "SAE", "GLM"))
+
 test_that("EBMApredict for logit EBMA model,model parameters FALSE",{
   check1 <- calibrateEnsemble(this.ForecastData,model="logit",exp=3,useModelParams=FALSE)
   newPred = EBMApredict(check1,new.pred)
+  test_pred2 = EBMApredict(check1,this.ForecastData@predTest,Outcome=this.ForecastData@outcomeTest)
+  test_pred2 = EBMApredict(check1,this.ForecastData@predTest)
+  
+  expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
+  
 })
 
 
@@ -575,4 +589,14 @@ test_that("EBMApredict for logit EBMA model,model parameters FALSE",{
 test_that("EBMApredict for logit EBMA model,model parameters TRUE",{
   check1 <- calibrateEnsemble(this.ForecastData,model="logit",exp=3,useModelParams=TRUE)
   newPred = EBMApredict(check1,new.pred)
+  test_pred2 = EBMApredict(check1,this.ForecastData@predTest)
+  expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
+})
+
+
+test_that("EBMApredict for logit EBMA model,model parameters TRUE",{
+  check1 <- calibrateEnsemble(this.ForecastData,model="logit",exp=3,useModelParams=TRUE)
+  newPred = EBMApredict(check1,new.pred)
+  test_pred2 = EBMApredict(check1,this.ForecastData@predTest,Outcome=this.ForecastData@outcomeTest)
+  expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
 })

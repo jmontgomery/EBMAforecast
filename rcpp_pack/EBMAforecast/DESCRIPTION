@@ -2,14 +2,14 @@ Package: EBMAforecast
 Type: Package
 Title: Ensemble BMA Forecasting
 Version: 0.5
-Date: 2015-02-11
+Date: 2015-06-16
 Author: Jacob M. Montgomery, Florian M. Hollenbach, and Michael D. Ward
 Maintainer: Florian M. Hollenbach <florian.hollenbach@tamu.edu>
 Description: Ensemble BMA for social science data.
 License: GPL (>= 2)
 Depends:
-    separationplot,
     ensembleBMA,
+    separationplot,
     plyr,
     methods,
     Hmisc,

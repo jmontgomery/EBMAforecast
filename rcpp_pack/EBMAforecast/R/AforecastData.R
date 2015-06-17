@@ -4,12 +4,11 @@
 #'
 #'
 #' A data object of the class 'ForecastData' has the following slots: 
-#' \itemize{
-#' \item \code{predCalibration} An array containing the predictions of all component models for the observations in the calibration period.
-#' \item \code{predTest} An array containing the predictions of all component models for all the observations in the test period.
-#' \item \code{outcomeCalibration} A vector containing the true values of the dependent variable for all observations in the calibration period. 
-#' \item \code{outcomeTest} A vector containing the true values of the dependent variable for all observations in the test period.
-#' \item \code{modelNames} A character vector containing the names of all component models. }
+#'  @slot predCalibration An array containing the predictions of all component models for the observations in the calibration period.
+#'  @slot predTest An array containing the predictions of all component models for all the observations in the test period.
+#'  @slot outcomeCalibration A vector containing the true values of the dependent variable for all observations in the calibration period. 
+#'  @slot outcomeTest A vector containing the true values of the dependent variable for all observations in the test period.
+#'  @slot modelNames A character vector containing the names of all component models. 
 #'
 #' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>  
 #'
@@ -38,11 +37,18 @@
 #' setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 #' setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 #'}
+#' @param object used for validity checks (internal)
+#' @param value used for validity checks (internal) #hack but no idea how to get the warning to go away otherwise
 #'
+#' @import ensembleBMA
+#'
+#' @docType class
 #' @seealso ensembleBMA
-#' @aliases ForecastData-class initialize,ForecastData-method setPredCalibration,ForecastData-method setOutcomeCalibration,ForecastData-method setPredTest,ForecastData-method setOutcomeTest,ForecastData-method setModelNames,ForecastData-method makeForecastData,ANY-method print,ForecastData-method setModelNames<-,ForecastData-method setOutcomeCalibration<-,ForecastData-method setOutcomeTest<-,ForecastData-method setPredCalibration<-,ForecastData-method setPredTest<-,ForecastData-method show,ForecastData-method  getModelNames,ForecastData-method getOutcomeCalibration,ForecastData-method getOutcomeTest,ForecastData-method getPredCalibration,ForecastData-method getPredTest,ForecastData-method
-#' @rdname ForecastData	
-#' @export
+#' @rdname ForecastData  
+
+
+
+
 setClass(Class="ForecastData",
          representation = representation(
            predCalibration="array",
@@ -87,7 +93,6 @@ setClass(Class="ForecastData",
 
 
 ##
-#' @export
 setMethod("initialize", "ForecastData", function(.Object, ...) {
   value = callNextMethod()
   validObject(value)
@@ -95,7 +100,6 @@ setMethod("initialize", "ForecastData", function(.Object, ...) {
 })
 
 
-#' @export
 setClass(Class="ForecastDataLogit",
          contains="ForecastData",
          validity=function(object){
@@ -114,7 +118,6 @@ setClass(Class="ForecastDataLogit",
                  }
          )
 
-#' @export
 setClass(Class="ForecastDataNormal",
          contains="ForecastData")
 

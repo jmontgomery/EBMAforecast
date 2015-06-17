@@ -6,7 +6,8 @@
 \alias{plot,FDatFitNormal-method}
 \title{Plotting function for ensemble models of the class "FDatFitLogit" or "FDatFitNormal", which are the objects created by the \code{calibrateEnsemble()} function.}
 \usage{
-\S4method{plot}{FDatFitLogit}(x, y = NULL, period = "calibration", ...)
+\S4method{plot}{FDatFitLogit}(x, period = "calibration", subset = 1,
+  mainLabel = "", xLab = "", yLab = "", cols = 1, ...)
 }
 \arguments{
 \item{x}{An object of class "FDatFitLogit" or "FDatFitNormal"}
@@ -22,6 +23,8 @@
 \item{yLab}{The label for the y-axis.  Only implemented for the subclass "FDatFitNormal"}
 
 \item{cols}{A vector containing the color for plotting the predictive pdf of each component model forecast. Only implemented for the subclass "FDatFitNormal"}
+
+\item{...}{Not implemented}
 }
 \description{
 Default plotting for objectes created by the "calibrateEnsemble" function.  See details below.

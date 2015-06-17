@@ -3,54 +3,62 @@
 \docType{class}
 \name{ForecastData-class}
 \alias{ForecastData-class}
-\alias{getModelNames,ForecastData-method}
-\alias{getOutcomeCalibration,ForecastData-method}
-\alias{getOutcomeTest,ForecastData-method}
-\alias{getPredCalibration,ForecastData-method}
-\alias{getPredTest,ForecastData-method}
-\alias{initialize,ForecastData-method}
-\alias{makeForecastData,ANY-method}
-\alias{print,ForecastData-method}
-\alias{setModelNames,ForecastData-method}
 \alias{setModelNames<-}
 \alias{setModelNames<-,ForecastData-method}
-\alias{setOutcomeCalibration,ForecastData-method}
 \alias{setOutcomeCalibration<-}
 \alias{setOutcomeCalibration<-,ForecastData-method}
-\alias{setOutcomeTest,ForecastData-method}
 \alias{setOutcomeTest<-}
 \alias{setOutcomeTest<-,ForecastData-method}
-\alias{setPredCalibration,ForecastData-method}
 \alias{setPredCalibration<-}
 \alias{setPredCalibration<-,ForecastData-method}
-\alias{setPredTest,ForecastData-method}
 \alias{setPredTest<-}
 \alias{setPredTest<-,ForecastData-method}
-\alias{show,ForecastData-method}
 \title{An ensemble forecasting data object}
 \usage{
 setPredCalibration(object) <- value
 
+\S4method{setPredCalibration}{ForecastData}(object) <- value
+
 setPredTest(object) <- value
+
+\S4method{setPredTest}{ForecastData}(object) <- value
 
 setOutcomeCalibration(object) <- value
 
+\S4method{setOutcomeCalibration}{ForecastData}(object) <- value
+
 setOutcomeTest(object) <- value
 
+\S4method{setOutcomeTest}{ForecastData}(object) <- value
+
 setModelNames(object) <- value
+
+\S4method{setModelNames}{ForecastData}(object) <- value
+}
+\arguments{
+\item{object}{used for validity checks (internal)}
+
+\item{value}{used for validity checks (internal) #hack but no idea how to get the warning to go away otherwise}
 }
 \description{
 Objects of class \code{ForecastData} are used in the \code{calibrateEnsemble} function. Datasets should be converted into an object of class \code{ForecastData} using the \code{makeForecastData} function. Individual slots of the \code{ForecastData} object can be accessed and changed using the \code{get} and \code{set} functions respectively. Missing observations in the prediction calibration set are allowed.
 }
 \details{
 A data object of the class 'ForecastData' has the following slots:
-\itemize{
-\item \code{predCalibration} An array containing the predictions of all component models for the observations in the calibration period.
-\item \code{predTest} An array containing the predictions of all component models for all the observations in the test period.
-\item \code{outcomeCalibration} A vector containing the true values of the dependent variable for all observations in the calibration period.
-\item \code{outcomeTest} A vector containing the true values of the dependent variable for all observations in the test period.
-\item \code{modelNames} A character vector containing the names of all component models. }
 }
+\section{Slots}{
+
+\describe{
+\item{\code{predCalibration}}{An array containing the predictions of all component models for the observations in the calibration period.}
+
+\item{\code{predTest}}{An array containing the predictions of all component models for all the observations in the test period.}
+
+\item{\code{outcomeCalibration}}{A vector containing the true values of the dependent variable for all observations in the calibration period.}
+
+\item{\code{outcomeTest}}{A vector containing the true values of the dependent variable for all observations in the test period.}
+
+\item{\code{modelNames}}{A character vector containing the names of all component models.}
+}}
 \examples{
 \dontrun{ data(calibrationSample)
 

@@ -1,29 +1,28 @@
-
-
-#' @export
-setMethod(f="EBMApredict",
+#' @rdname EBMApredict
+setMethod(f="prediction",
           signature(EBMAmodel="FDatFitNormal"),
           definition=function(EBMAmodel, 
-                              predictions,
-                              Outcome=c())
+                              Predictions,
+                              Outcome=c(),
+                              ...)
           {
             nDraws = 1
-            if(is.matrix(predictions)==TRUE){
-              predictions = array(predictions,dim=c(dim(predictions),nDraws))
+            if(is.matrix(Predictions)==TRUE){
+              Predictions = array(Predictions,dim=c(dim(Predictions),nDraws))
             }
             #extract variables from EBMAmodel
             modelParams = EBMAmodel@modelParams
             W = EBMAmodel@modelWeights
             modelNames = EBMAmodel@modelNames
             nMods = length(W)
-            nObsTest = dim(predictions)[1]
+            nObsTest = dim(Predictions)[1]
             nMod = length(W)
             .models = EBMAmodel@modelResults
             predType = EBMAmodel@predType
-            useModelParams = TRUE
-            if(sum(EBMAmodel@modelParams[1,,])==0 & sum(EBMAmodel@modelParams[2,,])==nMods){
-              useModelParams = FALSE
-            }
+            useModelParams = EBMAmodel@useModelParams
+            #if(sum(EBMAmodel@modelParams[1,,])==0 & sum(EBMAmodel@modelParams[2,,])==nMods){
+            #  useModelParams = FALSE
+            #}
             sigma2 = EBMAmodel@variance
             .sdVec <- rep(sqrt(sigma2), nMod) 
             
@@ -39,11 +38,11 @@ setMethod(f="EBMApredict",
               predTestAdj <- array(NA, dim=c(nObsTest, nMod, nDraws))
                 for (k in 1:nMod){
                  for (j in 1:nDraws){
-                   predTestAdj[,k,j] <- .predictTest(predictions[,k,j], i=k)
+                   predTestAdj[,k,j] <- .predictTest(Predictions[,k,j], i=k)
                    }
                 }
               } 
-            if(useModelParams==FALSE){predTestAdj <- predictions}
+            if(useModelParams==FALSE){predTestAdj <- Predictions}
             .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
               
             if (predType=="posteriorMean"){
@@ -63,7 +62,7 @@ setMethod(f="EBMApredict",
               bmaPredTest[,,-1] <- NA
             }
              
-            test <- abind(bmaPredTest, predictions, along=2);  colnames(test) <- c("EBMA", modelNames)
+            test <- abind(bmaPredTest, Predictions, along=2);  colnames(test) <- c("EBMA", modelNames)
             if(is.null(Outcome)==TRUE){Outcome = rep(numeric(0),dim(test)[1])}
                                        
 
