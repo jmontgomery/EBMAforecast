@@ -42,7 +42,6 @@ CRAN-pack does not know about
 * checking whether the package can be unloaded cleanly ... OK
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
-* checking loading without being on the library search path ... OK
 * checking use of S3 registration ... OK
 * checking dependencies in R code ... NOTE
 Unexported object imported by a ':::' call: ‘ensembleBMA:::quantBMAnormal’
