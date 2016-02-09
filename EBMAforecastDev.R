@@ -11,7 +11,7 @@ load_all(current.code)
 document(current.code, clean=FALSE)
 
 ## run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
-test_file("test_start.R")
+test_file("testhat.R")
 
 # Check that the package is constructed correctly
 check(current.code, args="--as-cran")

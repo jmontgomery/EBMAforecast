@@ -40,7 +40,6 @@
 #' @param object used for validity checks (internal)
 #' @param value used for validity checks (internal) #hack but no idea how to get the warning to go away otherwise
 #'
-#' @import ensembleBMA
 #'
 #' @docType class
 #' @seealso ensembleBMA

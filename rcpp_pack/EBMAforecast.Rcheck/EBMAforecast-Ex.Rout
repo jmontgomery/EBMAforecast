@@ -1,7 +1,7 @@
 
-R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
 Copyright (C) 2015 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin13.4.0 (64-bit)
+Platform: x86_64-apple-darwin15.2.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -33,12 +33,9 @@ Type 'q()' to quit R.
 > 
 > ### * </HEADER>
 > library('EBMAforecast')
-Loading required package: ensembleBMA
-Loading required package: chron
 Loading required package: separationplot
 Loading required package: plyr
 Loading required package: Hmisc
-Loading required package: grid
 Loading required package: lattice
 Loading required package: survival
 Loading required package: Formula
@@ -49,10 +46,6 @@ Attaching package: ‘Hmisc’
 The following objects are masked from ‘package:plyr’:
 
     is.discrete, summarize
-
-The following object is masked from ‘package:ensembleBMA’:
-
-    combine
 
 The following objects are masked from ‘package:base’:
 
@@ -104,7 +97,7 @@ Loading required package: abind
 > ## Not run: 
 > ##D  data(calibrationSample)
 > ##D 
-> ##D data(testSample)
+> ##D data(testSample) 
 > ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 > ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 > ##D .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -150,7 +143,7 @@ Loading required package: abind
 > ## Not run: 
 > ##D data(calibrationSample)
 > ##D 
-> ##D data(testSample)
+> ##D data(testSample) 
 > ##D 
 > ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 > ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -158,6 +151,7 @@ Loading required package: abind
 > ##D 
 > ##D this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
 > ## End(Not run)
+> 
 > 
 > 
 > 
@@ -181,7 +175,7 @@ Loading required package: abind
 > ## Not run: 
 > ##D data(calibrationSample)
 > ##D 
-> ##D data(testSample)
+> ##D data(testSample) 
 > ##D 
 > ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 > ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -191,8 +185,9 @@ Loading required package: abind
 > ##D 
 > ##D compareModels(this.ensemble,"calibration")
 > ##D 
-> ##D compareModels(this.ensemble,"test")
+> ##D compareModels(this.ensemble,"test") 
 > ## End(Not run)
+> 
 > 
 > 
 > 
@@ -215,10 +210,10 @@ Loading required package: abind
 > 
 > ### ** Examples
 > 
-> data(calibrationSample)
+>  data(calibrationSample)
 > 
 > ## Not run: 
-> ##D data(testSample)
+> ##D data(testSample) 
 > ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 > ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 > ##D .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -241,6 +236,7 @@ Loading required package: abind
 > 
 > 
 > 
+> 
 > base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
 > base::cat("makeForecastData", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
@@ -260,7 +256,7 @@ Loading required package: abind
 > 
 > data(calibrationSample)
 > 
-> data(testSample)
+> data(testSample) 
 > 
 > this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 + .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -268,8 +264,9 @@ Loading required package: abind
 > 
 > this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
 > 
-> plot(this.ensemble, period="calibration")
+> plot(this.ensemble, period="calibration") 
 > plot(this.ensemble, period="test")
+> 
 > 
 > 
 > 
@@ -293,7 +290,7 @@ Loading required package: abind
 > ## Not run: 
 > ##D  data(calibrationSample)
 > ##D 
-> ##D data(testSample)
+> ##D data(testSample) 
 > ##D 
 > ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 > ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -301,10 +298,11 @@ Loading required package: abind
 > ##D 
 > ##D this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001,exp=3)
 > ##D 
-> ##D summary(this.ensemble, period="calibration")
+> ##D summary(this.ensemble, period="calibration") 
 > ##D 
 > ##D summary(this.ensemble, period="test",showCoefs=FALSE)
 > ## End(Not run)
+> 
 > 
 > 
 > 
@@ -314,7 +312,7 @@ Loading required package: abind
 > ###
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  1.49 0.058 1.584 0 0 
+Time elapsed:  1.336 0.048 1.406 0 0 
 > grDevices::dev.off()
 null device 
           1 

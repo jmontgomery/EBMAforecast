@@ -9,41 +9,33 @@ using namespace Rcpp;
 Rcpp::List emLogit(Rcpp::NumericVector outcome, Rcpp::NumericMatrix prediction, Rcpp::NumericVector W, double tol, int maxIter, double wisdom);
 RcppExport SEXP EBMAforecast_emLogit(SEXP outcomeSEXP, SEXP predictionSEXP, SEXP WSEXP, SEXP tolSEXP, SEXP maxIterSEXP, SEXP wisdomSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type outcome(outcomeSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type prediction(predictionSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type W(WSEXP );
-        Rcpp::traits::input_parameter< double >::type tol(tolSEXP );
-        Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP );
-        Rcpp::traits::input_parameter< double >::type wisdom(wisdomSEXP );
-        Rcpp::List __result = emLogit(outcome, prediction, W, tol, maxIter, wisdom);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type outcome(outcomeSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type prediction(predictionSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type W(WSEXP);
+    Rcpp::traits::input_parameter< double >::type tol(tolSEXP);
+    Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
+    Rcpp::traits::input_parameter< double >::type wisdom(wisdomSEXP);
+    __result = Rcpp::wrap(emLogit(outcome, prediction, W, tol, maxIter, wisdom));
+    return __result;
 END_RCPP
 }
 // emNorm
 Rcpp::List emNorm(Rcpp::NumericVector outcome, Rcpp::NumericMatrix prediction, Rcpp::NumericMatrix RSQ, Rcpp::NumericVector W, double tol, int maxIter, double wisdom, double sigma2);
 RcppExport SEXP EBMAforecast_emNorm(SEXP outcomeSEXP, SEXP predictionSEXP, SEXP RSQSEXP, SEXP WSEXP, SEXP tolSEXP, SEXP maxIterSEXP, SEXP wisdomSEXP, SEXP sigma2SEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type outcome(outcomeSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type prediction(predictionSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type RSQ(RSQSEXP );
-        Rcpp::traits::input_parameter< Rcpp::NumericVector >::type W(WSEXP );
-        Rcpp::traits::input_parameter< double >::type tol(tolSEXP );
-        Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP );
-        Rcpp::traits::input_parameter< double >::type wisdom(wisdomSEXP );
-        Rcpp::traits::input_parameter< double >::type sigma2(sigma2SEXP );
-        Rcpp::List __result = emNorm(outcome, prediction, RSQ, W, tol, maxIter, wisdom, sigma2);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type outcome(outcomeSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type prediction(predictionSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type RSQ(RSQSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type W(WSEXP);
+    Rcpp::traits::input_parameter< double >::type tol(tolSEXP);
+    Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
+    Rcpp::traits::input_parameter< double >::type wisdom(wisdomSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma2(sigma2SEXP);
+    __result = Rcpp::wrap(emNorm(outcome, prediction, RSQ, W, tol, maxIter, wisdom, sigma2));
+    return __result;
 END_RCPP
 }

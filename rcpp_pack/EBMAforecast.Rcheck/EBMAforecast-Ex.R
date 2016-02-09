@@ -59,7 +59,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ## Not run: 
 ##D  data(calibrationSample)
 ##D 
-##D data(testSample)
+##D data(testSample) 
 ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 ##D .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -105,7 +105,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ## Not run: 
 ##D data(calibrationSample)
 ##D 
-##D data(testSample)
+##D data(testSample) 
 ##D 
 ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -113,6 +113,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ##D 
 ##D this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
 ## End(Not run)
+
 
 
 
@@ -136,7 +137,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ## Not run: 
 ##D data(calibrationSample)
 ##D 
-##D data(testSample)
+##D data(testSample) 
 ##D 
 ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -146,8 +147,9 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ##D 
 ##D compareModels(this.ensemble,"calibration")
 ##D 
-##D compareModels(this.ensemble,"test")
+##D compareModels(this.ensemble,"test") 
 ## End(Not run)
+
 
 
 
@@ -170,10 +172,10 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 ### ** Examples
 
-data(calibrationSample)
+ data(calibrationSample)
 
 ## Not run: 
-##D data(testSample)
+##D data(testSample) 
 ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
 ##D .outcomeTest=testSample[,"Insurgency"], .modelNames=c("LMER", "SAE", "GLM"))
@@ -196,6 +198,7 @@ data(calibrationSample)
 
 
 
+
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
 base::cat("makeForecastData", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
@@ -215,7 +218,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 data(calibrationSample)
 
-data(testSample)
+data(testSample) 
 
 this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -223,8 +226,9 @@ this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LME
 
 this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, exp=3)
 
-plot(this.ensemble, period="calibration")
+plot(this.ensemble, period="calibration") 
 plot(this.ensemble, period="test")
+
 
 
 
@@ -248,7 +252,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ## Not run: 
 ##D  data(calibrationSample)
 ##D 
-##D data(testSample)
+##D data(testSample) 
 ##D 
 ##D this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 ##D .outcomeCalibration=calibrationSample[,"Insurgency"],.predTest=testSample[,c("LMER", "SAE", "GLM")],
@@ -256,10 +260,11 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ##D 
 ##D this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001,exp=3)
 ##D 
-##D summary(this.ensemble, period="calibration")
+##D summary(this.ensemble, period="calibration") 
 ##D 
 ##D summary(this.ensemble, period="test",showCoefs=FALSE)
 ## End(Not run)
+
 
 
 

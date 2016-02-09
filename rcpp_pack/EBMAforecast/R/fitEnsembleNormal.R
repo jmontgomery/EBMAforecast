@@ -3,7 +3,6 @@
 
 
 #' @importFrom plyr alply aaply
-#' @import ensembleBMA
 #' @rdname calibrateEnsemble
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),

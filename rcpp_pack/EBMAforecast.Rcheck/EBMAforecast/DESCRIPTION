@@ -1,13 +1,14 @@
 Package: EBMAforecast
 Type: Package
 Title: Ensemble BMA Forecasting
-Version: 0.51
-Date: 2015-06-19
+Version: 0.52
+Date: 2016-02-09
 Author: Jacob M. Montgomery, Florian M. Hollenbach, and Michael D. Ward
-Maintainer: Florian M. Hollenbach <florian.hollenbach@tamu.edu>
+Maintainer: Florian M. Hollenbach <fhollenbach@tamu.edu>
 Description: Ensemble BMA for social science data.
 License: GPL (>= 2)
-Depends: ensembleBMA, separationplot, plyr, methods, Hmisc, abind
+Depends: separationplot, plyr, methods, Hmisc, abind
 Imports: Rcpp (>= 0.11.3)
 LinkingTo: Rcpp
-Built: R 3.2.1; x86_64-apple-darwin13.4.0; 2015-06-29 11:41:04 UTC; unix
+RoxygenNote: 5.0.1
+Built: R 3.2.3; x86_64-apple-darwin15.2.0; 2016-02-09 18:19:17 UTC; unix

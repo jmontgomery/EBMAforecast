@@ -32,6 +32,24 @@ setMethod(f="prediction",
               .outPred <- rep(NA, nObsTest)
               .outPred[as.numeric(names(.rawPred))] <- .rawPred
               return(.outPred)
+          }
+
+            .ebmaMedian<-function(W, x, sdVec){
+              .x <- x[!is.na(x)]
+              .W <- W[!is.na(x)]
+              .sdVec <- sdVec[!is.na(x)]
+              
+              ebmaCdf<-function(z, .x, .sdVec, .W){
+                sum(.W*pnorm(z, mean=.x, sd=.sdVec))
+              }
+              low <- min(.x-6*.sdVec)
+              up <- max(.x+6*.sdVec)
+              out <- uniroot(function(z){ebmaCdf(z, .x=.x, .sdVec=.sdVec, .W=.W)-.5}
+                             , lower = low
+                             , upper = up
+              )
+              
+              out$root
             }
      
             if(useModelParams==TRUE){ 
@@ -56,7 +74,7 @@ setMethod(f="prediction",
                 .x <- x[!is.na(x)]
                 .W <- W[!is.na(x)]
                 ..sdVec <- .sdVec[!is.na(x)]
-                ensembleBMA:::quantBMAnormal(.5, .W, .x, ..sdVec)
+                .ebmaMedian(.W, .x, ..sdVec)
               }
               bmaPredTest <- array(aaply(.flatPredsTest, 1, .altQBMAnormal),  dim=c(nObsTest, 1,nDraws))
               bmaPredTest[,,-1] <- NA
