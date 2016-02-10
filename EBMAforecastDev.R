@@ -15,6 +15,8 @@ test_file("testhat.R")
 
 # Check that the package is constructed correctly
 check(current.code, args="--as-cran")
+revdep_check(current.code)
+build_win(current.code)
 
 # Check demo
 demo(EBMAforecast)

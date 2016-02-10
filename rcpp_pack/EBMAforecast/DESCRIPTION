@@ -8,6 +8,8 @@ Maintainer: Florian M. Hollenbach <fhollenbach@tamu.edu>
 Description: Ensemble BMA for social science data.
 License: GPL (>= 2)
 Depends:
+    stats,
+    graphics,		
     separationplot,
     plyr,
     methods,

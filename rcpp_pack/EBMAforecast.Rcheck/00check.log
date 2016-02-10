@@ -13,20 +13,10 @@ Version jumps in minor (submitted: 0.52, existing: 0.42)
 * checking package namespace information ... OK
 * checking package dependencies ... NOTE
   No repository set, so cyclic dependency check skipped
-* checking if this is a source package ... WARNING
-Subdirectory ‘EBMAforecast/src’ contains apparent object files/libraries
-  EBMAforecast.so RcppExports.o logitEM.o normalEM.o
-Object files/libraries should not be included in a source package.
+* checking if this is a source package ... OK
 * checking if there is a namespace ... OK
 * checking for executable files ... OK
-* checking for hidden files and directories ... NOTE
-Found the following hidden files and directories:
-  .DS_Store
-These were most likely included in error. See section ‘Package
-structure’ in the ‘Writing R Extensions’ manual.
-
-CRAN-pack does not know about
-  .DS_Store
+* checking for hidden files and directories ... OK
 * checking for portable file names ... OK
 * checking for sufficient/correct file permissions ... OK
 * checking whether package ‘EBMAforecast’ can be installed ... OK
@@ -68,4 +58,4 @@ CRAN-pack does not know about
 * checking examples ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 WARNING, 3 NOTEs
+Status: 2 NOTEs

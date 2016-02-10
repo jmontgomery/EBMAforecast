@@ -7,8 +7,10 @@ Author: Jacob M. Montgomery, Florian M. Hollenbach, and Michael D. Ward
 Maintainer: Florian M. Hollenbach <fhollenbach@tamu.edu>
 Description: Ensemble BMA for social science data.
 License: GPL (>= 2)
-Depends: separationplot, plyr, methods, Hmisc, abind
+Depends: stats, graphics, separationplot, plyr, methods, Hmisc, abind
 Imports: Rcpp (>= 0.11.3)
 LinkingTo: Rcpp
 RoxygenNote: 5.0.1
-Built: R 3.2.3; x86_64-apple-darwin15.2.0; 2016-02-09 18:19:17 UTC; unix
+NeedsCompilation: yes
+Packaged: 2016-02-09 21:35:15 UTC; florianhollenbach
+Built: R 3.2.3; x86_64-apple-darwin15.2.0; 2016-02-09 21:35:33 UTC; unix

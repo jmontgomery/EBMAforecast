@@ -312,7 +312,7 @@ Loading required package: abind
 > ###
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  1.336 0.048 1.406 0 0 
+Time elapsed:  1.182 0.042 1.232 0 0 
 > grDevices::dev.off()
 null device 
           1 
