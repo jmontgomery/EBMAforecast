@@ -1,15 +1,10 @@
-\name{ForecastData}
-\alias{ForecastData}
+\docType{class}
+\name{ForecastData-class}
 \alias{ForecastData-class}
-\alias{getModelNames}
 \alias{getModelNames,ForecastData-method}
-\alias{getOutcomeCalibration}
 \alias{getOutcomeCalibration,ForecastData-method}
-\alias{getOutcomeTest}
 \alias{getOutcomeTest,ForecastData-method}
-\alias{getPredCalibration}
 \alias{getPredCalibration,ForecastData-method}
-\alias{getPredTest}
 \alias{getPredTest,ForecastData-method}
 \alias{initialize,ForecastData-method}
 \alias{makeForecastData,ANY-method}
@@ -31,30 +26,41 @@
 \alias{setPredTest<-,ForecastData-method}
 \alias{show,ForecastData-method}
 \title{An ensemble forecasting data object}
+\usage{
+setPredCalibration(object) <- value
+
+setPredTest(object) <- value
+
+setOutcomeCalibration(object) <- value
+
+setOutcomeTest(object) <- value
+
+setModelNames(object) <- value
+}
 \description{
-  Objects of class \code{ForecastData} are used in the
-  \code{calibrateEnsemble} function. Datasets should be
-  converted into an object of class \code{ForecastData}
-  using the \code{makeForecastData} function. Individual
-  slots of the \code{ForecastData} object can be accessed
-  and changed using the \code{get} and \code{set} functions
-  respectively. Missing observations in the prediction
-  calibration set are allowed.
+Objects of class \code{ForecastData} are used in the
+\code{calibrateEnsemble} function. Datasets should be
+converted into an object of class \code{ForecastData} using
+the \code{makeForecastData} function. Individual slots of
+the \code{ForecastData} object can be accessed and changed
+using the \code{get} and \code{set} functions respectively.
+Missing observations in the prediction calibration set are
+allowed.
 }
 \details{
-  A data object of the class 'ForecastData' has the
-  following slots: \itemize{ \item \code{predCalibration}
-  An array containing the predictions of all component
-  models for the observations in the calibration period.
-  \item \code{predTest} An array containing the predictions
-  of all component models for all the observations in the
-  test period. \item \code{outcomeCalibration} A vector
-  containing the true values of the dependent variable for
-  all observations in the calibration period. \item
-  \code{outcomeTest} A vector containing the true values of
-  the dependent variable for all observations in the test
-  period. \item \code{modelNames} A character vector
-  containing the names of all component models. }
+A data object of the class 'ForecastData' has the following
+slots: \itemize{ \item \code{predCalibration} An array
+containing the predictions of all component models for the
+observations in the calibration period. \item
+\code{predTest} An array containing the predictions of all
+component models for all the observations in the test
+period. \item \code{outcomeCalibration} A vector containing
+the true values of the dependent variable for all
+observations in the calibration period. \item
+\code{outcomeTest} A vector containing the true values of
+the dependent variable for all observations in the test
+period. \item \code{modelNames} A character vector
+containing the names of all component models. }
 }
 \examples{
 \dontrun{ data(calibrationSample)
@@ -81,18 +87,17 @@ setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 }
 }
 \author{
-  Michael D. Ward <\email{michael.d.ward@duke.edu}> and
-  Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
-  and Florian M. Hollenbach
-  <\email{florian.hollenbach@duke.edu}>
+Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob
+M. Montgomery <\email{jacob.montgomery@wustl.edu}> and
+Florian M. Hollenbach <\email{florian.hollenbach@duke.edu}>
 }
 \references{
-  Montgomery, Jacob M., Florian M. Hollenbach and Michael
-  D. Ward. (2012). Improving Predictions Using Ensemble
-  Bayesian Model Averaging. \emph{Political Analysis}.
-  \bold{20}: 271-291.
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D.
+Ward. (2012). Improving Predictions Using Ensemble Bayesian
+Model Averaging. \emph{Political Analysis}. \bold{20}:
+271-291.
 }
 \seealso{
-  ensembleBMA
+ensembleBMA
 }
 

@@ -1,19 +1,19 @@
-library(devtools)
-library(roxygen2)
-library(testthat)
+library(devtools); library(roxygen2); library(testthat)
 
+<<<<<<< HEAD
 #setwd("~/Documents/GIT/EBMAforecast/")
 setwd("~/Documents/GitHub/EBMAforecast/")
+=======
+setwd("~/Documents/GitHub/EBMAforecast/")
+#setwd("~/GITHUB/EBMAforecast/")
+>>>>>>> master
 
 ## Only need to run this portion once
+update_collate("EBMAforecast")
+
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
-document(current.code)
-
-install(current.code)
-
-
-library(EBMAforecast)
+document(current.code, clean=FALSE)
 
 ## run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
 test_file("test_start.R")
@@ -21,12 +21,10 @@ test_file("test_start.R")
 # Check that the package is constructed correctly
 check(current.code)
 
-
-
 # Check demo
 demo(EBMAforecast)
 demo(presForecast)
-
+W
 # take a look at the help files
 help(EBMAforecast)
 help(makeForecastData)

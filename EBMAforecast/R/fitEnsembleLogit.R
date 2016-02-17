@@ -1,12 +1,12 @@
 
-
+#' @rdname calibrateEnsemble
 #' @export
 setGeneric(name="fitEnsemble",
            def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", ...)
            {standardGeneric("fitEnsemble")}
            )
 
-#' @rdname calibrateEnsemble
+
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataLogit"),
@@ -54,9 +54,9 @@ setMethod(f="fitEnsemble",
 
             .makeAdj <- function(x){
               .adjPred <- qlogis(x)
-              .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .negative <- .adjPred<0
               .pos <- .adjPred>1
+              .adjPred <- ((1+abs(.adjPred))^(1/exp))-1
               .miss <- is.na(.adjPred)
               .negative[.miss] <- FALSE
               .adjPred[.negative] <- .adjPred[.negative]*(-1)
@@ -73,18 +73,23 @@ setMethod(f="fitEnsemble",
             }
 
             .predictTest <- function(x, i){
+#              browser()
+              .models[[i]]
+              temp <- matrix(x,ncol=1)
               .rawPred <- predict(.models[[i]], newdata=data.frame(.adjPred=x), type="response")
               .outPred <- rep(NA, nObsTest)
               .outPred[as.numeric(names(.rawPred))] <- .rawPred
               return(.outPred)
             }
 
-            
+
             ##Extract data
-            predCalibration <- getPredCalibration(.forecastData); outcomeCalibration <- getOutcomeCalibration(.forecastData)
-            predTest <- getPredTest(.forecastData); outcomeTest <- getOutcomeTest(.forecastData)
+            predCalibration <- slot(.forecastData, "predCalibration")
+            outcomeCalibration <- slot(.forecastData, "outcomeCalibration")
+            predTest <- slot(.forecastData, "predTest")
+            outcomeTest <- slot(.forecastData, "outcomeTest")
             .testPeriod <- length(predTest)>0            
-            modelNames <- getModelNames(.forecastData)
+            modelNames <- slot(.forecastData, "modelNames")
             
              ## Set constants
             nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]
@@ -92,13 +97,19 @@ setMethod(f="fitEnsemble",
             ZERO<-1e-4
             
             ## Fit Models
-            if(useModelParams==TRUE){.models <- aaply(predCalibration, 2:3, .fun=.modelFitter) }
+            if(useModelParams){
+              #print("jacob")
+              .models <- alply(predCalibration, 2:3, .fun=.modelFitter)
+            }
 
             ## Extract needed info
             if(nDraws==1 & useModelParams==TRUE){
               predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(nMod, nObsCal, nDraws)), c(2,1,3))
+              dim(predCalibrationAdj)
+              array(laply(.models, coefficients), dim=c(nMod, 2, nDraws))
               modelParams <- aperm(array(laply(.models, coefficients), dim=c(nMod, 2, nDraws)), c(2,1,3))
             }
+
             if(nDraws>1 & useModelParams==TRUE){ # This code is in development for exchangeability
               predCalibrationAdj <- aperm(aaply(.models, 1:2, .predictCal), c(3,1,2))
               modelParams <- aperm(aaply(.models, 1:2, coefficients), c(3,1,2))
@@ -118,6 +129,7 @@ setMethod(f="fitEnsemble",
             W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
 
             ## Run EM
+<<<<<<< HEAD
 #             .done <- FALSE
 #             .iter <- 0
 #             .emOld<-0
@@ -133,6 +145,25 @@ setMethod(f="fitEnsemble",
             if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
             W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
             LL = out$LL
+=======
+            .done <- FALSE
+            .iter <- 0
+            .emOld<-0
+
+
+            while(.done == FALSE & .iter<maxIter){
+              #print(.iter)
+              .thisOut <- .em(outcomeCalibration=outcomeCalibration, prediction=predCalibrationAdj, W=W)
+              W <- .thisOut$W
+              LL <- .thisOut$LL
+              .done <- abs(.emOld-LL)/(1+abs(LL))<tol
+              .emOld <- LL
+              .iter <- .iter+1
+            }
+            if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
+            W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+
+>>>>>>> master
 
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
@@ -140,7 +171,7 @@ setMethod(f="fitEnsemble",
             bmaPred[,,-1] <- NA
             cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
 
-            
+            #print("here")
             if(.testPeriod){
               if(useModelParams==TRUE){
                 .adjPred <- .makeAdj(predTest)
@@ -157,6 +188,7 @@ setMethod(f="fitEnsemble",
               	.adjPred[outcomeTest==1,,1]<-(plogis(.adjPred[outcomeTest==1,,1]))
                 predTestAdj <- .adjPred
               }
+                          #print("here2")
               .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
               bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
               bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))

@@ -1,5 +1,5 @@
 
-#' @rdname calibrateEnsemble
+
 #' @export
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
@@ -77,10 +77,10 @@ setMethod(f="fitEnsemble",
             
             
             ##Extract data
-            predCalibration <- getPredCalibration(.forecastData); outcomeCalibration <- getOutcomeCalibration(.forecastData)
-            predTest <- getPredTest(.forecastData); outcomeTest <- getOutcomeTest(.forecastData)
+            predCalibration <- .forecastData@predCalibration; outcomeCalibration <- .forecastData@outcomeCalibration
+            predTest <- .forecastData@predTest; outcomeTest <- .forecastData@outcomeTest
             .testPeriod <- length(predTest)>0            
-            modelNames <- getModelNames(.forecastData)
+            modelNames <- .forecastData@modelNames
             
             ## Set constants
             nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]
@@ -88,7 +88,7 @@ setMethod(f="fitEnsemble",
             ZERO<-1e-4
             
             ## Fit Models
-            if(useModelParams==TRUE){.models <- aaply(predCalibration, 2:3, .fun=.modelFitter)}
+            if(useModelParams==TRUE){.models <- alply(predCalibration, 2:3, .fun=.modelFitter)}
 
             ## Extract needed info
             if(nDraws==1 & useModelParams==TRUE){
