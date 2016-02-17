@@ -26,58 +26,54 @@ Rcpp::List GibbsLogit(Rcpp::NumericVector outcome, Rcpp::NumericMatrix predictio
     
     int leng = prediction.nrow();
     int width = prediction.ncol();
-    Rcpp::NumericMatrix theta_numerator(leng,width);
-    Rcpp::NumericVector theta_denom(leng);
     Rcpp::NumericMatrix theta(leng,width);
+    Rcpp::NumericMatrix numerator(leng,width);
+    Rcpp::NumericVector denom(leng);
     Rcpp::NumericMatrix T(leng,width);
     Rcpp::NumericVector nu(leng);
     Rcpp::NumericVector w_gamma(width);
     Rcpp::NumericMatrix W_post(iterations,width);
     
-for (int iterator = 0; iterator < iterations; iterator++){;
+for (int iterator = 1; iterator < iterations; iterator++){;
+    if(iterator == 1){;
+      W_post(iterator-1,_) = W;
+    }
     for (int i =0; i < leng; i++){;
       if(outcome(i) == 1){;
         for(int m = 0; m < width; m++) {;
-          theta(i,m) = W(m)* prediction(i,m);
+          numerator(i,m) = prediction(i,m)*(W_post(iterator-1,m));
         }
       }  
       if(outcome(i) == 0){;
         for(int m = 0; m < width; m++) {;
-          theta(i,m) = W(m)*(1 - prediction(i,m));
+          numerator(i,m) = (1 - prediction(i,m))*(W_post(iterator-1,m));
         };
       };
-      theta_denom(i) = sum(theta_numerator(i,_));
+      denom(i) = sum(numerator(i,_));
+      theta(i,_) = numerator(i,_)/denom(i);
     };
     
     
     
-    for(int i = 0; i<width; i++){;
-      for(int m=0; m<leng; m++){;
-        theta(i,m) = theta_numerator(i,m)/theta_denom(i);
-      };    
-    };    
-    
-    
-   for(int i=0; i<leng; i++){;
-     IntegerMatrix sampled(leng,width);
-     T(i,_) = oneMultinomC(theta(i,_));
+  for(int i=0; i<leng; i++){;
+    T(i,_) = oneMultinomC(theta(i,_));
    };
     
-   // for(int m=0; m<width; m++){
-   //   nu(m) = 1 + sum(T(_,m));
-   // }  
+   for(int m=0; m<width; m++){
+      nu(m) = 1 + sum(T(_,m));
+   }  
     
-  //  for(int m = 0; m<width; m++){
-  //    w_gamma(m) = double(getRGamma(nu(m))[1]);
-  //  }
-    
-   // W_post(iterator,_) =  w_gamma/double(sum(w_gamma));
-} ;   
-    
-    
+  for(int m = 0; m<width; m++){
+    w_gamma(m) = double(getRGamma(nu(m))[1]);
+  }
+   
+   W_post(iterator,_) =  w_gamma/double(sum(w_gamma));;
+};   
     
     
-    return Rcpp::List::create(Rcpp::Named("W") = W, Rcpp::Named("theta") = theta);
+    
+    
+    return Rcpp::List::create(Rcpp::Named("W_post") = W_post, Rcpp::Named("theta_n") = numerator, Rcpp::Named("theta_d") = denom);
 }
 
 
