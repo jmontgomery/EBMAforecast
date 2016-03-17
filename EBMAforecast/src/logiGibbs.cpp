@@ -1,15 +1,13 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+
 // [[Rcpp::export]]
-NumericVector oneMultinomC(NumericVector probs) {
+IntegerVector oneMultinomCalt(NumericVector probs) {
   int k = probs.size();
-  SEXP ans;
-  PROTECT(ans = Rf_allocVector(INTSXP, k));
-  probs = Rf_coerceVector(probs, REALSXP);
-  rmultinom(1, REAL(probs), k, &INTEGER(ans)[0]);
-  UNPROTECT(1);
-  return ans;
+  IntegerVector ans(k);
+  rmultinom(1, probs.begin(), k, ans.begin());
+  return(ans);
 }
 
 // [[Rcpp::export]]
@@ -34,9 +32,10 @@ for (int iterator = 0; iterator < iterations; iterator++){;
     Rcpp::NumericMatrix theta(leng,width);
     Rcpp::NumericMatrix numerator(leng,width);
     Rcpp::NumericVector denom(leng);
-    Rcpp::NumericVector nu(leng);
     Rcpp::NumericMatrix T(leng,width);
     Rcpp::NumericVector w_gamma(width);
+    Rcpp::NumericVector nu(width);
+    
     if(iterator == 0){;
       W_use = W;
     }
@@ -61,18 +60,21 @@ for (int iterator = 0; iterator < iterations; iterator++){;
    theta_post(iterator) = theta; 
     
   for(int i=0; i<leng; i++){;
-     T(i,_) = oneMultinomC(theta(i,_));
+     T(i,_) = oneMultinomCalt(theta(i,_));
     };
      
   for(int m=0; m<width; m++){
        nu(m) = 1 + sum(T(_,m));
     }  
    
+  double sample_sum = 0;
   for(int m = 0; m<width; m++){
-     w_gamma(m) = double(getRGamma(nu(m))[1]);
+     w_gamma(m) = as<double>(rgamma(1, nu(m), 1));
+    sample_sum += w_gamma(m);
   }
+  
   for(int m = 0; m<width; m++){
-    W_post(iterator,m) =  w_gamma(m)/double(sum(w_gamma));;
+    W_post(iterator,m) =  w_gamma(m)/sample_sum;
   }
 };   
     
