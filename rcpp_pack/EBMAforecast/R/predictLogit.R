@@ -17,6 +17,12 @@ setMethod(f="prediction",
                               ...)
           {
 
+
+          #extract variables and observations from EBMAmodel
+          predCalibration <- slot(EBMAmodel, "predCalibration")
+          predCalibration <- predCalibration[,which(names(predCalibration[1,,1])!="EBMA"),,drop=FALSE]
+          outcomeCalibration <- slot(EBMAmodel, "outcomeCalibration")
+               
           #Outcome <- matrix(Outcome)    
              nDraws <- dim(predCalibration)[3]
             if(is.matrix(Predictions)==TRUE){
