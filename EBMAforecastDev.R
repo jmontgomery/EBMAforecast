@@ -1,14 +1,16 @@
 library(devtools); library(roxygen2); library(testthat)
 
-setwd("~/Documents/GitHub/EBMAforecast1/rcpp_pack")
-#setwd("~/GITHUB/EBMAforecast/")
+setwd("~/github/EBMAforecast/rcpp_pack")
 
 ## Only need to run this portion once
-update_collate("EBMAforecast")
+# update_collate("EBMAforecast")
 
 current.code <- as.package("EBMAforecast")
 load_all(current.code)
-document(current.code, clean=FALSE)
+document(current.code)
+
+# build(current.code, path="~/Desktop/")
+# install.packages("~/Desktop/EBMAforecast_0.52.tar.gz", repos = NULL, type="source")
 
 ## run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
 test_file("testhat.R")

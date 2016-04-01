@@ -53,7 +53,6 @@
 #'}
 #'
 #' @seealso ensembleBMA
-#' @aliases makeForecastData-method, ForecastData-method setModelNames<-, ForecastData-generic setModelNames<-, setOutcomeTest<-, setOutcomeCalibration, setPredTest, setPredCalibration, print-method, show-method
 #' @rdname makeForecastData
 #' @export
 setGeneric(name="makeForecastData",
@@ -67,8 +66,8 @@ setGeneric(name="makeForecastData",
            {standardGeneric("makeForecastData")}
            )
 
+# , ForecastData-method setModelNames<-, ForecastData-generic setModelNames<-, setOutcomeTest<-, setOutcomeCalibration, setPredTest, setPredCalibration, print-method, show-method
 
-#' @rdname makeForecastData
 #' @export
 setMethod(f="makeForecastData",
           definition=function(
@@ -100,7 +99,6 @@ setMethod(f="makeForecastData",
           }
           )
 
-#' @rdname makeForecastData
 #' @export
 setMethod(
 		f="print",
@@ -126,7 +124,6 @@ setMethod(
 			}
 			)
 
-#' @rdname makeForecastData
 #' @export
 setMethod(
 		f="show",
