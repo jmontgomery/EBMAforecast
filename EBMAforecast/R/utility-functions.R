@@ -1,4 +1,4 @@
-#' @rdname ForecastData
+#' @rdname setFunctions
 #' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
 
@@ -16,7 +16,6 @@ setReplaceMethod(
 
 
 
-#' @rdname ForecastData
 #' @export
 setGeneric("setPredTest<-",function(object,value){standardGeneric("setPredTest<-")})
 
@@ -32,7 +31,6 @@ setReplaceMethod(
 	}
 )
 
-#' @rdname ForecastData
 #' @export
 setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
 
@@ -46,7 +44,6 @@ setReplaceMethod(
 	}
 )
 
-#' @rdname ForecastData
 #' @export
 setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
 
@@ -60,7 +57,6 @@ setReplaceMethod(
 	}
 )
 
-#' @rdname ForecastData
 #' @export
 setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
 
