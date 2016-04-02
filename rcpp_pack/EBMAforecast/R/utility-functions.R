@@ -12,6 +12,7 @@
 #' setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
 #' setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 #' @rdname setFunctions
+#' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
 
 #' @export
