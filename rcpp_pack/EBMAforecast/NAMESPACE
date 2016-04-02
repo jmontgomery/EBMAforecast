@@ -3,6 +3,7 @@
 export("setModelNames<-")
 export("setOutcomeCalibration<-")
 export("setOutcomeTest<-")
+export("setPredCalibration<-")
 export("setPredTest<-")
 export(EBMApredict)
 export(calibrateEnsemble)
