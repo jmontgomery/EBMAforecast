@@ -2,7 +2,24 @@
 % Please edit documentation in R/utility-functions.R
 \name{setPredCalibration<-}
 \alias{setPredCalibration<-}
+\title{"Set" functions}
 \usage{
 setPredCalibration(object) <- value
+}
+\description{
+To assign individual slots, use set functions
+}
+\examples{
+
+setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
+setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
+setPredTest(this.ForecastData)<-testSample[,c("LMER", "SAE", "GLM")]
+setOutcomeTest(this.ForecastData)<-testSample[,"Insurgency"]
+setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
+}
+\references{
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. In Press.
+
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 }
 
