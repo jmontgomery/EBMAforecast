@@ -22,6 +22,8 @@ The variables included in the dataset are:
 \references{
 Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging.  \emph{Political Analysis}. \bold{20}: 271-291.
 
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences. \emph{International Journal of Forecasting}. \bold{31}:930–942.
+
 Campbell, James E. 2008. The trial-heat forecast of the 2008 presidential vote: Performance and value considerations in an open-seat election.  \emph{PS: Political Science & Politics} \bold{41}:697-701.
 
 Hibbs, Douglas A. 2000. Bread and peace voting in U.S presidential elections.  \emph{Public Choice} \bold{104}:149-180.
