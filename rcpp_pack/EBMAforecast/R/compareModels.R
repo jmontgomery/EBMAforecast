@@ -64,7 +64,7 @@ setClass(Class="CompareModels",
 #' @importFrom Hmisc somers2
 #'
 #' @seealso ensembleBMA, other functions
-#' @aliases compareModels,ForecastData-method CompareModels-class
+#' @aliases compareModels,ForecastData-method compareModles, CompareModels-class
 #' @export
 setGeneric(name="compareModels",
            def=function(.forecastData,
