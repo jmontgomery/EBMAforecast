@@ -3,28 +3,9 @@
 \docType{methods}
 \name{EBMApredict}
 \alias{EBMApredict}
-\alias{EBMApredict,ForecastData-method}
-\alias{FDatFitLogit-method}
-\alias{FDatFitNormal-method}
-\alias{ForecastDataLogit-method}
-\alias{prediction}
-\alias{prediction,}
-\alias{prediction,FDatFitLogit-method}
-\alias{prediction,FDatFitNormal-method}
-\alias{prediction,ForecastDataNormal-method}
 \title{EBMApredict}
 \usage{
 EBMApredict(EBMAmodel, Predictions, Outcome = NULL, ...)
-
-\S4method{EBMApredict}{ForecastData}(EBMAmodel, Predictions, Outcome = NULL,
-  ...)
-
-prediction(EBMAmodel, Predictions, Outcome, ...)
-
-\S4method{prediction}{FDatFitLogit}(EBMAmodel, Predictions, Outcome, ...)
-
-\S4method{prediction}{FDatFitNormal}(EBMAmodel, Predictions, Outcome = c(),
-  ...)
 }
 \arguments{
 \item{EBMAmodel}{Output of estimated EBMA model}
@@ -50,7 +31,7 @@ This function produces predictions based on EBMA model weights and component mod
 Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@tamu.edu}>
 }
 \references{
-Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. In Press.
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. 31(3): 930-942.
 
 Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 }

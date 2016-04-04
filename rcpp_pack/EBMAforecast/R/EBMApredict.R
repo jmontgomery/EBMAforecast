@@ -21,8 +21,6 @@
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. In Press.
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
-#' @rdname EBMApredict
-#' @aliases prediction, ForecastDataLogit-method prediction, FDatFitNormal-method prediction, FDatFitLogit-method prediction,ForecastDataNormal-method prediction
 #' @export
 setGeneric(name="EBMApredict",
            def=function(EBMAmodel, 
@@ -33,7 +31,6 @@ setGeneric(name="EBMApredict",
 )
 
 
-#' @rdname EBMApredict
 #' @export
 setMethod(f="EBMApredict",
           signature="ForecastData",
