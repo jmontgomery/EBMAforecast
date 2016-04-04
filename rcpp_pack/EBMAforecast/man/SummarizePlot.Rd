@@ -8,22 +8,40 @@
 \alias{summary,FDatFitLogit-method}
 \alias{summary,FDatFitNormal-method}
 \title{Summarize and Plot Ensemble models}
+\usage{
+\S4method{summary}{FDatFitLogit}(object, period = "calibration",
+  fitStatistics = c("brier", "auc", "perCorrect", "pre"), threshold = 0.5,
+  baseModel = 0, showCoefs = TRUE, ...)
+
+\S4method{summary}{FDatFitNormal}(object, period = "calibration",
+  fitStatistics = c("rmse", "mae"), threshold = 0.5, baseModel = 0,
+  showCoefs = TRUE, ...)
+
+\S4method{plot}{FDatFitLogit}(x, period = "calibration", subset = 1,
+  mainLabel = "", xLab = "", yLab = "", cols = 1, ...)
+
+\S4method{plot}{FDatFitNormal}(x, period = "calibration", subset = 1,
+  mainLabel = paste("Observation", subset), xLab = "Outcome",
+  yLab = "Posterior Probability", cols = 2:(length(x@modelNames) + 1), ...)
+}
 \arguments{
 \item{object}{An object of the subclass "FDatFitLogit" or "FDatFitNormal".}
 
+\item{period}{The period for which the summary should be provided or plot produced, either "calibration" or "test". The default is "calibration".}
+
+\item{fitStatistics}{A vector naming statistics that should be calculated.  Possible values for objects in the "FDatFitLogit" subclass include "auc", "brier", "percCorrect", "pre". Possible values for objects in the "FDatFitNormal" subclass include "rmse" and "mae." The default is for all statistics to be calculated. Additional metrics will be made available in a future release of this package.}
+
+\item{threshold}{The threshold used to calculate when a "positive" prediction is made for a model.  The default is 0.5. Not used for objects of the "FDatFitNormal" subclass.}
+
+\item{baseModel}{A vector containing predictions used to calculate proportional reduction of error ("pre"). The default is 0. Not used for objects of the "FDatFitNormal" subclass.}
+
+\item{showCoefs}{A logical indicating whether model coefficients from the ensemble should be shown. The default is TRUE.}
+
+\item{...}{Not implemented}
+
 \item{x}{An object of class "FDatFitLogit" or "FDatFitNormal"}
 
-\item{period}{The period for which the summary should be provided or plot produced, either "calibration" or "test".}
-
-\item{fitStatistics}{A vector naming statistics that should be calculated.  Possible values for objects in the "FDatFitLogit" subclass include "auc", "brier", "percCorrect", "pre". Possible values for objects in the "FDatFitNormal" subclass include "rmse" and "mae."  Additional metrics will be made available in a future release of this package.}
-
-\item{threshold}{The threshold used to calculate when a "positive" prediction is made for a model.  Not used for objects of the "FDatFitNormal" subclass.}
-
-\item{baseModel}{A vector containing predictions used to calculate proportional reduction of error ("pre"). Not used for objects of the "FDatFitNormal" subclass.}
-
-\item{showCoefs}{A logical indicating whether model coefficients from the ensemble should be shown.}
-
-\item{subset}{The row names or numbers for the observations the user wishes to plot.  Only implemented for the subclass "FDatFitNormal"}
+\item{subset}{The row names or numbers for the observations the user wishes to plot. The default is the first row.  Only implemented for the subclass "FDatFitNormal".}
 
 \item{mainLabel}{A vector strings to appear at the top of each predictive posterior plot.  Only implemented for the subclass "FDatFitNormal"}
 
@@ -31,15 +49,11 @@
 
 \item{yLab}{The label for the y-axis.  Only implemented for the subclass "FDatFitNormal"}
 
-\item{cols}{A vector containing the color for plotting the predictive pdf of each component model forecast. Only implemented for the subclass "FDatFitNormal"}
-
-\item{...}{Not implemented}
+\item{cols}{A vector containing the color for plotting the predictive PDF of each component model forecast. The default is a unique color for each PDF. Only implemented for the subclass "FDatFitNormal"}
 }
 \value{
-A data object of the class 'SummaryForecastData' with the following slots:
+Either a plot or a data object of the class 'SummaryForecastData'. The data object has the following slots:
 \item{summaryData}{Under the default, the function produces a matrix containing one row for each model plus one row for the EBMA forecast.  The first column is always the model weights assigned to the component models.  The second and third columns display the model parameters for the transformation of the component models.  The remaining columns are the requested fit statistics for all models, as calculated by the \code{copareModels} function.  If \code{showCoefs=FALSE}, then the model parameters will not be shown.}
-
-A plot.
 }
 \description{
 These functions summarize and plot Ensemble models that have been fit previously by the user.

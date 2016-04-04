@@ -2,17 +2,29 @@
 % Please edit documentation in R/print_show.R
 \docType{methods}
 \name{print,SummaryForecastData-method}
+\alias{print,ForecastData-method}
 \alias{print,SummaryForecastData-method}
+\alias{show,ForecastData-method}
 \alias{show,SummaryForecastData-method}
-\title{Print and Show methods for summaries of forecast data}
+\title{Print and Show methods for forecast data}
 \usage{
 \S4method{print}{SummaryForecastData}(x, digits = 3, ...)
+
+\S4method{show}{SummaryForecastData}(object)
+
+\S4method{print}{ForecastData}(x, digits = 3, ...)
+
+\S4method{show}{ForecastData}(object)
 }
 \arguments{
-\item{object}{An object of the class 'SummaryForecastData'.}
+\item{x}{An object of the class 'ForecastData' or 'SummaryForecastData'.}
+
+\item{digits}{An integer specifying the number of significant digits to print. The default is 3.}
+
+\item{object}{An object of the class 'ForecastData' or 'SummaryForecastData'.}
 }
 \description{
-Functions to print and show the contents of a data object of the class 'SummaryForecastData'.
+Functions to print and show the contents of a data object of the class 'ForecastData' or 'SummaryForecastData'.
 }
 \examples{
 \dontrun{ data(calibrationSample)

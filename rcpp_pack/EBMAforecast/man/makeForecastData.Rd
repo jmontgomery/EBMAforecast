@@ -19,18 +19,7 @@ makeForecastData(.predCalibration = array(NA, dim = c(0, 0, 0)),
 
 \item{.modelNames}{A vector of length p with the names of the component models.}
 
-\item{...}{Additional arguments not implemented
-
-Additionally, the functions \code{show} and \code{print} can be used to display data objects of class 'ForecastData'.
-\code{show} displays only 1 digit and takes the following parameters:}
-
-\item{x}{A data object of class 'ForecastData'
-
-\code{print} let's the use specify the number of digits printed and takes the arguments:}
-
-\item{object}{A data object of class 'ForecastData'}
-
-\item{digits}{User specified number of digits to be displayed.}
+\item{...}{Additional arguments not implemented}
 }
 \value{
 A data object of the class 'ForecastData' with the following slots: 
@@ -72,7 +61,7 @@ setModelNames(this.ForecastData)<-c("LMER", "SAE", "GLM")
 Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@tamu.edu}>
 }
 \references{
-Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. In Press.
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. \bold{31}:930–942.
 
 Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 }
