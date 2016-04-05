@@ -23,7 +23,6 @@
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
 #' @rdname EBMApredict
-#' @aliases prediction
 #' @export
 setGeneric(name="EBMApredict",
            def=function(EBMAmodel, 

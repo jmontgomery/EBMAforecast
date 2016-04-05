@@ -60,7 +60,6 @@
 #' @keywords calibrate EBMA 
 #'
 #' @rdname calibrateEnsemble
-#' @aliases calibrateEnsemble, ForecastData-method calibrateEnsemble
 #' @export
 setGeneric(name="calibrateEnsemble",
            def=function(.forecastData=new("ForecastData"),

@@ -2,15 +2,8 @@
 % Please edit documentation in R/calibrateEnsemble.R, R/fitEnsembleLogit.R, R/fitEnsembleNormal.R
 \docType{methods}
 \name{calibrateEnsemble}
-\alias{FDatFitLogit-class}
-\alias{FDatFitNormal-class}
-\alias{ForecastDataLogit-class}
-\alias{ForecastDataNormal-class}
 \alias{calibrateEnsemble}
-\alias{calibrateEnsemble,ForecastData-method}
 \alias{fitEnsemble}
-\alias{fitEnsemble,ForecastData-method}
-\alias{fitEnsemble,ForecastDataLogit-method}
 \alias{fitEnsemble,ForecastDataNormal-method}
 \title{Calibrate an ensemble Bayesian Model Averaging model}
 \usage{
@@ -88,7 +81,7 @@ this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.001, 
 Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@tamu.edu}>
 }
 \references{
-Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. In Press.
+Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. 31(3): 930-942.
 
 Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 
