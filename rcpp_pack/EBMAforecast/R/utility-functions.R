@@ -1,9 +1,12 @@
 #' "Set" functions
 #'
 #' To assign individual slots, use set functions
+#' @method setPredCalibration
+#' @method setOutcomeCalibration
+#' @method setPredTest
+#' @method setOutcomeTest
+#' @method setModelNames
 #' 
-#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
-#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences. \emph{International Journal of Forecasting}. \bold{31}:930–942.#'
 #' @examples
 #' setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
 #' setOutcomeCalibration(this.ForecastData)<-calibrationSample[,"Insurgency"]
@@ -17,6 +20,9 @@
 #' \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
 #' \item{outcomeTest}{A vector containing the true values of the dependent variable for all observations in the test period.}
 #' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
+#' 
+#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
+#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences. \emph{International Journal of Forecasting}. \bold{31}:930–942.#'
 #' 
 #' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>
 #'
