@@ -10,7 +10,8 @@
 #'
 #'
 #' @return Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots:
-#' \item{predTest}{A matrix containing the predictions of all component models and the EBMA model for all observations in the test period.}#' \item{period}{The period, "calibration" or "test", for which the statistics were calculated.}
+#' \item{predTest}{A matrix containing the predictions of all component models and the EBMA model for all observations in the test period.}
+#' \item{period}{The period, "calibration" or "test", for which the statistics were calculated.}
 #' \item{outcomeTest}{An optional vector containing the true values of the dependent variable for all observations in the test period.}
 #' \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
 #' \item{modelWeights}{A vector containing the model weights assigned to each model.}
