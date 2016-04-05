@@ -4,11 +4,13 @@
 #'
 #'
 #' @details A data object of the class 'ForecastData' has the following slots: 
-#'  \item{predCalibration}{An array containing the predictions of all component models for the observations in the calibration period.}
-#'  \item{predTest}{An array containing the predictions of all component models for all the observations in the test period.}
-#'  \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
-#'  \item{outcomeTest}{A vector containing the true values of the dependent variable for all observations in the test period.}
-#'  \item{modelNames}{A character vector containing the names of all component models.}
+#'  \itemize{
+#'  \item{predCalibration}{ - An array containing the predictions of all component models for the observations in the calibration period.}
+#'  \item{predTest}{ - An array containing the predictions of all component models for all the observations in the test period.}
+#'  \item{outcomeCalibration}{ - A vector containing the true values of the dependent variable for all observations in the calibration period.} 
+#'  \item{outcomeTest}{ - A vector containing the true values of the dependent variable for all observations in the test period.}
+#'  \item{modelNames}{ - A character vector containing the names of all component models.}
+#'  }
 #'
 #' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>  
 #'
