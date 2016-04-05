@@ -9,8 +9,8 @@ current.code <- as.package("EBMAforecast")
 load_all(current.code)
 document(current.code)
 
-# build(current.code, path="~/Desktop/")
-# install.packages("~/Desktop/EBMAforecast_0.52.tar.gz", repos = NULL, type="source")
+# build(current.code, path="~/github/EBMAforecast/rcpp_pack/")
+# install.packages("~/Desktop/EBMAforecast_0.53.tar.gz", repos = NULL, type="source")
 
 ## run all tests to make sure everything is working as expected, testfile needs package installed, so that data is available for tests
 test_file("testhat.R")
