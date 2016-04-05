@@ -3,9 +3,12 @@
 \docType{methods}
 \name{EBMApredict}
 \alias{EBMApredict}
+\alias{prediction}
 \title{EBMApredict}
 \usage{
 EBMApredict(EBMAmodel, Predictions, Outcome = NULL, ...)
+
+prediction(EBMAmodel, Predictions, Outcome, ...)
 }
 \arguments{
 \item{EBMAmodel}{Output of estimated EBMA model}

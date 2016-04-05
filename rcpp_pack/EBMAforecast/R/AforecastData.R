@@ -43,7 +43,7 @@
 #'
 #' @docType class
 #' @seealso ensembleBMA
-
+#' @rdname ForecastData
 
 
 
