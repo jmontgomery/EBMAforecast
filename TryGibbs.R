@@ -1,5 +1,5 @@
 library(EBMAforecast)
-
+library(gtools)
 
 #simulate some data 
 N = 200
@@ -18,7 +18,7 @@ outcome = rbinom(N,1,prob )
 preds = (data.frame(m1,m2,m3))
 
 dat = makeForecastData(.predCalibration=preds,.outcomeCalibration=outcome)
-this.ensemble <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=1, useModelParams = TRUE)
+this.ensemble <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=3, useModelParams = TRUE)
 summary(this.ensemble)
 
 trueW = apply(weights, 2, mean) 
@@ -31,6 +31,9 @@ x1 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),W,10000)
 
 w2 = c(1,0,0)
 x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),w2,10000)
+
+apply(x2[["W_post"]],2,mean)
+apply(x1[["W_post"]],2,mean)
 
 
 
@@ -73,7 +76,7 @@ predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(dim(preds)[
   dim(predCalibrationAdj)
   array(laply(.models, coefficients), dim=c(nMod, 2, nDraws))
   modelParams <- aperm(array(laply(.models, coefficients), dim=c(nMod, 2, nDraws)), c(2,1,3))
-}
+
 
 
 
@@ -95,9 +98,16 @@ exp =3
 
 predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(dim(preds)[2], dim(preds)[1], 1)), c(2,1,3))
 
-x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,20000)
+x1= GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,20000)
+apply(x1[["W_post"]][10000:20000,],2,mean)
+x1a= GibbsLogit(outcomeCalibration,preds,W,20000)
+apply(x1a[["W_post"]][10000:20000,],2,mean)
 
-
+dat = makeForecastData(.predCalibration=preds,.outcomeCalibration=outcomeCalibration)
+this.ensemble <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=3, useModelParams = TRUE)
+summary(this.ensemble)
+this.ensemble2 <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=3, useModelParams = FALSE)
+summary(this.ensemble2)
 
 
 
