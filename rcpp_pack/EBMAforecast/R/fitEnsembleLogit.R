@@ -76,6 +76,9 @@ setMethod(f="fitEnsemble",
             .modelFitter <- function(preds){
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
+              if(any(cooks.distance(.thisModel) < 0.0001)){
+                print(cooks.distance(.thisModel) < 0.0001)
+              }
               if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
               return(.thisModel)
             }
