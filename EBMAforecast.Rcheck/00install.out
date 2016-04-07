@@ -1,0 +1,13 @@
+* installing *source* package ‘EBMAforecast’ ...
+** R
+** data
+** demo
+** preparing package for lazy loading
+Creating a generic function for ‘print’ from package ‘base’ in package ‘EBMAforecast’
+Creating a generic function for ‘plot’ from package ‘graphics’ in package ‘EBMAforecast’
+Creating a generic function for ‘summary’ from package ‘base’ in package ‘EBMAforecast’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (EBMAforecast)
