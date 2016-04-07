@@ -3,7 +3,6 @@
 
 
 #' @importFrom plyr alply aaply
-#' @rdname calibrateEnsemble
 setMethod(f="fitEnsemble",
           signature(.forecastData="ForecastDataNormal"),
           definition=function(.forecastData, tol = sqrt(.Machine$double.eps),

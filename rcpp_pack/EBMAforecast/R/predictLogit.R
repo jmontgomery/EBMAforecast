@@ -1,4 +1,3 @@
-#' @rdname EBMApredict
 setGeneric(name="prediction",
            def=function( EBMAmodel, 
                          Predictions,
@@ -8,7 +7,6 @@ setGeneric(name="prediction",
            )
 
 #' @importFrom plyr alply aaply laply
-#' @rdname EBMApredict
 setMethod(f="prediction",
           signature(EBMAmodel="FDatFitLogit"),
           definition=function(EBMAmodel, 

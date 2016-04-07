@@ -1,4 +1,3 @@
-#' @rdname EBMApredict
 setMethod(f="prediction",
           signature(EBMAmodel="FDatFitNormal"),
           definition=function(EBMAmodel, 

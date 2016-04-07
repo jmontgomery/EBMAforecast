@@ -3,7 +3,6 @@
 
 #' @importFrom plyr alply aaply laply
 #'
-#' @rdname calibrateEnsemble
 setGeneric(name="fitEnsemble",
            def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", const=0,W=c(),...)
            {standardGeneric("fitEnsemble")}
