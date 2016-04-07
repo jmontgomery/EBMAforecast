@@ -1,6 +1,6 @@
 library(devtools); library(roxygen2); library(testthat)
 
-setwd("~/github/EBMAforecast/rcpp_pack")
+setwd("~/Documents/GitHub/EBMAforecast1/rcpp_pack")
 
 ## Only need to run this portion once
 # update_collate("EBMAforecast")
