@@ -80,6 +80,7 @@ setMethod(f="fitEnsemble",
                 print(cooks.distance(.thisModel) < 0.0001)
               }
               if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
+              if(cooks.distance(.thisModel) > 0.5){warning("Maximum Cook's distance for a given model is larger than 0.5 or 1.")}
               return(.thisModel)
             }
 
