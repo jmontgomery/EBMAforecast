@@ -1,11 +1,11 @@
 #' "Set" functions
 #'
 #' To assign individual slots, use set functions
-#' @method setPredCalibration
-#' @method setOutcomeCalibration
-#' @method setPredTest
-#' @method setOutcomeTest
-#' @method setModelNames
+#' @method set setPredCalibration
+#' @method set setOutcomeCalibration
+#' @method set setPredTest
+#' @method set setOutcomeTest
+#' @method set setModelNames
 #' 
 #' @examples
 #' setPredCalibration(this.ForecastData)<-calibrationSample[,c("LMER", "SAE", "GLM")]
@@ -26,8 +26,9 @@
 #' 
 #' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>
 #'
-#' @rdname setFunctions, setPredCalibration, setOutcomeCalibration, setPredTest, setOutcomeTest, setModelNames
+#' @rdname setFunctions
 #' @aliases setFunctions, setPredCalibration, setOutcomeCalibration, setPredTest, setOutcomeTest, setModelNames
+
 #' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
 
@@ -61,6 +62,7 @@ setReplaceMethod(
 	}
 )
 
+
 #' @export
 setGeneric("setOutcomeCalibration<-",function(object,value){standardGeneric("setOutcomeCalibration<-")})
 
@@ -75,6 +77,7 @@ setReplaceMethod(
 	}
 )
 
+
 #' @export
 setGeneric("setOutcomeTest<-",function(object,value){standardGeneric("setOutcomeTest<-")})
 
@@ -88,6 +91,7 @@ setReplaceMethod(
 		return(object)
 	}
 )
+
 
 #' @export
 setGeneric("setModelNames<-",function(object,value){standardGeneric("setModelNames<-")})
