@@ -3,6 +3,7 @@
 
 #' @importFrom plyr alply aaply laply
 #'
+#' @rdname calibrateEnsemble
 setGeneric(name="fitEnsemble",
            def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", const=0,W=c(),...)
            {standardGeneric("fitEnsemble")}
@@ -76,11 +77,11 @@ setMethod(f="fitEnsemble",
             .modelFitter <- function(preds){
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
-              if(any(cooks.distance(.thisModel) < 0.0001)){
-                print(cooks.distance(.thisModel) < 0.0001)
-              }
               if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
-              if(cooks.distance(.thisModel) > 0.5){warning("Maximum Cook's distance for a given model is larger than 0.5 or 1.")}
+              if(cooks.distance(.thisModel) > 0.5){
+                warning("Maximum Cook's distance for a given model is larger than 0.5 or 1.")
+                print(colnames(cooks.distance(.thisModel) > 0.5))
+                }
               return(.thisModel)
             }
 
