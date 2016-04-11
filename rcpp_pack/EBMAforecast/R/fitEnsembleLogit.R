@@ -78,9 +78,8 @@ setMethod(f="fitEnsemble",
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
               if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
-              if(cooks.distance(.thisModel) > 0.5){
+              if(any(cooks.distance(.thisModel) > 0.01)){
                 warning("Maximum Cook's distance for a given model is larger than 0.5 or 1.")
-                print(colnames(cooks.distance(.thisModel) > 0.5))
                 }
               return(.thisModel)
             }
@@ -113,6 +112,7 @@ setMethod(f="fitEnsemble",
             if(useModelParams){
               #print("jacob")
               .models <- alply(predCalibration, 2:3, .fun=.modelFitter)
+              
             }
             
             ## Extract needed info
