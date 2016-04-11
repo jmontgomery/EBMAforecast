@@ -27,7 +27,7 @@
 #' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>
 #'
 #' @rdname setFunctions
-#' @aliases setFunctions, setPredCalibration, setOutcomeCalibration, setPredTest, setOutcomeTest, setModelNames
+#' @aliases setFunctions setPredCalibration setOutcomeCalibration setPredTest setOutcomeTest setModelNames
 
 #' @export
 setGeneric("setPredCalibration<-",function(object,value){standardGeneric("setPredCalibration<-")})
