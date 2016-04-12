@@ -78,10 +78,18 @@ setMethod(f="fitEnsemble",
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
               if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
+              toreturn <-cooks.distance(.thisModel)
+              #tt <- data.frame()
+              #for(i in 1:length(toreturn)) print(toreturn[[i]])
+              #print(toreturn)
+              #print(class(toreturn))
+              #print(dim(toreturn))
+              print(unname(which(toreturn > 0.01)))
               if(any(cooks.distance(.thisModel) > 0.01)){
                 warning("Maximum Cook's distance for a given model is larger than 0.5 or 1.")
                 }
               return(.thisModel)
+              browser()
             }
 
             .predictTest <- function(x, i){
