@@ -85,6 +85,18 @@ setMethod(f="makeForecastData",
             if(length(.outcomeCalibration>0)) {names(.outcomeCalibration) <- 1:length(.outcomeCalibration)}
             if(length(.outcomeTest>0))  {names(.outcomeTest) <- 1:length(.outcomeTest)}
             
+            # Warning message for sparse outcomeCalibration data (less than 10% of observations are 0 or 1)
+            if(min(table(.outcomeCalibration) / length(.outcomeCalibration)) < .1){
+              # Getting the percentage of observations less than 10 percent
+              minpct <- (round(min(table(.outcomeCalibration) / length(.outcomeCalibration)), 4) * 100)
+              # Getting which observation (0 or 1) is less than 10 percent
+              whichvalue <- names(which(table(.outcomeCalibration) / length(.outcomeCalibration) 
+                            == min(table(.outcomeCalibration) / length(.outcomeCalibration))))
+              # The warning
+              warning(paste("Your calibration data are very unbalanced. Only ", minpct, " percent of your observations are ", whichvalue,
+                      "s. Be careful about convergence as well as interpretation of the results of this model.", sep=""), 
+                      call.=FALSE)}
+            
             return(new("ForecastData", predCalibration=.predCalibration, predTest=.predTest,
                        outcomeCalibration=.outcomeCalibration, outcomeTest=.outcomeTest, modelNames=.modelNames))
             

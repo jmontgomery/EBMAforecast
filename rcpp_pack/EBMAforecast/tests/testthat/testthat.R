@@ -600,3 +600,20 @@ test_that("EBMApredict for logit EBMA model,model parameters TRUE",{
   test_pred2 = EBMApredict(check1,this.ForecastData@predTest,Outcome=this.ForecastData@outcomeTest)
   expect_that(as.numeric(test_pred2@predTest[,1,]),equals(as.numeric(check1@predTest[,1,])))
 })
+
+
+# Tests for warning with unbalanced outcomeCalibration data
+context("Test if outcomeCalibration data unbalanced")
+test_that("Warning for outcomeCalibration percentage of 0s or 1s less than 10%",{
+  expect_that(makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+                               .outcomeCalibration=calibrationSample[,"Insurgency"],
+                               .predTest=testSample[,c("LMER", "SAE", "GLM")],
+                               .outcomeTest=testSample[,"Insurgency"],
+                               .modelNames=c("LMER", "SAE", "GLM")), gives_warning())
+})
+
+
+
+
+
+
