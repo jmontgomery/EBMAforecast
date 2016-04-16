@@ -22,12 +22,24 @@ setMethod(f="fitEnsemble",
             const=0,
             W = c())
           {
+            # Check if W is vector or matrix
+            # Matrix
+            if(is.matrix(W)){
+              if(dim(W)[2] != dim(.forecastData@predCalibration)[2]){
+                stop("The number of of initial model weights must be of length of the number of predictive models included.")}
+              for(i in 1:nrow(W)){
+                if(sum(W[i,]) != 1){
+                  stop("Each set of initial model weights must sum to 1.")}
+              }
+              }
+            # Vector
+            if(is.null(dim(W))){
             #check wether W is of right length and sums to 1
           if(length(W) != dim(.forecastData@predCalibration)[2] & is.null(W)==FALSE){
                 stop("Vector of initial model weights must be of length of the number of predictive models included.")}  
           if(sum(W) != 1 & is.null(W)==FALSE){
                 stop("Vector of initial model weights must sum to 1.")}  
-
+            }
             #old em
             # .em <- function(outcomeCalibration, prediction, W)
               # {
@@ -145,7 +157,31 @@ setMethod(f="fitEnsemble",
 
             dimnames(modelParams) <- list(c("Constant", "Predictor"), modelNames, 1:nDraws)
             dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
+            
+            # This is calibration based on all sets of starting weights
+            # Calibrating for as many times as are different weights if is a matrix of weights input,
+            # checking to see if the weights significantly differ
+            if(is.matrix(W)){
+              # Matrix to store all posterior weights in
+              store.W <- matrix(data=NA, nrow=dim(W)[1], ncol=dim(W)[2])
+              for(i in 1:dim(W)[1]){
+                  out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
+                  if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached for one of your set of weights")}
+                  W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+                  LL = out$LL
+                  iter = out$Iterations
+                  store.W[i,] <- W
+                  }
+              # Printing matrix of posterior weights (remove this later)
+              print(store.W)
+              # Calculating mean absolute difference of posterior weights
+              
+              # Error if any mean absolute difference of posterior weights > 0.0001
 
+            }
+            
+            
+            
             ## unless user specified, set initial values for parameters
             if(is.null(W)){
             W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
@@ -168,13 +204,13 @@ setMethod(f="fitEnsemble",
             # }
             # if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             # W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
-
-    			 out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
+            
+            out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
             if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
             W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
             LL = out$LL
             iter = out$Iterations
-  
+            
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
             bmaPred <-  bmaPred/array(t(W%*%t(1*!is.na(.flatPreds))), dim=c(nObsCal, 1, nDraws))
@@ -208,6 +244,9 @@ setMethod(f="fitEnsemble",
             if(!.testPeriod){{test <- .forecastData@predTest}}
             if(useModelParams==FALSE){.models = list()}
 
+            
+            
+            
             new("FDatFitLogit",
                 predCalibration=cal,
                 outcomeCalibration=outcomeCalibration,
