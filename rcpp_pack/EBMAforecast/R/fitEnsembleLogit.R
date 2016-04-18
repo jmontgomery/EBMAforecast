@@ -90,18 +90,13 @@ setMethod(f="fitEnsemble",
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
               if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
-              toreturn <-cooks.distance(.thisModel)
               #tt <- data.frame()
               #for(i in 1:length(toreturn)) print(toreturn[[i]])
               #print(toreturn)
               #print(class(toreturn))
               #print(dim(toreturn))
-              print(unname(which(toreturn > 0.01)))
-              if(any(cooks.distance(.thisModel) > 0.01)){
-                warning("Maximum Cook's distance for a given model is larger than 0.5 or 1.")
-                }
-              return(.thisModel)
-              browser()
+              .thisModel
+              return(list(.thisModel, cook=cooks.distance(.thisModel)))
             }
 
             .predictTest <- function(x, i){
@@ -127,12 +122,20 @@ setMethod(f="fitEnsemble",
             nMod <-  ncol(predCalibration); nDraws <- dim(predCalibration)[3]
             nObsCal <- nrow(predCalibration); nObsTest <- nrow(predTest)
             ZERO<-1e-4
+            dimnames(predCalibration)<-list(c(1:nObsCal), modelNames, c(1:nDraws))
+            dimnames(predCalibration)
             
             ## Fit Models
             if(useModelParams){
-              #print("jacob")
               .models <- alply(predCalibration, 2:3, .fun=.modelFitter)
-              
+              for(i in 1:nMod){
+                if(any(unname(.models[[i]][[2]]) > 0.5)){
+                cat("Problematic Cook's Distances (> 0.5) \n", "Model", names(.models[i]), ":",
+                    which(unname(.models[[i]][[2]]) > 0.5), "\n")
+                warning("Problematic Cook's Distances (> 0.5), see above output (under 'this.ensemble').")
+                }
+                .models[[i]] <- .models[[i]][[1]]
+              }
             }
             
             ## Extract needed info

@@ -612,6 +612,17 @@ test_that("Warning for outcomeCalibration percentage of 0s or 1s less than 10%",
                                .modelNames=c("LMER", "SAE", "GLM")), gives_warning())
 })
 
+context("Test if Cooks Distance's are greater than .5")
+test_that("Problematic Cook's Distances (> 0.5), see above output (under 'this.ensemble').",{
+  expect_that(fitEnsemble(calibrateEnsemble(makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+                                                             .outcomeCalibration=calibrationSample[,"Insurgency"],
+                                                             .predTest=testSample[,c("LMER", "SAE", "GLM")],
+                                                             .outcomeTest=testSample[,"Insurgency"],
+                                                             .modelNames=c("LMER", "SAE", "GLM")))), gives_warning(), model="logit", tol=0.0001, maxIter=25000, exp=3, gives_warning())
+})
+
+
+
 
 
 

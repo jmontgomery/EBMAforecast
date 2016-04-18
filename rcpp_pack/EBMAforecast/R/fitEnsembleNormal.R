@@ -76,7 +76,7 @@ setMethod(f="fitEnsemble",
             
             .modelFitter <- function(preds){
               thisModel <- lm(outcomeCalibration~preds)
-              return(thisModel)
+              return(list(thisModel, cook=cooks.distance(thisModel)))
             }
 
 
@@ -118,7 +118,17 @@ setMethod(f="fitEnsemble",
             ZERO<-1e-4
             
             ## Fit Models
-            if(useModelParams==TRUE){.models <- alply(predCalibration, 2:3, .fun=.modelFitter)}
+            if(useModelParams==TRUE){
+              .models <- alply(predCalibration, 2:3, .fun=.modelFitter)
+              for(i in 1:nMod){
+                if(any(unname(.models[[i]][[2]]) > 0.5)){
+                  cat("Problematic Cook's Distances (> 0.5) \n", "Model", names(.models[i]), ":",
+                      which(unname(.models[[i]][[2]]) > 0.5), "\n")
+                  warning("Problematic Cook's Distances (> 0.5), see above output (under 'this.ensemble').")
+                }
+                .models[[i]] <- .models[[i]][[1]]
+              }
+            }
 
             ## Extract needed info
             if(nDraws==1 & useModelParams==TRUE){
