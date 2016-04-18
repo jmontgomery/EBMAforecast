@@ -167,6 +167,7 @@ setMethod(f="fitEnsemble",
             if(is.matrix(W)){
               # Matrix to store all posterior weights in
               store.W <- matrix(data=NA, nrow=dim(W)[1], ncol=dim(W)[2])
+              colnames(store.W) <- modelNames
               for(i in 1:dim(W)[1]){
                   out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
                   if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached for one of your set of weights")}
@@ -178,17 +179,18 @@ setMethod(f="fitEnsemble",
               # Printing matrix of posterior weights (remove this later)
               print(store.W)
               # Calculating mean absolute difference of posterior weights
-          
               store.MAD <- matrix(data=NA, nrow=1, ncol=dim(store.W)[2])
+              colnames(store.MAD) <- modelNames
               for(i in 1:dim(store.W)[2]){
                 dif <- abs(store.W[1, i] - store.W[2, i])
                 out <- (mean(dif, na.rm = TRUE))
                 store.MAD[, i] <- out 
               }
-              #error <- abs(store.W[1, 1] - store.W[2, 1])
               print(store.MAD)
               # Error if any mean absolute difference of posterior weights > 0.0001
-
+              if(any(store.MAD > 0.0001)){
+                stop("Mean difference between posterior weights is above 0.0001")
+              }
             }
             
             
