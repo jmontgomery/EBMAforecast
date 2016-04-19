@@ -177,7 +177,7 @@ setMethod(f="fitEnsemble",
                   store.W[i,] <- W
                   }
               # Printing matrix of posterior weights (remove this later)
-              print(store.W)
+              # print(store.W)
               # Calculating mean absolute difference of posterior weights
               store.MAD <- matrix(data=NA, nrow=1, ncol=dim(store.W)[2])
               colnames(store.MAD) <- modelNames
@@ -186,7 +186,7 @@ setMethod(f="fitEnsemble",
                 out <- (mean(dif, na.rm = TRUE))
                 store.MAD[, i] <- out 
               }
-              print(store.MAD)
+              # print(store.MAD)
               # Error if any mean absolute difference of posterior weights > 0.0001
               if(any(store.MAD > 0.0001)){
                 stop("Mean difference between posterior weights is above 0.0001")
