@@ -15,7 +15,7 @@ setMethod(f="fitEnsemble",
             W = c())
           {
             
-            #check wether W is of right length and sums to 1
+            #check whether W is of right length and sums to 1
            if(length(W) != dim(.forecastData@predCalibration)[2] & is.null(W)==FALSE){
               stop("Vector of initial model weights must be of length of the number of predictive models included.")}  
            if(sum(W) != 1 & is.null(W)==FALSE){
