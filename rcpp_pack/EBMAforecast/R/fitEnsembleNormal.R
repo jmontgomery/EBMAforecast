@@ -15,13 +15,24 @@ setMethod(f="fitEnsemble",
             W = c())
           {
             
-            #check whether W is of right length and sums to 1
-           if(length(W) != dim(.forecastData@predCalibration)[2] & is.null(W)==FALSE){
-              stop("Vector of initial model weights must be of length of the number of predictive models included.")}  
-           if(sum(W) != 1 & is.null(W)==FALSE){
-              stop("Vector of initial model weights must sum to 1.")}  
-            
-            
+            # Check if W is vector or matrix
+            # Matrix
+            if(is.matrix(W)){
+              if(dim(W)[2] != dim(.forecastData@predCalibration)[2]){
+                stop("The number of initial model weights must be of length of the number of predictive models included.")}
+              for(i in 1:nrow(W)){
+                if(sum(W[i,]) != 1){
+                  stop("Each set of initial model weights must sum to 1.")}
+              }
+            }
+            # Vector
+            if(is.null(dim(W))){
+              #check wether W is of right length and sums to 1
+              if(length(W) != dim(.forecastData@predCalibration)[2] & is.null(W)==FALSE){
+                stop("Vector of initial model weights must be of length of the number of predictive models included.")}  
+              if(sum(W) != 1 & is.null(W)==FALSE){
+                stop("Vector of initial model weights must sum to 1.")}  
+            }
           	#old EM
             # .em <- function(outcomeCalibration, prediction, RSQ, W, sigma2)
               # {
