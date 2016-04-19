@@ -26,7 +26,7 @@ setMethod(f="fitEnsemble",
             # Matrix
             if(is.matrix(W)){
               if(dim(W)[2] != dim(.forecastData@predCalibration)[2]){
-                stop("The number of of initial model weights must be of length of the number of predictive models included.")}
+                stop("The number of initial model weights must be of length of the number of predictive models included.")}
               for(i in 1:nrow(W)){
                 if(sum(W[i,]) != 1){
                   stop("Each set of initial model weights must sum to 1.")}
@@ -189,6 +189,8 @@ setMethod(f="fitEnsemble",
               # print(store.MAD)
               # Error if any mean absolute difference of posterior weights > 0.0001
               if(any(store.MAD > 0.0001)){
+                print("Matrix of posterior weights:") 
+                print(store.W)
                 stop("Mean difference between posterior weights is above 0.0001")
               }
             }
