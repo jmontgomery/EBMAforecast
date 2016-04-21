@@ -9,7 +9,8 @@
 #' @param model The model type that should be used given the type of data that is being predicted (i.e., normal, binary, etc.).
 #' @param method The estimation method used.  Currently only implements "EM".
 #' @param predType The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.
-#' @param W Vector of initial model weights, if unspecified each model will receive weight 1/number of Models
+#' @param W Vector or matrix of initial model weights, if unspecified each model will receive weight 1/number of Models
+#' @param whichW If a matrix of initial model weights is specified, an integer denoting the row of weights to use in the final calibration. Default is the first row. 
 #' @param const user provided "wisdom of crowds" parameter, serves as minimum model weight for all models. Default = 0
 #' @param useModelParams If "TRUE" individual model predictions are transformed based on logit models. If "FALSE" all models' parameters will be set to 0 and 1.  
 #' @param ... Not implemented

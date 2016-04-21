@@ -11,7 +11,7 @@ calibrateEnsemble(.forecastData = new("ForecastData"), exp = 1,
 
 fitEnsemble(.forecastData, tol = sqrt(.Machine$double.eps), maxIter = 1e+06,
   method = "EM", exp = 1, useModelParams = TRUE,
-  predType = "posteriorMedian", const = 0, W = c(), ...)
+  predType = "posteriorMedian", const = 0, W = c(), whichW = 1, ...)
 }
 \arguments{
 \item{.forecastData}{An object of class 'ForecastData' that will be used to calibrate the model.}
@@ -34,7 +34,9 @@ fitEnsemble(.forecastData, tol = sqrt(.Machine$double.eps), maxIter = 1e+06,
 
 \item{const}{user provided "wisdom of crowds" parameter, serves as minimum model weight for all models. Default = 0}
 
-\item{W}{Vector of initial model weights, if unspecified each model will receive weight 1/number of Models}
+\item{W}{Vector or matrix of initial model weights, if unspecified each model will receive weight 1/number of Models}
+
+\item{whichW}{If a matrix of initial model weights is specified, an integer denoting the row of weights to use in the final calibration. Default is the first row.}
 }
 \value{
 Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots

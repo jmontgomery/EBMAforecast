@@ -5,7 +5,7 @@
 #'
 #' @rdname calibrateEnsemble
 setGeneric(name="fitEnsemble",
-           def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", const=0,W=c(),...)
+           def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", const=0,W=c(), whichW = 1,...)
            {standardGeneric("fitEnsemble")}
            )
 
@@ -20,8 +20,11 @@ setMethod(f="fitEnsemble",
             useModelParams=TRUE,
             predType="posteriorMedian",
             const=0,
-            W = c())
+            W = c(),
+            whichW = 1)
           {
+            # Creating blank store matrix 
+            store.W <- matrix()
             # Check if W is vector or matrix
             # Matrix
             if(is.matrix(W)){
@@ -159,19 +162,19 @@ setMethod(f="fitEnsemble",
             # Calibrating for as many times as are different weights if is a matrix of weights input,
             # checking to see if the weights significantly differ
             if(is.matrix(W)){
+              W2 <- W[whichW,]
               # Matrix to store all posterior weights in
               store.W <- matrix(data=NA, nrow=dim(W)[1], ncol=dim(W)[2])
               colnames(store.W) <- modelNames
               for(i in 1:dim(W)[1]){
-                  out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
+                  vectorW <- W[i,]
+                  out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),vectorW,tol,maxIter, const)
                   if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached for one of your set of weights")}
-                  W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+                  vectorW <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(vectorW) <- modelNames
                   LL = out$LL
                   iter = out$Iterations
-                  store.W[i,] <- W
+                  store.W[i,] <- vectorW
                   }
-              # Printing matrix of posterior weights (remove this later)
-              # print(store.W)
               # Calculating mean absolute difference of posterior weights
               store.MAD <- matrix(data=NA, nrow=1, ncol=dim(store.W)[2])
               colnames(store.MAD) <- modelNames
@@ -180,12 +183,11 @@ setMethod(f="fitEnsemble",
                 out <- (mean(dif, na.rm = TRUE))
                 store.MAD[, i] <- out 
               }
-              # print(store.MAD)
+              W <- W2
               # Error if any mean absolute difference of posterior weights > 0.0001
               if(any(store.MAD > 0.0001)){
-                print("Matrix of posterior weights:") 
-                print(store.W)
-                stop("Mean difference between posterior weights is above 0.0001")
+                warning("The mean absolute difference between the sets of posterior weights is above 0.0001.
+                        The posterior EBMA prediction is only based on the first set of weights.")
               }
             }
             
@@ -214,11 +216,13 @@ setMethod(f="fitEnsemble",
             # if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             # W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
             
-            out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
-            if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
-            W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
-            LL = out$LL
-            iter = out$Iterations
+            if(is.null(dim(W))){
+              out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
+              if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
+              W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+              LL = out$LL
+              iter = out$Iterations
+            }
             
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
@@ -273,7 +277,8 @@ setMethod(f="fitEnsemble",
                 iter = iter,
                 model = "logit",
                 modelResults = .models,
-                call=match.call()
+                call=match.call(),
+                posteriorWeights = store.W
                 )
           }
           )

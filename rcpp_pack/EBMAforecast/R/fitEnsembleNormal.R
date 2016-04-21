@@ -12,9 +12,11 @@ setMethod(f="fitEnsemble",
             useModelParams = TRUE,
             predType="posteriorMedian",
             const=0, 
-            W = c())
+            W = c(),
+            whichW=1)
           {
-            
+            # Creating blank store matrix 
+            store.W <- matrix()
             # Check if W is vector or matrix
             # Matrix
             if(is.matrix(W)){
@@ -159,12 +161,47 @@ setMethod(f="fitEnsemble",
             
             dimnames(modelParams) <- list(c("Constant", "Predictor"), modelNames, 1:nDraws)
             dimnames(calResiduals) <- dimnames(calResiduals2) <-dimnames(predCalibrationAdj) <- list(1:nObsCal, modelNames, 1:nDraws)
-
+  
+            sigma2<-1
+            
+            if(is.matrix(W)){
+              W2 <- W[whichW,]
+              # Matrix to store all posterior weights in
+              store.W <- matrix(data=NA, nrow=dim(W)[1], ncol=dim(W)[2])
+              colnames(store.W) <- modelNames
+              for(i in 1:dim(W)[1]){
+                out  = emNorm(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),matrix(calResiduals2[,,1],ncol=nMod), W, tol, maxIter, const, sigma2)
+                if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
+                W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+                sigma2 = out$Sigma2
+                LL = out$LL
+                iter = out$Iterations
+                store.W[i,] <- vectorW
+              }
+              # Calculating mean absolute difference of posterior weights
+              store.MAD <- matrix(data=NA, nrow=1, ncol=dim(store.W)[2])
+              colnames(store.MAD) <- modelNames
+              for(i in 1:dim(store.W)[2]){
+                dif <- abs(store.W[1, i] - store.W[2, i])
+                out <- (mean(dif, na.rm = TRUE))
+                store.MAD[, i] <- out 
+              }
+              W <- W2
+              # Error if any mean absolute difference of posterior weights > 0.0001
+              if(any(store.MAD > 0.0001)){
+                warning("The mean absolute difference between the sets of posterior weights is above 0.0001.
+                  The posterior EBMA prediction is only based on the first set of weights.")
+                }
+              }
+            
+            print(store.W)
+            
+            
             ## Set initial values for parameters
             if(is.null(W)){
             W <- rep(1/(nMod), nMod) ; names(W) <- modelNames
             }
-            sigma2<-1
+            
             
            
             
@@ -187,12 +224,14 @@ setMethod(f="fitEnsemble",
             # W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
 
 ### call to rcpp for em
-			out  = emNorm(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),matrix(calResiduals2[,,1],ncol=nMod), W, tol, maxIter, const, sigma2)
-            if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
-            W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
-            sigma2 = out$Sigma2
-            LL = out$LL
-            iter = out$Iterations
+            if(is.null(dim(W))){
+			        out  = emNorm(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),matrix(calResiduals2[,,1],ncol=nMod), W, tol, maxIter, const, sigma2)
+              if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
+              W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+              sigma2 = out$Sigma2
+              LL = out$LL
+              iter = out$Iterations
+            }
 
             ## Merge the EBMA forecasts for the calibration sample onto the predCalibration matrix
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
@@ -271,7 +310,8 @@ setMethod(f="fitEnsemble",
                 iter=iter,
                 model="normal",
                 modelResults = .models,
-                call=match.call()
+                call=match.call(), 
+                posteriorWeights=store.W
                 )
           }
           )

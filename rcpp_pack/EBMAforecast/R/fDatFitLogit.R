@@ -13,7 +13,8 @@ setClass(Class="FDatFitLogit",
            model="character",
            modelResults = "list",
            useModelParams = "logical",
-           call="call"
+           call="call", 
+           posteriorWeights = "matrix"
            ),
          validity=function(object){
            if(length(object@modelWeights)>0){

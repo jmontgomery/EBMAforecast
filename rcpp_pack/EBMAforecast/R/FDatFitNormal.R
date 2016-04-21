@@ -15,7 +15,8 @@ setClass(Class="FDatFitNormal",
            model="character",
            modelResults = "list",
            useModelParams = "logical",
-           call="call"
+           call="call", 
+           posteriorWeights = "matrix"
            )
          )
 
