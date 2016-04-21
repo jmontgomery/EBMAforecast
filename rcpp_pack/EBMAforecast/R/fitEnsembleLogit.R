@@ -90,17 +90,11 @@ setMethod(f="fitEnsemble",
               .adjPred <- .makeAdj(preds)
               .thisModel <- glm(outcomeCalibration~.adjPred, family=binomial(link = "logit"))
               if (!.thisModel$converged){stop("One or more of the component logistic regressions failed to converge.  This may indicate perfect separtion or some other problem.  Try the useModelParams=FALSE option.")}
-              #tt <- data.frame()
-              #for(i in 1:length(toreturn)) print(toreturn[[i]])
-              #print(toreturn)
-              #print(class(toreturn))
-              #print(dim(toreturn))
               .thisModel
               return(list(.thisModel, cook=cooks.distance(.thisModel)))
             }
 
             .predictTest <- function(x, i){
-#              browser()
               .models[[i]]
               temp <- matrix(x,ncol=1)
               .rawPred <- predict(.models[[i]], newdata=data.frame(.adjPred=x), type="response")
