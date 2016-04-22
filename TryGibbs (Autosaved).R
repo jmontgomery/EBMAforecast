@@ -1,6 +1,6 @@
 library(EBMAforecast)
 library(gtools)
-#demo(EBMAforecast)
+demo(EBMAforecast)
 
 #simulate some data 
 N = 200
@@ -27,16 +27,16 @@ trueW = apply(weights, 2, mean)
 predCalibration = preds
 outcomeCalibration = outcome
 W = c(1/3,1/3,1/3)
-# 
-# x1 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),W,10000)
-# 
-# w2 = c(1,0,0)
-# x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),w2,10000)
-# 
-# apply(x2[["W_post"]],2,mean)
-# apply(x1[["W_post"]],2,mean)
-# 
-# 
+
+x1 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),W,10000)
+
+w2 = c(1,0,0)
+x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),w2,10000)
+
+apply(x2[["W_post"]],2,mean)
+apply(x1[["W_post"]],2,mean)
+
+
 
 
 
@@ -81,47 +81,47 @@ predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(dim(preds)[
 
 
 
-x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,20000, burnin = 4000, thin = 5)
+x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,10000)
+
+
+# # 
+# data(calibrationSample)
+# data(testSample)
+
+# preds = calibrationSample[,c("LMER", "SAE", "GLM")]
+# outcomeCalibration = calibrationSample[,"Insurgency"]
+
+# nObsCal = dim(preds)[1]
+# nMod = dim(preds)[2]
+# nDraws = 1
+# exp =3
+# .models <- apply(preds, 2, FUN=.modelFitter)
+
+# predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(dim(preds)[2], dim(preds)[1], 1)), c(2,1,3))
+
+# x1= GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,20000)
+# apply(x1[["W_post"]][10000:20000,],2,mean)
+# x1a= GibbsLogit(outcomeCalibration,preds,W,20000)
+# apply(x1a[["W_post"]][10000:20000,],2,mean)
+
+# dat = makeForecastData(.predCalibration=preds,.outcomeCalibration=outcomeCalibration)
+# this.ensemble <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=3, useModelParams = TRUE)
+# summary(this.ensemble)
+# this.ensemble2 <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=3, useModelParams = FALSE)
+# summary(this.ensemble2)
 
 
 
-data(calibrationSample)
-data(testSample)
-
-preds = calibrationSample[,c("LMER", "SAE", "GLM")]
-outcomeCalibration = calibrationSample[,"Insurgency"]
-
-nObsCal = dim(preds)[1]
-nMod = dim(preds)[2]
-nDraws = 1
-exp =3
-.models <- apply(preds, 2, FUN=.modelFitter)
-
-predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(dim(preds)[2], dim(preds)[1], 1)), c(2,1,3))
-
-x1= GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,20000)
-apply(x1[["W_post"]][10000:20000,],2,mean)
-x1a= GibbsLogit(outcomeCalibration,preds,W,20000)
-apply(x1a[["W_post"]][10000:20000,],2,mean)
-
-dat = makeForecastData(.predCalibration=preds,.outcomeCalibration=outcomeCalibration)
-this.ensemble <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=3, useModelParams = TRUE)
-summary(this.ensemble)
-this.ensemble2 <- calibrateEnsemble(dat, model="logit", tol=0.000000000000000001, maxIter=25000, exp=3, useModelParams = FALSE)
-summary(this.ensemble2)
+predCalibration = predCalibrationAdj[,,1]
 
 
 
-preds = predCalibrationAdj[,,1]
-
-
-
-iterations = 10000
+iterations = 20000
 w_post = matrix(NA, nrow = iterations, ncol = dim(preds)[2])
 W = c(1/3,1/3,1/3)
 
-w_post = matrix(NA, nrow = iterations, ncol = dim(predCalibration)[2])
-W = c(0,0,1)
+# # w_post = matrix(NA, nrow = iterations, ncol = dim(predCalibration)[2])
+# W = c(0,0,1)
 
 for(iter in 1:iterations){
   theta = matrix(NA, nrow = dim(predCalibration)[1], ncol = dim(predCalibration)[2])
@@ -142,7 +142,7 @@ for(iter in 1:iterations){
   w_post[iter,] = W
 }
   
-apply(w_post[6000:10000,],2, mean)  
+apply(w_post[5000:20000,],2, mean)  
 apply(x2[[2]][6000:10000,],2, mean)  
 
 

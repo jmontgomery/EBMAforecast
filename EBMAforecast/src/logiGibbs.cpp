@@ -20,13 +20,16 @@ NumericVector getRGamma(double shape) {
 
 
 // [[Rcpp::export]]
-Rcpp::List GibbsLogit(Rcpp::NumericVector outcome, Rcpp::NumericMatrix prediction, Rcpp::NumericVector W, int iterations) {
+Rcpp::List GibbsLogit(Rcpp::NumericVector outcome, Rcpp::NumericMatrix prediction, Rcpp::NumericVector W, int iterations, int burnin, int thin) {
     
     int leng = prediction.nrow();
     int width = prediction.ncol();
+    int outcount = 0;
+    int output = round((iterations-burnin)/thin);
     Rcpp::List theta_post(iterations);
     Rcpp::NumericMatrix W_post(iterations,width);
-    
+    Rcpp::NumericMatrix W_out(output,width);
+
 for (int iterator = 0; iterator < iterations; iterator++){;
     Rcpp::NumericVector W_use(width);
     Rcpp::NumericMatrix theta(leng,width);
@@ -72,21 +75,24 @@ for (int iterator = 0; iterator < iterations; iterator++){;
      w_gamma(m) = as<double>(rgamma(1, nu(m), 1));
     sample_sum += w_gamma(m);
   }
-  
   for(int m = 0; m<width; m++){
     W_post(iterator,m) =  w_gamma(m)/sample_sum;
+    if(((iterator+1) % 3 == 0) and (iterator+1 > burnin)){;
+      W_out(outcount,m) =   W_post(iterator,m);
+    }
+  }
+  if(((iterator+1) % thin == 0) and (iterator+1 > burnin)){;
+    outcount += 1;
+  }  
+  if ((iterator+1) % 1000 == 0 ){;
+  Rcpp::Rcout << "Iteration: " << iterator+1 << std::endl;
   }
 };   
     
     
     
     
-    return Rcpp::List::create(Rcpp::Named("theta_post") = theta_post, Rcpp::Named("W_post") = W_post);
+    return Rcpp::List::create(Rcpp::Named("W_out") = W_out);
 }
-
-//Rcpp::Named("W_post") = W_post,
-
-
-
 
 
