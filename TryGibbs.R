@@ -1,5 +1,9 @@
 library(EBMAforecast)
+<<<<<<< Updated upstream
 library(gtools)
+=======
+demo(EBMAforecast)
+>>>>>>> Stashed changes
 
 #simulate some data 
 N = 200
@@ -113,9 +117,17 @@ summary(this.ensemble2)
 
 preds = predCalibrationAdj[,,1]
 
+
+
 iterations = 10000
+<<<<<<< Updated upstream
 w_post = matrix(NA, nrow = iterations, ncol = dim(preds)[2])
 W = c(1/3,1/3,1/3)
+=======
+w_post = matrix(NA, nrow = iterations, ncol = dim(predCalibration)[2])
+W = c(0,0,1)
+
+>>>>>>> Stashed changes
 for(iter in 1:iterations){
   theta = matrix(NA, nrow = dim(predCalibration)[1], ncol = dim(predCalibration)[2])
   for(i in 1: dim(predCalibration)[1]){
