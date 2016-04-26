@@ -176,7 +176,7 @@ setMethod(f="fitEnsemble",
                 sigma2 = out$Sigma2
                 LL = out$LL
                 iter = out$Iterations
-                store.W[i,] <- vectorW
+                store.W[i,] <- W
               }
               # Calculating mean absolute difference of posterior weights
               store.MAD <- matrix(data=NA, nrow=1, ncol=dim(store.W)[2])
@@ -194,7 +194,6 @@ setMethod(f="fitEnsemble",
                 }
               }
             
-            print(store.W)
             
             
             ## Set initial values for parameters
