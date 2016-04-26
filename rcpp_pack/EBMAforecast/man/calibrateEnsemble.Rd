@@ -32,11 +32,11 @@ fitEnsemble(.forecastData, tol = sqrt(.Machine$double.eps), maxIter = 1e+06,
 
 \item{predType}{The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.}
 
-\item{const}{user provided "wisdom of crowds" parameter, serves as minimum model weight for all models. Default = 0}
+\item{const}{user provided "wisdom of crowds" parameter, serves as minimum model weight for all models. Default = 0.}
 
-\item{W}{Vector or matrix of initial model weights, if unspecified each model will receive weight 1/number of Models}
+\item{W}{A vector or matrix of initial model weights. If unspecified, each model will receive weight equal to 1/number of Models}
 
-\item{whichW}{If a matrix of initial model weights is specified, an integer denoting the row of weights to use in the final calibration. Default is the first row.}
+\item{whichW}{If W is a matrix of initial model weights, an integer denoting the row of weights to use in the final calibration. The default is the first row.}
 }
 \value{
 Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots
@@ -45,7 +45,7 @@ Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'Forecast
 \item{outcomeCalibration}{A vector containing the true values of the dependent variable for all observations in the calibration period.} 
 \item{outcomeTest}{An optional vector containing the true values of the dependent variable for all observations in the test period.}
 \item{modelNames}{A character vector containing the names of all component models.  If no model names are specified, names will be assigned automatically.}
-\item{modelWeights}{A vector containing the model weights assigned to each model.}
+\item{modelWeights}{A vector containing the posterior model weights assigned to each model.}
 \item{modelParams}{The parameters for the individual logit models that transform the component models.}
 \item{useModelParams}{Indicator whether model parameters for transformation were estimated or not.}
 \item{logLik}{The final log-likelihood for the calibrated EBMA model.}
@@ -55,6 +55,7 @@ Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'Forecast
 \item{method}{The estimation method used. }
 \item{iter}{Number of iterations run in the EM algorithm.}
 \item{call}{The actual call used to create the object.}
+\item{posteriorWeights}{A matrix of the posterior model weights from model calibration, with each row corresponding to each row of weights specified in W.}
 }
 \description{
 This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration set, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
