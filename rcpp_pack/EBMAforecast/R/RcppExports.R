@@ -5,6 +5,18 @@ emLogit <- function(outcome, prediction, W, tol, maxIter, wisdom) {
     .Call('EBMAforecast_emLogit', PACKAGE = 'EBMAforecast', outcome, prediction, W, tol, maxIter, wisdom)
 }
 
+oneMultinomCalt <- function(probs) {
+    .Call('EBMAforecast_oneMultinomCalt', PACKAGE = 'EBMAforecast', probs)
+}
+
+getRGamma <- function(shape) {
+    .Call('EBMAforecast_getRGamma', PACKAGE = 'EBMAforecast', shape)
+}
+
+GibbsLogit <- function(outcome, prediction, W, iterations, burnin, thin) {
+    .Call('EBMAforecast_GibbsLogit', PACKAGE = 'EBMAforecast', outcome, prediction, W, iterations, burnin, thin)
+}
+
 emNorm <- function(outcome, prediction, RSQ, W, tol, maxIter, wisdom, sigma2) {
     .Call('EBMAforecast_emNorm', PACKAGE = 'EBMAforecast', outcome, prediction, RSQ, W, tol, maxIter, wisdom, sigma2)
 }

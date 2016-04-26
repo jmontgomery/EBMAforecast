@@ -21,6 +21,44 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// oneMultinomCalt
+IntegerVector oneMultinomCalt(NumericVector probs);
+RcppExport SEXP EBMAforecast_oneMultinomCalt(SEXP probsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type probs(probsSEXP);
+    __result = Rcpp::wrap(oneMultinomCalt(probs));
+    return __result;
+END_RCPP
+}
+// getRGamma
+NumericVector getRGamma(double shape);
+RcppExport SEXP EBMAforecast_getRGamma(SEXP shapeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< double >::type shape(shapeSEXP);
+    __result = Rcpp::wrap(getRGamma(shape));
+    return __result;
+END_RCPP
+}
+// GibbsLogit
+Rcpp::List GibbsLogit(Rcpp::NumericVector outcome, Rcpp::NumericMatrix prediction, Rcpp::NumericVector W, int iterations, int burnin, int thin);
+RcppExport SEXP EBMAforecast_GibbsLogit(SEXP outcomeSEXP, SEXP predictionSEXP, SEXP WSEXP, SEXP iterationsSEXP, SEXP burninSEXP, SEXP thinSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type outcome(outcomeSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type prediction(predictionSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type iterations(iterationsSEXP);
+    Rcpp::traits::input_parameter< int >::type burnin(burninSEXP);
+    Rcpp::traits::input_parameter< int >::type thin(thinSEXP);
+    __result = Rcpp::wrap(GibbsLogit(outcome, prediction, W, iterations, burnin, thin));
+    return __result;
+END_RCPP
+}
 // emNorm
 Rcpp::List emNorm(Rcpp::NumericVector outcome, Rcpp::NumericMatrix prediction, Rcpp::NumericMatrix RSQ, Rcpp::NumericVector W, double tol, int maxIter, double wisdom, double sigma2);
 RcppExport SEXP EBMAforecast_emNorm(SEXP outcomeSEXP, SEXP predictionSEXP, SEXP RSQSEXP, SEXP WSEXP, SEXP tolSEXP, SEXP maxIterSEXP, SEXP wisdomSEXP, SEXP sigma2SEXP) {
