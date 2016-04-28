@@ -11,7 +11,8 @@ calibrateEnsemble(.forecastData = new("ForecastData"), exp = 1,
 
 fitEnsemble(.forecastData, tol = sqrt(.Machine$double.eps), maxIter = 1e+06,
   method = "EM", exp = 1, useModelParams = TRUE,
-  predType = "posteriorMedian", const = 0, W = c(), whichW = 1, ...)
+  predType = "posteriorMedian", const = 0, W = c(), whichW = 1,
+  iterations = 10000, burnin = 1000, thin = 50, ...)
 }
 \arguments{
 \item{.forecastData}{An object of class 'ForecastData' that will be used to calibrate the model.}
