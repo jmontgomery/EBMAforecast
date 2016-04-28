@@ -4,8 +4,8 @@
 # data("presidentialForecast")
 # 
 # # should be .5 for the first two models
-# testObserved <- rbinom(length(calibrationSample[,1]), 1, prob=.5*(calibrationSample[,1]+calibrationSample[,2]))
-# save(testObserved, file="EBMAforecast/data/simulatedLogitData.rda")
+# testLogit <- rbinom(length(calibrationSample[,1]), 1, prob=.5*(calibrationSample[,1]+calibrationSample[,2]))
+# save(testLogit, file="EBMAforecast/data/simulatedLogitData.rda")
 # 
 # this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
 #                                       .outcomeCalibration=testObserved,
@@ -19,12 +19,15 @@
 # # create test data for: normal
 # n <- 20
 # test.forecasts <- data.frame(matrix(rep(t(presidentialForecast[,c(1:6)]),n),
-#                         ncol=ncol(presidentialForecast[,c(1:6)]), byrow=TRUE))
+#                          ncol=ncol(presidentialForecast[,c(1:6)]), byrow=TRUE))
 # 
 # # draw observations from different models
 # testObserved1 <- rnorm((n*15)/2, test.forecasts[,1], 1)
 # testObserved2 <- rnorm((n*15)/2, test.forecasts[,2], 1)
 # testObserved <- c(testObserved1, testObserved2)
+# testNorm <- cbind(test.forecasts, testObserved)
+# 
+# save(testNorm, file="EBMAforecast/data/simulatedNormData.rda")
 # 
 # test.ForecastData<-makeForecastData(.predCalibration=test.forecasts[c(1:(n*15)-1),],
 #                                     .outcomeCalibration=testObserved[c(1:(n*15)-1)],
