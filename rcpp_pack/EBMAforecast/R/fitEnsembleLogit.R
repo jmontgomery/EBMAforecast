@@ -5,7 +5,7 @@
 #'
 #' @rdname calibrateEnsemble
 setGeneric(name="fitEnsemble",
-           def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", const=0,W=c(), whichW = 1,...)
+           def=function(.forecastData,  tol = sqrt(.Machine$double.eps), maxIter=1e6, method="EM", exp=1, useModelParams=TRUE, predType="posteriorMedian", const=0,W=c(), whichW = 1, iterations=10000, burnin = 1000, thin = 50, ...)
            {standardGeneric("fitEnsemble")}
            )
 
@@ -21,7 +21,10 @@ setMethod(f="fitEnsemble",
             predType="posteriorMedian",
             const=0,
             W = c(),
-            whichW = 1)
+            whichW = 1,
+            iterations=10000,
+            burnin = 1000,
+            thin = 50)
           {
             # Creating blank store matrix 
             store.W <- matrix()

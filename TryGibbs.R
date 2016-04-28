@@ -29,13 +29,13 @@ predCalibration = preds
 outcomeCalibration = outcome
 W = c(1/3,1/3,1/3)
 
-x1 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),W,10000)
+x1 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),W,10000, burnin=1000, thin=1000)
 
 w2 = c(1,0,0)
 x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),w2,10000)
 
 apply(x2[["W_post"]][5000:10000,],2,mean)
-apply(x1[["W_post"]],2,mean)
+apply(x1[["W_out"]],2,mean)
 
 
 
@@ -100,7 +100,7 @@ exp =3
 
 predCalibrationAdj <- aperm(array(laply(.models, .predictCal), dim=c(dim(preds)[2], dim(preds)[1], 1)), c(2,1,3))
 
-x1= GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,20000)
+x1= GibbsLogit(outcomeCalibration,as.matrix(predCalibrationAdj[,,1]),W,20000,100,100)
 apply(x1[["W_post"]][10000:20000,],2,mean)
 x1a= GibbsLogit(outcomeCalibration,preds,W,20000)
 apply(x1a[["W_post"]][10000:20000,],2,mean)
