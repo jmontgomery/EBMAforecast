@@ -1,3 +1,5 @@
+library(stats)
+
 # create test data
 n <- 20
 test.forecasts <- data.frame(matrix(rep(t(presidentialForecast[,c(1:6)]),n),
