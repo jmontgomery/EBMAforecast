@@ -621,8 +621,28 @@ test_that("Problematic Cook's Distances (> 0.5), see above output (under 'this.e
                                                              .modelNames=c("LMER", "SAE", "GLM")))), gives_warning(), model="logit", tol=0.0001, maxIter=25000, exp=3, gives_warning())
 })
 
-
-
+# testing if the normal ensemble works for predetermined weights
+context("Test how close the normal model gets to 50/50 for the first two weights")
+test_that("Normal model gives similar results when weights are determined", {
+  n <- 1000
+  test.forecasts <- data.frame(matrix(rep(t(presidentialForecast[,c(1:6)]),n),
+                                      ncol=ncol(presidentialForecast[,c(1:6)]), byrow=TRUE))
+  # draw observations from different models
+  
+  testObserved1 <- rnorm((n*15)/2, test.forecasts[,1], 1)
+  testObserved2 <- rnorm((n*15)/2, test.forecasts[,2], 1)
+  testObserved <- c(testObserved1, testObserved2)
+  
+  test.ForecastData<-makeForecastData(.predCalibration=test.forecasts[c(1:(n*15)-1),],
+                                      .outcomeCalibration=testObserved[c(1:(n*15)-1)],
+                                      .predTest=test.forecasts[(n*15),],
+                                      .outcomeTest=testObserved[(n*15)],
+                                      .modelNames=c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
+   thisEnsemble<-calibrateEnsemble(test.ForecastData, model="normal", useModelParams=FALSE, tol=0.000000001)
+   expect_equal(.5, thisEnsemble@modelWeights[1], tolerance = .1)
+}
+)
+  
 
 
 

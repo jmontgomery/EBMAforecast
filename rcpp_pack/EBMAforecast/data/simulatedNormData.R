@@ -1,5 +1,5 @@
 # create test data
-n <- 10
+n <- 20
 test.forecasts <- data.frame(matrix(rep(t(presidentialForecast[,c(1:6)]),n),
                         ncol=ncol(presidentialForecast[,c(1:6)]), byrow=TRUE))
 # draw observations from different models
@@ -14,3 +14,6 @@ test.ForecastData<-makeForecastData(.predCalibration=test.forecasts[c(1:(n*15)-1
                                     .outcomeTest=testObserved[(n*15)],
                                     .modelNames=c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
 thisEnsemble<-calibrateEnsemble(test.ForecastData, model="normal", useModelParams=FALSE, tol=0.000000001)
+
+thisEnsemble@modelWeights
+testthat
