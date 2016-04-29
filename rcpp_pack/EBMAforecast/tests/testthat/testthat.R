@@ -645,7 +645,7 @@ test.ForecastData<-makeForecastData(.predCalibration=test.forecasts[c(1:(n)-1),]
                                     .modelNames=c("Campbell", "Lewis-Beck","EWT2C2","Fair","Hibbs","Abramowitz"))
 thisEnsemble<-calibrateEnsemble(test.ForecastData, model="normal", useModelParams=FALSE, tol=0.000000001)
   expect_equal(.5, as.numeric(thisEnsemble@modelWeights[1]), tolerance = .1, scale = 1)
-  expect_equal(.5, as.numeric(thisEnsemble@modelWeights[2]), tolerance = .1, scale = .1)
+  expect_equal(.5, as.numeric(thisEnsemble@modelWeights[2]), tolerance = .1, scale = 1)
   
 }
 )
@@ -661,7 +661,7 @@ test_that("Logit model gives similar results when weights are determined", {
   
  this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
  expect_equal(.5, as.numeric(this.ensemble@modelWeights[1]), tolerance = .1, scale = 1)
- expect_equal(.5, as.numeric(this.ensemble@modelWeights[2]), tolerance = .1, scale = .1)
+ expect_equal(.5, as.numeric(this.ensemble@modelWeights[2]), tolerance = .1, scale = 1)
 }
 )
 
