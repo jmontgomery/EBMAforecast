@@ -98,7 +98,7 @@ setMethod(f="calibrateEnsemble",
                              exp=exp,
                              tol=tol,
                              maxIter=maxIter,
-                             method="EM",
+                             method=method,
                              ...), parent.frame())
           }
           )

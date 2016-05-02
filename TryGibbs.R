@@ -29,7 +29,7 @@ predCalibration = preds
 outcomeCalibration = outcome
 W = c(1/3,1/3,1/3)
 
-x1 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),W,10000, burnin=1000, thin=1000)
+x1 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),W,10000, burnin=1000, thin=10)
 
 w2 = c(1,0,0)
 x2 = GibbsLogit(outcomeCalibration,as.matrix(predCalibration),w2,10000)

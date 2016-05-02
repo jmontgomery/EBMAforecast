@@ -26,6 +26,7 @@ setMethod(f="fitEnsemble",
             burnin = 1000,
             thin = 50)
           {
+            print(method)
             # Creating blank store matrix 
             store.W <- matrix()
             # Check if W is vector or matrix
@@ -219,20 +220,45 @@ setMethod(f="fitEnsemble",
             # if (.iter==maxIter){print("WARNING: Maximum iterations reached")}
             # W <- W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
             
-            if(is.null(dim(W))){
-              out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
-              if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
-              W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
-              LL = out$LL
-              iter = out$Iterations
+            # Runs if user specifies EM algorithm
+            if(method=="EM"){
+              if(is.null(dim(W))){
+                out  = emLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod),W,tol,maxIter, const)
+                if (out$Iterations==maxIter){print("WARNING: Maximum iterations reached")}
+                W <- out$W*rowSums(!colSums(predCalibration, na.rm=T)==0); names(W) <- modelNames
+                LL = out$LL
+                iter = out$Iterations
+              }
             }
             
+            # Runs if user specifies Bayesian algorithm
+            if(method=="Bayesian"){
+              LL <- numeric(); iter <- numeric()
+              x1 = GibbsLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod), W, iterations, burnin, thin)
+              W_out <- x1[["W_out"]]
+              #print(W_out[1,])
+              .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
+              many.predictions <- matrix(data=NA, nrow=696, ncol=180)
+              for(i in 1:dim(W_out)[1]){
+              bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W_out[i,], na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
+              bmaPred <-  bmaPred/array(t(W_out[i,]%*%t(1*!is.na(.flatPreds))), dim=c(nObsCal, 1, nDraws))
+              bmaPred[,,-1] <- NA
+              many.predictions[,i] <- bmaPred[,1,]
+              }
+              bmaPred[,1,] <- apply(many.predictions, 1, FUN=median)
+              print(bmaPred)
+              cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
+            }
+            
+            
+            
+            if(method=="EM"){
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
             bmaPred <-  bmaPred/array(t(W%*%t(1*!is.na(.flatPreds))), dim=c(nObsCal, 1, nDraws))
             bmaPred[,,-1] <- NA
             cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
-            
+            }
             
             if(.testPeriod){
               if(useModelParams==TRUE){
