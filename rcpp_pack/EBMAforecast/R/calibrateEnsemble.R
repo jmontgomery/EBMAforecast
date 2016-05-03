@@ -7,11 +7,14 @@
 #' @param tol Tolerance for improvements in the log-likelihood before the EM algorithm will stop optimization.  The default is \code{tol= 0.01}, which is somewhat high.  Researchers may wish to reduce this by an order of magnitude for final model estimation. 
 #' @param maxIter The maximum number of iterations the EM algorithm will run before stopping automatically. The default is \code{maxIter=10000}.
 #' @param model The model type that should be used given the type of data that is being predicted (i.e., normal, binary, etc.).
-#' @param method The estimation method used.  Currently only implements "EM".
+#' @param method The estimation method used. It takes either an EM or Bayesian as an argument.
 #' @param predType The prediction type used for the EBMA model under the normal model, user can choose either \code{posteriorMedian} or \code{posteriorMean}. Posterior median is the default.
 #' @param W A vector or matrix of initial model weights. If unspecified, each model will receive weight equal to 1/number of Models
 #' @param whichW If W is a matrix of initial model weights, an integer denoting the row of weights to use in the final calibration. The default is the first row. 
 #' @param const user provided "wisdom of crowds" parameter, serves as minimum model weight for all models. Default = 0.
+#' @param iterations The number of iterations for the Bayseian model
+#' @param burnin This is the burnin number
+#' @param thin This is the thin number
 #' @param useModelParams If "TRUE" individual model predictions are transformed based on logit models. If "FALSE" all models' parameters will be set to 0 and 1.  
 #' @param ... Not implemented
 #'

@@ -25,7 +25,7 @@ fitEnsemble(.forecastData, tol = sqrt(.Machine$double.eps), maxIter = 1e+06,
 
 \item{model}{The model type that should be used given the type of data that is being predicted (i.e., normal, binary, etc.).}
 
-\item{method}{The estimation method used.  Currently only implements "EM".}
+\item{method}{The estimation method used. It takes either an EM or Bayesian as an argument.}
 
 \item{...}{Not implemented}
 
@@ -38,6 +38,12 @@ fitEnsemble(.forecastData, tol = sqrt(.Machine$double.eps), maxIter = 1e+06,
 \item{W}{A vector or matrix of initial model weights. If unspecified, each model will receive weight equal to 1/number of Models}
 
 \item{whichW}{If W is a matrix of initial model weights, an integer denoting the row of weights to use in the final calibration. The default is the first row.}
+
+\item{iterations}{The number of iterations for the Bayseian model}
+
+\item{burnin}{This is the burnin number}
+
+\item{thin}{This is the thin number}
 }
 \value{
 Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots
