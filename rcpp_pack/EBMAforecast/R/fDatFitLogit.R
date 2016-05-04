@@ -14,7 +14,8 @@ setClass(Class="FDatFitLogit",
            modelResults = "list",
            useModelParams = "logical",
            call="call", 
-           posteriorWeights = "matrix"
+           posteriorWeights = "matrix",
+           posteriorBayesian = "matrix"
            ),
          validity=function(object){
            if(length(object@modelWeights)>0){

@@ -235,23 +235,24 @@ setMethod(f="fitEnsemble",
             if(method=="Bayesian"){
               LL <- numeric(); iter <- numeric()
               x1 = GibbsLogit(outcomeCalibration, matrix(predCalibrationAdj[,,1],ncol=nMod), W, iterations, burnin, thin)
+              
               W_out <- x1[["W_out"]]
-              #print(W_out[1,])
+              # print(W_out[1,])
               .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
-              many.predictions <- matrix(data=NA, nrow=696, ncol=180)
+              many.predictions <- matrix(data=NA, nrow=dim(predCalibrationAdj)[1], ncol=dim(W_out)[1])
               for(i in 1:dim(W_out)[1]){
-              bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W_out[i,], na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
-              bmaPred <-  bmaPred/array(t(W_out[i,]%*%t(1*!is.na(.flatPreds))), dim=c(nObsCal, 1, nDraws))
-              bmaPred[,,-1] <- NA
-              many.predictions[,i] <- bmaPred[,1,]
+                bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W_out[i,], na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
+                bmaPred <-  bmaPred/array(t(W_out[i,]%*%t(1*!is.na(.flatPreds))), dim=c(nObsCal, 1, nDraws))
+                bmaPred[,,-1] <- NA
+                many.predictions[,i] <- bmaPred[,1,]
               }
               bmaPred[,1,] <- apply(many.predictions, 1, FUN=median)
-              print(bmaPred)
+              # print(bmaPred)
               cal <- abind(bmaPred, .forecastData@predCalibration, along=2); colnames(cal) <- c("EBMA", modelNames)
             }
             
             
-            
+            # Runs if user specifies EM algorithm
             if(method=="EM"){
             .flatPreds <- aaply(predCalibrationAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)})
             bmaPred <- array(aaply(.flatPreds, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsCal, 1,nDraws))
@@ -276,12 +277,32 @@ setMethod(f="fitEnsemble",
               	.adjPred[outcomeTest==1,,1]<-(plogis(.adjPred[outcomeTest==1,,1]))
                 predTestAdj <- .adjPred
               }
-              .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
-              bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
-              bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
-              bmaPredTest[,,-1] <- NA
-
-              test <- abind(bmaPredTest, .forecastData@predTest, along=2);  colnames(test) <- c("EBMA", modelNames)
+              
+              # Runs if user specifies Bayesian algorithm
+              if(method=="Bayesian"){
+                .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
+                many.predictions2 <- matrix(data=NA, nrow=dim(predTestAdj)[1], ncol=dim(W_out)[1])
+                for(i in 1:dim(W_out)[1]){
+                  bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W_out[i,], na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
+                  bmaPredTest <-  bmaPredTest/array(t(W_out[i,]%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
+                  bmaPredTest[,,-1] <- NA
+                  many.predictions2[,i] <- bmaPredTest[,1,]
+                }
+                bmaPredTest[,1,] <- apply(many.predictions2, 1, FUN=median)
+                test <- abind(bmaPredTest, .forecastData@predTest, along=2);  colnames(test) <- c("EBMA", modelNames)
+              }
+              
+              # Runs if user specifies EM algorithm
+              if(method=="EM"){
+                W_out <- matrix()
+                .flatPredsTest <- matrix(aaply(predTestAdj, c(1,2), function(x) {mean(x, na.rm=TRUE)}), ncol=nMod)
+                bmaPredTest <-array(aaply(.flatPredsTest, 1, function(x) {sum(x* W, na.rm=TRUE)}), dim=c(nObsTest, 1,nDraws))
+                bmaPredTest <-  bmaPredTest/array(t(W%*%t(1*!is.na(.flatPredsTest))), dim=c(nObsTest, 1, nDraws))
+                bmaPredTest[,,-1] <- NA
+                test <- abind(bmaPredTest, .forecastData@predTest, along=2);  colnames(test) <- c("EBMA", modelNames)
+              }
+              
+              
             }
             if(!.testPeriod){{test <- .forecastData@predTest}}
             if(useModelParams==FALSE){.models = list()}
@@ -307,7 +328,8 @@ setMethod(f="fitEnsemble",
                 model = "logit",
                 modelResults = .models,
                 call=match.call(),
-                posteriorWeights = store.W
+                posteriorWeights = store.W,
+                posteriorBayesian = W_out
                 )
           }
           )
