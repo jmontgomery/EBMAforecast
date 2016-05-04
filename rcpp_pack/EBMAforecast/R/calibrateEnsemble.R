@@ -13,8 +13,8 @@
 #' @param whichW If W is a matrix of initial model weights, an integer denoting the row of weights to use in the final calibration. The default is the first row. 
 #' @param const user provided "wisdom of crowds" parameter, serves as minimum model weight for all models. Default = 0.
 #' @param iterations The number of iterations for the Bayseian model
-#' @param burnin This is the burnin number
-#' @param thin This is the thin number
+#' @param burnin The burn in for the Gibbs sampler
+#' @param thin How much the Gibbs sampler is thinned
 #' @param useModelParams If "TRUE" individual model predictions are transformed based on logit models. If "FALSE" all models' parameters will be set to 0 and 1.  
 #' @param ... Not implemented
 #'
@@ -35,6 +35,7 @@
 #' \item{iter}{Number of iterations run in the EM algorithm.}
 #' \item{call}{The actual call used to create the object.}
 #' \item{posteriorWeights}{A matrix of the posterior model weights from model calibration, with each row corresponding to each row of weights specified in W.}
+#' \item{posteriorBayesian}{A matrix of the posterior model weights from the Bayesian method.}
 #'
 #'
 #' @author Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>
