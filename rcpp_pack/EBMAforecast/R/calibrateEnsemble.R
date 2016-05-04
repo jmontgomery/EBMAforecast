@@ -12,9 +12,9 @@
 #' @param W A vector or matrix of initial model weights. If unspecified, each model will receive weight equal to 1/number of Models
 #' @param whichW If W is a matrix of initial model weights, an integer denoting the row of weights to use in the final calibration. The default is the first row. 
 #' @param const user provided "wisdom of crowds" parameter, serves as minimum model weight for all models. Default = 0.
-#' @param iterations The number of iterations for the Bayseian model
-#' @param burnin The burn in for the Gibbs sampler
-#' @param thin How much the Gibbs sampler is thinned
+#' @param iterations The number of iterations for the Bayseian model. Default = 10000.
+#' @param burnin The burn in for the Gibbs sampler. Default = 1000.
+#' @param thin How much the Gibbs sampler is thinned. Default = 50.
 #' @param useModelParams If "TRUE" individual model predictions are transformed based on logit models. If "FALSE" all models' parameters will be set to 0 and 1.  
 #' @param ... Not implemented
 #'
