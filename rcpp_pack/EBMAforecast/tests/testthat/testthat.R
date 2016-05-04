@@ -658,10 +658,23 @@ test_that("Logit model gives similar results when weights are determined", {
                                        .predTest=testSample[,c("LMER", "SAE", "GLM")],
                                        .outcomeTest=testSample[,"Insurgency"],
                                        .modelNames=c("LMER", "SAE", "GLM"))
-  
  this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3)
  expect_equal(.5, as.numeric(this.ensemble@modelWeights[1]), tolerance = .1, scale = 1)
  expect_equal(.5, as.numeric(this.ensemble@modelWeights[2]), tolerance = .1, scale = 1)
 }
 )
 
+# testing if the logit ensemble works for predetermined weights
+context("Test how close the logit model gets to 50/50 for the first two weights")
+test_that("Logit model gives similar results when weights are determined", {
+  this.ForecastData <- makeForecastData(.predCalibration=calibrationSample[,c("LMER", "SAE", "GLM")],
+                                        .outcomeCalibration=testLogit,
+                                        .predTest=testSample[,c("LMER", "SAE", "GLM")],
+                                        .outcomeTest=testSample[,"Insurgency"],
+                                        .modelNames=c("LMER", "SAE", "GLM"))
+  
+  this.ensemble <- calibrateEnsemble(this.ForecastData, model="logit", tol=0.0001, maxIter=25000, exp=3, method = "Bayesian")
+  expect_equal(.5, as.numeric(median(this.ensemble@posteriorBayesian[,1])), tolerance = .1, scale = 1)
+  expect_equal(.5, as.numeric(median(this.ensemble@posteriorBayesian[,2])), tolerance = .1, scale = 1)
+}
+)

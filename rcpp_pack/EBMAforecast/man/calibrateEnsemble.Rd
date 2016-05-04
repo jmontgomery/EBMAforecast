@@ -41,9 +41,9 @@ fitEnsemble(.forecastData, tol = sqrt(.Machine$double.eps), maxIter = 1e+06,
 
 \item{iterations}{The number of iterations for the Bayseian model}
 
-\item{burnin}{This is the burnin number}
+\item{burnin}{The burn in for the Gibbs sampler}
 
-\item{thin}{This is the thin number}
+\item{thin}{How much the Gibbs sampler is thinned}
 }
 \value{
 Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'ForecastData', with the following slots
@@ -63,6 +63,7 @@ Returns a data of class 'FDatFitLogit' or FDatFitNormal, a subclass of 'Forecast
 \item{iter}{Number of iterations run in the EM algorithm.}
 \item{call}{The actual call used to create the object.}
 \item{posteriorWeights}{A matrix of the posterior model weights from model calibration, with each row corresponding to each row of weights specified in W.}
+\item{posteriorBayesian}{A matrix of the posterior model weights from the Bayesian method.}
 }
 \description{
 This function calibrates an EBMA model based on out-of-sample performance in the calibration time period. Given a dependent variable and calibration-sample predictions from multiple component forecast models in the \code{ForecastData} the \code{calibrateEnsemble} function fits an ensemble BMA mixture model. The weights assigned to each model are derived from the individual model's performance in the calibration period. Missing observations are allowed in the calibration period, however models with missing observations are penalized. When missing observations are prevalent in the calibration set, the EM algorithm is adjusted and model paprameters are estimated by maximizing a renormalized partial expected complete-data log-likelihood (Fraley et al. 2010).
