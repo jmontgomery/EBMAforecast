@@ -40,6 +40,7 @@ setMethod(f="EBMApredict",
             EBMAmodel, 
             Predictions,
             Outcome = NULL,
+            method="EM",
             ...)
           {
             switch(EBMAmodel@model,

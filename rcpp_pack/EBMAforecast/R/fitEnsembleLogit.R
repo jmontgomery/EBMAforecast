@@ -26,6 +26,9 @@ setMethod(f="fitEnsemble",
             burnin = 1000,
             thin = 50)
           {
+            if(iterations < (burnin+thin)){
+              stop("You need to increase the number of iterations or decrease the burnin and/or thin rate.")
+            }
             print(method)
             # Creating blank store matrix 
             store.W <- matrix()
