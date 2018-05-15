@@ -41,12 +41,8 @@
 #' @author Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>
 
 #'
-<<<<<<< HEAD:EBMAforecast/R/calibrateEnsemble.R
 #'
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.  \emph{International Journal of Forecasting. \bold{31(3)}: 930-942.
-=======
-#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. 31(3): 930-942.
->>>>>>> JacobClass:rcpp_pack/EBMAforecast/R/calibrateEnsemble.R
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
 #' @references Raftery, A. E., T. Gneiting, F. Balabdaoui and M. Polakowski. (2005). Using Bayesian Model Averaging to calibrate forecast ensembles. \emph{Monthly Weather Review}. \bold{133}:1155--1174.
@@ -71,11 +67,8 @@
 #' @keywords calibrate EBMA 
 #'
 #' @rdname calibrateEnsemble
-<<<<<<< HEAD:EBMAforecast/R/calibrateEnsemble.R
 #' @aliases calibrateEnsemble, ForecastData-method calibrateEnsemble
-=======
->>>>>>> JacobClass:rcpp_pack/EBMAforecast/R/calibrateEnsemble.R
-#' @export
+#' #' @export
 setGeneric(name="calibrateEnsemble",
            def=function(.forecastData=new("ForecastData"),
              exp=1,

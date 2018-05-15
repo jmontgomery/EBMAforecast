@@ -39,11 +39,7 @@ setClass(Class="CompareModels",
 #'
 #' @author  Michael D. Ward <\email{michael.d.ward@@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@@tamu.edu}>
 #'
-<<<<<<< HEAD:EBMAforecast/R/compareModels.R
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.  \emph{International Journal of Forecasting. \bold{31(3)}: 930-942.
-=======
-#' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2015). Calibrating ensemble forecasting models with sparse data in the social sciences.   \emph{International Journal of Forecasting}. 31(3): 930-942.
->>>>>>> JacobClass:rcpp_pack/EBMAforecast/R/compareModels.R
 #' @references Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging. \emph{Political Analysis}. \bold{20}: 271-291.
 #'
 #' 
@@ -68,10 +64,7 @@ setClass(Class="CompareModels",
 #' @importFrom Hmisc somers2
 #'
 #' @seealso ensembleBMA, other functions
-<<<<<<< HEAD:EBMAforecast/R/compareModels.R
 #' @aliases compareModels,ForecastData-method compareModles, CompareModels-class
-=======
->>>>>>> JacobClass:rcpp_pack/EBMAforecast/R/compareModels.R
 #' @export
 setGeneric(name="compareModels",
            def=function(.forecastData,
