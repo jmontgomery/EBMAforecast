@@ -13,9 +13,6 @@ The EBMAforecast package (currently under development) allows users to increase 
 demo(presForecast)
 }
 }
-\author{
-Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@duke.edu}>
-}
 \references{
 Montgomery, Jacob M., Florian M. Hollenbach and Michael D. Ward. (2012). Improving Predictions Using Ensemble Bayesian Model Averaging.   \emph{Political Analysis}. \bold{20}: 271-291.
 
@@ -29,4 +26,6 @@ Sloughter, J. M., T. Gneiting and A. E. Raftery. (2010). Probabilistic wind spee
 
 Fraley, C., A. E. Raftery, and T. Gneiting. (2010). Calibrating multimodel forecast ensembles with exchangeable and missing members using Bayesian model averaging. \emph{Monthly Weather Review}. \bold{138}:190--202.
 }
-
+\author{
+Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}> and Florian M. Hollenbach <\email{florian.hollenbach@duke.edu}>
+}

@@ -2,10 +2,10 @@
 % Please edit documentation in R/summary.R
 \docType{methods}
 \name{summary,FDatFitLogit-method}
-\alias{SummaryForecastData-class}
+\alias{summary,FDatFitLogit-method}
 \alias{print,SummaryForecastData-method}
 \alias{show,SummaryForecastData-method}
-\alias{summary,FDatFitLogit-method}
+\alias{SummaryForecastData-class}
 \alias{summary,FDatFitNormal-method}
 \title{Summary Function}
 \usage{
@@ -55,4 +55,3 @@ summary(this.ensemble, period="test",showCoefs=FALSE)
 \author{
 Michael D. Ward <\email{michael.d.ward@duke.edu}> and Jacob M. Montgomery <\email{jacob.montgomery@wustl.edu}>
 }
-
